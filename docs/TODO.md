@@ -23,8 +23,31 @@ Domaine et comportement : voir `FEATURES.md`. Faits techniques vérifiés : voir
 - **Calculs de qualification :** dans le package `domain`, exécutés sur le client. On recalcule de façon incrémentale, comme un tableur (piste : signaux ou graphe de dépendances), sans recalculer tout l'arbre.
 - **Licence :** AGPL-3.0. Une instance modifiée et hébergée doit publier ses sources.
 
+### Technique de base (grill du 2026-10-03, suite)
+Faits mesurés pendant ce grill : `PRACTICES.md` §9.
+- **Drizzle :** 1.0.0-rc.4. Migrations SQL générées par `drizzle-kit generate` et commitées ; jamais de `push`, même en dev. Toutes les requêtes passent par une couche repository, qui absorbe les changements cassants de la RC.
+- **Driver Postgres :** `postgres-js`. Il marche sous Bun et sous Node, et LISTEN/NOTIFY passe par le client brut. `bun-sql` est écarté pour l'instant (bugs ouverts sur JSON, fuseaux horaires et timestamps).
+- **APIs Bun :** autorisées uniquement dans `apps/server`, dans la couche infra (DB, WebSocket, hash). Les packages partagés (`contracts`, `domain`, `env`) et le web restent neutres vis-à-vis du runtime.
+- **TypeScript :** 7 comme compilateur et vérificateur. Lint type-aware avec oxlint (tsgolint). Pas d'ESLint.
+- **Effect :** utilisé côté serveur et côté client. Le package `domain` reste en fonctions TypeScript pures, sans `Effect`, appelées depuis le code Effect.
+- **Données stockées :** le serveur ne stocke que les données maîtres, dans la structure du domaine. Moyennes et autres calculs sont faits sur le client, à l'affichage : l'accès et la mise à jour des données restent séparés des calculs d'affichage. Le serveur peut aussi calculer avec `domain` quand il en a besoin (routes d'export).
+- **Store client :** TanStack DB. Eden et HTTP pour tout ce qui n'a pas besoin de live ; Electric ou WebSocket pour les parties live, à décider une fois le domaine détaillé.
+- **Historique :** une table d'état courant et une table d'historique append-only, écrite par le repository dans la même transaction, avec l'auteur tiré de l'utilisateur connecté. À confirmer avec le domaine.
+- **Verrous :** en mémoire dans le serveur, derrière une interface (service Effect), pour passer à Valkey le jour où c'est nécessaire.
+- **IDs :** UUIDv7.
+- **Origine unique :** l'app est derrière un reverse proxy, sur un seul domaine. `/api` et `/ws` sont routés par chemin, sans sous-domaines, donc sans CORS ni cookie partagé entre sous-domaines. Traefik est envisagé en dev.
+- **Tests :** exécutés sous Bun.
+- **Mutation testing :** mis de côté jusqu'à ce que Stryker supporte TypeScript 7. En attendant, aucun gate ne mesure la qualité des tests.
+- **Layout initial du monorepo :** `apps/web`, `apps/server` (avec le schéma Drizzle, les migrations et les repositories), `packages/contracts`, `packages/domain`, `packages/env`, `packages/testing`, `packages/config`, `tools/`. `ui` reste dans `web` et `db` dans `server` jusqu'à ce qu'un deuxième consommateur apparaisse. Turborepo est conservé. Le layout doit pouvoir évoluer vers une architecture modulaire par feature ; ce découpage se décide après le domaine.
+- **Schémas :** Valibot, pour les contrats partagés. Côté Effect, un helper `decode(schema)` transforme l'échec Valibot en erreur taguée.
+- **Runner de tests :** Vitest 5, exécuté sous Bun. La piste `bun test` est close.
+- **Génération des UUIDv7 :** par le client pour toute entité créée de façon optimiste, par Postgres (`uuidv7()`) pour le reste. Le serveur vérifie que les IDs reçus sont des v7 valides.
+- **Verrous, écriture :** le serveur refuse l'écriture sur une cellule verrouillée par un autre formateur (code `CELL_LOCKED`). À confirmer avec le domaine.
+- **Coupure courte :** la saisie doit survivre tant que l'onglet reste ouvert. La survie à un rechargement n'est pas exigée.
+- **i18n :** Paraglide. Clés et paramètres typés ; un code d'erreur sans message fait échouer le typecheck.
+
 ### Coverage
-- Statistique indicative avec suivi de tendance. **Aucun seuil, aucun gate.** Le seul gate qualité des tests reste le score de mutation sur `domain`.
+- Statistique indicative avec suivi de tendance. **Aucun seuil, aucun gate.** Le seul gate qualité des tests prévu est le score de mutation sur `domain`, suspendu tant que Stryker ne supporte pas TypeScript 7.
 - Couches mesurées : unit + intégration, fusionnées dans un seul rapport. Pas de coverage e2e.
 
 ### Régression visuelle
@@ -50,13 +73,6 @@ Domaine et comportement : voir `FEATURES.md`. Faits techniques vérifiés : voir
   - CI : toute la stack (régressions visuelles et perf, mutation, scans…)
 
 ## À explorer / confirmer
-
-### Runtime et outillage de test
-- [ ] Bun natif : `bun test --coverage` (reporters lcov/text) peut-il remplacer Vitest pour unit + intégration ? Comparer vitesse, fusion des rapports et compatibilité avec le browser mode et les projets Vitest.
-- [ ] Mutation testing avec Bun : existe-t-il un runner Stryker pour `bun test` (officiel ou communautaire), ou un outil de mutation natif Bun ? Sinon, rester sur Vitest 4.1 + Stryker 10.
-- [ ] Si Vitest reste : le lancer sous Node (coverage v8, ne marche pas sous Bun) ou sous Bun avec istanbul ? Mesurer l'écart de vitesse.
-- [ ] Confirmer que `vitest run --coverage` sur plusieurs projets (unit + intégration) donne un seul rapport, et que `--merge-reports` fusionne la coverage des shards.
-- [ ] Confirmer dans le guide de migration v4 que l'AST-aware remapping v8 est actif par défaut.
 
 ### Perf
 - [ ] Choisir l'outil : `vitest bench` (`--outputJson` / `--compare`), `mitata` / `tinybench` sous Bun, ou un banc maison.
@@ -110,37 +126,32 @@ Idée reprise d'Ascent : chaque worktree reçoit un **slot** (1 à 9), le clone 
 
 ## Grill — reprendre ici
 
-Le prochain grill porte d'abord sur la **partie technique de base (tooling)**, puis sur le domaine, à partir d'exemples de qualifications réelles.
+Le grill technique a commencé le 2026-10-03 (décisions dans « Technique de base » plus haut). Il reprend sur les décisions ouvertes ci-dessous, puis passe au domaine, à partir d'exemples de qualifications réelles.
 
 ### Technique : décisions ouvertes
-- [ ] **Bibliothèque de schémas : Valibot ou Effect Schema.** Préférence pour Valibot. Faits établis :
-  - Effect Schema v4 est stable et s'exporte en Standard Schema avec `Schema.toStandardSchemaV1`.
-  - Valibot 1.5 marche avec Elysia 1.4 via Standard Schema.
-  - Un spike doit vérifier deux points : l'inférence Eden des réponses par statut (`response: {200, 400…}`) avec Valibot, et la génération OpenAPI via `@valibot/to-json-schema`.
+- [ ] **Réponses au format wire :** pas de schéma de transformation dans les `response:`, car c'est cassé dans les deux bibliothèques (`PRACTICES.md` §9). Les dates voyagent en chaînes ISO et le client convertit explicitement. Un test qui parcourt les routes l'impose. Proposé, à confirmer.
+- [ ] **Setup TypeScript 7 :** `@effect/tsgo` pour les diagnostics Effect (0.x ; il patche le binaire TS, donc à relancer au `postinstall`). Pins exacts pour TS, oxlint et tsgolint. Un alias TS 6 ne sera nécessaire que lorsque Stryker reviendra.
+- [ ] **Architecture par feature :** packages par feature ou dossiers colocalisés dans les apps ? À décider après le domaine.
+- [ ] **Coupure courte, mécanisme :** TanStack DB seul ne retente pas les écritures. Une écriture échouée est annulée et la saisie disparaît, donc il faut une couche de retry. Piste : `@tanstack/offline-transactions` 1.0 (outbox IndexedDB, replay avec backoff, `idempotencyKey` que le serveur doit dédupliquer). Il couvrirait aussi le rechargement de l'onglet, sans que ce soit exigé. Alternative : un retry maison en mémoire. À explorer (`PRACTICES.md` §9).
 - [ ] **Conformité contract-first :** assertion de type entre `$inferSelect` / `$inferInsert` de Drizzle et le type du contrat, dans un `*.test-d.ts`. On ne génère jamais le contrat à partir de la DB.
-- [ ] **Drizzle : 0.45.3 stable ou 1.0.0-rc.4.** La rc.4 intègre `drizzle-orm/valibot` et `drizzle-orm/effect-schema`, mais elle est toujours en RC depuis fin juin, avec des refactors cassants.
-- [ ] **Store client et transport :**
-  - TanStack DB (0.11), avec des Query collections alimentées par Eden et une invalidation par WebSocket ?
-  - Ou des Electric collections (sync service 1.8, collection 0.5) ? Electric demande un conteneur en plus, `wal_level=logical`, un proxy d'auth qui fixe le `WHERE` côté serveur, et un volume persistant.
-  - Le WebSocket des verrous et de la présence reste nécessaire dans les deux cas.
-- [ ] **Recalcul incrémental côté client :** signaux (bibliothèque ?), graphe de dépendances maison, ou live queries TanStack DB ?
+- [ ] **Recalcul incrémental côté client :** signaux (bibliothèque ?), graphe de dépendances maison, ou live queries TanStack DB ? Dépend du domaine.
+- [ ] **Ops :** hébergeur suisse, reverse proxy en prod (Traefik ou Caddy), sauvegardes, suivi d'erreurs (auto-hébergé à cause de la nLPD ?), job runner (`pg-boss`) pour la synchronisation MiData.
 - [ ] **Mises à jour de dépendances :** ni Dependabot (#14320) ni Renovate (PR #42909 non fusionnée) ne gèrent les catalogues Bun. Options :
   - Renovate avec un `customManagers` en regex ;
   - un script maison ;
   - attendre la PR Renovate.
 - [ ] **`@shadcn/lint` :** l'adopter dès maintenant (version 0.2, un mois d'existence, l'API va bouger) ? Comment définir les contrats `no-restyle` ?
-- [ ] **Bibliothèque i18n :** Paraglide 2.25 (fonctions typées, éliminées du bundle si inutilisées), Lingui 6.9 (supporte explicitement Vite 8) ou i18next 26 ?
-- [ ] **Runner de tests :** Vitest 4.1 sous Node, comme indiqué plus haut. Stryker ne marche ni avec Vitest 5 (#6210) ni officiellement avec `bun test`, où il n'existe qu'un runner communautaire. Clore ou non la piste `bun test` (section « Runtime et outillage de test » plus bas).
-- [ ] **TypeScript :** 6.0.3 pour la compilation, avec TS 7 en vérification seulement ?
-- [ ] **Monorepo :** Turborepo et le découpage en packages (`contracts`, `domain`, `env`, `testing`, `ui`, apps).
 - [ ] **Hooks :** répartition pre-commit / pre-push / CI et budgets de temps (voir plus bas).
 - [ ] **Outils d'analyse :** fallow, slop-scan, slopo (voir plus bas).
 - [ ] **Harness Claude Code :** `.claude/settings.json`, hooks, skills vendorisés (PRACTICES §4).
-- [ ] **Worktrees parallèles :** scripts de slots (ports, bases, session navigateur), ou un projet compose complet par worktree ? Voir plus bas.
+- [ ] **Worktrees parallèles :** scripts de slots (ports, bases, session navigateur), ou un projet compose complet par worktree ? Voir plus bas. Piste : Traefik en dev avec un hostname `*.localhost` par worktree (ex. `w1.azimut.localhost`) à la place des ports par slot ; les cookies seraient aussi isolés par worktree.
 
 ### Domaine : décisions ouvertes
 Voir « Questions ouvertes » dans `FEATURES.md`. Points à traiter en priorité :
 - la généralisation des échelles, des seuils, des conversions et des agrégations, à partir des exemples de qualifications réelles ;
+- un modèle de données qu'on peut projeter vers plusieurs vues (par exercice, par thème, par rendu, bilan final, état du cours) et les statistiques de suivi (voir « Projections et visualisations » dans `FEATURES.md`) ;
+- la généralisation au-delà de l'arbre : référentiel et instances, regroupements n-n décisifs ou indicatifs, règle de décision finale (voir « Analyse de trois qualifications réelles » dans `FEATURES.md`) ;
+- obtenir au moins une qualification **remplie** et anonymisée, pour voir l'usage réel (commentaires, cases vides, ajustements de fin de cours) ;
 - la correspondance entre les rôles de cours MiData et les droits dans Azimut, la synchronisation des cours (à la connexion ? périodique ?), et le report des qualifications dans MiData ;
 - le positionnement face à Qualix ;
 - les verrous (durée, inactivité) et le moment de la sauvegarde ;

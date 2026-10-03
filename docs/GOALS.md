@@ -21,7 +21,7 @@ Note d'intention du projet : préparer un setup qui garantit la qualité dès le
 - PostgreSQL
 - Valkey ou autre pour le temps réel, seulement si un besoin mesuré apparaît
 - shadcn lint ([`@shadcn/lint`](https://github.com/shadcn-ui/lint), plugin JS oxlint)
-- TanStack DB comme store client, à confirmer
+- TanStack DB comme store client
 - React Compiler
 - Outils d'analyse de code à évaluer : [slop-scan](https://github.com/modem-dev/slop-scan), [slopo](https://github.com/rafal-qa/slopo), [fallow](https://github.com/fallow-rs/fallow)
 

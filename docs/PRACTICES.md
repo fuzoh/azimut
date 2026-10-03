@@ -6,9 +6,9 @@
 
 **Main choices**
 
-1. **Bleeding edge: decided library by library.** Two picks are off the stable track: **Effect 4.0** (GA, LTS; core only) and **TanStack DB 0.x** (the client store, behind collection definitions). Everything else stays on stable majors: TS 6.0.3, Vitest 4.1, Drizzle 0.45, and Elysia 1.4.
+1. **Bleeding edge: decided library by library.** Picks off the stable track: **Effect 4.0** (GA, LTS; core only), **TanStack DB 0.x** (the client store, behind collection definitions), **Drizzle 1.0 RC** (behind a repository layer) and **TypeScript 7** (stable, but its ecosystem is young). Elysia stays on 1.4. Tests run on **Vitest 5** under Bun.
 2. **Real-time starts simple.** Use server-authoritative data with optimistic UI (TanStack DB Query collections fed by Eden). Over that, an Elysia WebSocket and Bun `server.publish` push "entity X changed" events. Don't add Valkey, CRDTs, P2P or a sync service until a measured trigger appears (§2).
-3. **One contract language.** Effect Schema or Valibot, never both. The choice is still open (§7).
+3. **One contract language: Valibot.** Effect code uses it through a `decode(schema)` helper that maps failures to a tagged error. No Effect Schema.
 4. **Harness committed with the repo.** That means `.claude/settings.json`, vendored skills and tested hooks. One instruction file, AGENTS.md, imported by CLAUDE.md. No per-turn injected reminders.
 5. **Skills: vendor about 8, skip the ceremony chains.** From mattpocock, take tdd, codebase-design, domain-modeling, diagnosing-bugs, grilling, research and writing-for-agents. From Emil Kowalski, take emil-design-eng, animate and review-animations. From pstack, take ideas only.
 
@@ -23,20 +23,20 @@ All versions below were verified on the npm registry. Effect 4.0.0, Vitest 5.0.3
 | Layer | Pick | Why, and what to avoid |
 | --- | --- | --- |
 | Runtime / monorepo | **Bun 1.4.x**, Turborepo 2.11 | Pin Bun only in `packageManager`. Add a CI check that the Docker `FROM` and CI setup use the same version, so there is one source of truth for the Bun version. |
-| TypeScript | **6.0.3** strict, with TS 7 alongside for check-only via `npm:@typescript/typescript6` | TS 7.0 ships **no compiler API**. typescript-eslint still caps at <6.1, and Stryker only has "experimental" TS 7 support. Using TS 7 in the editor requires `@effect/tsgo` instead of the Effect language service. |
+| TypeScript | **7.0.2** strict, as compiler and checker | TS 7.0 ships **no compiler API** (a new one is expected in 7.1). No ESLint, so typescript-eslint's cap doesn't matter. Effect diagnostics go through `@effect/tsgo`. Stryker 10 needs the TS 6 API, so mutation testing is deferred (§9). |
 | Frontend build | **Vite 8.3** with `@vitejs/plugin-react` (Babel path) and `babel-plugin-react-compiler` 1.0 | Vite 8 has had 7 months and 3 minors, so it is no longer leading-edge. Vitest 4.1 and plugin-react 5.2 both accept `^8`. Avoid the Rust/oxc React Compiler path, which is marked experimental. |
 | UI | React 19.3, TanStack Router 1 / Query 5 / Form 1, Tailwind 4.3, shadcn CLI 4 | Stable. Use `createFormHook` from day one. |
 | Client store | **TanStack DB 0.11** ⚡ (leading edge) | 0.x, with a minor release every 1–2 weeks. Its blast radius stays contained because `query-db-collection` is already 1.x. Details in §2. |
 | API | **Elysia 1.4.30** with Eden | Elysia 2 is a beta rewrite (WS becomes opt-in, packages move to `@elysia/*`), so avoid it. Use `@elysia/eden` (1.4.10), now the canonical package; `@elysiajs/eden` is frozen at 1.4.9 (checked 2026-10-03). Eden types errors only when each route declares per-status `response: {200, 400, 401…}` schemas. That makes a "mandatory `response:`" rule **required** for typed errors. |
 | Effect | **4.0.0** ⚡ (leading edge), core only | Core `Effect`, `Stream` and `Schema` are stable and LTS. `effect/rpc`, `http`, `sql`, `reactivity` and `eventlog` are tagged `@stability unstable`, so don't use them. The fallback is 3.22.2 now, with a known v4 rewrite later. For a greenfield repo, v4 core is the better bet. |
-| DB | Postgres 18, **Drizzle 0.45.3** | Drizzle 1.0 has sat at rc.4 since June, with breaking refactors. Wrap queries in a repository layer (`Effect.tryPromise`) and pass `db`/`tx` explicitly instead of using a module-global `db`. `@effect/sql` is unstable in v4. |
+| DB | Postgres 18, **Drizzle 1.0.0-rc.4**, driver `postgres-js` | The RC has breaking refactors, so wrap queries in a repository layer (`Effect.tryPromise`) and pass `db`/`tx` explicitly instead of using a module-global `db`. Migrations come from `drizzle-kit generate` and are committed; never use `push`. Don't use rc.4's schema generation from tables: the contract is never derived from the DB. `bun-sql` has open bugs on JSON, timezones and timestamps (drizzle #6132, #4311, #5175). `@effect/sql` is unstable in v4. |
 | Auth | Better Auth 1.7 | Mount only the plugins in use, so no unused endpoint (e.g. admin) is exposed. |
-| Tests | **Vitest 4.1.11**, Playwright 1.63, Stryker 10 | **Vitest 5 breaks Stryker** (stryker-js#6210: every mutant survives). Keep Vitest 4.1 until that is fixed. |
+| Tests | **Vitest 5** under `bun --bun`; Playwright 1.63 | Stryker is deferred until it supports TS 7 (and Vitest 5: stryker-js#6210). Measured facts in §9. |
 | Lint / format | **oxlint 1.86** (stable) + oxfmt 0.71 (exact pin) | Details in §3. oxfmt is 0.x but cheap to roll back, so an exact pin is enough. |
 | Hygiene | Knip 6, Lefthook 2, squawk 2.66, release-please 17 | Knip understands Bun catalogs (`--fix-type catalog`). |
 | Dep updates | **Renovate**, or Dependabot plus a catalog script | **Dependabot doesn't check Bun catalogs** (dependabot-core#14320, open). That conflicts with two goals: Dependabot, and hoisting deps to the catalog. **Renovate doesn't either** (2026-10-03): PR renovatebot/renovate#42909 is open and unmerged, and its docs list only pnpm and Yarn catalog dep types. |
 
-**Not chosen:** TS 7 as the compiler, Vitest 5, Drizzle 1.0 RC, Elysia 2 beta, Yjs 14 beta, the oxc React Compiler, BullMQ, Valkey, self-hosted S3, and `effect/rpc`.
+**Not chosen:** `bun test`, Vitest 4.1, Effect Schema, Drizzle 0.45, the `bun-sql` driver, Electric (for now), Elysia 2 beta, Yjs 14 beta, the oxc React Compiler, BullMQ, Valkey, self-hosted S3, and `effect/rpc`.
 
 **Target browsers:** Vite's default `build.target` is `baseline-widely-available`, which roughly matches the "browsers up to 2 years old" rule. Set a matching browserslist so oxlint, Tailwind and Vite all agree.
 
@@ -104,9 +104,8 @@ All versions below were verified on the npm registry. Effect 4.0.0, Vitest 5.0.3
   - Use Effect `Stream` + `Schedule` for the WS reconnect and backoff loop and for message decoding.
   - Keep state in TanStack DB, not in Effect reactivity, which is unstable.
 - **Schema:**
-  - With Effect on both sides, **Effect Schema** is the better single contract. It covers branded IDs, encode/decode, WS messages and services.
-  - Elysia accepts it through Standard Schema. In v4 the call is `Schema.toStandardSchemaV1`; Elysia's docs still show the v3 name.
-  - The cost is a heavier client bundle than Valibot.
+  - **Valibot** is the single contract language. Elysia takes Valibot schemas directly; Effect code decodes through a `decode(schema)` helper that maps failures to a tagged error.
+  - Effect Schema was the alternative. Elysia accepts it through Standard Schema (in v4, `Schema.toStandardSchemaV1`; Elysia's docs still show the v3 name), but it needs that wrapper on every route plus a custom OpenAPI mapper (§9).
 
 ---
 
@@ -119,7 +118,7 @@ All versions below were verified on the npm registry. Effect 4.0.0, Vitest 5.0.3
 | `import/no-cycle` | `plugins: ["import"]`. Type-only imports are ignored by default. |
 | Layering / workspace DAG | oxlint has **no built-in boundary rule**. Use `no-restricted-imports` with `patterns` per folder, plus a small structure script that checks `package.json` deps against a declared DAG. The JS-plugin API is alpha, so skip custom rules for now. |
 | React Compiler safety | oxlint now ships 22 React Compiler rules (`purity`, `immutability`, `refs`, `set-state-in-effect`), in `correctness`. They are about 6 weeks old: turn them on, and watch for false positives. |
-| Effect correctness | Run `@effect/language-service` with `effect-language-service patch` so that `floatingEffect`, `missingEffectError` and similar diagnostics fail `tsc` in CI. Many are off by default, so enable them explicitly. `@effect/eslint-plugin` is stale. |
+| Effect correctness | Run `@effect/tsgo` (the TS 7 port of the Effect language service) with `effect-tsgo patch` so that `floatingEffect`, `missingEffectError` and similar diagnostics fail `tsc` in CI. Many are off by default, so enable them explicitly. `@effect/eslint-plugin` is stale. |
 | Lint config can't be relaxed | A guard test (`oxlintrc.test.ts`) fails if any override relaxes a guarded rule. Also: CODEOWNERS on config, and Claude `ask` on config edits (§4). |
 | Strict tsconfig | `packages/config/tsconfig.base.json`: `strict`, `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, `verbatimModuleSyntax` |
 | Catalog / no drift | A CI script checks three things: every external dep is `catalog:`, there are no root runtime deps, and the Bun version matches across `packageManager`, Docker and CI. Knip enforces unused deps and exports. |
@@ -135,7 +134,7 @@ All versions below were verified on the npm registry. Effect 4.0.0, Vitest 5.0.3
 
 | Layer | Scope | Harness |
 | --- | --- | --- |
-| Unit + **mutation** | Only the pure `domain` package. This is the client-heavy computation, imported by both client and server so the server can re-validate. | Vitest 4.1. Stryker 10 with `mutate` limited to `packages/domain/**`, run nightly with `--incremental`. Gate on mutation score, not coverage. |
+| Unit + **mutation** | Only the pure `domain` package. This is the client-heavy computation, imported by both client and server (for exports). | Vitest 5. Mutation testing is deferred until Stryker supports TS 7. When it returns: `mutate` limited to `packages/domain/**`, run nightly with `--incremental`, gate on mutation score, not coverage. |
 | Integration | Main features through HTTP, on real Postgres | One DB clone per worker (`CREATE DATABASE … TEMPLATE`), truncate with `RESTART IDENTITY` per test, builders per aggregate, real sign-in, a cheap password hash in tests. No `retry`. Mock only third-party code. One shared `testing` package instead of copying setup into each feature. |
 | E2E | Main user journeys | Playwright on an isolated compose stack with tmpfs Postgres and `.env` masked. **A required check from the first PR.** |
 
@@ -232,7 +231,7 @@ Install with `npx skills add <repo> --skill <name>` and **commit the output**. A
 | --- | --- | --- | --- |
 | **mattpocock/skills** | codebase-design, diagnosing-bugs, grilling, research, writing-for-agents, wizard, git-guardrails (as a template for the guard hook) | **tdd** (use the Vitest/Playwright/Stryker layers, drop jest examples, make the seam-confirmation step optional) · **domain-modeling** (pin GLOSSARY and ADR paths; this is the "docs = domain" rule) · **code-review** (remove the issue-tracker dependency, make lint gates the Standards axis) · prototype (UI mode on React + shadcn) | setup-pre-commit (Husky + Prettier, which conflicts with the Lefthook + oxfmt stack) · the whole to-spec / to-tickets / triage / implement / wayfinder / ask-matt chain (too much ceremony) · scaffold-exercises, shoehorn, teach |
 | **emilkowalski/skills** (standard SKILL.md, works in Claude Code as-is) | **emil-design-eng** (fixes taste gaps: easing, press feedback, shadows), **animate**, **review-animations** | apple-design (springs and gestures only) · mobile-native (only if mobile or PWA matters) · popover snippets: change `--transform-origin` (Base UI) to `--radix-popover-content-transform-origin` if the shadcn setup uses Radix | pick-ui-library (steers state to zustand, which clashes with TanStack DB) · ask-sonner (shadcn already wraps it) · expo, swift |
-| **cursor/plugins/pstack** (Cursor plugin; orchestration skills are Cursor-coupled) | — | **typescript-best-practices** (rewrite for Effect Schema; it assumes Zod) · **create-verification-skill** (a repo-local `verify-azimut` skill plus a feature map for driving the app with agent-browser or Playwright; the best idea in the bundle) · fold principles *encode-lessons-in-structure*, *test-behavior-not-implementation* and *boundary-discipline* into AGENTS.md as one line each | poteto-mode and its 23 playbooks, arena, swarm, interrogate panels, reflect, setup-pstack (sticky router plus multi-model ceremony) |
+| **cursor/plugins/pstack** (Cursor plugin; orchestration skills are Cursor-coupled) | — | **typescript-best-practices** (rewrite for Valibot; it assumes Zod) · **create-verification-skill** (a repo-local `verify-azimut` skill plus a feature map for driving the app with agent-browser or Playwright; the best idea in the bundle) · fold principles *encode-lessons-in-structure*, *test-behavior-not-implementation* and *boundary-discipline* into AGENTS.md as one line each | poteto-mode and its 23 playbooks, arena, swarm, interrogate panels, reflect, setup-pstack (sticky router plus multi-model ceremony) |
 
 Ideas worth stealing without the skills:
 
@@ -274,10 +273,10 @@ Decisions are recorded in `TODO.md`; the remaining ones are listed under "Grill 
 
 1. **Domain shape.** ✅ Answered: there is no concurrent editing inside a cell, so no CRDT. There are per-cell locks and presence, last-write-wins, and the history of every change. No offline mode for now.
 2. **Effect 4.0 or 3.22?** ✅ Use the latest (4.x), core only.
-3. **Effect Schema or Valibot?** ⏳ Open. Valibot is favoured, with contract-first shared schemas (DB and client implement the contracts).
+3. **Effect Schema or Valibot?** ✅ Valibot, with contract-first shared schemas (DB and client implement the contracts). Spike results are in §9.
 4. **Dependabot or Renovate?** ⏳ Open. Neither supports Bun catalogs (see §1).
 5. **"shadcn lint"?** ✅ It means `@shadcn/lint` (see §3). Adoption timing is still open.
-6. **i18n from day one?** ✅ Yes, French only at first. The library is still open.
+6. **i18n from day one?** ✅ Yes, French only at first, with Paraglide.
 
 ## 8. Auth: MiData / db.scout.ch (checked 2026-10-03)
 
@@ -303,3 +302,87 @@ Decisions are recorded in `TODO.md`; the remaining ones are listed under "Grill 
 - **Registration:** an OAuth application is created only by root-group admins (PBS), through their application form (see the [Qualix README](https://github.com/gloggi/qualix)). Request the scopes up front, and use https redirect URIs.
 - **Writing qualifications back:** `/api/qualifications` supports create and destroy (new in 2026), but needs layer-level `*_full`. A trainer's token probably can't write, so this would need a service API key. Two points are unverified: whether this version is deployed on db.scout.ch, and whether PBS grants the scope.
 - **Reference apps:** [gloggi/qualix](https://github.com/gloggi/qualix) (Laravel, scout course qualifications, same domain), scout-ch/wp-hitobito-auth.
+
+## 9. Spikes: schemas, test runners, TS 7 (run 2026-10-03)
+
+Throwaway projects; every claim below comes from code that was run.
+
+### Schema library with Elysia + Eden
+
+Versions: elysia 1.4.30, @elysia/eden 1.4.10, @elysiajs/openapi 1.4.16, valibot 1.5.0, @valibot/to-json-schema 1.8.0, effect 4.0.0, @tanstack/db 0.11.3.
+
+| Check | Valibot | Effect Schema |
+| --- | --- | --- |
+| Eden per-status inference (`data`, `error.status` narrowing, 422) | Works | Works; types are `readonly` |
+| Body/query/params inference and decoding | Works | Works; needs `Schema.toStandardSchemaV1` on every schema |
+| OpenAPI | Works with `mapJsonSchema: { valibot: (s) => toJsonSchema(s, { errorMode: 'ignore' }) }`. Without `errorMode`, brands and transforms make the 200 response silently disappear. | Needs a mapper based on `Schema.toJsonSchemaDocument`. Quirks: `optional` emits `null`, use `optionalKey`; `minLength` is halved in the output. |
+| Branded IDs | Work end to end | Work end to end |
+| Client bundle, 10 schemas + parse | 3.1 KB gz | 26–27.5 KB gz, mostly the Effect runtime core, already paid if Effect runs in the browser |
+| TanStack DB `schema` | Works | Works |
+
+- **Transforms on responses are broken in both.** The handler and Eden types say `Date`, but Elysia validates the returned value against the encoded side and rejects a `Date` with a 422. The wire carries the raw string, and Eden's `Date` comes from its own ISO parsing. Keep response schemas wire-shaped.
+- Eden types path params as plain `string`, so brands aren't enforced there.
+- `app.handle(new Request('http://x/...'))` returns 404; use `http://localhost/...`.
+
+### Tests under Bun
+
+Versions: Bun 1.4.2, Vitest 4.1.11 and 5.0.3, Stryker 10.0.0, drizzle-orm 0.45.3.
+
+- **Vitest under `bun --bun`:** Bun APIs, Elysia `app.handle` and watch mode work. v8 and istanbul coverage both work and match Node's numbers. The Vitest 4 migration guide confirms AST-aware remapping is the default and only mode.
+- **`bun test` 1.4.2:**
+  - `--parallel` worker processes, with `BUN_TEST_WORKER_ID` for a DB per worker. Workers spawn lazily.
+  - One merged lcov across packages, JUnit reporter, `mock.module`, snapshots, `--shard`, `--changed`.
+  - `expectTypeOf` is a runtime no-op; only `tsc` catches type-test errors.
+  - Components need a hand-set happy-dom preload.
+  - About 28 ms against about 235 ms for Vitest 5 on a small suite.
+- **Vitest 5:** `-t` now uses `>` as the separator. That breaks Stryker's vitest-runner (stryker-js#6210, reproduced: 30% score instead of 95%). The fix (PR #6214) is open and blocked.
+- **Stryker with `bun test`:**
+  - The community runner `@hughescr/stryker-bun-runner` 1.4.0 has one maintainer; it gave 95% with per-test coverage.
+  - The built-in `command` runner also gave 95%, but runs the whole suite per mutant.
+  - Stryker fails to load its plugins under Bun, so it must run on Node.
+- **Drivers:** `postgres-js` works on both runtimes, including LISTEN/NOTIFY. `bun-sql` is Bun-only. Drizzle wraps LISTEN/NOTIFY for neither.
+
+### TypeScript 7
+
+Versions: typescript 7.0.2 (stable since 2026-07-08), oxlint 1.86.0, oxlint-tsgolint 7.0.2003, @effect/tsgo 0.48.0, knip 6.39.0.
+
+- **Speed:** about 10× faster type checks than TS 6.0.3 on a small Elysia + Eden + Effect + Valibot file, with identical errors.
+- **oxlint type-aware rules:** stable since 2026-07, built on typescript-go, independent of the installed `typescript`.
+- **`@effect/tsgo`:**
+  - Its diagnostics make `tsc` exit 1. It patches the installed TS binary, so the patch must be re-run after each install.
+  - It's validated only against TS 7.0.2 and oxlint 1.82–1.86.
+  - Its `setup` writes a tsconfig plugin entry that Knip flags as an unlisted dependency.
+- **Unaffected tools:** Knip, Vitest typecheck and oxlint work with TS 7 alone. Playwright, TanStack Router codegen, drizzle-kit and `@valibot/to-json-schema` don't import `typescript`.
+- **Broken:** Stryker 10 (`ts.parseConfigFileTextToJson is not a function`). It works when `typescript` resolves to the TS 6 API (`npm:@typescript/typescript6`). Open issues: stryker-js #6110, #6111, #6112, #5213.
+- Not checked: type-check performance on a large Elysia/Eden app (elysia #1031).
+
+### i18n libraries
+
+Versions: Paraglide JS 2.25.4, Lingui 6.9.0, i18next 26.4.2 with react-i18next 17.0.15. Built on Vite 8.3.2 with the React Compiler and TS 7.0.2.
+
+- **Paraglide:**
+  - Builds on Vite 8, with no Babel step.
+  - Keys and params are type-checked: `m.nope()` gives TS2339, a wrong param gives TS2561.
+  - Messages are compiled into tree-shaken functions; the smallest bundle.
+  - Plurals use variants (`Intl.PluralRules`). Raw ICU in the default JSON format compiles to garbage; ICU needs a plugin.
+- **Lingui:**
+  - Builds on Vite 8 with the React Compiler; `macroTransform: true` runs the macros natively, without Babel.
+  - Full ICU (plural, select, selectordinal). `lingui extract` writes `.po` files, which tools like Weblate and Crowdin read.
+  - The source string is the ID; typed IDs are opt-in.
+  - In v6 the format must be a formatter object (`@lingui/format-po`).
+- **i18next:** pure runtime, the largest bundle, suffix-based plurals; ICU needs a plugin. Key typing is opt-in.
+- None of the three depends on the TS compiler API.
+
+### Short outages with TanStack DB
+
+Versions: `@tanstack/db` 0.11.3, `@tanstack/offline-transactions` 1.0.61. Docs only; not run.
+
+- **Plain TanStack DB doesn't retry.** A failed mutation moves to `failed` and its optimistic state is rolled back, so the user's input disappears.
+- **`@tanstack/offline-transactions` (official):**
+  - **Outbox:** a durable outbox in IndexedDB, with a localStorage fallback.
+  - **Tabs:** one tab leads, chosen with Web Locks or BroadcastChannel.
+  - **Replay:** first-in first-out, with exponential backoff capped at 60 s.
+  - **Idempotency:** a stable `idempotencyKey` per attempt, which the server must use to drop duplicates.
+  - **Permanent errors:** `NonRetriableError` rolls the change back.
+  - **Gotcha:** the default retry policy decides by matching strings in the error message ("401", "403", "400", "422"), so throw explicit errors.
+  - **Stability:** registry keys and mutation-function names must stay stable across releases.
