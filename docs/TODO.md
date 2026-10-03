@@ -87,6 +87,23 @@ Domaine et comportement : voir `FEATURES.md`. Faits techniques vérifiés : voir
 - [ ] [slopo](https://github.com/rafal-qa/slopo) : détection par embeddings de logique dupliquée (diff Git vs reste du code, ou codebase entière). Vérifier si un modèle local est possible : avec une API d'embeddings, le code sort du poste.
 - [ ] Recoupement avec oxlint (complexité, taille des fichiers) : garder un seul outil par règle.
 
+### Worktrees parallèles
+Idée reprise d'Ascent : chaque worktree reçoit un **slot** (1 à 9), le clone principal est le slot 0. Un slot regroupe des ports, des bases et une session navigateur. Tous les worktrees partagent un seul conteneur Postgres.
+- [ ] Script `setup-worktree` idempotent :
+  - il réserve un slot libre, ou garde celui du worktree ;
+  - il réécrit les clés du slot dans le `.env` du worktree (copié depuis le clone principal s'il manque) sans toucher aux autres lignes ;
+  - il lance `bun install`, puis crée, migre et seed la base du slot.
+- [ ] Script `remove-worktree` : supprime les bases du slot et libère le slot. Le setup libère aussi les slots dont le chemin n'existe plus.
+- [ ] Clés par slot N : port serveur et port Vite (`base + 10N`), URLs dérivées (auth, CORS, client), `POSTGRES_DB` / `POSTGRES_TEST_DB` suffixés `_wN`, `AGENT_BROWSER_SESSION` (les cookies ignorent le port, donc deux worktrees sur une même session partagent le login). Pas de Valkey (non retenu), donc pas de bloc de DB Valkey.
+- [ ] Registre des slots dans `.git/` (partagé entre les worktrees d'un même clone). Limite : deux clones séparés sur une machine distribuent les mêmes slots.
+- [ ] Garde-fous : refuser le setup dans le clone principal ; les commandes qui gèrent les conteneurs partagés lisent toujours le `.env` du clone principal ; ne jamais exporter les variables du slot dans le shell.
+- [ ] Recoupements à vérifier :
+  - les ports viennent du `.env` validé, pas d'un calcul dans `vite.config.ts` (le « port juggling » relevé dans Oria) ;
+  - les clones de DB par worker de l'intégration (`TEMPLATE`) partent de la base de test du slot ;
+  - l'e2e garde son propre projet compose, nommé par slot pour que deux e2e puissent tourner en parallèle ;
+  - `.worktreeinclude` copie le `.env` du slot 0 : tant que le setup n'a pas tourné, le worktree entre en conflit avec le clone principal ;
+  - si Electric est retenu : un port et un slot de réplication par worktree.
+
 ### Répartition pre-commit / pre-push / CI
 - [ ] Définir précisément ce que contient chaque niveau et les budgets de temps (ex. pre-commit < 10 s, pre-push < 3 min).
 - [ ] Un point d'entrée par niveau (`gate:commit`, `gate:push`, `gate:ci`), tous lançables en local.
@@ -119,6 +136,7 @@ Le prochain grill porte d'abord sur la **partie technique de base (tooling)**, p
 - [ ] **Hooks :** répartition pre-commit / pre-push / CI et budgets de temps (voir plus bas).
 - [ ] **Outils d'analyse :** fallow, slop-scan, slopo (voir plus bas).
 - [ ] **Harness Claude Code :** `.claude/settings.json`, hooks, skills vendorisés (PRACTICES §4).
+- [ ] **Worktrees parallèles :** scripts de slots (ports, bases, session navigateur), ou un projet compose complet par worktree ? Voir plus bas.
 
 ### Domaine : décisions ouvertes
 Voir « Questions ouvertes » dans `FEATURES.md`. Points à traiter en priorité :
