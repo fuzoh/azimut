@@ -21,6 +21,7 @@ Domaine et comportement : voir `FEATURES.md`. Faits techniques vérifiés : voir
 - **Bleeding edge :** décidé bibliothèque par bibliothèque, sans budget global.
 - **shadcn lint :** il s'agit de [`@shadcn/lint`](https://github.com/shadcn-ui/lint), un plugin JS pour oxlint.
 - **Calculs de qualification :** dans le package `domain`, exécutés sur le client. On recalcule de façon incrémentale, comme un tableur (piste : signaux ou graphe de dépendances), sans recalculer tout l'arbre.
+- **Licence :** AGPL-3.0. Une instance modifiée et hébergée doit publier ses sources.
 
 ### Coverage
 - Statistique indicative avec suivi de tendance. **Aucun seuil, aucun gate.** Le seul gate qualité des tests reste le score de mutation sur `domain`.
@@ -117,7 +118,6 @@ Le prochain grill porte d'abord sur la **partie technique de base (tooling)**, p
 - [ ] **Monorepo :** Turborepo et le découpage en packages (`contracts`, `domain`, `env`, `testing`, `ui`, apps).
 - [ ] **Hooks :** répartition pre-commit / pre-push / CI et budgets de temps (voir plus bas).
 - [ ] **Outils d'analyse :** fallow, slop-scan, slopo (voir plus bas).
-- [ ] **Licence :** open source, laquelle choisir ?
 - [ ] **Harness Claude Code :** `.claude/settings.json`, hooks, skills vendorisés (PRACTICES §4).
 
 ### Domaine : décisions ouvertes
