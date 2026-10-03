@@ -156,4 +156,5 @@ Voir « Questions ouvertes » dans `FEATURES.md`. Points à traiter en priorité
 - le positionnement face à Qualix ;
 - les verrous (durée, inactivité) et le moment de la sauvegarde ;
 - l'historique et la restauration ;
-- la conservation des données et la nLPD.
+- la conservation des données et la nLPD ;
+- les idées notées dans « Idées à explorer » de `FEATURES.md` : brouillon hors cours, figer, archivage, anonymisation à 3 mois, seuil final, éléments commentés sans note, accueil personnalisé, statistiques par cours, entre cours et dans le temps, synchronisation des participants MiData, envoi par mail.

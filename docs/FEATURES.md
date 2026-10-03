@@ -200,6 +200,41 @@ Au maximum, un cours compte donc environ 40 × 7 × 60 ≈ 17 000 notes d'indica
 - Hébergement en Suisse, dans des conteneurs Docker déployés avec Docker Compose pour le moment.
 - Les qualifications concernent des personnes, souvent mineures. Il faudra une durée de conservation et une purge ou une anonymisation automatique (à discuter).
 
+## Idées à explorer (2026-10-03)
+
+Idées notées pour plus tard. Rien n'est décidé.
+
+### Création et cycle de vie
+
+- **Brouillon hors cours :** créer une qualification en brouillon sans cours, puis la lier à un cours. Cela rejoint la question d'un référentiel partagé entre cours (constat 1).
+- **Figer :** figer une qualification (voir « Cycle de vie »). À préciser : qui peut figer, ce qui est figé (structure, données, ou les deux), et si on peut défiger.
+- **Archivage :** archiver les qualifications des cours terminés. À distinguer de l'anonymisation : que voit-on d'une qualification archivée, et qui la voit ?
+- **Anonymisation :** 3 mois après la fin du cours, supprimer tous les noms et garder le détail de la qualification (notes, commentaires, structure). Les commentaires libres peuvent contenir des noms : comment les traiter ? Rejoint la conservation des données et la nLPD (voir « Hébergement et données »).
+
+### Évaluation
+
+- **Seuil final :** les requis pour que la qualification soit réussie, donc pour que l'apprenant obtienne son cours. C'est la règle de décision (constat 4).
+- **Éléments commentés sans note :** certaines parties d'une qualification ne sont pas notées, seulement commentées. Comment les intégrer : un élément sans échelle, un regroupement hors calcul comme la Posture (constat 7) ?
+
+### Affichage personnalisé
+
+L'accueil dépend du formateur connecté :
+
+- en premier, la qualification du cours où il est formateur en ce moment ;
+- des raccourcis vers les qualifications individuelles des apprenants dont il fait le suivi ;
+- des raccourcis par groupe, par exemple pour aller directement au groupe qu'il évalue.
+
+### Statistiques
+
+- **Par cours et entre cours :** des statistiques sur un cours, ou sur plusieurs cours, par exemple tous les cours d'un même type. Il faut vérifier quels accès MiData le permettent : aujourd'hui, un formateur ne voit que ses propres cours (voir « Acteurs et accès »). La notion de type de cours est aussi à vérifier dans MiData.
+- **Statistiques temporelles :** l'évolution de la réussite d'un cours à l'autre, ou l'ordre dans lequel les indicateurs ont été remplis (l'historique contient ces dates).
+- Les statistiques entre cours pourraient porter sur des données anonymisées, ce qui lie ce point à l'anonymisation.
+
+### Intégrations
+
+- **Participants depuis MiData :** récupérer les listes de participants depuis MiData et les synchroniser. À préciser : quand synchroniser, et que faire d'un apprenant retiré du cours dans MiData alors qu'il a déjà des notes ?
+- **Envoi automatique par mail :** à préciser : quoi (le PDF de la qualification ?), à qui (l'apprenant, l'équipe ?) et quand. Envoyer aux apprenants ne contredit pas « l'application est réservée aux formateurs », mais il faut alors leur adresse.
+
 ## Questions ouvertes (domaine)
 
 - La généralisation des échelles : les types, les seuils, et les règles de conversion d'une échelle à l'autre.
