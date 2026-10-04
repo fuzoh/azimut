@@ -32,8 +32,9 @@ Ce dossier analyse toutes les idées de features notées pour Azimut, sous l'ang
 | 10 | [Modèle générique](10-modele-generique.md) | **référence du calcul** | Échelles, conversions, chemins, agrégations, seuils, règles, temps, jury |
 | 11 | [Projections et vues](11-projections-et-vues.md) | **référence des vues** | La case, les six primitives de vue, composition, suivi |
 | 12 | [Contre-analyse 2](12-contre-analyse-generique.md) | référence | Red team de 10 et 11 : 16 cas inédits, cohérence, utilisabilité |
+| 13 | [Axes de décision](13-axes-de-decision.md) | **à trancher** | Les cinq axes qui fixent le stockage, les projections et le niveau de généralisation |
 
-**Ordre de lecture conseillé** : ce document, puis 10, 11, 12, 09. Ensuite 03 et 05 pour le métier hors calcul.
+**Ordre de lecture conseillé** : ce document, puis 13 pour décider, puis 10, 11, 12, 09. Ensuite 03 et 05 pour le métier hors calcul.
 
 ### Comment l'analyse a été menée
 
