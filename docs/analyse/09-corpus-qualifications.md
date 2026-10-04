@@ -2,6 +2,8 @@
 
 Ce document rassemble 19 types de qualification (archétypes), pris dans le scoutisme, la formation professionnelle, l'école, le sport et les certifications. Il sert de **banc d'essai** à un modèle générique : on y vérifie que le modèle sait exprimer des systèmes d'évaluation très différents, pas seulement les trois Excel actuels.
 
+> **Statut : analyse antérieure aux décisions (3 octobre 2026).** Le modèle de qualification est fixé par [18 — Décisions définitives](18-decisions-definitives.md), qui fait foi en cas de contradiction. Le corpus reste un banc d'essai pour éprouver la couverture du modèle. Les besoins et conséquences de la section 4 sont des constats sur le corpus, pas des exigences : 18 retient notamment une note courante par case (pas d'évaluateurs multiples agrégés), le vide exclu sans pénalité, « non évalué » comme seul état de dispense et un calcul sur les valeurs courantes, sans logique à trois valeurs.
+
 Convention : **[V]** = vérifié dans une source citée ou dans les fichiers du projet ; **[D]** = déduit ou issu de ma connaissance générale, à confirmer. Les chiffres des exemples sont des **cas d'école** : je les ai choisis pour illustrer une règle. Ce ne sont pas des données réelles.
 
 ## TL;DR
@@ -32,7 +34,7 @@ Les sources web ont été survolées par recherche, souvent sans lecture intégr
 - Niveaux de compétence (Dreyfus : novice, débutant avancé, compétent, performant, expert) : <https://www.fhft.nhs.uk/media/2682/11-novice-to-expert-skills-acquisition_dreyfus.pdf> [V pour les niveaux].
 - Concours : plongeon, 7 juges, on retire les 2 meilleures et les 2 pires notes, on additionne les 3 restantes, puis on multiplie par le coefficient de difficulté : <https://www.nss-sports.com/en/lifestyle/46358/how-diving-scoring-works-rules> [V].
 - Sauvetage (Société Suisse de Sauvetage) : <https://www.slrg.ch/fr/cours> (prérequis BLS-AED, examen pratique ; détail des épreuves non lu) [V partiel].
-- Les fichiers du projet : `docs/FEATURES.md`, `docs/analyse/02-modele-generalise.md`, `docs/analyse/06-benchmark-qualix.md`, et `.scratch/exemple qualif a analyser/qualif1.xlsx` (relu).
+- Les fichiers du projet : `docs/FEATURES.md`, une première analyse des Excel (retirée depuis), `docs/analyse/06-benchmark-qualix.md`, et `.scratch/exemple qualif a analyser/qualif1.xlsx` (relu).
 
 ## 2. Les 19 archétypes
 
@@ -76,7 +78,7 @@ flowchart LR
   TH --> HUM
 ```
 
-### A02. qualif2 : o/k et 1 à 5 mélangés, sécurité transversale (Excel actuel) [V d'après `02-modele-generalise.md`]
+### A02. qualif2 : o/k et 1 à 5 mélangés, sécurité transversale (Excel actuel) [V d'après une première analyse des Excel, retirée]
 
 - **Contexte** : cours de moniteurs J+S, 4 sphères + Posture.
 - **Structure** : sphères, objectifs, critères, indicateurs. **Chemin multiple décisif** : l'objectif « 0. sécurité » regroupe des critères d'autres objectifs et compte lui-même dans la sphère (double comptage).
@@ -90,7 +92,7 @@ flowchart LR
 - **Vues** : par sphère, par apprenant, taux de remplissage par objectif.
 - **Exemple chiffré** : critère o/k de 14 indicateurs, 10 « o » : 71,4 % → palier « 70 et plus » → **4**. Objectif des notes 4, 3, 2 avec poids 1, 2, 1 : (4 + 6 + 2) / 4 = 3 → sphère réussie. Une sphère brute de 2,5 s'arrondit à 3, donc réussie.
 
-### A03. qualif3 : moyennes pondérées, conversion non linéaire, veto (Excel actuel) [V d'après `02-modele-generalise.md`]
+### A03. qualif3 : moyennes pondérées, conversion non linéaire, veto (Excel actuel) [V d'après une première analyse des Excel, retirée]
 
 - **Contexte** : cours de moniteurs J+S, 3 sphères + Posture.
 - **Structure** : sphères, objectifs, critères, indicateurs. Chemins indicatifs : méta-axes de la Posture, table de couverture des objectifs officiels.

@@ -4,7 +4,7 @@
 
 **Statut : référence définitive des décisions du modèle, validées avec le porteur du projet le 4 octobre 2026.**
 
-Ce document remplace [16 — Décisions consolidées](16-decisions-consolidees.md) et [17 — Combinaison des analyses](17-combinaison-analyse.md), ainsi que leurs sources 14 et 15bis. Il reprend leurs décisions communes et fixe les huit arbitrages issus de leur dernière comparaison. En cas de contradiction avec une analyse antérieure, ce document fait foi.
+Ce document remplace les documents 16 (Décisions consolidées) et 17 (Combinaison des analyses), ainsi que leurs sources 14 et 15bis, retirés du dépôt. Il reprend leurs décisions communes et fixe les huit arbitrages issus de leur dernière comparaison. En cas de contradiction avec une analyse antérieure, ce document fait foi.
 
 Les décisions ci-dessous sont acquises. Les orientations et détails encore à concevoir sont explicitement identifiés ; ils ne rouvrent pas les arbitrages validés. La section 13 les rassemble, la section 14 conserve la trace des huit arbitrages finaux.
 

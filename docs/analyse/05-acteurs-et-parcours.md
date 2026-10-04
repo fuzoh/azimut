@@ -2,7 +2,9 @@
 
 But : regarder Azimut depuis les personnes et depuis le temps. Qui touche à la qualification, à quel moment, avec quelles frictions, et ce qu'il faut ajouter ou interdire.
 
-Préfixe des nouvelles features : `N-PA`. Les IDs `S`, `L`, `C`, `P`, `A`, `I`, `T` viennent de l'inventaire commun.
+> **Statut : analyse antérieure aux décisions (3 octobre 2026).** Le modèle de qualification est fixé par [18 — Décisions définitives](18-decisions-definitives.md), qui fait foi en cas de contradiction. Le cycle de vie (finalisation par apprenant, réouverture avant archivage, archivage), la note courante unique par case et les vues partagées par l'équipe sont fixés par 18. Les acteurs, la matrice de droits, la correspondance des rôles MiData et la protection des données restent ouverts.
+
+Préfixe des nouvelles features : `N-PA`. Les IDs `S`, `L`, `C`, `P`, `A`, `I`, `T` viennent des [identifiants du README](README.md#identifiants-des-features).
 
 ## TL;DR
 

@@ -1,6 +1,8 @@
 # Zones d'ombre du domaine Azimut
 
-Ce document recense ce qui est flou, contradictoire ou non traité dans le domaine, pour décider quoi clarifier avant de modéliser. Les IDs de features (S1, L3, C4…) sont ceux de `00-inventaire.md`.
+Ce document recense ce qui est flou, contradictoire ou non traité dans le domaine, pour décider quoi clarifier avant de modéliser. Les IDs de features (S1, L3, C4…) sont ceux du [README](README.md#identifiants-des-features).
+
+> **Statut : analyse antérieure aux décisions (3 octobre 2026).** Le modèle de qualification est fixé par [18 — Décisions définitives](18-decisions-definitives.md), qui fait foi en cas de contradiction. Plusieurs zones d'ombre sont tranchées par 18 : règle de réussite, modification de la structure en cours (copie), joker, plusieurs évaluateurs (une note courante par case), participant écarté, traitement du vide et réouverture. Restent ouverts ici les droits, les rôles MiData, la protection des données et la collecte de données de terrain.
 
 ## TL;DR
 

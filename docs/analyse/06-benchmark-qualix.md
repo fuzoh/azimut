@@ -2,7 +2,9 @@
 
 Ce document compare le **domaine métier** de Qualix, une application existante pour les cours scouts suisses, avec celui d'Azimut. Il cherche ce qu'Azimut peut reprendre, ce qu'il fait de différent, et où se placer.
 
-Sources : dépôt `gloggi/qualix` (cloné le 2026-10-03, dernier commit 2026-09-13), ses docs `docs/`, ses fichiers de langue, `CHANGELOG.md`, et ses issues GitHub (`gh`). Les chemins cités sont relatifs à ce dépôt. Les features Azimut (S, L, C, P, A, I, T) renvoient à l'inventaire canonique. Les nouvelles features portent l'ID `N-QX…` et sont des **propositions**.
+> **Statut : analyse antérieure aux décisions (3 octobre 2026).** Le modèle de qualification est fixé par [18 — Décisions définitives](18-decisions-definitives.md), qui fait foi en cas de contradiction. Le positionnement face à Qualix reste ouvert (18, section 13). Les recommandations de modèle de ce document ne s'appliquent que si elles sont compatibles avec 18.
+
+Sources : dépôt `gloggi/qualix` (cloné le 2026-10-03, dernier commit 2026-09-13), ses docs `docs/`, ses fichiers de langue, `CHANGELOG.md`, et ses issues GitHub (`gh`). Les chemins cités sont relatifs à ce dépôt. Les features Azimut (S, L, C, P, A, I, T) renvoient aux [identifiants du README](README.md#identifiants-des-features). Les nouvelles features portent l'ID `N-QX…` et sont des **propositions**.
 
 Convention : **[V]** = vérifié dans le dépôt Qualix ; **[D]** = déduit, à confirmer.
 
