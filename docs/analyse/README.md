@@ -1,6 +1,8 @@
 # Analyse du domaine — synthèse (2026-10-03)
 
-Ce dossier analyse toutes les idées de features notées pour Azimut, sous l'angle du domaine métier uniquement. Ce document en donne la synthèse, les arbitrages entre analyses et les décisions à prendre. Rien n'est décidé : tout est **proposé**, sauf les faits marqués **vérifié**.
+Ce dossier analyse toutes les idées de features notées pour Azimut, sous l'angle du domaine métier. **La référence définitive des décisions est [18 — Décisions définitives](18-decisions-definitives.md), validée le 4 octobre 2026.** Elle remplace les documents 16 et 17 et prévaut sur les propositions contradictoires des analyses antérieures.
+
+Les synthèses et pistes ci-dessous conservent l'état historique de l'analyse du 3 octobre. Elles ne constituent pas les décisions actuelles ; lire 18 pour le comportement retenu et les détails encore à concevoir.
 
 > **Cadrage.** Les trois Excel (qualif1 à qualif3) décrivent le système **actuel**, pas la cible. Azimut vise un outil **générique**, compatible avec **tous** les types de qualification. Il faut donc des généralisations pour les calculs, les échelles, les regroupements, les seuils et les vues, sans se limiter à ce que montrent les trois exemples. qualif1 calcule d'ailleurs déjà **deux chemins de regroupement en parallèle** : les compétences techniques par exercice, et les compétences transversales par thème (vérifié : `Synthèse!K65 = J65/I65`, `C55 = AVERAGE(C56:C59)`).
 
@@ -29,13 +31,17 @@ Ce dossier analyse toutes les idées de features notées pour Azimut, sous l'ang
 | 07 | [Contre-analyse 1](07-contre-analyse.md) | **faits valables, périmètre écarté** | Red team de 01 à 06 : formules vérifiées, angles morts |
 | 08 | [Backlog consolidé](08-backlog-consolide.md) | référence | Les 82 idées nouvelles fusionnées en X1 à X70 |
 | 09 | [Corpus de qualifications](09-corpus-qualifications.md) | référence | 19 archétypes, matrice des besoins, 15 cas de test |
-| 10 | [Modèle générique](10-modele-generique.md) | **référence du calcul** | Échelles, conversions, chemins, agrégations, seuils, règles, temps, jury |
-| 11 | [Projections et vues](11-projections-et-vues.md) | **référence des vues** | La case, les six primitives de vue, composition, suivi |
+| 10 | [Modèle générique](10-modele-generique.md) | analyse du calcul, sous réserve de 18 | Échelles, conversions, chemins, agrégations, seuils, règles, temps, jury |
+| 11 | [Projections et vues](11-projections-et-vues.md) | analyse des vues, sous réserve de 18 | La case, les six primitives de vue, composition, suivi |
 | 12 | [Contre-analyse 2](12-contre-analyse-generique.md) | référence | Red team de 10 et 11 : 16 cas inédits, cohérence, utilisabilité |
-| 13 | [Axes de décision](13-axes-de-decision.md) | **tranché, voir 14** | Les cinq axes qui fixent le stockage, les projections et le niveau de généralisation |
-| 14 | [Décisions prises](14-decisions-prises.md) | **décidé** | Les décisions du porteur sur les cinq axes (entretien du 2026-10-04), avec les écarts par rapport à 13 |
+| 13 | [Axes de décision](13-axes-de-decision.md) | **tranché, voir 18** | Les cinq axes qui fixent le stockage, les projections et le niveau de généralisation |
+| 14 | [Décisions prises](14-decisions-prises.md) | **remplacé par 18** | Premier compte rendu de l'entretien du 2026-10-04, structuré par les cinq axes de 13 |
+| 15bis | [Analyse](15bis-analyse.md) | **remplacé par 18** | Second compte rendu du même entretien, structuré par thèmes |
+| 16 | [Décisions consolidées](16-decisions-consolidees.md) | **remplacé par 18** | Première consolidation de 14 et 15bis |
+| 17 | [Combinaison des analyses](17-combinaison-analyse.md) | **remplacé par 18** | Consolidation indépendante de 14 et 15bis, comparée à 16 |
+| 18 | [Décisions définitives](18-decisions-definitives.md) | **référence définitive** | Décisions communes et huit arbitrages finaux entre 16 et 17, validés avec le porteur |
 
-**Ordre de lecture conseillé** : ce document, puis 14 (les décisions) et 13 (les options), puis 10, 11, 12, 09. Ensuite 03 et 05 pour le métier hors calcul.
+**Ordre de lecture conseillé** : ce document, puis 18 (les décisions définitives) et 13 (les options historiques), puis 10, 11, 12, 09 sous réserve de 18. Ensuite 03 et 05 pour le métier hors calcul.
 
 ### Comment l'analyse a été menée
 
