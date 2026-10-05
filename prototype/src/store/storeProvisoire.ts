@@ -9,7 +9,7 @@ import { graphe } from "../noyau/graphe";
 import { remplissage } from "../noyau/remplissage";
 import { cle, decoderCle } from "../sources/cle";
 import type { Sources } from "../sources/collections";
-import type { EtatRemplissage, ResultatCellule, StoreNotes } from "./store";
+import { creerCohortes, type EtatRemplissage, type ResultatCellule, type StoreNotes } from "./store";
 
 interface Cellule {
   instantane: ResultatCellule;
@@ -178,15 +178,18 @@ export function creerStoreProvisoire(sources: Sources, plans: Plan[]): StoreNote
     }, tout),
   ];
 
+  const getResult = (g: number, p: number, n: number) => cellule(g, p, n).instantane;
+  const subscribeResult = (g: number, p: number, n: number, rappel: () => void) => {
+    const c = cellule(g, p, n);
+    c.rappels.add(rappel);
+    return () => {
+      c.rappels.delete(rappel);
+    };
+  };
   return {
-    getResult: (g, p, n) => cellule(g, p, n).instantane,
-    subscribeResult(g, p, n, rappel) {
-      const c = cellule(g, p, n);
-      c.rappels.add(rappel);
-      return () => {
-        c.rappels.delete(rappel);
-      };
-    },
+    getResult,
+    subscribeResult,
+    ...creerCohortes({ getResult, subscribeResult }, () => sources.participants.size),
     getFillStatus: (g, p) => remplissageDe(g, p).etat,
     subscribeFillStatus(g, p, rappel) {
       const r = remplissageDe(g, p);

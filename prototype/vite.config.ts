@@ -8,5 +8,7 @@ export default defineConfig({
   plugins: [react()],
   resolve: { alias: { "@corpus": corpus } },
   server: { fs: { allow: [".", corpus] } },
+  // Worker en module ES (imports partagés avec le thread principal : noyau, corpus).
+  worker: { format: "es" },
   test: { environment: "node" },
 });

@@ -4,15 +4,14 @@
 // Jeu « charge » : 3 × G3 étendue, participants générés seulement.
 
 import { sommeControle } from "./generateur/controle";
-import { generer, type ProfilRemplissage } from "./generateur/generer";
 import { grillesDuJeu, type Jeu, STRUCTURES_CORPUS } from "./generateur/jeux";
-import { type Commutateurs, compile, type Plan } from "./noyau/compile";
+import { type Commutateurs, type CommutateursResolus, compile, type Plan, resoudreCommutateurs } from "./noyau/compile";
 import { copier, type ElementRapport, type OptionsCopie, structureIdentique } from "./noyau/copier";
 import type { SourcesParticipant } from "./noyau/evaluate";
 import type { Grille } from "./noyau/format";
-import { chargerParticipantsTypes } from "./sources/chargement";
-import { cle, MAX_PARTICIPANTS } from "./sources/cle";
+import { cle } from "./sources/cle";
 import { creerSources, type LigneCase, type LigneJoker, type LigneNonEvaluation, type Sources } from "./sources/collections";
+import { GENERATION_PAR_DEFAUT, type GenerationSession, lignesInitiales } from "./sources/initiales";
 import { creerStoreProvisoire } from "./store/storeProvisoire";
 import type { StoreNotes } from "./store/store";
 
@@ -27,15 +26,18 @@ export interface Session {
   sommeControle: string;
 }
 
-export interface GenerationSession {
-  jeu: Jeu;
-  remplissage: ProfilRemplissage;
-  graine: number;
-  /** Participants générés (en plus des participants types du corpus). */
-  participants: number;
-}
+export { GENERATION_PAR_DEFAUT, type GenerationSession };
 
-export const GENERATION_PAR_DEFAUT: GenerationSession = { jeu: "corpus", remplissage: "milieu", graine: 1, participants: 0 };
+/** Fabrique du store de la session : provisoire par défaut, configuration de base dans l'essai. */
+export type FabriqueStore = (contexte: {
+  sources: Sources;
+  plans: Plan[];
+  commutateurs: CommutateursResolus;
+  generation: GenerationSession;
+  sommeControle: string;
+}) => StoreNotes;
+
+export const storeProvisoire: FabriqueStore = ({ sources, plans }) => creerStoreProvisoire(sources, plans);
 
 /** Marque une phase du démarrage (mesures, spec 20 « Scénarios de performance »). */
 function phase<T>(nom: string, f: () => T): T {
@@ -46,42 +48,23 @@ function phase<T>(nom: string, f: () => T): T {
   return r;
 }
 
-export function creerSession(commutateurs: Commutateurs = {}, generation: GenerationSession = GENERATION_PAR_DEFAUT): Session {
+export function creerSession(
+  commutateurs: Commutateurs = {},
+  generation: GenerationSession = GENERATION_PAR_DEFAUT,
+  fabrique: FabriqueStore = storeProvisoire,
+): Session {
   const grilles = phase("structures", () => grillesDuJeu(generation.jeu));
   const plans = phase("compile", () => grilles.map(({ structure }) => compile(structure, commutateurs)));
-  let sources: Sources;
-  if (generation.jeu === "charge") {
-    const generees = phase("generation", () =>
-      generer(plans, generation.graine, { remplissage: generation.remplissage, participants: generation.participants }),
-    );
-    sources = phase("insertion", () => creerSources(generees));
-  } else {
-    sources = creerSources();
-    grilles.forEach(({ participantsTypes }, g) => {
-      if (participantsTypes) chargerParticipantsTypes(sources, g, plans[g], participantsTypes);
-    });
-    const generees = phase("generation", () =>
-      generer(plans, generation.graine, {
-        remplissage: generation.remplissage,
-        // Les participants types occupent les premiers index : on borne le reste.
-        participants: Math.min(generation.participants, MAX_PARTICIPANTS - sources.participants.size),
-        premierP: sources.participants.size,
-      }),
-    );
-    phase("insertion", () => {
-      if (generees.participants.length > 0) sources.participants.insert(generees.participants);
-      if (generees.cases.length > 0) sources.cases.insert(generees.cases);
-      if (generees.nonEvaluations.length > 0) sources.nonEvaluations.insert(generees.nonEvaluations);
-      if (generees.jokers.length > 0) sources.jokers.insert(generees.jokers);
-    });
-  }
+  const lignes = phase("generation", () => lignesInitiales(grilles, plans, generation));
+  const sources = phase("insertion", () => creerSources(lignes));
   const somme = phase("somme", () =>
     sommeControle({ cases: sources.cases.values(), nonEvaluations: sources.nonEvaluations.values(), jokers: sources.jokers.values() }),
   );
+  const resolus = resoudreCommutateurs(commutateurs);
   return {
     plans,
     sources,
-    store: creerStoreProvisoire(sources, plans),
+    store: fabrique({ sources, plans, commutateurs: resolus, generation, sommeControle: somme }),
     commutateurs,
     jeu: generation.jeu,
     sommeControle: somme,
@@ -126,6 +109,8 @@ export function lireSourcesGrille(session: Pick<Session, "plans" | "sources">, g
   for (const l of sources.nonEvaluations.values())
     if (l.g === g) res.get(l.p)?.nonEvaluations.push({ n: l.n, axe: l.axe });
   for (const l of sources.jokers.values()) if (l.g === g) res.get(l.p)?.jokers.push({ id: l.id, jokerDef: l.jokerDef });
+  // Jokers par id croissant : même ordre dans le worker (ids des jokers copiés).
+  for (const s of res.values()) s.jokers.sort((a, b) => a.id - b.id);
   return res;
 }
 
@@ -164,8 +149,14 @@ export function copierGrille(
       jokers.push({ ...l, id: id++, g: g2, jokerDef: j.jokerDef });
     }
   }
-  if (cases.length > 0) sources.cases.insert(cases);
-  if (nonEvaluations.length > 0) sources.nonEvaluations.insert(nonEvaluations);
-  if (jokers.length > 0) sources.jokers.insert(jokers);
+  // Le worker copie de son côté ; le relais ignore les écritures de g2.
+  session.store.copier?.(g, g2, v2, options, plan.commutateurs);
+  try {
+    if (cases.length > 0) sources.cases.insert(cases);
+    if (nonEvaluations.length > 0) sources.nonEvaluations.insert(nonEvaluations);
+    if (jokers.length > 0) sources.jokers.insert(jokers);
+  } finally {
+    session.store.finCopie?.();
+  }
   return { g: g2, rapport };
 }

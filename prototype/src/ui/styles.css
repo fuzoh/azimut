@@ -108,3 +108,14 @@ table.virtuelle tbody tr { height: 24px; }
 table.virtuelle thead tr.groupes th { overflow: visible; }
 table.virtuelle .libelle-groupe { position: sticky; left: 154px; }
 table.virtuelle thead tr.noeuds th.coin { writing-mode: horizontal-tb; transform: none; text-align: left; }
+
+.worker-desaccord,
+.worker-erreur {
+  color: #b00;
+  font-weight: bold;
+}
+
+/* « En calcul » : lot envoyé au worker, résultat pas encore revenu. */
+td.en-calcul {
+  opacity: 0.45;
+}

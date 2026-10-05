@@ -10,8 +10,9 @@ import {
   ecrireUrl,
   lireUrl,
   type Reglages,
+  type ReglagesStore,
 } from "./reglages";
-import { appliquerCommutateurs, creerSession, lireSourcesGrille, type Session } from "./session";
+import { appliquerCommutateurs, creerSession, type FabriqueStore, lireSourcesGrille, type Session, storeProvisoire } from "./session";
 import { creerVerification, type RapportVerification, type Verification } from "./verification";
 
 export interface EtatEssai {
@@ -46,10 +47,17 @@ export interface Essai {
   dispose(): void;
 }
 
-export function creerEssai(search: string): Essai {
+export interface OptionsEssai {
+  /**
+   * Store selon les réglages de la classe Store (l'app : `fabriquePourReglages`).
+   * Défaut : store provisoire, synchrone.
+   */
+  fabrique?: (r: ReglagesStore) => FabriqueStore;
+}
+
+export function creerEssai(search: string, options: OptionsEssai = {}): Essai {
   const { reglages: initiaux, avertissements } = lireUrl(search);
-  // Les réglages du store prennent effet avec leurs tickets (#24, #25).
-  const session = creerSession(initiaux.modele, initiaux.generateur);
+  const session = creerSession(initiaux.modele, initiaux.generateur, options.fabrique?.(initiaux.store) ?? storeProvisoire);
   let etat: EtatEssai = { reglages: initiaux, avertissements, verification: null, revision: 0 };
   const rappels = new Set<() => void>();
   const notifier = (maj: Partial<EtatEssai>) => {

@@ -413,6 +413,7 @@ function CelluleResultat(props: PropsCellule) {
   if (applique) classes.push("joker-applique");
   if (influence) classes.push("joker-influence");
   if (props.choisi) classes.push("choisi");
+  if (r.enCalcul) classes.push("en-calcul");
   const { ecart } = props;
   if (ecart) classes.push("ecart-ab");
   const bulles = [
@@ -428,6 +429,7 @@ function CelluleResultat(props: PropsCellule) {
       data-participant={p}
       data-non-evalue={direct ? "1" : "0"}
       data-joker={(applique ? "applique " : "") + (influence ? "influence" : "")}
+      data-en-calcul={r.enCalcul ? "1" : "0"}
       data-ecart={ecart?.texte}
       title={bulles.length > 0 ? bulles.join("\n") : undefined}
       onClick={() => props.onChoisir(p, n)}
@@ -460,10 +462,13 @@ function CelluleCase(props: PropsCellule) {
 
   const valider = () => {
     if (brouillon === null) return;
+    performance.mark("chaine:validation");
     const v = lireSaisie(b, brouillon);
     if (v === null) {
       setInvalide(true);
     } else {
+      // Début de l'écriture TanStack DB ; subscribeChanges est appelé pendant.
+      performance.mark("chaine:ecriture");
       ecrireCase(sources, g, p, plan.indexDonnee[n], v);
       setInvalide(false);
     }
@@ -475,8 +480,9 @@ function CelluleCase(props: PropsCellule) {
   const etat = nonEvalue ? "nonEvalue" : Number.isNaN(stockee) ? "vide" : "note";
   return (
     <td
-      className={`${classe}${direct ? " ne-direct" : ""}${invalide ? " invalide" : ""}${props.choisi ? " choisi" : ""}${props.ecart ? " ecart-ab" : ""}`}
+      className={`${classe}${direct ? " ne-direct" : ""}${invalide ? " invalide" : ""}${props.choisi ? " choisi" : ""}${props.ecart ? " ecart-ab" : ""}${r.enCalcul ? " en-calcul" : ""}`}
       data-etat={etat}
+      data-en-calcul={r.enCalcul ? "1" : "0"}
       data-ecart={props.ecart?.texte}
       onContextMenu={(e) => basculer(e, props)}
       title={nonEvalue ? (direct ? "Non évalué (clic droit pour retirer)" : "Non évalué, couvert par une dispense") : undefined}

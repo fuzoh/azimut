@@ -5,7 +5,7 @@ import { useState } from "react";
 import type { Plan } from "../noyau/compile";
 import { TEXTE_RAISON } from "../noyau/jokers";
 import { poserJoker, retirerJoker, type Sources } from "../sources/collections";
-import { useStoreNotes } from "../store/hooks";
+import { useResult } from "../store/hooks";
 import { useJokers } from "./useJokers";
 
 function texteAction(plan: Plan, j: number): string {
@@ -15,17 +15,18 @@ function texteAction(plan: Plan, j: number): string {
 }
 
 export function Jokers({ g, p, plan, sources }: { g: number; p: number; plan: Plan; sources: Sources }) {
-  const store = useStoreNotes();
   const poses = useJokers(sources).filter((j) => j.g === g && j.p === p);
   const [choix, setChoix] = useState(0);
   const [justification, setJustification] = useState("");
   const [refus, setRefus] = useState<string | null>(null);
+  // Résultat courant du nœud autorisé (H5a), souscrit : le store peut être asynchrone.
+  const resultat = useResult(g, p, plan.jokerDefs[choix]?.n ?? 0);
   if (plan.jokerDefs.length === 0) return null;
   const { h5a, h5b } = plan.commutateurs;
 
   const appliquer = () => {
-    const def = plan.jokerDefs[choix];
-    const valeur = store.getResult(g, p, def.n).valeur;
+    if (resultat.enCalcul) return;
+    const valeur = resultat.valeur;
     const r = poserJoker(sources, plan, g, p, choix, justification, valeur);
     if (r === null) {
       setJustification("");
@@ -67,7 +68,8 @@ export function Jokers({ g, p, plan, sources }: { g: number; p: number; plan: Pl
           placeholder="justification"
           data-testid="joker-justification"
         />
-        <button type="button" data-action="appliquer-joker" onClick={appliquer}>
+        {/* Résultat en calcul : H5a se jugerait sur une valeur périmée (NaN). */}
+        <button type="button" data-action="appliquer-joker" onClick={appliquer} disabled={resultat.enCalcul}>
           appliquer
         </button>
         {refus && (

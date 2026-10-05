@@ -7,7 +7,7 @@ import type { LigneCase, LigneJoker, LigneNonEvaluation } from "../sources/colle
 export interface SourcesAControler {
   cases: Iterable<Pick<LigneCase, "k" | "valeur">>;
   nonEvaluations: Iterable<Pick<LigneNonEvaluation, "k" | "axe">>;
-  jokers: Iterable<Pick<LigneJoker, "g" | "p" | "jokerDef">>;
+  jokers: Iterable<Pick<LigneJoker, "id" | "g" | "p" | "jokerDef">>;
 }
 
 const vue = new DataView(new ArrayBuffer(8));
@@ -51,6 +51,6 @@ export function sommeControle(s: SourcesAControler): string {
   const ne = new Accumulateur();
   for (const l of s.nonEvaluations) ne.ajouter(hacher(2, l.k, l.axe ?? -1));
   const jokers = new Accumulateur();
-  for (const l of s.jokers) jokers.ajouter(hacher(3, l.g, l.p, l.jokerDef));
+  for (const l of s.jokers) jokers.ajouter(hacher(3, l.id, l.g, l.p, l.jokerDef));
   return `cases ${cases.texte()} / nonEvaluations ${ne.texte()} / jokers ${jokers.texte()}`;
 }
