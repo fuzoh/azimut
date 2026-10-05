@@ -73,6 +73,7 @@ const V1_A_LA_COPIE: Record<string, string> = {
 const V2_FINAL: Record<string, string> = {
   Alice: "83,3 % | 91,7 % | 83,3 % | 83,3 % | 100,0 % | 4,25 | OK | 79,2 % | 87,5 % | OK | OK",
   Bruno: "91,7 % | 36,1 % | 91,7 % | 69,4 % | 67,5 % | 4,25 | KO | 83,3 % | 73,4 % | KO | KO",
+  Chloé: "63,9 % | 83,3 % | 63,9 % | 75,0 % | — | 3,33 | KO | 63,9 % | 69,4 % | OK | KO",
   David: "27,8 % | 91,7 % | 60,0 % | 83,3 % | 87,5 % | 4,00 | OK | 67,5 % | 79,4 % | OK | OK",
   Félix: "83,3 % | — | 83,3 % | 87,5 % | 87,5 % | 4,00 | OK | 79,2 % | 84,7 % | OK | OK",
 };
@@ -80,6 +81,7 @@ const V2_FINAL: Record<string, string> = {
 const MINIMAUX_V2_FINAL: Record<string, string> = {
   Alice: "OK | OK | OK | OK | OK | OK | OK | OK | OK",
   Bruno: "KO | KO | OK | OK | OK | OK | KO | OK | OK",
+  Chloé: "— | OK | OK | OK | OK | OK | OK | OK | OK",
   David: "OK | OK | OK | OK | OK | OK | OK | OK | OK",
   Félix: "OK | OK | OK | — | OK | — | OK | OK | OK",
 };
@@ -124,16 +126,17 @@ describe("G3 V2 à l'état final (après J5)", () => {
     expect(COLONNES_MINIMAUX.map((id) => affiche(id, lire(id)))).toEqual(ligne(attendu));
   });
 
-  test.todo("Chloé : dispense de E3 (ticket des non-évaluations et de la dispense)");
   test.todo("Emma : joker « remonter au seuil » sur Animation (ticket des jokers)");
 });
 
-describe("G3, commutateurs F5 (V2 à l'état final)", () => {
-  test.each(figes.commutateurs.map((c) => [c.nom, JSON.stringify(c.commutateurs), c] as const))(
-    "%s %s : égale les résultats figés",
-    (_nom, _c, c) => {
+describe("G3, commutateurs (V2 à l'état final)", () => {
+  test.each(figes.commutateurs.map((c) => [c.nom, JSON.stringify(c.commutateurs), JSON.stringify(c.nonEvaluations ?? "état"), c] as const))(
+    "%s %s, non-évaluations %s : égale les résultats figés",
+    (_nom, _c, _ne, c) => {
       const plan = compile(v2, c.commutateurs as Commutateurs);
-      const lire = lecteur(plan, sourcesDepuisFige(plan, participant(c.etat, c.nom)));
+      const pt = participant(c.etat, c.nom);
+      const fige = c.nonEvaluations ? { ...pt, sources: { ...pt.sources, nonEvaluations: c.nonEvaluations } } : pt;
+      const lire = lecteur(plan, sourcesDepuisFige(plan, fige));
       expect(ecarts(c.attendus, lire)).toEqual([]);
     },
   );
@@ -277,7 +280,7 @@ describe("G3, volume E4–E8", () => {
     const sans = compile(sansVolume(g));
     expect(sans.D).toBeLessThan(60);
     for (const p of figes.etats[etat].participants) {
-      if (etat === "V2-final" && (p.nom === "Chloé" || p.nom === "Emma")) continue;
+      if (etat === "V2-final" && p.nom === "Emma") continue;
       const a = lecteur(avec, sourcesDepuisFige(avec, p));
       const s = lecteur(sans, sourcesDepuisFige(sans, p));
       for (const n of sans.ids) if (sans.type[sans.index.get(n)!] === 1) expect(a(n), `${p.nom} ${n}`).toBe(s(n));

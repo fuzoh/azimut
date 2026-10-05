@@ -2,22 +2,35 @@
 // l'oracle à chaque changement de ses sources. Échafaudage jusqu'au store
 // paresseux de base (ticket 24).
 
-import type { Plan } from "../noyau/compile";
+import { type Plan, TYPE_DONNEES } from "../noyau/compile";
 import { evaluate, type Resultats, type SourcesParticipant } from "../noyau/evaluate";
+import { remplissage } from "../noyau/remplissage";
 import { cle, decoderCle } from "../sources/cle";
 import type { Sources } from "../sources/collections";
 import type { EtatRemplissage, ResultatCellule, StoreNotes } from "./store";
-
-const REMPLISSAGE_VIDE: EtatRemplissage = { erreurs: [], provisoire: false };
 
 interface Cellule {
   instantane: ResultatCellule;
   rappels: Set<() => void>;
 }
 
+interface Remplissage {
+  etat: EtatRemplissage;
+  /** Forme canonique, pour ne notifier qu'un changement réel. */
+  signature: string;
+  rappels: Set<() => void>;
+}
+
+interface Entree {
+  sources: SourcesParticipant;
+  resultats: Resultats;
+}
+
 export function creerStoreProvisoire(sources: Sources, plans: Plan[]): StoreNotes {
   /** Résultats par (g, p) : cache dérivé, jamais dans une collection. */
-  const cache = new Map<number, Resultats>();
+  const cache = new Map<number, Entree>();
+  /** États de remplissage souscrits ou lus, par (g, p). Décompte sans calcul des résultats. */
+  const remplissages = new Map<number, Remplissage>();
   /** Cellules souscrites ou lues, par clé (g, p, n). */
   const cellules = new Map<number, Cellule>();
   const gp = (g: number, p: number) => cle(g, p, 0);
@@ -35,34 +48,54 @@ export function creerStoreProvisoire(sources: Sources, plans: Plan[]): StoreNote
     return { cases, nonEvaluations, jokers };
   };
 
-  const resultats = (g: number, p: number): Resultats => {
-    let r = cache.get(gp(g, p));
+  const entree = (g: number, p: number): Entree => {
+    let e = cache.get(gp(g, p));
+    if (!e) {
+      const s = lireSources(g, p);
+      e = { sources: s, resultats: evaluate(plans[g], s) };
+      cache.set(gp(g, p), e);
+    }
+    return e;
+  };
+
+  const instantane = (g: number, p: number, n: number): ResultatCellule => {
+    const { sources: s, resultats: r } = entree(g, p);
+    const d = plans[g].type[n] === TYPE_DONNEES ? plans[g].indexDonnee[n] : -1;
+    return {
+      valeur: r.valeurs[n],
+      cause: r.causes[n],
+      marques: r.marques[n],
+      saisie: d >= 0 ? s.cases[d] : NaN,
+      enCalcul: false,
+    };
+  };
+
+  const remplissageDe = (g: number, p: number): Remplissage => {
+    let r = remplissages.get(gp(g, p));
     if (!r) {
-      r = evaluate(plans[g], lireSources(g, p));
-      cache.set(gp(g, p), r);
+      const etat = remplissage(plans[g], lireSources(g, p));
+      r = { etat, signature: JSON.stringify(etat), rappels: new Set() };
+      remplissages.set(gp(g, p), r);
     }
     return r;
   };
-
-  const instantane = (r: Resultats, n: number): ResultatCellule => ({
-    valeur: r.valeurs[n],
-    cause: r.causes[n],
-    marques: 0,
-    enCalcul: false,
-  });
 
   const cellule = (g: number, p: number, n: number): Cellule => {
     const k = cle(g, p, n);
     let c = cellules.get(k);
     if (!c) {
-      c = { instantane: instantane(resultats(g, p), n), rappels: new Set() };
+      c = { instantane: instantane(g, p, n), rappels: new Set() };
       cellules.set(k, c);
     }
     return c;
   };
 
   const memeResultat = (a: ResultatCellule, b: ResultatCellule) =>
-    Object.is(a.valeur, b.valeur) && a.cause === b.cause && a.marques === b.marques && a.enCalcul === b.enCalcul;
+    Object.is(a.valeur, b.valeur) &&
+    a.cause === b.cause &&
+    a.marques === b.marques &&
+    Object.is(a.saisie, b.saisie) &&
+    a.enCalcul === b.enCalcul;
 
   /** Invalide les (g, p) touchés et notifie les cellules dont le résultat change. */
   const invalider = (touches: Set<number>) => {
@@ -76,25 +109,44 @@ export function creerStoreProvisoire(sources: Sources, plans: Plan[]): StoreNote
         continue;
       }
       const { g, p, d: n } = decoderCle(ck);
-      const nouveau = instantane(resultats(g, p), n);
+      const nouveau = instantane(g, p, n);
       if (!memeResultat(c.instantane, nouveau)) {
         c.instantane = nouveau;
         aNotifier.push(...c.rappels);
       }
     }
+    for (const k of touches) {
+      const r = remplissages.get(k);
+      if (!r) continue;
+      if (r.rappels.size === 0) {
+        remplissages.delete(k);
+        continue;
+      }
+      const { g, p } = decoderCle(k);
+      const etat = remplissage(plans[g], lireSources(g, p));
+      const signature = JSON.stringify(etat);
+      if (signature !== r.signature) {
+        r.etat = etat;
+        r.signature = signature;
+        aNotifier.push(...r.rappels);
+      }
+    }
     for (const rappel of aNotifier) rappel();
   };
 
+  // `includeInitialState: false` explicite : sans lui, TanStack DB filtre la
+  // suppression d'une ligne chargée avant la souscription (clé jamais envoyée).
+  const tout = { includeInitialState: false } as const;
   const abonnements = [
     sources.cases.subscribeChanges((changes) => {
       invalider(new Set(changes.map((c) => gp(decoderCle(c.key).g, decoderCle(c.key).p))));
-    }),
+    }, tout),
     sources.nonEvaluations.subscribeChanges((changes) => {
       invalider(new Set(changes.map((c) => gp(decoderCle(c.key).g, decoderCle(c.key).p))));
-    }),
+    }, tout),
     sources.jokers.subscribeChanges((changes) => {
       invalider(new Set(changes.map((c) => gp(c.value.g, c.value.p))));
-    }),
+    }, tout),
   ];
 
   return {
@@ -106,8 +158,14 @@ export function creerStoreProvisoire(sources: Sources, plans: Plan[]): StoreNote
         c.rappels.delete(rappel);
       };
     },
-    getFillStatus: () => REMPLISSAGE_VIDE,
-    subscribeFillStatus: () => () => {},
+    getFillStatus: (g, p) => remplissageDe(g, p).etat,
+    subscribeFillStatus(g, p, rappel) {
+      const r = remplissageDe(g, p);
+      r.rappels.add(rappel);
+      return () => {
+        r.rappels.delete(rappel);
+      };
+    },
     dispose: () => {
       for (const a of abonnements) a.unsubscribe();
     },

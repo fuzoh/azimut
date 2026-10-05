@@ -9,7 +9,7 @@ import a03Participants from "@corpus/a03-participants.json";
 import g3Participants from "@corpus/g3-participants.json";
 import g3v1 from "@corpus/g3-v1-structure.json";
 import g3v2 from "@corpus/g3-v2-structure.json";
-import { compile, type Plan } from "./noyau/compile";
+import { type Commutateurs, compile, type Plan } from "./noyau/compile";
 import type { FichierG3, FichierParticipants, Grille } from "./noyau/format";
 import { chargerParticipantsTypes } from "./sources/chargement";
 import { creerSources, type Sources } from "./sources/collections";
@@ -37,10 +37,10 @@ const CORPUS: [unknown, unknown][] = [
   [g3v2, etatG3("V2-final")],
 ];
 
-export function creerSession(): Session {
+export function creerSession(commutateurs: Commutateurs = {}): Session {
   const sources = creerSources();
   const plans = CORPUS.map(([structure, participants], g) => {
-    const plan = compile(structure as Grille);
+    const plan = compile(structure as Grille, commutateurs);
     chargerParticipantsTypes(sources, g, plan, participants as FichierParticipants);
     return plan;
   });

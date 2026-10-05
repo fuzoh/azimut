@@ -59,6 +59,22 @@ describe("A03, participants types", () => {
     expect(resultats("Basile", sansArrondi)("sph:A")).toBeCloseTo(79.75, 9);
   });
 
+  test.each(participants.map((p) => [p.nom, p] as const))(
+    "%s : la Réussite en H4 strict égale le résultat figé",
+    (nom, p) => {
+      const strict = compile(grille, { h4Strict: true });
+      const r = evaluate(strict, sourcesDepuisFige(strict, p));
+      const v = r.valeurs[strict.index.get("reussite")!];
+      expect(Number.isNaN(v) ? null : v).toBe(p.attendusH4Strict!.reussite);
+    },
+  );
+
+  test("Fanny : Réussite OK par défaut, sans résultat en H4 strict", () => {
+    const fanny = participants.find((p) => p.nom === "Fanny")!;
+    expect(fanny.attendus.reussite).toBe(1);
+    expect(fanny.attendusH4Strict!.reussite).toBeNull();
+  });
+
   test("Élodie : sans résultat partout", () => {
     const r = resultats("Élodie");
     const calcul = grille.noeuds.filter((n) => n.type === "calcul");

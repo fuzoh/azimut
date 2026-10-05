@@ -1150,7 +1150,10 @@
     "seuil:C": 1.0,
     "reussite": 1.0
    },
-   "erreursRemplissage": []
+   "erreursRemplissage": [],
+   "attendusH4Strict": {
+    "reussite": 1.0
+   }
   },
   {
    "nom": "Basile",
@@ -2121,6 +2124,9 @@
     "reussite": 1.0
    },
    "erreursRemplissage": [],
+   "attendusH4Strict": {
+    "reussite": 1.0
+   },
    "attendusSansArrondi": {
     "sph:A": 79.75,
     "seuil:A": 0.0,
@@ -3102,7 +3108,10 @@
     "seuil:C": 1.0,
     "reussite": 1.0
    },
-   "erreursRemplissage": []
+   "erreursRemplissage": [],
+   "attendusH4Strict": {
+    "reussite": 1.0
+   }
   },
   {
    "nom": "Dorian",
@@ -4072,7 +4081,10 @@
     "seuil:C": 1.0,
     "reussite": 1.0
    },
-   "erreursRemplissage": []
+   "erreursRemplissage": [],
+   "attendusH4Strict": {
+    "reussite": 1.0
+   }
   },
   {
    "nom": "Élodie",
@@ -4211,7 +4223,10 @@
     "crit:C/3.2",
     "crit:C/3.3",
     "crit:C/3.4"
-   ]
+   ],
+   "attendusH4Strict": {
+    "reussite": null
+   }
   },
   {
    "nom": "Fanny",
@@ -4358,6 +4373,9 @@
     "crit:C/3.3",
     "crit:C/3.4"
    ],
+   "attendusH4Strict": {
+    "reussite": null
+   },
    "apresSaisie": {
     "case": {
      "noeud": "ind:C/1.1/1",

@@ -67,3 +67,18 @@ export function ecrireCase(sources: Sources, g: number, p: number, d: number, va
     sources.cases.insert({ k, g, p, d, valeur });
   }
 }
+
+/**
+ * Pose ou retire une non-évaluation sur n'importe quel nœud n : « non évalué »
+ * sur une case, dispense sur un regroupement. `axe` (index) sert à 1b-C.
+ * Rend true si la non-évaluation est posée après l'appel.
+ */
+export function basculerNonEvaluation(sources: Sources, g: number, p: number, n: number, axe?: number): boolean {
+  const k = cle(g, p, n);
+  if (sources.nonEvaluations.has(k)) {
+    sources.nonEvaluations.delete(k);
+    return false;
+  }
+  sources.nonEvaluations.insert(axe === undefined ? { k, g, p, n } : { k, g, p, n, axe });
+  return true;
+}

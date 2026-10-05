@@ -11,10 +11,13 @@ import {
   TYPE_DONNEES,
   TYPE_REGROUPEMENT,
 } from "../noyau/compile";
+import { CAUSE, MARQUE_CHEMIN_DISPENSE } from "../noyau/evaluate";
 import type { Placement } from "../noyau/format";
-import { ecrireCase, type Sources } from "../sources/collections";
+import { cle } from "../sources/cle";
+import { basculerNonEvaluation, ecrireCase, type Sources } from "../sources/collections";
 import { useLiveParticipants } from "./useParticipants";
-import { useResult } from "../store/hooks";
+import { useFillStatus, useResult } from "../store/hooks";
+import { useNonEvaluations } from "./useNonEvaluations";
 
 interface Colonne {
   n: number;
@@ -153,8 +156,25 @@ export function lireSaisie(b: BaremeCompile, texte: string): number | null {
   return Math.abs(pas - Math.round(pas)) < 1e-9 ? v : null;
 }
 
-export function Table({ g, plan, axe, sources, filtre }: { g: number; plan: Plan; axe: number; sources: Sources; filtre: string }) {
+export function Table({
+  g,
+  plan,
+  axe,
+  sources,
+  filtre,
+  selection,
+  onSelection,
+}: {
+  g: number;
+  plan: Plan;
+  axe: number;
+  sources: Sources;
+  filtre: string;
+  selection: number;
+  onSelection: (p: number) => void;
+}) {
   const participants = useLiveParticipants(sources);
+  const nonEvaluations = useNonEvaluations(sources);
   const cols = useMemo(() => colonnes(plan, axe), [plan, axe]);
   const sansCompter = useMemo(() => placesSansCompter(plan, cols), [plan, cols]);
   const visibles = useMemo(() => {
@@ -203,10 +223,19 @@ export function Table({ g, plan, axe, sources, filtre }: { g: number; plan: Plan
         </thead>
         <tbody>
           {participants.map((pt) => (
-            <tr key={pt.p}>
-              <th className="nom">{pt.nom}</th>
+            <tr key={pt.p} className={pt.p === selection ? "selection" : undefined}>
+              <NomParticipant g={g} p={pt.p} nom={pt.nom} onClick={() => onSelection(pt.p)} />
               {visibles.map(({ n }, i) => (
-                <Cellule key={i} g={g} p={pt.p} n={n} plan={plan} sources={sources} />
+                <Cellule
+                  key={i}
+                  g={g}
+                  p={pt.p}
+                  n={n}
+                  axe={axe}
+                  plan={plan}
+                  sources={sources}
+                  direct={nonEvaluations.has(cle(g, pt.p, n))}
+                />
               ))}
             </tr>
           ))}
@@ -216,26 +245,99 @@ export function Table({ g, plan, axe, sources, filtre }: { g: number; plan: Plan
   );
 }
 
-const Cellule = memo(function Cellule({ g, p, n, plan, sources }: { g: number; p: number; n: number; plan: Plan; sources: Sources }) {
-  if (plan.type[n] === TYPE_DONNEES) return <CelluleCase g={g} p={p} n={n} plan={plan} sources={sources} />;
-  if (plan.type[n] === TYPE_CALCUL) return <CelluleResultat g={g} p={p} n={n} plan={plan} />;
+/** Nom du participant, avec l'avertissement « données provisoires » ; un clic ouvre son onglet d'erreurs. */
+function NomParticipant({ g, p, nom, onClick }: { g: number; p: number; nom: string; onClick: () => void }) {
+  const etat = useFillStatus(g, p);
+  return (
+    <th className="nom" onClick={onClick} data-participant={p} data-provisoire={etat.provisoire ? "1" : "0"}>
+      {nom}
+      {etat.provisoire && (
+        <span className="avertissement" title={`Données provisoires : ${etat.erreurs.length} erreur(s)`}>
+          {" "}⚠
+        </span>
+      )}
+    </th>
+  );
+}
+
+interface PropsCellule {
+  g: number;
+  p: number;
+  n: number;
+  axe: number;
+  plan: Plan;
+  sources: Sources;
+  /** Une non-évaluation est posée directement sur ce nœud pour ce participant. */
+  direct: boolean;
+}
+
+/** Clic droit : poser ou retirer une non-évaluation sur le nœud (case, calcul ou regroupement). */
+function basculer(e: React.MouseEvent, { sources, g, p, n, axe }: PropsCellule) {
+  e.preventDefault();
+  basculerNonEvaluation(sources, g, p, n, axe);
+}
+
+const Cellule = memo(function Cellule(props: PropsCellule) {
+  const { n, plan } = props;
+  if (plan.type[n] === TYPE_DONNEES) return <CelluleCase {...props} />;
+  if (plan.type[n] === TYPE_CALCUL) return <CelluleResultat {...props} />;
+  if (plan.type[n] === TYPE_REGROUPEMENT) return <CelluleRegroupement {...props} />;
   return <td className="sans-calcul" />;
 });
 
-function CelluleResultat({ g, p, n, plan }: { g: number; p: number; n: number; plan: Plan }) {
-  const r = useResult(g, p, n);
-  const sansResultat = Number.isNaN(r.valeur);
+function CelluleRegroupement(props: PropsCellule) {
+  const { p, n, plan, direct } = props;
   return (
-    <td className={sansResultat ? "resultat sans-resultat" : "resultat"} data-noeud={plan.ids[n]} data-participant={p}>
-      {formater(plan.baremes[plan.bareme[n]], r.valeur)}
+    <td
+      className={`sans-calcul regroupement${direct ? " dispense" : ""}`}
+      data-noeud={plan.ids[n]}
+      data-participant={p}
+      onContextMenu={(e) => basculer(e, props)}
+    >
+      <button
+        type="button"
+        className="dispense"
+        data-action="dispense"
+        title={direct ? "Retirer la dispense" : "Poser une dispense sur ce regroupement"}
+        onClick={() => basculerNonEvaluation(props.sources, props.g, p, n, props.axe)}
+      >
+        {direct ? "dispensé ✕" : "⊘"}
+      </button>
     </td>
   );
 }
 
-function CelluleCase({ g, p, n, plan, sources }: { g: number; p: number; n: number; plan: Plan; sources: Sources }) {
+function CelluleResultat(props: PropsCellule) {
+  const { g, p, n, plan, direct } = props;
+  const r = useResult(g, p, n);
+  const sansResultat = Number.isNaN(r.valeur);
+  const classes = ["resultat"];
+  if (sansResultat) classes.push("sans-resultat");
+  if (r.cause === CAUSE.nonEvalue || direct) classes.push("non-evalue");
+  const chemin = r.marques & MARQUE_CHEMIN_DISPENSE;
+  return (
+    <td
+      className={classes.join(" ")}
+      data-noeud={plan.ids[n]}
+      data-participant={p}
+      data-non-evalue={direct ? "1" : "0"}
+      title={chemin ? "1a-B : calculé normalement, consommé hors du cône de la dispense (chemin multiple)" : undefined}
+      onContextMenu={(e) => basculer(e, props)}
+    >
+      {direct ? "⊘ " : ""}
+      {formater(plan.baremes[plan.bareme[n]], r.valeur)}
+      {chemin ? " ⇶" : ""}
+    </td>
+  );
+}
+
+function CelluleCase(props: PropsCellule) {
+  const { g, p, n, plan, sources, direct } = props;
   const r = useResult(g, p, n);
   const b = plan.baremes[plan.bareme[n]];
-  const affiche = Number.isNaN(r.valeur) ? "" : String(r.valeur).replace(".", ",");
+  // La note stockée reste affichée même non évaluée ; ordinal : la valeur du palier.
+  const stockee = b.type === "ordinal" && !Number.isNaN(r.saisie) ? b.valeurs[r.saisie] : r.saisie;
+  const affiche = Number.isNaN(stockee) ? "" : String(stockee).replace(".", ",");
   const [brouillon, setBrouillon] = useState<string | null>(null);
   const [invalide, setInvalide] = useState(false);
 
@@ -251,12 +353,20 @@ function CelluleCase({ g, p, n, plan, sources }: { g: number; p: number; n: numb
     setBrouillon(null);
   };
 
-  const classe = Number.isNaN(r.valeur) ? "cellule-vide" : "cellule-note";
+  const nonEvalue = r.cause === CAUSE.nonEvalue;
+  const classe = nonEvalue ? "cellule-non-evaluee" : Number.isNaN(stockee) ? "cellule-vide" : "cellule-note";
+  const etat = nonEvalue ? "nonEvalue" : Number.isNaN(stockee) ? "vide" : "note";
   return (
-    <td className={`${classe}${invalide ? " invalide" : ""}`}>
+    <td
+      className={`${classe}${direct ? " ne-direct" : ""}${invalide ? " invalide" : ""}`}
+      data-etat={etat}
+      onContextMenu={(e) => basculer(e, props)}
+      title={nonEvalue ? (direct ? "Non évalué (clic droit pour retirer)" : "Non évalué, couvert par une dispense") : undefined}
+    >
       <input
         data-noeud={plan.ids[n]}
         data-participant={p}
+        data-etat={etat}
         value={brouillon ?? affiche}
         title={b.type === "ordinal" ? b.libelles.map((l, i) => `${b.valeurs[i]} : ${l}`).join("\n") : `${b.min} à ${b.max}`}
         onChange={(e) => setBrouillon(e.target.value)}
