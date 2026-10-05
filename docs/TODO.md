@@ -143,7 +143,7 @@ Le grill technique a commencé le 2026-10-03 (décisions dans « Technique de ba
 - [ ] **`@shadcn/lint` :** l'adopter dès maintenant (version 0.2, un mois d'existence, l'API va bouger) ? Comment définir les contrats `no-restyle` ?
 - [ ] **Hooks :** répartition pre-commit / pre-push / CI et budgets de temps (voir plus bas).
 - [ ] **Outils d'analyse :** fallow, slop-scan, slopo (voir plus bas).
-- [ ] **Harness Claude Code :** `.claude/settings.json`, hooks, skills vendorisés (PRACTICES §4).
+- [ ] **Harness Claude Code :** `.claude/settings.json`, hooks, skills vendorisés (PRACTICES §4). Sélection et workflow proposés dans `SKILLS.md`, questions ouvertes en §4.
 - [ ] **Worktrees parallèles :** scripts de slots (ports, bases, session navigateur), ou un projet compose complet par worktree ? Voir plus bas. Piste : Traefik en dev avec un hostname `*.localhost` par worktree (ex. `w1.azimut.localhost`) à la place des ports par slot ; les cookies seraient aussi isolés par worktree.
 
 ### Domaine : décisions ouvertes

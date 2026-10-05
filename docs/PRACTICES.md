@@ -10,7 +10,7 @@
 2. **Real-time starts simple.** Use server-authoritative data with optimistic UI (TanStack DB Query collections fed by Eden). Over that, an Elysia WebSocket and Bun `server.publish` push "entity X changed" events. Don't add Valkey, CRDTs, P2P or a sync service until a measured trigger appears (§2).
 3. **One contract language: Valibot.** Effect code uses it through a `decode(schema)` helper that maps failures to a tagged error. No Effect Schema.
 4. **Harness committed with the repo.** That means `.claude/settings.json`, vendored skills and tested hooks. One instruction file, AGENTS.md, imported by CLAUDE.md. No per-turn injected reminders.
-5. **Skills: vendor about 8, skip the ceremony chains.** From mattpocock, take tdd, codebase-design, domain-modeling, diagnosing-bugs, grilling, research and writing-for-agents. From Emil Kowalski, take emil-design-eng, animate and review-animations. From pstack, take ideas only.
+5. **Skills: mattpocock/skills as the base, the other packs à la carte, no ceremony chains.** See `SKILLS.md`.
 
 Open decisions are tracked in §7 and in `TODO.md`.
 
@@ -227,17 +227,7 @@ Install with `npx skills add <repo> --skill <name>` and **commit the output**. A
 - Use `disable-model-invocation: true` on heavy, user-triggered skills. That keeps their description out of context entirely until you invoke them.
 - Use `paths:` to auto-scope a skill, e.g. `emil-design-eng` → `apps/web/**/*.tsx`.
 
-| Source | Adopt | Adapt | Skip |
-| --- | --- | --- | --- |
-| **mattpocock/skills** | codebase-design, diagnosing-bugs, grilling, research, writing-for-agents, wizard, git-guardrails (as a template for the guard hook) | **tdd** (use the Vitest/Playwright/Stryker layers, drop jest examples, make the seam-confirmation step optional) · **domain-modeling** (pin GLOSSARY and ADR paths; this is the "docs = domain" rule) · **code-review** (remove the issue-tracker dependency, make lint gates the Standards axis) · prototype (UI mode on React + shadcn) | setup-pre-commit (Husky + Prettier, which conflicts with the Lefthook + oxfmt stack) · the whole to-spec / to-tickets / triage / implement / wayfinder / ask-matt chain (too much ceremony) · scaffold-exercises, shoehorn, teach |
-| **emilkowalski/skills** (standard SKILL.md, works in Claude Code as-is) | **emil-design-eng** (fixes taste gaps: easing, press feedback, shadows), **animate**, **review-animations** | apple-design (springs and gestures only) · mobile-native (only if mobile or PWA matters) · popover snippets: change `--transform-origin` (Base UI) to `--radix-popover-content-transform-origin` if the shadcn setup uses Radix | pick-ui-library (steers state to zustand, which clashes with TanStack DB) · ask-sonner (shadcn already wraps it) · expo, swift |
-| **cursor/plugins/pstack** (Cursor plugin; orchestration skills are Cursor-coupled) | — | **typescript-best-practices** (rewrite for Valibot; it assumes Zod) · **create-verification-skill** (a repo-local `verify-azimut` skill plus a feature map for driving the app with agent-browser or Playwright; the best idea in the bundle) · fold principles *encode-lessons-in-structure*, *test-behavior-not-implementation* and *boundary-discipline* into AGENTS.md as one line each | poteto-mode and its 23 playbooks, arena, swarm, interrogate panels, reflect, setup-pstack (sticky router plus multi-model ceremony) |
-
-Ideas worth stealing without the skills:
-
-- **Promote repeated instructions to gates.** The second time you write the same instruction, turn it into a lint rule, type or script (pstack).
-- **Spell out agent mistakes.** Write project skills as "the mistakes agents make here, and the fix for each" (Emil).
-- **Default to flagging in review.** Review skills should flag by default; "approval is earned" (Emil).
+Which skills to take from which pack, and the workflow that chains them: `SKILLS.md`.
 
 ### Subagents, MCP, CI
 
