@@ -215,6 +215,8 @@ const PARAMS_CONNUS = new Set([
   "participants",
   "verif",
   "simu",
+  // Harnais de mesure : bridage logiciel du worker (lu par `canalWorker`, hors réglages).
+  "bridageWorker",
 ]);
 
 /** Les paramètres d'URL font foi ; un paramètre absent prend son défaut. */

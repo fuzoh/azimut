@@ -291,6 +291,7 @@ export function creerStoreBase(o: OptionsStoreBase): StoreBase {
   canal.ecouter((m: DepuisWorker) => {
     switch (m.type) {
       case "pret":
+        performance.mark("demarrage:worker-pret", { detail: { dureeWorkerMs: m.dureeMs } });
         changerEtat({
           ...etatWorker,
           statut: m.somme === o.sommeControle ? "pret" : "desaccord",
@@ -300,6 +301,8 @@ export function creerStoreBase(o: OptionsStoreBase): StoreBase {
         });
         if (m.somme !== o.sommeControle)
           console.error(`somme de contrôle en désaccord : principal ${o.sommeControle}, worker ${m.somme}`);
+        enVol--;
+        verifierStable();
         break;
       case "resultats": {
         enVol--;
@@ -364,7 +367,9 @@ export function creerStoreBase(o: OptionsStoreBase): StoreBase {
       envoyer(f(id));
     });
 
-  // Chargement initial : le worker génère ses sources avec la même graine.
+  // Chargement initial : le worker génère ses sources avec la même graine. En vol jusqu'à « pret » :
+  // `stable()` attend aussi la somme de contrôle du worker.
+  enVol++;
   envoyer({ type: "init", generation: o.generation, commutateurs: o.commutateurs, lru: o.lru, variantes: o.variantes });
 
   const getResult = (g: number, p: number, n: number) => cellule(g, p, n).instantane;

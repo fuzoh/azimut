@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
 import { creerEssai } from "../essai";
 import type { Grille } from "../noyau/format";
 import { ecrireUrl } from "../reglages";
+import { installerPilote } from "../mesure/pilote";
 import { fabriquePourReglages } from "../store/fabriques";
 import { StoreContext } from "../store/hooks";
 import { PastilleWorker } from "./PastilleWorker";
@@ -28,7 +29,11 @@ function exporterStructure(grille: Grille) {
 export function App() {
   // Les paramètres d'URL font foi au chargement ; l'URL est aussitôt réécrite
   // complète, pour qu'un lien copié reproduise toute la configuration.
-  const [essai] = useState(() => creerEssai(location.search, { fabrique: fabriquePourReglages }));
+  const [essai] = useState(() => {
+    const e = creerEssai(location.search, { fabrique: fabriquePourReglages });
+    installerPilote(e);
+    return e;
+  });
   const etat = useSyncExternalStore(essai.abonner, essai.etat);
   useEffect(() => history.replaceState(null, "", ecrireUrl(essai.etat().reglages)), [essai]);
   const session = essai.session;

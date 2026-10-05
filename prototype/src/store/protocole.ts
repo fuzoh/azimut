@@ -37,7 +37,9 @@ export type VersWorker =
   | { type: "explain"; id: number; g: number; p: number; n: number }
   | { type: "graphe"; id: number; g: number; p: number }
   /** Tous les résultats de toutes les grilles (mode « vérification »). */
-  | { type: "instantane"; id: number };
+  | { type: "instantane"; id: number }
+  /** Bridage logiciel du worker (mesures) : traité par `worker.ts`, avant `init`. */
+  | { type: "bridage"; taux: number };
 
 /**
  * Cellules poussées, en colonnes (spec 20, « Worker », Cache : Float64Array

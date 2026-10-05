@@ -16,6 +16,7 @@ import { type LigneJoker, type LigneNonEvaluation, origineDistante, type Sources
 import type { Calculateur, FabriqueCalculateur, JokerParticipant } from "./calcul";
 import { ParticipantDag } from "./dag/participant";
 import { ParticipantSignaux } from "./signaux/participant";
+import { chronoInstanciation, statsInstanciation } from "../mesure/stats";
 import { creerCohortes, type EtatRemplissage, type InstantaneStore, type ResultatCellule, type StoreVerifiable } from "./store";
 
 export interface OptionsStorePrincipal {
@@ -89,10 +90,11 @@ export function creerStorePrincipal(o: OptionsStorePrincipal): StoreVerifiable {
   // --- LRU ----------------------------------------------------------------------------
 
   const lru = new Map<number, Calculateur>();
-  const creerInstance = (g: number, p: number) => {
-    const s = sourcesDe(g, p);
-    return fabrique(plans[g], s.cases, s.nonEvaluations, s.jokers);
-  };
+  const creerInstance = (g: number, p: number) =>
+    chronoInstanciation(() => {
+      const s = sourcesDe(g, p);
+      return fabrique(plans[g], s.cases, s.nonEvaluations, s.jokers);
+    });
   const instance = (g: number, p: number): Calculateur => {
     const k = gpDe(g, p);
     let i = lru.get(k);
@@ -102,6 +104,7 @@ export function creerStorePrincipal(o: OptionsStorePrincipal): StoreVerifiable {
       while (lru.size >= capacite) lru.delete(lru.keys().next().value!);
     }
     lru.set(k, i);
+    statsInstanciation.lruTaille = lru.size;
     return i;
   };
 
@@ -339,6 +342,7 @@ export function creerStorePrincipal(o: OptionsStorePrincipal): StoreVerifiable {
       // Bascule du modèle : les plans viennent d'être recompilés.
       version++;
       lru.clear();
+      statsInstanciation.lruTaille = 0;
       rafraichir(new Set([...cellulesParGp.keys(), ...remplissages.keys(), ...participants.keys()]));
     },
     async instantane(): Promise<InstantaneStore> {

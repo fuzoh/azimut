@@ -1,3 +1,5 @@
 node_modules/
 dist/
 *.tsbuildinfo
+# JSON brut des runs de mesure (lourd) : seuls serie.json et rapport.md sont versionnés.
+mesures/*/runs/
