@@ -1,0 +1,4376 @@
+{
+ "grille": "A03",
+ "source": "a01-a03-controle.py --figer",
+ "participants": [
+  {
+   "nom": "Alix",
+   "sources": {
+    "cases": [
+     {
+      "noeud": "ind:A/1.1/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.1/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.1/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.1/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.1/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.2/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.2/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.2/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.2/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.2/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.2/6",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.2/7",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.3/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.3/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.3/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.3/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.3/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.3/6",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.3/7",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.3/8",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/2.1/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/2.1/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/2.1/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/2.1/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/2.2/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/2.2/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/2.2/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/2.2/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.1/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.1/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.1/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.1/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.1/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.1/6",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.1/7",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.2/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.2/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.2/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.2/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.2/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.2/6",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.3/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.3/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.3/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.3/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.3/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.1/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.1/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.1/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.1/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.1/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.1/6",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.2/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.2/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.2/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.2/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.2/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.2/6",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.2/7",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.2/8",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.3/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.3/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.3/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.3/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.3/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.3/6",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/5.1/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/5.1/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/5.1/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/5.1/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/5.1/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/5.2/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/5.2/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/5.2/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/5.3/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/5.3/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/5.3/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/6.1/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/6.1/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/6.1/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/6.1/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/6.1/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/6.1/6",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/6.2/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/6.2/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/6.2/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/6.2/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/6.2/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/7.1/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/7.1/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/7.1/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/7.1/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/7.1/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/7.1/6",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/7.2/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/7.2/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/7.2/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/7.2/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/7.2/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/1.1/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/1.1/2",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/1.1/3",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/1.1/4",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/1.2/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/1.2/2",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/1.2/3",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/1.2/4",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/1.2/5",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/2.1/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/2.1/2",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/2.1/3",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/2.1/4",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/2.1/5",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/2.1/6",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/2.1/7",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/2.1/8",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/2.2/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/2.2/2",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/2.2/3",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/2.2/4",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/2.2/5",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/2.3/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/2.3/2",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/2.3/3",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/2.3/4",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/2.3/5",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/2.3/6",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/2.4/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/2.4/2",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/2.4/3",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/2.4/4",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/2.4/5",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/3.1/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/3.1/2",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/3.1/3",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/3.1/4",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/3.2/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/3.2/2",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/3.2/3",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/3.2/4",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/3.3/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/3.3/2",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/3.3/3",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/3.3/4",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/3.4/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/3.4/2",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/3.4/3",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/3.4/4",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/3.5/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/3.5/2",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/3.5/3",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/3.6/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/3.6/2",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/3.6/3",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/4.1/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/4.1/2",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/4.1/3",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/4.1/4",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/4.1/5",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/4.1/6",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/4.2/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/4.2/2",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/4.2/3",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/4.2/4",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/4.2/5",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/4.3/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/4.3/2",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/4.3/3",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/4.3/4",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/4.3/5",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/5.1/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/5.1/2",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/5.1/3",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/5.2/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/5.2/2",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/5.2/3",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/5.2/4",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/1.1/1",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/1.1/2",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/1.1/3",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/1.2/1",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/1.2/2",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/1.2/3",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/2.1/1",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/2.1/2",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/2.1/3",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/2.1/4",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/2.2/1",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/2.2/2",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/2.2/3",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/2.3/1",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/2.3/2",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/2.3/3",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/2.4/1",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/2.4/2",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/2.4/3",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/2.4/4",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/2.4/5",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/2.4/6",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/2.4/7",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/2.4/8",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/3.1/1",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/3.1/2",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/3.1/3",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/3.2/1",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/3.2/2",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/3.2/3",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/3.3/1",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/3.3/2",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/3.3/3",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/3.4/1",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/3.4/2",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/3.4/3",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/3.4/4",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/3.4/5",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/3.4/6",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/3.4/7",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/3.4/8",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/3.4/9",
+      "valeur": 4
+     },
+     {
+      "noeud": "pos:A1",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:A2",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:A3",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:A4",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:A5",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:B1",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:B2",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:B3",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:B4",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:B5",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:C1",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:C2",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:D1",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:D2",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:D3",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:E1",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:E2",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:E3",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:E4",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:E5",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:E6",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:F1",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:F2",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:F3",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:F4",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:G1",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:G2",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:G3",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:G4",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:G5",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:H1",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:H2",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:H3",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:H4",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:H5",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:H6",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:H7",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:H8",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:H9",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:H10",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:H11",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:I1",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:I2",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:I3",
+      "valeur": 3
+     },
+     {
+      "noeud": "pos:J1",
+      "valeur": 3
+     }
+    ],
+    "nonEvaluations": [],
+    "jokers": []
+   },
+   "attendus": {
+    "crit:A/1.1": 4.0,
+    "crit:A/1.2": 4.0,
+    "crit:A/1.3": 4.0,
+    "obj:A/1": 4.0,
+    "obj-pct:A/1": 125.0,
+    "crit:A/2.1": 4.0,
+    "crit:A/2.2": 4.0,
+    "obj:A/2": 4.0,
+    "obj-pct:A/2": 125.0,
+    "crit:A/3.1": 4.0,
+    "crit:A/3.2": 4.0,
+    "crit:A/3.3": 4.0,
+    "obj:A/3": 4.0,
+    "obj-pct:A/3": 125.0,
+    "crit:A/4.1": 4.0,
+    "crit:A/4.2": 4.0,
+    "crit:A/4.3": 4.0,
+    "obj:A/4": 4.0,
+    "obj-pct:A/4": 125.0,
+    "crit:A/5.1": 4.0,
+    "crit:A/5.2": 4.0,
+    "crit:A/5.3": 4.0,
+    "obj:A/5": 4.0,
+    "obj-pct:A/5": 125.0,
+    "crit:A/6.1": 4.0,
+    "crit:A/6.2": 4.0,
+    "obj:A/6": 4.0,
+    "obj-pct:A/6": 125.0,
+    "crit:A/7.1": 4.0,
+    "crit:A/7.2": 4.0,
+    "obj:A/7": 4.0,
+    "obj-pct:A/7": 125.0,
+    "sph:A": 125.0,
+    "seuil:A": 1.0,
+    "crit:B/1.1": 3.0,
+    "crit:B/1.2": 3.0,
+    "obj:B/1": 3.0,
+    "obj-pct:B/1": 100.0,
+    "crit:B/2.1": 3.0,
+    "crit:B/2.2": 3.0,
+    "crit:B/2.3": 3.0,
+    "crit:B/2.4": 3.0,
+    "obj:B/2": 3.0,
+    "obj-pct:B/2": 100.0,
+    "crit:B/3.1": 3.0,
+    "crit:B/3.2": 3.0,
+    "crit:B/3.3": 3.0,
+    "crit:B/3.4": 3.0,
+    "crit:B/3.5": 3.0,
+    "crit:B/3.6": 3.0,
+    "obj:B/3": 3.0,
+    "obj-pct:B/3": 100.0,
+    "crit:B/4.1": 3.0,
+    "crit:B/4.2": 3.0,
+    "crit:B/4.3": 3.0,
+    "obj:B/4": 3.0,
+    "obj-pct:B/4": 100.0,
+    "crit:B/5.1": 3.0,
+    "crit:B/5.2": 3.0,
+    "obj:B/5": 3.0,
+    "obj-pct:B/5": 100.0,
+    "sph:B": 100.0,
+    "seuil:B": 1.0,
+    "crit:C/1.1": 3.0,
+    "crit:C/1.2": 3.0,
+    "obj:C/1": 3.0,
+    "obj-pct:C/1": 100.0,
+    "crit:C/2.1": 3.0,
+    "crit:C/2.2": 3.0,
+    "crit:C/2.3": 3.0,
+    "crit:C/2.4": 3.0,
+    "obj:C/2": 3.0,
+    "obj-pct:C/2": 100.0,
+    "crit:C/3.1": 3.0,
+    "crit:C/3.2": 3.0,
+    "crit:C/3.3": 3.0,
+    "crit:C/3.4": 3.2222222222222223,
+    "obj:C/3": 3.0444444444444443,
+    "obj-pct:C/3": 101.0,
+    "sph:C": 100.0,
+    "seuil:C": 1.0,
+    "reussite": 1.0
+   },
+   "erreursRemplissage": []
+  },
+  {
+   "nom": "Basile",
+   "sources": {
+    "cases": [
+     {
+      "noeud": "ind:A/1.1/1",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/1.1/2",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/1.1/3",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/1.1/4",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/1.1/5",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/1.2/1",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/1.2/2",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/1.2/3",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/1.2/4",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/1.2/5",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/1.2/6",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/1.2/7",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/1.3/1",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/1.3/2",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/1.3/3",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/1.3/4",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/1.3/5",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/1.3/6",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/1.3/7",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/1.3/8",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/2.1/1",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/2.1/2",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/2.1/3",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/2.1/4",
+      "valeur": 2.2
+     },
+     {
+      "noeud": "ind:A/2.2/1",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/2.2/2",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/2.2/3",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/2.2/4",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/3.1/1",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/3.1/2",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/3.1/3",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/3.1/4",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/3.1/5",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/3.1/6",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/3.1/7",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/3.2/1",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/3.2/2",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/3.2/3",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/3.2/4",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/3.2/5",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/3.2/6",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/3.3/1",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/3.3/2",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/3.3/3",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/3.3/4",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/3.3/5",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/4.1/1",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/4.1/2",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/4.1/3",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/4.1/4",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/4.1/5",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/4.1/6",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/4.2/1",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/4.2/2",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/4.2/3",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/4.2/4",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/4.2/5",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/4.2/6",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/4.2/7",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/4.2/8",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/4.3/1",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/4.3/2",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/4.3/3",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/4.3/4",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/4.3/5",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/4.3/6",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/5.1/1",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/5.1/2",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/5.1/3",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/5.1/4",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/5.1/5",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/5.2/1",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/5.2/2",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/5.2/3",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/5.3/1",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/5.3/2",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/5.3/3",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/6.1/1",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/6.1/2",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/6.1/3",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/6.1/4",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/6.1/5",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/6.1/6",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/6.2/1",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/6.2/2",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/6.2/3",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/6.2/4",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/6.2/5",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/7.1/1",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/7.1/2",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/7.1/3",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/7.1/4",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/7.1/5",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/7.1/6",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/7.2/1",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/7.2/2",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/7.2/3",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/7.2/4",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:A/7.2/5",
+      "valeur": 2.6
+     },
+     {
+      "noeud": "ind:B/1.1/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/1.1/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/1.1/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/1.1/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/1.2/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/1.2/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/1.2/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/1.2/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/1.2/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.1/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.1/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.1/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.1/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.1/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.1/6",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.1/7",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.1/8",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.2/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.2/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.2/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.2/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.2/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.3/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.3/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.3/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.3/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.3/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.3/6",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.4/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.4/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.4/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.4/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.4/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.1/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.1/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.1/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.1/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.2/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.2/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.2/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.2/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.3/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.3/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.3/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.3/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.4/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.4/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.4/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.4/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.5/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.5/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.5/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.6/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.6/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.6/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/4.1/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/4.1/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/4.1/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/4.1/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/4.1/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/4.1/6",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/4.2/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/4.2/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/4.2/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/4.2/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/4.2/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/4.3/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/4.3/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/4.3/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/4.3/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/4.3/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/5.1/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/5.1/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/5.1/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/5.2/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/5.2/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/5.2/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/5.2/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:C/1.1/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/1.1/2",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/1.1/3",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/1.2/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/1.2/2",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/1.2/3",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/2.1/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/2.1/2",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/2.1/3",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/2.1/4",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/2.2/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/2.2/2",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/2.2/3",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/2.3/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/2.3/2",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/2.3/3",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/2.4/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/2.4/2",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/2.4/3",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/2.4/4",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/2.4/5",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/2.4/6",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/2.4/7",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/2.4/8",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/3.1/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/3.1/2",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/3.1/3",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/3.2/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/3.2/2",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/3.2/3",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/3.3/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/3.3/2",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/3.3/3",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/3.4/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/3.4/2",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/3.4/3",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/3.4/4",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/3.4/5",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/3.4/6",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/3.4/7",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/3.4/8",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/3.4/9",
+      "valeur": 3
+     }
+    ],
+    "nonEvaluations": [],
+    "jokers": []
+   },
+   "attendus": {
+    "crit:A/1.1": 2.6,
+    "crit:A/1.2": 2.6,
+    "crit:A/1.3": 2.6,
+    "obj:A/1": 2.6,
+    "obj-pct:A/1": 80.0,
+    "crit:A/2.1": 2.5,
+    "crit:A/2.2": 2.6,
+    "obj:A/2": 2.55,
+    "obj-pct:A/2": 78.0,
+    "crit:A/3.1": 2.6,
+    "crit:A/3.2": 2.6,
+    "crit:A/3.3": 2.6,
+    "obj:A/3": 2.6,
+    "obj-pct:A/3": 80.0,
+    "crit:A/4.1": 2.6,
+    "crit:A/4.2": 2.6,
+    "crit:A/4.3": 2.6,
+    "obj:A/4": 2.6,
+    "obj-pct:A/4": 80.0,
+    "crit:A/5.1": 2.6,
+    "crit:A/5.2": 2.6,
+    "crit:A/5.3": 2.6,
+    "obj:A/5": 2.6,
+    "obj-pct:A/5": 80.0,
+    "crit:A/6.1": 2.6,
+    "crit:A/6.2": 2.6,
+    "obj:A/6": 2.6,
+    "obj-pct:A/6": 80.0,
+    "crit:A/7.1": 2.6,
+    "crit:A/7.2": 2.6,
+    "obj:A/7": 2.6,
+    "obj-pct:A/7": 80.0,
+    "sph:A": 80.0,
+    "seuil:A": 1.0,
+    "crit:B/1.1": 4.0,
+    "crit:B/1.2": 4.0,
+    "obj:B/1": 4.0,
+    "obj-pct:B/1": 125.0,
+    "crit:B/2.1": 4.0,
+    "crit:B/2.2": 4.0,
+    "crit:B/2.3": 4.0,
+    "crit:B/2.4": 4.0,
+    "obj:B/2": 4.0,
+    "obj-pct:B/2": 125.0,
+    "crit:B/3.1": 4.0,
+    "crit:B/3.2": 4.0,
+    "crit:B/3.3": 4.0,
+    "crit:B/3.4": 4.0,
+    "crit:B/3.5": 4.0,
+    "crit:B/3.6": 4.0,
+    "obj:B/3": 4.0,
+    "obj-pct:B/3": 125.0,
+    "crit:B/4.1": 4.0,
+    "crit:B/4.2": 4.0,
+    "crit:B/4.3": 4.0,
+    "obj:B/4": 4.0,
+    "obj-pct:B/4": 125.0,
+    "crit:B/5.1": 4.0,
+    "crit:B/5.2": 4.0,
+    "obj:B/5": 4.0,
+    "obj-pct:B/5": 125.0,
+    "sph:B": 125.0,
+    "seuil:B": 1.0,
+    "crit:C/1.1": 4.0,
+    "crit:C/1.2": 4.0,
+    "obj:C/1": 4.0,
+    "obj-pct:C/1": 125.0,
+    "crit:C/2.1": 4.0,
+    "crit:C/2.2": 4.0,
+    "crit:C/2.3": 4.0,
+    "crit:C/2.4": 4.0,
+    "obj:C/2": 4.0,
+    "obj-pct:C/2": 125.0,
+    "crit:C/3.1": 4.0,
+    "crit:C/3.2": 4.0,
+    "crit:C/3.3": 4.0,
+    "crit:C/3.4": 4.0,
+    "obj:C/3": 4.0,
+    "obj-pct:C/3": 125.0,
+    "sph:C": 125.0,
+    "seuil:C": 1.0,
+    "reussite": 1.0
+   },
+   "erreursRemplissage": [],
+   "attendusSansArrondi": {
+    "sph:A": 79.75,
+    "seuil:A": 0.0,
+    "reussite": 0.0
+   }
+  },
+  {
+   "nom": "Capucine",
+   "sources": {
+    "cases": [
+     {
+      "noeud": "ind:A/1.1/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.1/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.1/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.1/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.1/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.2/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.2/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.2/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.2/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.2/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.2/6",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.2/7",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.3/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.3/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.3/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.3/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.3/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.3/6",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.3/7",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.3/8",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/2.1/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/2.1/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/2.1/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/2.1/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/2.2/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/2.2/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/2.2/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/2.2/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.1/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.1/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.1/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.1/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.1/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.1/6",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.1/7",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.2/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.2/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.2/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.2/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.2/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.2/6",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.3/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.3/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.3/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.3/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.3/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.1/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.1/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.1/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.1/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.1/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.1/6",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.2/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.2/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.2/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.2/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.2/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.2/6",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.2/7",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.2/8",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.3/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.3/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.3/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.3/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.3/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.3/6",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/5.1/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/5.1/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/5.1/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/5.1/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/5.1/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/5.2/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/5.2/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/5.2/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/5.3/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/5.3/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/5.3/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/6.1/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/6.1/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/6.1/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/6.1/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/6.1/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/6.1/6",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/6.2/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/6.2/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/6.2/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/6.2/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/6.2/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/7.1/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/7.1/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/7.1/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/7.1/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/7.1/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/7.1/6",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/7.2/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/7.2/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/7.2/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/7.2/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/7.2/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/1.1/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/1.1/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/1.1/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/1.1/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/1.2/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/1.2/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/1.2/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/1.2/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/1.2/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.1/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.1/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.1/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.1/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.1/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.1/6",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.1/7",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.1/8",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.2/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.2/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.2/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.2/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.2/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.3/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.3/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.3/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.3/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.3/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.3/6",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.4/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.4/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.4/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.4/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/2.4/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.1/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.1/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.1/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.1/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.2/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.2/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.2/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.2/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.3/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.3/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.3/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.3/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.4/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.4/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.4/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.4/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.5/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.5/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.5/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.6/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.6/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/3.6/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/4.1/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/4.1/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/4.1/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/4.1/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/4.1/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/4.1/6",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/4.2/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/4.2/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/4.2/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/4.2/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/4.2/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/4.3/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/4.3/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/4.3/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/4.3/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/4.3/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/5.1/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/5.1/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/5.1/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/5.2/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/5.2/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/5.2/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:B/5.2/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:C/1.1/1",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/1.1/2",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/1.1/3",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/1.2/1",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/1.2/2",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/1.2/3",
+      "valeur": 2
+     },
+     {
+      "noeud": "ind:C/2.1/1",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:C/2.1/2",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:C/2.1/3",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:C/2.1/4",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:C/2.2/1",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:C/2.2/2",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:C/2.2/3",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:C/2.3/1",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:C/2.3/2",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:C/2.3/3",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:C/2.4/1",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:C/2.4/2",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:C/2.4/3",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:C/2.4/4",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:C/2.4/5",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:C/2.4/6",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:C/2.4/7",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:C/2.4/8",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:C/3.1/1",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:C/3.1/2",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:C/3.1/3",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:C/3.2/1",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:C/3.2/2",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:C/3.2/3",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:C/3.3/1",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:C/3.3/2",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:C/3.3/3",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:C/3.4/1",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:C/3.4/2",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:C/3.4/3",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:C/3.4/4",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:C/3.4/5",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:C/3.4/6",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:C/3.4/7",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:C/3.4/8",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:C/3.4/9",
+      "valeur": 1
+     }
+    ],
+    "nonEvaluations": [],
+    "jokers": [
+     {
+      "jokerDef": "joker:sph:C",
+      "justification": "Participant type",
+      "auteur": "corpus",
+      "date": "2026-10-05"
+     }
+    ]
+   },
+   "attendus": {
+    "crit:A/1.1": 4.0,
+    "crit:A/1.2": 4.0,
+    "crit:A/1.3": 4.0,
+    "obj:A/1": 4.0,
+    "obj-pct:A/1": 125.0,
+    "crit:A/2.1": 4.0,
+    "crit:A/2.2": 4.0,
+    "obj:A/2": 4.0,
+    "obj-pct:A/2": 125.0,
+    "crit:A/3.1": 4.0,
+    "crit:A/3.2": 4.0,
+    "crit:A/3.3": 4.0,
+    "obj:A/3": 4.0,
+    "obj-pct:A/3": 125.0,
+    "crit:A/4.1": 4.0,
+    "crit:A/4.2": 4.0,
+    "crit:A/4.3": 4.0,
+    "obj:A/4": 4.0,
+    "obj-pct:A/4": 125.0,
+    "crit:A/5.1": 4.0,
+    "crit:A/5.2": 4.0,
+    "crit:A/5.3": 4.0,
+    "obj:A/5": 4.0,
+    "obj-pct:A/5": 125.0,
+    "crit:A/6.1": 4.0,
+    "crit:A/6.2": 4.0,
+    "obj:A/6": 4.0,
+    "obj-pct:A/6": 125.0,
+    "crit:A/7.1": 4.0,
+    "crit:A/7.2": 4.0,
+    "obj:A/7": 4.0,
+    "obj-pct:A/7": 125.0,
+    "sph:A": 125.0,
+    "seuil:A": 1.0,
+    "crit:B/1.1": 4.0,
+    "crit:B/1.2": 4.0,
+    "obj:B/1": 4.0,
+    "obj-pct:B/1": 125.0,
+    "crit:B/2.1": 4.0,
+    "crit:B/2.2": 4.0,
+    "crit:B/2.3": 4.0,
+    "crit:B/2.4": 4.0,
+    "obj:B/2": 4.0,
+    "obj-pct:B/2": 125.0,
+    "crit:B/3.1": 4.0,
+    "crit:B/3.2": 4.0,
+    "crit:B/3.3": 4.0,
+    "crit:B/3.4": 4.0,
+    "crit:B/3.5": 4.0,
+    "crit:B/3.6": 4.0,
+    "obj:B/3": 4.0,
+    "obj-pct:B/3": 125.0,
+    "crit:B/4.1": 4.0,
+    "crit:B/4.2": 4.0,
+    "crit:B/4.3": 4.0,
+    "obj:B/4": 4.0,
+    "obj-pct:B/4": 125.0,
+    "crit:B/5.1": 4.0,
+    "crit:B/5.2": 4.0,
+    "obj:B/5": 4.0,
+    "obj-pct:B/5": 125.0,
+    "sph:B": 125.0,
+    "seuil:B": 1.0,
+    "crit:C/1.1": 3.0,
+    "crit:C/1.2": 3.0,
+    "obj:C/1": 3.0,
+    "obj-pct:C/1": 100.0,
+    "crit:C/2.1": 2.0,
+    "crit:C/2.2": 2.0,
+    "crit:C/2.3": 2.0,
+    "crit:C/2.4": 2.0,
+    "obj:C/2": 2.0,
+    "obj-pct:C/2": 50.0,
+    "crit:C/3.1": 2.0,
+    "crit:C/3.2": 2.0,
+    "crit:C/3.3": 2.0,
+    "crit:C/3.4": 2.0,
+    "obj:C/3": 2.0,
+    "obj-pct:C/3": 50.0,
+    "sph:C": 85.0,
+    "seuil:C": 1.0,
+    "reussite": 1.0
+   },
+   "erreursRemplissage": []
+  },
+  {
+   "nom": "Dorian",
+   "sources": {
+    "cases": [
+     {
+      "noeud": "ind:A/1.1/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.1/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.1/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.1/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.1/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.2/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.2/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.2/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.2/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.2/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.2/6",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.2/7",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.3/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.3/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.3/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.3/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.3/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.3/6",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.3/7",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/1.3/8",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/2.1/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/2.1/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/2.1/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/2.1/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/2.2/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/2.2/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/2.2/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/2.2/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.1/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.1/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.1/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.1/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.1/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.1/6",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.1/7",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.2/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.2/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.2/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.2/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.2/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.2/6",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.3/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.3/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.3/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.3/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/3.3/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.1/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.1/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.1/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.1/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.1/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.1/6",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.2/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.2/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.2/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.2/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.2/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.2/6",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.2/7",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.2/8",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.3/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.3/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.3/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.3/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.3/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/4.3/6",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/5.1/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/5.1/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/5.1/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/5.1/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/5.1/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/5.2/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/5.2/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/5.2/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/5.3/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/5.3/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/5.3/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/6.1/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/6.1/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/6.1/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/6.1/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/6.1/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/6.1/6",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/6.2/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/6.2/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/6.2/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/6.2/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/6.2/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/7.1/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/7.1/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/7.1/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/7.1/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/7.1/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/7.1/6",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/7.2/1",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/7.2/2",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/7.2/3",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/7.2/4",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:A/7.2/5",
+      "valeur": 4
+     },
+     {
+      "noeud": "ind:C/1.1/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/1.1/2",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/1.1/3",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/1.2/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/1.2/2",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/1.2/3",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/2.1/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/2.1/2",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/2.1/3",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/2.1/4",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/2.2/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/2.2/2",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/2.2/3",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/2.3/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/2.3/2",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/2.3/3",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/2.4/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/2.4/2",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/2.4/3",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/2.4/4",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/2.4/5",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/2.4/6",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/2.4/7",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/2.4/8",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/3.1/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/3.1/2",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/3.1/3",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/3.2/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/3.2/2",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/3.2/3",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/3.3/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/3.3/2",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/3.3/3",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/3.4/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/3.4/2",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/3.4/3",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/3.4/4",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/3.4/5",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/3.4/6",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/3.4/7",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/3.4/8",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:C/3.4/9",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/1.1/1",
+      "valeur": 5
+     },
+     {
+      "noeud": "ind:B/1.1/2",
+      "valeur": 5
+     },
+     {
+      "noeud": "ind:B/1.1/3",
+      "valeur": 5
+     },
+     {
+      "noeud": "ind:B/1.1/4",
+      "valeur": 5
+     },
+     {
+      "noeud": "ind:B/1.2/1",
+      "valeur": 5
+     },
+     {
+      "noeud": "ind:B/1.2/2",
+      "valeur": 5
+     },
+     {
+      "noeud": "ind:B/1.2/3",
+      "valeur": 5
+     },
+     {
+      "noeud": "ind:B/1.2/4",
+      "valeur": 5
+     },
+     {
+      "noeud": "ind:B/1.2/5",
+      "valeur": 5
+     },
+     {
+      "noeud": "ind:B/2.1/1",
+      "valeur": 5
+     },
+     {
+      "noeud": "ind:B/2.1/2",
+      "valeur": 5
+     },
+     {
+      "noeud": "ind:B/2.1/3",
+      "valeur": 5
+     },
+     {
+      "noeud": "ind:B/2.1/4",
+      "valeur": 5
+     },
+     {
+      "noeud": "ind:B/2.1/5",
+      "valeur": 5
+     },
+     {
+      "noeud": "ind:B/2.1/6",
+      "valeur": 5
+     },
+     {
+      "noeud": "ind:B/2.1/7",
+      "valeur": 5
+     },
+     {
+      "noeud": "ind:B/2.1/8",
+      "valeur": 5
+     },
+     {
+      "noeud": "ind:B/2.2/1",
+      "valeur": 5
+     },
+     {
+      "noeud": "ind:B/2.2/2",
+      "valeur": 5
+     },
+     {
+      "noeud": "ind:B/2.2/3",
+      "valeur": 5
+     },
+     {
+      "noeud": "ind:B/2.2/4",
+      "valeur": 5
+     },
+     {
+      "noeud": "ind:B/2.2/5",
+      "valeur": 5
+     },
+     {
+      "noeud": "ind:B/2.3/1",
+      "valeur": 5
+     },
+     {
+      "noeud": "ind:B/2.3/2",
+      "valeur": 5
+     },
+     {
+      "noeud": "ind:B/2.3/3",
+      "valeur": 5
+     },
+     {
+      "noeud": "ind:B/2.3/4",
+      "valeur": 5
+     },
+     {
+      "noeud": "ind:B/2.3/5",
+      "valeur": 5
+     },
+     {
+      "noeud": "ind:B/2.3/6",
+      "valeur": 5
+     },
+     {
+      "noeud": "ind:B/2.4/1",
+      "valeur": 5
+     },
+     {
+      "noeud": "ind:B/2.4/2",
+      "valeur": 5
+     },
+     {
+      "noeud": "ind:B/2.4/3",
+      "valeur": 5
+     },
+     {
+      "noeud": "ind:B/2.4/4",
+      "valeur": 5
+     },
+     {
+      "noeud": "ind:B/2.4/5",
+      "valeur": 5
+     },
+     {
+      "noeud": "ind:B/3.1/1",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:B/3.1/2",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:B/3.1/3",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:B/3.1/4",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:B/3.2/1",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:B/3.2/2",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:B/3.2/3",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:B/3.2/4",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:B/3.3/1",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:B/3.3/2",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:B/3.3/3",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:B/3.3/4",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:B/3.4/1",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:B/3.4/2",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:B/3.4/3",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:B/3.4/4",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:B/3.5/1",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:B/3.5/2",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:B/3.5/3",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:B/3.6/1",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:B/3.6/2",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:B/3.6/3",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:B/4.1/1",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:B/4.1/2",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:B/4.1/3",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:B/4.1/4",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:B/4.1/5",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:B/4.1/6",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:B/4.2/1",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:B/4.2/2",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:B/4.2/3",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:B/4.2/4",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:B/4.2/5",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:B/4.3/1",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:B/4.3/2",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:B/4.3/3",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:B/4.3/4",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:B/4.3/5",
+      "valeur": 1
+     },
+     {
+      "noeud": "ind:B/5.1/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/5.1/2",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/5.1/3",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/5.2/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/5.2/2",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/5.2/3",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/5.2/4",
+      "valeur": 3
+     }
+    ],
+    "nonEvaluations": [],
+    "jokers": []
+   },
+   "attendus": {
+    "crit:A/1.1": 4.0,
+    "crit:A/1.2": 4.0,
+    "crit:A/1.3": 4.0,
+    "obj:A/1": 4.0,
+    "obj-pct:A/1": 125.0,
+    "crit:A/2.1": 4.0,
+    "crit:A/2.2": 4.0,
+    "obj:A/2": 4.0,
+    "obj-pct:A/2": 125.0,
+    "crit:A/3.1": 4.0,
+    "crit:A/3.2": 4.0,
+    "crit:A/3.3": 4.0,
+    "obj:A/3": 4.0,
+    "obj-pct:A/3": 125.0,
+    "crit:A/4.1": 4.0,
+    "crit:A/4.2": 4.0,
+    "crit:A/4.3": 4.0,
+    "obj:A/4": 4.0,
+    "obj-pct:A/4": 125.0,
+    "crit:A/5.1": 4.0,
+    "crit:A/5.2": 4.0,
+    "crit:A/5.3": 4.0,
+    "obj:A/5": 4.0,
+    "obj-pct:A/5": 125.0,
+    "crit:A/6.1": 4.0,
+    "crit:A/6.2": 4.0,
+    "obj:A/6": 4.0,
+    "obj-pct:A/6": 125.0,
+    "crit:A/7.1": 4.0,
+    "crit:A/7.2": 4.0,
+    "obj:A/7": 4.0,
+    "obj-pct:A/7": 125.0,
+    "sph:A": 125.0,
+    "seuil:A": 1.0,
+    "crit:B/1.1": 5.0,
+    "crit:B/1.2": 5.0,
+    "obj:B/1": 5.0,
+    "obj-pct:B/1": 150.0,
+    "crit:B/2.1": 5.0,
+    "crit:B/2.2": 5.0,
+    "crit:B/2.3": 5.0,
+    "crit:B/2.4": 5.0,
+    "obj:B/2": 5.0,
+    "obj-pct:B/2": 150.0,
+    "crit:B/3.1": 1.0,
+    "crit:B/3.2": 1.0,
+    "crit:B/3.3": 1.0,
+    "crit:B/3.4": 1.0,
+    "crit:B/3.5": 1.0,
+    "crit:B/3.6": 1.0,
+    "obj:B/3": 1.0,
+    "obj-pct:B/3": 0.0,
+    "crit:B/4.1": 1.0,
+    "crit:B/4.2": 1.0,
+    "crit:B/4.3": 1.0,
+    "obj:B/4": 1.0,
+    "obj-pct:B/4": 0.0,
+    "crit:B/5.1": 3.0,
+    "crit:B/5.2": 3.0,
+    "obj:B/5": 3.0,
+    "obj-pct:B/5": 100.0,
+    "sph:B": 100.0,
+    "seuil:B": 1.0,
+    "crit:C/1.1": 4.0,
+    "crit:C/1.2": 4.0,
+    "obj:C/1": 4.0,
+    "obj-pct:C/1": 125.0,
+    "crit:C/2.1": 4.0,
+    "crit:C/2.2": 4.0,
+    "crit:C/2.3": 4.0,
+    "crit:C/2.4": 4.0,
+    "obj:C/2": 4.0,
+    "obj-pct:C/2": 125.0,
+    "crit:C/3.1": 4.0,
+    "crit:C/3.2": 4.0,
+    "crit:C/3.3": 4.0,
+    "crit:C/3.4": 4.0,
+    "obj:C/3": 4.0,
+    "obj-pct:C/3": 125.0,
+    "sph:C": 125.0,
+    "seuil:C": 1.0,
+    "reussite": 1.0
+   },
+   "erreursRemplissage": []
+  },
+  {
+   "nom": "Élodie",
+   "sources": {
+    "cases": [],
+    "nonEvaluations": [],
+    "jokers": []
+   },
+   "attendus": {
+    "crit:A/1.1": null,
+    "crit:A/1.2": null,
+    "crit:A/1.3": null,
+    "obj:A/1": null,
+    "obj-pct:A/1": null,
+    "crit:A/2.1": null,
+    "crit:A/2.2": null,
+    "obj:A/2": null,
+    "obj-pct:A/2": null,
+    "crit:A/3.1": null,
+    "crit:A/3.2": null,
+    "crit:A/3.3": null,
+    "obj:A/3": null,
+    "obj-pct:A/3": null,
+    "crit:A/4.1": null,
+    "crit:A/4.2": null,
+    "crit:A/4.3": null,
+    "obj:A/4": null,
+    "obj-pct:A/4": null,
+    "crit:A/5.1": null,
+    "crit:A/5.2": null,
+    "crit:A/5.3": null,
+    "obj:A/5": null,
+    "obj-pct:A/5": null,
+    "crit:A/6.1": null,
+    "crit:A/6.2": null,
+    "obj:A/6": null,
+    "obj-pct:A/6": null,
+    "crit:A/7.1": null,
+    "crit:A/7.2": null,
+    "obj:A/7": null,
+    "obj-pct:A/7": null,
+    "sph:A": null,
+    "seuil:A": null,
+    "crit:B/1.1": null,
+    "crit:B/1.2": null,
+    "obj:B/1": null,
+    "obj-pct:B/1": null,
+    "crit:B/2.1": null,
+    "crit:B/2.2": null,
+    "crit:B/2.3": null,
+    "crit:B/2.4": null,
+    "obj:B/2": null,
+    "obj-pct:B/2": null,
+    "crit:B/3.1": null,
+    "crit:B/3.2": null,
+    "crit:B/3.3": null,
+    "crit:B/3.4": null,
+    "crit:B/3.5": null,
+    "crit:B/3.6": null,
+    "obj:B/3": null,
+    "obj-pct:B/3": null,
+    "crit:B/4.1": null,
+    "crit:B/4.2": null,
+    "crit:B/4.3": null,
+    "obj:B/4": null,
+    "obj-pct:B/4": null,
+    "crit:B/5.1": null,
+    "crit:B/5.2": null,
+    "obj:B/5": null,
+    "obj-pct:B/5": null,
+    "sph:B": null,
+    "seuil:B": null,
+    "crit:C/1.1": null,
+    "crit:C/1.2": null,
+    "obj:C/1": null,
+    "obj-pct:C/1": null,
+    "crit:C/2.1": null,
+    "crit:C/2.2": null,
+    "crit:C/2.3": null,
+    "crit:C/2.4": null,
+    "obj:C/2": null,
+    "obj-pct:C/2": null,
+    "crit:C/3.1": null,
+    "crit:C/3.2": null,
+    "crit:C/3.3": null,
+    "crit:C/3.4": null,
+    "obj:C/3": null,
+    "obj-pct:C/3": null,
+    "sph:C": null,
+    "seuil:C": null,
+    "reussite": null
+   },
+   "erreursRemplissage": [
+    "crit:A/1.1",
+    "crit:A/1.2",
+    "crit:A/1.3",
+    "crit:A/2.1",
+    "crit:A/2.2",
+    "crit:A/3.1",
+    "crit:A/3.2",
+    "crit:A/3.3",
+    "crit:A/4.1",
+    "crit:A/4.2",
+    "crit:A/4.3",
+    "crit:A/5.1",
+    "crit:A/5.2",
+    "crit:A/5.3",
+    "crit:A/6.1",
+    "crit:A/6.2",
+    "crit:A/7.1",
+    "crit:A/7.2",
+    "crit:B/1.1",
+    "crit:B/1.2",
+    "crit:B/2.1",
+    "crit:B/2.2",
+    "crit:B/2.3",
+    "crit:B/2.4",
+    "crit:B/3.1",
+    "crit:B/3.2",
+    "crit:B/3.3",
+    "crit:B/3.4",
+    "crit:B/3.5",
+    "crit:B/3.6",
+    "crit:B/4.1",
+    "crit:B/4.2",
+    "crit:B/4.3",
+    "crit:B/5.1",
+    "crit:B/5.2",
+    "crit:C/1.1",
+    "crit:C/1.2",
+    "crit:C/2.1",
+    "crit:C/2.2",
+    "crit:C/2.3",
+    "crit:C/2.4",
+    "crit:C/3.1",
+    "crit:C/3.2",
+    "crit:C/3.3",
+    "crit:C/3.4"
+   ]
+  },
+  {
+   "nom": "Fanny",
+   "sources": {
+    "cases": [
+     {
+      "noeud": "ind:A/1.1/1",
+      "valeur": 3
+     },
+     {
+      "noeud": "ind:B/1.1/1",
+      "valeur": 3
+     }
+    ],
+    "nonEvaluations": [],
+    "jokers": []
+   },
+   "attendus": {
+    "crit:A/1.1": 3.0,
+    "crit:A/1.2": null,
+    "crit:A/1.3": null,
+    "obj:A/1": 3.0,
+    "obj-pct:A/1": 100.0,
+    "crit:A/2.1": null,
+    "crit:A/2.2": null,
+    "obj:A/2": null,
+    "obj-pct:A/2": null,
+    "crit:A/3.1": null,
+    "crit:A/3.2": null,
+    "crit:A/3.3": null,
+    "obj:A/3": null,
+    "obj-pct:A/3": null,
+    "crit:A/4.1": null,
+    "crit:A/4.2": null,
+    "crit:A/4.3": null,
+    "obj:A/4": null,
+    "obj-pct:A/4": null,
+    "crit:A/5.1": null,
+    "crit:A/5.2": null,
+    "crit:A/5.3": null,
+    "obj:A/5": null,
+    "obj-pct:A/5": null,
+    "crit:A/6.1": null,
+    "crit:A/6.2": null,
+    "obj:A/6": null,
+    "obj-pct:A/6": null,
+    "crit:A/7.1": null,
+    "crit:A/7.2": null,
+    "obj:A/7": null,
+    "obj-pct:A/7": null,
+    "sph:A": 100.0,
+    "seuil:A": 1.0,
+    "crit:B/1.1": 3.0,
+    "crit:B/1.2": null,
+    "obj:B/1": 3.0,
+    "obj-pct:B/1": 100.0,
+    "crit:B/2.1": null,
+    "crit:B/2.2": null,
+    "crit:B/2.3": null,
+    "crit:B/2.4": null,
+    "obj:B/2": null,
+    "obj-pct:B/2": null,
+    "crit:B/3.1": null,
+    "crit:B/3.2": null,
+    "crit:B/3.3": null,
+    "crit:B/3.4": null,
+    "crit:B/3.5": null,
+    "crit:B/3.6": null,
+    "obj:B/3": null,
+    "obj-pct:B/3": null,
+    "crit:B/4.1": null,
+    "crit:B/4.2": null,
+    "crit:B/4.3": null,
+    "obj:B/4": null,
+    "obj-pct:B/4": null,
+    "crit:B/5.1": null,
+    "crit:B/5.2": null,
+    "obj:B/5": null,
+    "obj-pct:B/5": null,
+    "sph:B": 100.0,
+    "seuil:B": 1.0,
+    "crit:C/1.1": null,
+    "crit:C/1.2": null,
+    "obj:C/1": null,
+    "obj-pct:C/1": null,
+    "crit:C/2.1": null,
+    "crit:C/2.2": null,
+    "crit:C/2.3": null,
+    "crit:C/2.4": null,
+    "obj:C/2": null,
+    "obj-pct:C/2": null,
+    "crit:C/3.1": null,
+    "crit:C/3.2": null,
+    "crit:C/3.3": null,
+    "crit:C/3.4": null,
+    "obj:C/3": null,
+    "obj-pct:C/3": null,
+    "sph:C": null,
+    "seuil:C": null,
+    "reussite": 1.0
+   },
+   "erreursRemplissage": [
+    "crit:A/1.2",
+    "crit:A/1.3",
+    "crit:A/2.1",
+    "crit:A/2.2",
+    "crit:A/3.1",
+    "crit:A/3.2",
+    "crit:A/3.3",
+    "crit:A/4.1",
+    "crit:A/4.2",
+    "crit:A/4.3",
+    "crit:A/5.1",
+    "crit:A/5.2",
+    "crit:A/5.3",
+    "crit:A/6.1",
+    "crit:A/6.2",
+    "crit:A/7.1",
+    "crit:A/7.2",
+    "crit:B/1.2",
+    "crit:B/2.1",
+    "crit:B/2.2",
+    "crit:B/2.3",
+    "crit:B/2.4",
+    "crit:B/3.1",
+    "crit:B/3.2",
+    "crit:B/3.3",
+    "crit:B/3.4",
+    "crit:B/3.5",
+    "crit:B/3.6",
+    "crit:B/4.1",
+    "crit:B/4.2",
+    "crit:B/4.3",
+    "crit:B/5.1",
+    "crit:B/5.2",
+    "crit:C/1.1",
+    "crit:C/1.2",
+    "crit:C/2.1",
+    "crit:C/2.2",
+    "crit:C/2.3",
+    "crit:C/2.4",
+    "crit:C/3.1",
+    "crit:C/3.2",
+    "crit:C/3.3",
+    "crit:C/3.4"
+   ],
+   "apresSaisie": {
+    "case": {
+     "noeud": "ind:C/1.1/1",
+     "valeur": 0
+    },
+    "attendus": {
+     "crit:C/1.1": 1.0,
+     "obj:C/1": 1.0,
+     "sph:C": 0.0,
+     "seuil:C": 0.0,
+     "reussite": 0.0
+    }
+   }
+  }
+ ]
+}

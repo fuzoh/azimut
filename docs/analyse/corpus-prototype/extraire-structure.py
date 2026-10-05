@@ -313,7 +313,7 @@ def a03():
                         "bareme_sortie": "note-1-5",
                     }
                 )
-                minimums.append({"regroupement": cid, "min_actives": 1})
+                minimums.append({"noeud": cid, "minActives": 1})
                 entrees_obj.append({"noeud": cid, "poids": cpoids})
                 enfants_obj.append(
                     {"noeud": cid, "enfants": [{"noeud": i} for i in iids]}
@@ -465,11 +465,12 @@ def a03():
                 {"id": "posture", "libelle": "Posture", "arbre": arbre_pos},
             ],
             "decisif": "reussite",
-            "exigences": {"obligatoires": [], "minimum_par_regroupement": minimums},
+            "exigences": {"minimumParRegroupement": minimums},
             "jokers": {
                 "quota": 1,
                 "autorises": [
                     {
+                        "id": f"joker:sph:{s}",
                         "noeud": f"sph:{s}",
                         "action": {"type": "ajout", "valeur": 25},
                         "libelle": "≈ ½ point",

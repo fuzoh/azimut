@@ -1,0 +1,19 @@
+body { font: 13px system-ui, sans-serif; margin: 0; }
+header { padding: 6px 10px; border-bottom: 1px solid #ccc; display: flex; gap: 8px; align-items: center; }
+.legende { margin-left: auto; display: flex; gap: 6px; }
+.legende span { padding: 1px 6px; border: 1px solid #ccc; }
+.defilement { overflow: auto; height: calc(100vh - 40px); }
+table { border-collapse: collapse; }
+th, td { border: 1px solid #ddd; padding: 2px 4px; white-space: nowrap; text-align: right; }
+thead th { position: sticky; top: 0; background: #f4f4f4; font-weight: normal; font-size: 11px; writing-mode: vertical-rl; transform: rotate(180deg); text-align: left; }
+thead th.coin { writing-mode: horizontal-tb; transform: none; left: 0; z-index: 2; }
+th.nom { position: sticky; left: 0; background: #f4f4f4; text-align: left; z-index: 1; }
+thead th.type-1 { font-weight: bold; }
+td.resultat { background: #eef4ff; font-weight: 500; }
+.sans-resultat { background: #e6e6e6 !important; color: #888; font-style: italic; }
+.cellule-vide { background: #fff; }
+.cellule-note { background: #f3fff0; }
+td.cellule-vide, td.cellule-note { padding: 0; }
+td input { width: 3.2em; border: 0; background: transparent; text-align: right; font: inherit; padding: 2px 4px; }
+td.invalide { outline: 2px solid #d33; }
+td.sans-calcul { background: #fafafa; }

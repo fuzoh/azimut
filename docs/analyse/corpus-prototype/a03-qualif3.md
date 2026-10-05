@@ -6,6 +6,7 @@
 
 - [`a03-structure.json`](a03-structure.json) : la grille complète, produite par [`extraire-structure.py`](extraire-structure.py). Les objectifs et critères portent un libellé abrégé ; les indicateurs et les items de Posture sont numérotés sans leur texte.
 - [`a01-a03-controle.py`](a01-a03-controle.py) : résultats attendus des participants types, en sémantique 18 et en sémantique Excel.
+- [`a03-participants.json`](a03-participants.json) : sources et résultats attendus des participants types, figés par `a01-a03-controle.py --figer` pour les tests du prototype.
 
 ## Rôle dans le corpus
 

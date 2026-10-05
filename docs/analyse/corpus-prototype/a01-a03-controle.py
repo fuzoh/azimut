@@ -10,9 +10,16 @@ décrits dans `a01-qualif1.md` et `a03-qualif3.md`, selon deux sémantiques :
 Ce n'est pas le moteur du prototype : c'est une seconde source pour ses tests.
 
     uv run docs/analyse/corpus-prototype/a01-a03-controle.py
+    uv run docs/analyse/corpus-prototype/a01-a03-controle.py --figer
+
+`--figer` écrit aussi `a03-participants.json` : sources des participants types,
+dans la forme des collections du prototype (nœuds désignés par leur id, case
+ordinale en rang du palier, à partir de 0), et résultats attendus de tous les
+nœuds de calcul (`null` : sans résultat) ; pour Basile, aussi sans arrondi propagé.
 """
 
 import json
+import sys
 from decimal import ROUND_HALF_UP, Decimal
 from itertools import pairwise
 from pathlib import Path
@@ -25,7 +32,9 @@ D = Decimal
 
 
 def convertir(v, table):
-    """Table affine par morceaux [[x, y], ...]."""
+    """Table affine par morceaux [[x, y], ...], bornée aux deux extrémités."""
+    if v <= D(table[0][0]):
+        return D(table[0][1])
     for (x0, y0), (x1, y1) in pairwise(table):
         if v <= x1:
             return D(y0) + (v - D(x0)) * (D(y1) - D(y0)) / (D(x1) - D(x0))
@@ -105,22 +114,33 @@ def evaluer(grille, cases, excel=False, jokers=(), arrondi=True, h4_strict=False
 
 
 def erreurs(grille, cases):
-    """Exigences de remplissage non satisfaites."""
+    """Exigences de remplissage non satisfaites.
+
+    Lit le format commun (`obligatoire` sur le nœud, `minimumParRegroupement`)
+    et l'ancien format de A01 (`obligatoires`, `minimum_par_regroupement`).
+    """
     noeuds = {n["id"]: n for n in grille["noeuds"]}
+    ex = grille["exigences"]
     err = []
-    if grille["exigences"]["obligatoires"]:
+    if ex.get("obligatoires"):
         err += [
             n["id"]
             for n in grille["noeuds"]
             if n["type"] == "donnees" and cases.get(n["id"]) is None
         ]
-    for m in grille["exigences"]["minimum_par_regroupement"]:
-        actives = sum(
-            cases.get(e["noeud"]) is not None
-            for e in noeuds[m["regroupement"]]["entrees"]
-        )
-        if actives < m["min_actives"]:
-            err.append(m["regroupement"])
+    err += [
+        n["id"]
+        for n in grille["noeuds"]
+        if n.get("obligatoire") and cases.get(n["id"]) is None
+    ]
+    minimums = [
+        (m["regroupement"], m["min_actives"])
+        for m in ex.get("minimum_par_regroupement", [])
+    ] + [(m["noeud"], m["minActives"]) for m in ex.get("minimumParRegroupement", [])]
+    for rid, mini in minimums:
+        actives = sum(cases.get(e["noeud"]) is not None for e in noeuds[rid]["entrees"])
+        if actives < mini:
+            err.append(rid)
     return err
 
 
@@ -409,6 +429,83 @@ def controle_a03():
         )
 
 
+# --- Participants figés ----------------------------------------------------------
+
+
+def en_nombre(v):
+    return None if v is None else float(v)
+
+
+def figer_a03():
+    """Écrit `a03-participants.json`, seconde source des tests du prototype."""
+    g = json.loads((ICI / "a03-structure.json").read_text())
+    noeuds = {n["id"]: n for n in g["noeuds"]}
+    baremes = {b["id"]: b for b in g["baremes"]}
+    jokers = {a["noeud"]: a["id"] for a in g["jokers"]["autorises"]}
+
+    def stocke(i, v):
+        b = baremes[noeuds[i]["bareme"]]
+        if b["type"] == "ordinal":
+            return [p["valeur"] for p in b["paliers"]].index(v)
+        return v
+
+    participants = []
+    for nom, (cases, jok) in participants_a03(g).items():
+        v = evaluer(g, cases, jokers=jok)
+        participants.append(
+            {
+                "nom": nom,
+                "sources": {
+                    "cases": [
+                        {"noeud": i, "valeur": stocke(i, x)}
+                        for i, x in cases.items()
+                        if x is not None
+                    ],
+                    "nonEvaluations": [],
+                    "jokers": [
+                        {
+                            "jokerDef": jokers[n],
+                            "justification": "Participant type",
+                            "auteur": "corpus",
+                            "date": "2026-10-05",
+                        }
+                        for n in jok
+                    ],
+                },
+                "attendus": {
+                    i: en_nombre(v[i]) for i, n in noeuds.items() if n["type"] == "calcul"
+                },
+                "erreursRemplissage": erreurs(g, cases),
+            }
+        )
+        if nom == "Basile":  # arrondi propagé : la même grille sans `arrondi`
+            vs = evaluer(g, cases, jokers=jok, arrondi=False)
+            participants[-1]["attendusSansArrondi"] = {
+                i: en_nombre(vs[i]) for i in ("sph:A", "seuil:A", "reussite")
+            }
+        if nom == "Fanny":  # saisie « 1 » sur un indicateur de C 1.1 (test du store)
+            case = "ind:C/1.1/1"
+            vs = evaluer(g, {**cases, case: 1}, jokers=jok)
+            participants[-1]["apresSaisie"] = {
+                "case": {"noeud": case, "valeur": stocke(case, 1)},
+                "attendus": {
+                    i: en_nombre(vs[i])
+                    for i in ("crit:C/1.1", "obj:C/1", "sph:C", "seuil:C", "reussite")
+                },
+            }
+    sortie = {
+        "grille": "A03",
+        "source": "a01-a03-controle.py --figer",
+        "participants": participants,
+    }
+    (ICI / "a03-participants.json").write_text(
+        json.dumps(sortie, ensure_ascii=False, indent=1) + "\n"
+    )
+    print(f"\na03-participants.json : {len(participants)} participants")
+
+
 if __name__ == "__main__":
     controle_a01()
     controle_a03()
+    if "--figer" in sys.argv:
+        figer_a03()
