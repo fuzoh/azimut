@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
 import { creerEssai } from "../essai";
+import type { Grille } from "../noyau/format";
 import { ecrireUrl } from "../reglages";
 import { StoreContext } from "../store/hooks";
 import { Copie } from "./Copie";
@@ -11,6 +12,16 @@ import { PastilleVerification, Reglages } from "./Reglages";
 import { Table } from "./Table";
 import { useComparaison } from "./useComparaison";
 import { useLiveParticipants } from "./useParticipants";
+
+/** Télécharge la structure (par ex. G3 étendue, en mémoire) pour l'inspecter. */
+function exporterStructure(grille: Grille) {
+  const url = URL.createObjectURL(new Blob([JSON.stringify(grille, null, 2)], { type: "application/json" }));
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `${grille.grille.replace(/[^\p{L}\p{N}]+/gu, "-")}-structure.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
 
 export function App() {
   // Les paramètres d'URL font foi au chargement ; l'URL est aussitôt réécrite
@@ -76,6 +87,12 @@ export function App() {
         <button type="button" data-action="vue" onClick={() => setVue(vue === "table" ? "graphe" : "table")}>
           {vue === "table" ? "graphe du participant" : "retour à la table"}
         </button>
+        <button type="button" data-action="exporter" title="Structure de la grille affichée, en JSON (pour l'inspecter)" onClick={() => exporterStructure(plan.grille)}>
+          exporter JSON
+        </button>
+        <span className="jeu" data-testid="jeu" data-somme={session.sommeControle} title={`Somme de contrôle des sources au chargement : ${session.sommeControle}`}>
+          jeu {session.jeu}
+        </span>
         <button type="button" data-action="reglages" onClick={() => setReglagesOuverts(!reglagesOuverts)}>
           réglages
         </button>

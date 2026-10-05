@@ -97,3 +97,14 @@ section.reglages .grille-reglages label { display: contents; }
 section.reglages .aide { color: #777; }
 section.reglages .lien input { width: 40em; }
 section.reglages .avertissements, section.reglages .verification-ecarts { color: #b00020; }
+/* Table virtualisée (lignes et colonnes) : largeurs et hauteurs fixes. */
+table.virtuelle { table-layout: fixed; }
+table.virtuelle th, table.virtuelle td { overflow: hidden; text-overflow: ellipsis; box-sizing: border-box; }
+table.virtuelle thead tr.noeuds th { height: 110px; }
+table.virtuelle thead tr.noeuds th.coin { vertical-align: bottom; }
+table.virtuelle .espaceur, table.virtuelle tr.espaceur td { border: 0; padding: 0; }
+table.virtuelle td input { width: 100%; box-sizing: border-box; }
+table.virtuelle tbody tr { height: 24px; }
+table.virtuelle thead tr.groupes th { overflow: visible; }
+table.virtuelle .libelle-groupe { position: sticky; left: 154px; }
+table.virtuelle thead tr.noeuds th.coin { writing-mode: horizontal-tb; transform: none; text-align: left; }

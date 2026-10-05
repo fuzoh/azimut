@@ -48,9 +48,8 @@ export interface Essai {
 
 export function creerEssai(search: string): Essai {
   const { reglages: initiaux, avertissements } = lireUrl(search);
-  // Le jeu « charge », la graine et les réglages du store prennent effet avec
-  // leurs tickets (#23 à #25) ; la session charge aujourd'hui le jeu « corpus ».
-  const session = creerSession(initiaux.modele);
+  // Les réglages du store prennent effet avec leurs tickets (#24, #25).
+  const session = creerSession(initiaux.modele, initiaux.generateur);
   let etat: EtatEssai = { reglages: initiaux, avertissements, verification: null, revision: 0 };
   const rappels = new Set<() => void>();
   const notifier = (maj: Partial<EtatEssai>) => {
