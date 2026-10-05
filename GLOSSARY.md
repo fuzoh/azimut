@@ -38,6 +38,28 @@ _Avoid_ : arrondi (sans précision)
 
 ## Grille
 
+**Définition** :
+Énoncé d'un critère ou d'un indicateur, réutilisable dans plusieurs exercices. Elle ne porte aucune note et ne compte dans aucun calcul.
+_Avoid_ : critère (pour l'énoncé), modèle d'indicateur
+
+**Occurrence** :
+Nœud de données qui reprend une définition à un endroit précis de la grille, par exemple un exercice. Chaque occurrence porte ses propres cases.
+_Avoid_ : instance, tentative
+
 **Nœud de commentaire** :
 Nœud de données sans barème. Ses cases ne portent qu'un commentaire, et il ne contribue à aucun calcul.
 _Avoid_ : nœud texte, nœud libre
+
+## Saisie
+
+**Case** :
+Note courante et commentaire éventuel d'un participant sur une occurrence. Une case sans note est vide ; son réaffichage à plusieurs endroits ne crée pas de nouvelle case.
+_Avoid_ : cellule, évaluation
+
+**Non évalué** :
+Exclusion volontaire d'un nœud du calcul pour un participant, posée sur une case ou sur un regroupement. La note déjà saisie est conservée et redevient active si l'exclusion est retirée.
+_Avoid_ : non applicable, absent
+
+**Dispense** :
+Non-évaluation posée sur un regroupement, qui s'hérite par ses feuilles.
+_Avoid_ : exemption, dispensé (comme état de case)
