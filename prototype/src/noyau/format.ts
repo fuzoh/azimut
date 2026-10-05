@@ -166,3 +166,22 @@ export interface FichierParticipants {
   source: string;
   participants: ParticipantType[];
 }
+
+/** `g3-participants.json` : états de G3 (V1 à la copie, V2 juste après, V2 final). */
+export interface FichierG3 {
+  grille: string;
+  source: string;
+  etats: Record<"V1-copie" | "V2-copie" | "V2-final", { grille: string; participants: ParticipantType[] }>;
+  /** Résultats sous un commutateur du modèle, depuis les sources d'un état. */
+  commutateurs: {
+    etat: "V1-copie" | "V2-copie" | "V2-final";
+    nom: string;
+    commutateurs: { f5Derniere?: boolean; f5SansPlafond?: boolean };
+    attendus: Record<string, number | null>;
+  }[];
+  /** Chemins multiples de chaque structure, par id de grille. */
+  cheminsMultiples: Record<
+    string,
+    { plusieursExigences: Record<string, string[]>; influenceMultiple: Record<string, string[]> }
+  >;
+}

@@ -13,6 +13,8 @@ La grille a deux parties :
 
 Les résultats attendus sont recalculés par [`g3-controle.py`](g3-controle.py) (`uv run docs/analyse/corpus-prototype/g3-controle.py`). Ce script est une seconde source pour les tests du moteur, pas le moteur.
 
+La transcription au format commun est produite par [`g3-structure.py`](g3-structure.py) : [`g3-v1-structure.json`](g3-v1-structure.json) et [`g3-v2-structure.json`](g3-v2-structure.json), noyau et volume compris. `g3-controle.py --figer` écrit [`g3-participants.json`](g3-participants.json) : sources et résultats attendus des participants types, commutateurs F5 et chemins multiples.
+
 ## Barèmes
 
 | Barème | Type | Valeurs | Normalisation |

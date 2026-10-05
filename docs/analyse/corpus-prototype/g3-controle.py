@@ -4,9 +4,22 @@ Calcul direct, nœud par nœud, du noyau de G3 (voir g3-moniteur-camp.md).
 Ce n'est pas le moteur du prototype : c'est une seconde source pour ses tests.
 
     uv run docs/analyse/corpus-prototype/g3-controle.py
+    uv run docs/analyse/corpus-prototype/g3-controle.py --figer
+
+`--figer` écrit aussi `g3-participants.json` : sources des participants types
+dans la forme des collections du prototype (nœuds désignés par leur id dans
+`g3-v1-structure.json` / `g3-v2-structure.json`, case ordinale en rang du palier),
+résultats attendus de tous les nœuds de calcul (`null` : sans résultat) en V1 à
+la copie, en V2 juste après la copie et en V2 à l'état final, résultats des
+commutateurs F5, et chemins multiples de chaque structure.
 """
 
+import json
+import sys
 from decimal import ROUND_HALF_UP, Decimal
+from pathlib import Path
+
+ICI = Path(__file__).parent
 
 OK, KO = 1, 0
 
@@ -91,8 +104,9 @@ def f5(occurrences, mode="meilleure", plafond=60):
 
 
 def occurrence_e1(obj, der, mat):
+    """(E1#k, Matériel de l'occurrence)."""
     materiel = f1_pct([(okko(m), 1) for m in mat])
-    return f1_pct([(n5(obj), 1), (n5(der), 1), (pct(materiel), 1)])
+    return f1_pct([(n5(obj), 1), (n5(der), 1), (pct(materiel), 1)]), materiel
 
 
 def calcule(d, version, sw=None):
@@ -102,8 +116,8 @@ def calcule(d, version, sw=None):
     sj = d["SJ"]
     sr = d["SR"] if version == "V2" else d["SR"][:4]
 
-    r["E1#1"] = occurrence_e1(*d["E1#1"])
-    r["E1#2"] = occurrence_e1(*d["E1#2"])
+    r["E1#1"], r["Matériel E1#1"] = occurrence_e1(*d["E1#1"])
+    r["E1#2"], r["Matériel E1#2"] = occurrence_e1(*d["E1#2"])
     r["Planif-E1"] = f5([r["E1#1"], r["E1#2"]], sw["f5_mode"], sw["plafond"])
 
     r["Sécurité du jeu"] = f1_pct([(okko(v), 1) for v in sj])
@@ -276,6 +290,222 @@ def details(titre, rows, cles):
     for nom, r in rows:
         print(f"| {nom} | " + " | ".join(fmt(k, r[k]) for k in cles) + " |")
 
+# --- Chemins multiples (propriété de la structure) ---------------------------------
+#
+# Lit les structures au format commun ; seconde implémentation, indépendante du
+# prototype, de la règle provisoire (voir le ticket #17) :
+# - exigence = nœud de calcul à sortie binaire (F2, F3, F4, F7) du cône du nœud
+#   décisif (lui compris) dont aucune entrée n'est un nœud de calcul binaire ;
+#   « contribution à plusieurs exigences » : un nœud atteint au moins 2 exigences ;
+# - « influence multiple » : un nœud atteint un même nœud de calcul R par au
+#   moins 2 de ses consommateurs directs (ou est entrée directe de R et l'atteint
+#   aussi autrement).
+
+BINAIRES = {"F2", "F3", "F4", "F7"}
+
+
+def chemins_multiples(grille):
+    noeuds = {n["id"]: n for n in grille["noeuds"]}
+    entrees = {i: [e["noeud"] for e in n.get("entrees", [])] for i, n in noeuds.items()}
+    consommateurs = {i: [] for i in noeuds}
+    for i, es in entrees.items():
+        for e in es:
+            if i not in consommateurs[e]:
+                consommateurs[e].append(i)
+
+    atteint = {}
+
+    def aval(i):
+        """Nœuds de calcul atteints depuis i (i exclu)."""
+        if i not in atteint:
+            r = set()
+            for c in consommateurs[i]:
+                r |= {c} | aval(c)
+            atteint[i] = r
+        return atteint[i]
+
+    def binaire(i):
+        return noeuds[i]["type"] == "calcul" and noeuds[i]["fonction"] in BINAIRES
+
+    decisif = grille.get("decisif")
+    exigences = set()
+    if decisif:
+        cone, pile = set(), [decisif]
+        while pile:
+            i = pile.pop()
+            if i not in cone:
+                cone.add(i)
+                pile += entrees[i]
+        exigences = {
+            i for i in cone if binaire(i) and not any(binaire(e) for e in entrees[i])
+        }
+    ordre = [n["id"] for n in grille["noeuds"]]
+    plusieurs, influences = {}, {}
+    for i in ordre:
+        n = noeuds[i]
+        if n["type"] == "regroupement" or (n["type"] == "donnees" and "bareme" not in n):
+            continue
+        ex = [e for e in ordre if e in exigences and (e == i or e in aval(i))]
+        if len(ex) >= 2:
+            plusieurs[i] = ex
+        rs = [
+            r for r in ordre
+            if sum(1 for c in consommateurs[i] if c == r or r in aval(c)) >= 2
+        ]
+        if rs:
+            influences[i] = rs
+    return {"plusieursExigences": plusieurs, "influenceMultiple": influences}
+
+
+# --- Participants figés ----------------------------------------------------------
+
+IDS = {
+    "E1#1": "e1#1", "E1#2": "e1#2",
+    "Matériel E1#1": "e1#1/materiel", "Matériel E1#2": "e1#2/materiel",
+    "Planif-E1": "planif-e1", "Sécurité du jeu": "securite-jeu", "E2": "e2",
+    "Sécurité rando": "securite-rando", "E3": "e3", "Animation": "animation",
+    "Sécurité": "securite", "Planification": "planification",
+    "Moyenne générale": "moyenne-generale", "Animation ≥ 3": "seuil:animation",
+    "Planification ≥ 60 %": "seuil:planification", "E2 ≥ 60 %": "seuil:e2",
+    "M1": "m1", "M2": "m2", "M3": "m3", "M4": "m4",
+    "Domaine Sécurité": "domaine:securite", "Domaine Animation": "domaine:animation",
+    "Domaine Organisation": "domaine:organisation", "Minimaux remplis": "minimaux",
+    "Réussite": "reussite",
+}
+ERREURS = {"Gest": "gestion", "Pres": "m6", "Animation < 2 actives": "animation"}
+VOLUME = ("e4", "e5", "e6", "e7", "e8", "comp:", "seuil:comp:")
+
+
+def structure(version):
+    return json.loads((ICI / f"g3-{version.lower()}-structure.json").read_text())
+
+
+def sources(d, version):
+    """Cases de d (rang du palier : Niveau 1–5 → v − 1, OK/KO → v)."""
+    cases = []
+
+    def case(i, v, niveau):
+        if v is not None:
+            cases.append({"noeud": i, "valeur": v - 1 if niveau else v})
+
+    for k in (1, 2):
+        obj, der, mat = d[f"E1#{k}"]
+        case(f"e1#{k}/objectifs", obj, True)
+        case(f"e1#{k}/deroulement", der, True)
+        for nom, v in zip(("pret", "adapte", "plan-b"), mat):
+            case(f"e1#{k}/materiel/{nom}", v, False)
+    case("consignes-e2", d["ConsE2"], True)
+    case("gestion", d["Gest"], True)
+    if version == "V1":
+        case("appreciation-e2", d["AppE2"], True)
+    for i, v in enumerate(d["SJ"], 1):
+        case(f"sj{i}", v, False)
+    case("consignes-e3", d["ConsE3"], True)
+    case("itineraire", d["Itin"], True)
+    for i, v in enumerate(d["SR"] if version == "V2" else d["SR"][:4], 1):
+        case(f"sr{i}", v, False)
+    case("m6", d["Pres"], False)
+    return cases
+
+
+def attendus(grille, r):
+    out = {}
+    for n in grille["noeuds"]:
+        if n["type"] != "calcul":
+            continue
+        cle = next((k for k, i in IDS.items() if i == n["id"]), None)
+        if cle is None:
+            # Volume : les cases des participants types y sont vides.
+            assert n["id"].startswith(VOLUME), n["id"]
+            out[n["id"]] = None
+        else:
+            v = r[cle]
+            out[n["id"]] = None if v is None else float(v)
+    return out
+
+
+def figer_participant(nom, d_sources, r, version, grille, dispense=False, joker=None):
+    return {
+        "nom": nom,
+        "sources": {
+            "cases": sources(d_sources, version),
+            "nonEvaluations": [{"noeud": "reg:e3"}] if dispense else [],
+            "jokers": [
+                {
+                    "jokerDef": f"joker:{joker.lower()}",
+                    "justification": "Participant type",
+                    "auteur": "corpus",
+                    "date": "2026-10-05",
+                }
+            ] if joker else [],
+        },
+        "attendus": attendus(grille, r),
+        "erreursRemplissage": [
+            ERREURS.get(e, e.lower()) for e in r["Erreurs"]
+        ],
+    }
+
+
+def figer():
+    P = PARTICIPANTS
+    v1, v2 = structure("V1"), structure("V2")
+    etats = {
+        "V1-copie": {
+            "grille": v1["grille"],
+            "participants": [
+                figer_participant(n, a_la_copie(d), calcule(a_la_copie(d), "V1"), "V1", v1)
+                for n, d in P.items()
+            ],
+        },
+        "V2-copie": {
+            "grille": v2["grille"],
+            "participants": [
+                figer_participant(n, a_la_copie(d), calcule(a_la_copie(d), "V2"), "V2", v2)
+                for n, d in P.items()
+            ],
+        },
+        "V2-final": {
+            "grille": v2["grille"],
+            "participants": [
+                figer_participant(
+                    n, d, calcule(etat_final(d), "V2"), "V2", v2,
+                    dispense=d.get("dispense_E3", False), joker=d.get("joker"),
+                )
+                for n, d in P.items()
+            ],
+        },
+    }
+    commutateurs = [
+        ("Bruno", {"f5Derniere": True}, {"f5_mode": "dernière"}),
+        ("David", {"f5SansPlafond": True}, {"plafond": None}),
+        ("David", {"f5Derniere": True}, {"f5_mode": "dernière"}),
+    ]
+    sortie = {
+        "grille": "G3",
+        "source": "g3-controle.py --figer",
+        "etats": etats,
+        "commutateurs": [
+            {
+                "etat": "V2-final",
+                "nom": nom,
+                "commutateurs": ts,
+                "attendus": attendus(v2, calcule(etat_final(P[nom]), "V2", sw)),
+            }
+            for nom, ts, sw in commutateurs
+        ],
+        "cheminsMultiples": {g["grille"]: chemins_multiples(g) for g in (v1, v2)},
+    }
+    (ICI / "g3-participants.json").write_text(
+        json.dumps(sortie, ensure_ascii=False, indent=1) + "\n"
+    )
+    print("\ng3-participants.json : 3 états × 6 participants, 3 commutateurs")
+    for g, cm in sortie["cheminsMultiples"].items():
+        print(f"\n### Chemins multiples, {g}\n")
+        for i, ex in cm["plusieursExigences"].items():
+            print(f"- {i} : plusieurs exigences ({', '.join(ex)})")
+        for i, rs in cm["influenceMultiple"].items():
+            print(f"- {i} : influence multiple sur {', '.join(rs)}")
+
 
 if __name__ == "__main__":
     P = PARTICIPANTS
@@ -310,3 +540,5 @@ if __name__ == "__main__":
     f = calcule(P["Félix"], "V2", {"h4_strict": True})
     print(f"- Félix, H4 strict (une entrée sans résultat rend F3 sans résultat) : "
           f"Minimaux {fmt('Réussite', f['Minimaux remplis'])}, Réussite {fmt('Réussite', f['Réussite'])}")
+    if "--figer" in sys.argv:
+        figer()
