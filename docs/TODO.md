@@ -20,7 +20,7 @@ Domaine et comportement : voir `FEATURES.md`. Modèle de qualification : voir `a
 - **Contrats :** des schémas partagés, avec inversion des dépendances. La DB et le client *implémentent* les contrats ; les types ne remontent jamais de la DB vers le client. Type safety de bout en bout.
 - **Bleeding edge :** décidé bibliothèque par bibliothèque, sans budget global.
 - **shadcn lint :** il s'agit de [`@shadcn/lint`](https://github.com/shadcn-ui/lint), un plugin JS pour oxlint.
-- **Calculs de qualification :** dans le package `domain`, exécutés sur le client. On recalcule de façon incrémentale, comme un tableur (piste : signaux ou graphe de dépendances), sans recalculer tout le graphe. Le domaine impose la rejouabilité intégrale et des fonctions publiées immuables (18 §7, §10).
+- **Calculs de qualification :** dans le package `domain`, exécutés sur le client. Tout résultat doit pouvoir être recalculé depuis les données, sur le client comme sur le serveur (relecture du 2026-10-05). On recalcule de façon incrémentale, comme un tableur (piste : signaux ou graphe de dépendances), sans recalculer tout le graphe. Le domaine impose la rejouabilité intégrale et des fonctions publiées immuables (18 §7, §10).
 - **Licence :** AGPL-3.0. Une instance modifiée et hébergée doit publier ses sources.
 
 ### Technique de base (grill du 2026-10-03, suite)
@@ -135,6 +135,7 @@ Le grill technique a commencé le 2026-10-03 (décisions dans « Technique de ba
 - [ ] **Coupure courte, mécanisme :** TanStack DB seul ne retente pas les écritures. Une écriture échouée est annulée et la saisie disparaît, donc il faut une couche de retry. Piste : `@tanstack/offline-transactions` 1.0 (outbox IndexedDB, replay avec backoff, `idempotencyKey` que le serveur doit dédupliquer). Il couvrirait aussi le rechargement de l'onglet, sans que ce soit exigé. Alternative : un retry maison en mémoire. À explorer (`PRACTICES.md` §9).
 - [ ] **Conformité contract-first :** assertion de type entre `$inferSelect` / `$inferInsert` de Drizzle et le type du contrat, dans un `*.test-d.ts`. On ne génère jamais le contrat à partir de la DB.
 - [ ] **Recalcul incrémental côté client :** signaux (bibliothèque ?), graphe de dépendances maison, ou live queries TanStack DB ? Le domaine est fixé : graphe de nœuds sans cycle (18 §3), fonctions immuables (18 §7), cache éventuel reconstructible (18 §10).
+- [ ] **Cache des résultats :** besoin à mesurer selon les performances. Orientation (relecture du 2026-10-05) : d'abord le cache intégré au framework client ; sinon une simple map en mémoire ; un cache partagé (Valkey ?) seulement si le besoin apparaît. Le cache reste dérivé et reconstructible (18 §10).
 - [ ] **Ops :** hébergeur suisse, reverse proxy en prod (Traefik ou Caddy), sauvegardes, suivi d'erreurs (auto-hébergé à cause de la nLPD ?), job runner (`pg-boss`) pour la synchronisation MiData.
 - [ ] **Mises à jour de dépendances :** ni Dependabot (#14320) ni Renovate (PR #42909 non fusionnée) ne gèrent les catalogues Bun. Options :
   - Renovate avec un `customManagers` en regex ;
@@ -148,6 +149,12 @@ Le grill technique a commencé le 2026-10-03 (décisions dans « Technique de ba
 
 ### Domaine : décisions ouvertes
 Le modèle de qualification est fixé par `analyse/18-decisions-definitives.md`. Ses points ouverts sont dans sa section 13 : catalogue de calcul, conversions et normalisation ; catalogue des jokers ; rendu du remplissage ; navigation et vues ; cycle de vie et archivage ; gabarits et publication ; exports ; schéma de stockage et moteur de calcul.
+
+Calendrier fixé à la relecture du 2026-10-05 (`analyse/relecture-18-2026-10-05.md`) :
+- [ ] **Grill barèmes et calcul (18 §13.1) :** session dédiée sur les barèmes, colorations et fonctions de calcul, pour arriver aux bonnes généralisations et à la liste de ce qu'on propose. Y traiter aussi plusieurs barèmes dans une grille et les hypothèses H1 à H3 de `analyse/19-constats-maquette.md`.
+- Après un premier prototype : remplissage (§13.3), navigation et vues (§13.4), architecture (§13.8).
+- Plus tard : gabarits et publication (§13.6), exports et conservation (§13.7).
+- Archivage : 30 jours par défaut (fixé). Restent le périmètre de l'archivage et le sort des dossiers non finalisés (§13.5).
 
 Hors modèle, voir « Questions ouvertes » dans `FEATURES.md`. Points à traiter en priorité :
 - la correspondance entre les rôles de cours MiData et les droits dans Azimut, les groupes d'évaluation et le formateur référent ;

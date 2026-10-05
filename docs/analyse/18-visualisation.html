@@ -373,8 +373,8 @@ table.saisie td.vide select{color:#9ca3af}
   <p class="lead">Préparation en brouillon, saisie pendant le cours, puis finalisation <b>par apprenant</b> (action groupée possible), réouverture avant archivage et archivage automatique ou manuel. <span class="ref">§10</span></p>
   <div class="diawrap" id="dia-cycle"></div>
   <div class="cols">
-    <div class="box"><h4>Acquis</h4><ul><li>Un dossier finalisé est verrouillé ; les autres restent en cours.</li><li>Les résultats finalisés restent stables et consultables jusqu'à une réouverture explicite.</li><li>La réouverture est signalée à l'équipe et tracée (auteur, date). Une nouvelle finalisation remplace la précédente.</li><li>Le délai d'archivage proposé par défaut est configurable par cours. L'archivage manuel reste possible.</li><li>Après archivage, aucune réédition n'est possible.</li></ul></div>
-    <div class="box bad"><h4>Ouvert (§13.5)</h4><ul><li>Durée d'archivage par défaut.</li><li>Articulation entre l'archivage du cours, des grilles coexistantes et des dossiers.</li><li>Dossiers non finalisés à l'échéance.</li><li>Devenir des états lors d'une copie.</li><li>Portée de l'acceptation d'erreurs dans une finalisation groupée.</li></ul></div>
+    <div class="box"><h4>Acquis</h4><ul><li>Archivage automatique 30 jours après le cours par défaut (relecture du 5 octobre), délai configurable par cours.</li><li>Un dossier finalisé est verrouillé ; les autres restent en cours.</li><li>Les résultats finalisés restent stables et consultables jusqu'à une réouverture explicite.</li><li>La réouverture est signalée à l'équipe et tracée (auteur, date). Une nouvelle finalisation remplace la précédente.</li><li>Le délai d'archivage proposé par défaut est configurable par cours. L'archivage manuel reste possible.</li><li>Après archivage, aucune réédition n'est possible.</li></ul></div>
+    <div class="box bad"><h4>Ouvert (§13.5)</h4><ul><li>Articulation entre l'archivage du cours, des grilles coexistantes et des dossiers.</li><li>Dossiers non finalisés à l'échéance.</li><li>Devenir des états lors d'une copie.</li><li>Portée de l'acceptation d'erreurs dans une finalisation groupée.</li></ul></div>
   </div>
   <div class="review" data-key="s:cycle" data-label="6. Cycle de vie"></div>
 </section>
@@ -581,7 +581,7 @@ const ENT = {
   CASE: { t: "Case", ref: "§4 §5 §6", b: `<p><b>Un participant × une occurrence évaluée.</b> Réafficher l'occurrence ailleurs ne crée pas de nouvelle case.</p><ul><li>Une <b>note courante</b> partagée par les formateurs, sans avis séparés agrégés comme dans un jury.</li><li>Un commentaire facultatif, possible sans note.</li><li>Trois états : note, vide, non évalué.</li><li>Un historique qui/quoi/quand.</li></ul>` },
   HIST: { t: "Historique des changements", ref: "§5 §4", b: `<p>Permet de savoir qui a changé quoi et quand. Ce n'est <b>pas</b> une collection d'évaluations concurrentes.</p><p>Les corrections et rattrapages remplacent la note courante ; l'ancienne valeur reste ici. Consultable par les formateurs ; la restitution à l'apprenant montre l'état final.</p>` },
   DOSSIER: { t: "Dossier (apprenant × grille)", ref: "§10", b: `<p>Les données d'un apprenant dans une grille. <b>Se finalise par apprenant</b> (action groupée possible). Un dossier finalisé est verrouillé ; il peut être rouvert tant qu'il n'est pas archivé.</p><p>Porte le quota de jokers consommés et l'éventuelle acceptation explicite des erreurs de remplissage.</p>` },
-  BAREME: { t: "Barème", ref: "§7", b: `<p>L'application fournit les <b>types</b> de barèmes et leurs variantes. L'équipe configure le nombre de paliers, leurs noms et couleurs. Personnaliser des libellés n'est pas programmer un nouveau type.</p><p>À poids égal, deux contributions ont la même influence quelle que soit l'étendue de leur barème.</p><div class="interp">Conversions, normalisation, valeurs des paliers, arrondis : ouverts (§13.1).</div>` },
+  BAREME: { t: "Barème", ref: "§7", b: `<p>L'application fournit les <b>types</b> de barèmes et leurs variantes. L'équipe configure le nombre de paliers, leurs noms et couleurs. Personnaliser des libellés n'est pas programmer un nouveau type.</p><p><b>Une grille peut utiliser plusieurs barèmes</b> : chaque nœud de données note sur son propre barème.</p><p>À poids égal, deux contributions ont la même influence quelle que soit l'étendue de leur barème.</p><div class="interp">Conversions, normalisation, valeurs des paliers, arrondis : ouverts (§13.1).</div>` },
   FONCTION: { t: "Fonction du catalogue", ref: "§7", b: `<p>Catalogue <b>fermé et paramétrable</b> : moyenne, moyenne pondérée, décompte (ex. un minimum de « OK »), seuils… Pas de formule libre. Un besoin hors catalogue attend une évolution du produit.</p><p><b>Une fonction publiée ne change jamais de définition</b> : toute évolution crée une nouvelle fonction. C'est ce qui garantit la rejouabilité.</p><p>Les fonctions non monotones ne sont pas exclues.</p>` },
   JOKER: { t: "Joker", ref: "§8", b: `<p>Action <b>définie avant le cours</b>, sur un nœud autorisé : remonter au seuil, +1, −1, imposer un échec… Favorable ou défavorable.</p><ul><li>Une action numérique change la <b>valeur effective</b> utilisée en aval.</li><li>Quota configurable par grille, pour chaque apprenant.</li><li>Justification obligatoire ; auteur, date, nœud et action conservés ; valeurs initiale, ajustement et effective consultables.</li><li>Signalement « joker appliqué » sur le nœud, « influencé par un joker » en aval, jusqu'à la synthèse et dans l'export.</li></ul>` },
   EXIG: { t: "Exigence de remplissage", ref: "§6", b: `<p>Indicateurs <b>obligatoires</b> et <b>nombre minimal</b> d'indicateurs renseignés, déclarés par la grille.</p><p>Un obligatoire exige une <b>note active</b> : « non évalué », même avec une note conservée, ne suffit pas. Une dispense ne lève pas les exigences.</p><p>Tant qu'une exigence est insatisfaite, l'avertissement <b>« données provisoires »</b> est visible. Un onglet liste les erreurs.</p>` },
@@ -710,7 +710,8 @@ function drawStaticDiagrams() {
       { from: "DEF", to: "NDATA", label: "1..n occurrences" },
       { from: "EXIG", to: "NDATA", label: "porte sur" },
       { from: "ORG", to: "DEF", label: "étiquettes", cls: "dash" },
-      { from: "BAREME", to: "GRILLE", label: "paramétré dans" },
+      { from: "BAREME", to: "GRILLE", label: "0..n par grille" },
+      { from: "NDATA", to: "BAREME", label: "note sur", cls: "dash" },
       { from: "VUE", to: "NCALC", label: "affiche", cls: "dash" },
     ]
   });
@@ -776,7 +777,7 @@ function drawStaticDiagrams() {
       { id: "BR", x: 10, y: 110, w: 160, label: "Grille en brouillon", sub: "préparation, gabarits", pal: "grille", ent: "GRILLE" },
       { id: "EC", x: 270, y: 110, w: 190, label: "Dossier en cours", sub: "saisie pendant le cours", pal: "saisie", ent: "DOSSIER" },
       { id: "FI", x: 590, y: 110, w: 190, label: "Dossier finalisé", sub: "verrouillé · stable", pal: "ok", info: `<p>Verrouillé ; ses résultats restent stables et consultables, <b>par recalcul</b> (pas d'instantané). Finalisation par apprenant, action groupée possible. <span class="ref">§10</span></p>` },
-      { id: "AR", x: 890, y: 110, w: 190, label: "Archivé", sub: "consultable · aucune réédition", pal: "hors", info: `<p>Automatique après un délai configurable par cours (durée par défaut à fixer), ou manuel. Après archivage, aucune réédition ; les résultats restent consultables. <span class="ref">§10</span></p>` },
+      { id: "AR", x: 890, y: 110, w: 190, label: "Archivé", sub: "consultable · aucune réédition", pal: "hors", info: `<p>Automatique après un délai configurable par cours (30 jours par défaut), ou manuel. Après archivage, aucune réédition ; les résultats restent consultables. <span class="ref">§10</span></p>` },
       { id: "CP", x: 270, y: 225, w: 190, h: 50, label: "Copie de la grille", sub: "pour changer le calcul", pal: "grille", dash: 1, ent: "COPIE" },
       { id: "ER", x: 590, y: 230, w: 190, h: 50, label: "Erreurs de remplissage ?", sub: "acceptation explicite", pal: "saisie", ent: "EXIG" },
     ], edges: [
@@ -1294,7 +1295,7 @@ function renderMatrix(res) {
    ===================================================================== */
 const ARB = [
   ["Conservation des résultats", "Recalcul intégral, aucun instantané de référence, fonctions publiées immuables. Cache dérivé et reconstructible possible.", "rejouabilite"],
-  ["Archivage", "Délai proposé par défaut, configurable par cours ; archivage automatique et manuel. Durée par défaut encore à fixer.", "cycle"],
+  ["Archivage", "Délai proposé par défaut, configurable par cours ; archivage automatique et manuel. Durée par défaut : 30 jours.", "cycle"],
   ["Réussite", "Nœud de calcul ordinaire désigné comme résultat final et marqué décisif ; ses dépendances contribuent à la réussite. Choix indépendant de l'axe principal.", "simulateur"],
   ["Dispense", "Possible sur une case ou n'importe quel regroupement, héritée par ses feuilles. Notes déjà saisies conservées, exclues du calcul et affichables à titre indicatif.", "etats"],
   ["Vues pendant le cours", "Adaptation et création à partir de nœuds existants permises sans copie ; aucune reconfiguration de l'architecture de calcul par une vue.", "vues"],
@@ -1307,7 +1308,7 @@ const OPEN = [
   ["Jokers", "Catalogue d'actions, propagation d'un statut forcé, règles de combinaison de plusieurs usages et rendu visuel du signalement jusqu'à la synthèse."],
   ["Remplissage", "Rendu de « non évalué » et des notes conservées à titre indicatif, contenu complet de l'onglet d'erreurs, libellé de l'avertissement et portée de l'acceptation groupée."],
   ["Navigation et vues", "Interactions du graphe, rendu des deux signalements de chemins multiples, catalogue de graphiques, outils de composition des matrices et d'adaptation des vues."],
-  ["Cycle de vie", "Durée d'archivage par défaut, articulation des périmètres d'archivage, traitement des dossiers non finalisés à l'échéance et devenir des états lors d'une copie."],
+  ["Cycle de vie", "Articulation des périmètres d'archivage, traitement des dossiers non finalisés à l'échéance et devenir des états lors d'une copie."],
   ["Gabarits et publication", "Cycle des brouillons et publications, forme de l'autocomplétion des objectifs officiels ; comparaison de grilles éventuelle."],
   ["Exports et conservation", "Formats, mise en page, assemblage des vues et mise en œuvre de la rejouabilité, sans exiger la conservation des anciens exports."],
   ["Architecture", "Schéma de stockage, représentation des liens et identités, historique, moteur de calcul, cache éventuel et organisation du client, dans le respect des garanties fixées."],

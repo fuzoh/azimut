@@ -10,6 +10,7 @@ Les autres documents datent de l'analyse du 3 octobre 2026, avant les décisions
 | --- | --- | --- | --- |
 | 18 | [Décisions définitives](18-decisions-definitives.md) | **référence** | Modèle de qualification, garanties techniques et points restant ouverts |
 | 18 | [Visualisation interactive](18-visualisation.html) | support de relecture | Carte du domaine, simulateur de grille, diagrammes, champs de commentaire ; n'ajoute aucune décision |
+| 18 | [Relecture du 5 octobre](relecture-18-2026-10-05.md) | **intégrée dans 18** | Retours sur la visualisation : archivage à 30 jours, recalcul client et serveur, plusieurs barèmes par grille, calendrier des points ouverts |
 | 19 | [Constats de la maquette](19-constats-maquette.md) | **points à trancher** | Dispense sur un regroupement, dispense et obligatoires, hypothèses de la maquette |
 | 03 | [Zones d'ombre](03-zones-d-ombre.md) | analyse antérieure, sous réserve de 18 | Contradictions des docs, hypothèses, données de terrain à collecter |
 | 05 | [Acteurs et parcours](05-acteurs-et-parcours.md) | analyse antérieure, sous réserve de 18 | Acteurs, matrice de droits, moments du cours, pre-mortem, cas d'abus |

@@ -109,4 +109,4 @@ D'après [`relecture-18-2026-10-05.md`](relecture-18-2026-10-05.md) :
 - **Constat 1** découle de l'arbitrage 4 (dispense), validé en relecture. Il reste à confirmer que la portée sur la case et l'effet sur les compétences sont voulus.
 - **Constat 2** et **H4** relèvent du remplissage (§13.3), à rediscuter après un premier prototype.
 - **H1** sera traitée dans la session prévue sur les barèmes, colorations et fonctions de calcul (§13.1).
-- **H6** : la relecture propose un délai d'archivage de 30 jours. Le périmètre de l'archivage et le sort des dossiers non finalisés restent à trancher.
+- **H6** : la relecture fixe le délai d'archivage par défaut à 30 jours (intégré dans 18 §10). Le périmètre de l'archivage et le sort des dossiers non finalisés restent à trancher.

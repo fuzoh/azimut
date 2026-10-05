@@ -28,7 +28,7 @@ Le vocabulaire produit définitif reste ouvert (18 §13, point 9). Les termes ci
 | **Axe** | Une lecture du graphe : exercices, compétences, thèmes… Chaque grille a un **axe principal**, qui sert à la conception, à la navigation et aux vues standard. |
 | **Occurrence** | Une utilisation d'une définition de critère à un endroit de la grille, par exemple le même critère dans deux exercices. Chaque occurrence a ses propres cases. |
 | **Résultat final** | Le nœud de calcul désigné comme résultat de la grille et marqué décisif. Ce qui n'y contribue pas est indicatif. Une grille peut ne pas en avoir. |
-| **Barème** | Les valeurs possibles d'une note (ok/ko, 1 à 5, paliers nommés…). Les types viennent de l'application ; l'équipe règle les paliers, noms et couleurs. |
+| **Barème** | Les valeurs possibles d'une note (ok/ko, 1 à 5, paliers nommés…). Les types viennent de l'application ; l'équipe règle les paliers, noms et couleurs. Une grille peut utiliser plusieurs barèmes. |
 | **Vide, non évalué** | Vide : case encore à traiter. Non évalué : évaluation volontairement exclue, notamment par une **dispense**. Les deux sont exclus du calcul, sans pénalité. |
 | **Joker** | Une action prévue par la grille (ex. remonter au seuil), appliquée sur un nœud autorisé, avec quota par apprenant et justification. |
 | **Gabarit** | Une grille copiée puis personnalisée, indépendante de sa source. |
@@ -46,10 +46,10 @@ Résumé de 18. Le détail et les points encore ouverts sont dans 18.
 - **Évaluations répétées (§4).** Une définition de critère peut avoir plusieurs occurrences, chacune avec ses notes. Les tentatives et leur règle (meilleure, dernière…) sont prévues avant le cours. Une réévaluation imprévue remplace la note, l'ancienne reste dans l'historique.
 - **Saisie (§5).** Une note courante par case, partagée par les formateurs. Commentaires facultatifs sur tous les nœuds, avec ou sans note. La saisie par groupe copie la donnée dans les cases des membres.
 - **Remplissage (§6).** Trois états : note, vide, non évalué. La dispense passe par « non évalué », sur une case ou un regroupement. La grille déclare ses exigences de remplissage ; tant qu'elles ne sont pas satisfaites, un avertissement de données provisoires reste affiché. On peut finaliser malgré des erreurs, après acceptation explicite.
-- **Calcul et barèmes (§7).** Catalogue fermé de fonctions, conversions et types de barèmes, paramétrés par nœud, sans formule libre. Une fonction publiée ne change jamais. À poids égal, deux contributions ont la même influence, quel que soit leur barème.
+- **Calcul et barèmes (§7).** Catalogue fermé de fonctions, conversions et types de barèmes, paramétrés par nœud, sans formule libre. Une grille peut utiliser plusieurs barèmes. Une fonction publiée ne change jamais. À poids égal, deux contributions ont la même influence, quel que soit leur barème.
 - **Joker (§8).** Action prévue avant le cours, quota configurable par apprenant, justification obligatoire. Une action numérique change la valeur effective utilisée en aval. Le signalement « joker appliqué » ou « influencé par un joker » se propage jusqu'à la synthèse.
 - **Gabarits et copies (§9).** Changer le calcul pendant le cours exige une copie complète de la grille avec les données. Originale et copie restent indépendantes. L'équipe peut publier une structure sans données dans une bibliothèque publique.
-- **Cycle de vie (§10).** Brouillon, saisie, finalisation par apprenant, réouverture possible avant archivage, archivage automatique après un délai configurable ou manuel. Tout résultat se recalcule depuis les données sources ; un cache reste possible.
+- **Cycle de vie (§10).** Brouillon, saisie, finalisation par apprenant, réouverture possible avant archivage, archivage automatique après un délai configurable (30 jours par défaut) ou manuel. Tout résultat se recalcule depuis les données sources, sur le client comme sur le serveur ; un cache reste possible.
 - **Vues et exports (§11).** Vues standard tirées de l'axe principal, vues avancées partagées par l'équipe et adaptables pendant le cours sans toucher au calcul. Tables, listes, graphe de propagation, matrices libres et graphiques. Toute vue s'exporte ; l'attestation est une vue exportée.
 
 ### Projections attendues
@@ -193,7 +193,7 @@ Idées notées pour plus tard. Rien n'est décidé. Le brouillon hors cours, le 
 
 ### Archivage et anonymisation
 
-- **Archivage :** 18 §10 fixe le délai configurable, l'archivage automatique ou manuel, et la consultation sans réédition. Reste à décider qui voit une qualification archivée.
+- **Archivage :** 18 §10 fixe le délai configurable (30 jours par défaut), l'archivage automatique ou manuel, et la consultation sans réédition. Reste à décider qui voit une qualification archivée.
 - **Anonymisation :** 3 mois après la fin du cours, supprimer tous les noms et garder le détail de la qualification (notes, commentaires, structure). Les commentaires libres peuvent contenir des noms : comment les traiter ? Rejoint la conservation des données et la nLPD (voir « Hébergement et données »).
 
 ### Affichage personnalisé

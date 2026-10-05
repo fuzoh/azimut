@@ -2,7 +2,7 @@
 
 ## Source et portée
 
-**Statut : référence définitive des décisions du modèle, validées avec le porteur du projet le 4 octobre 2026.**
+**Statut : référence définitive des décisions du modèle, validées avec le porteur du projet le 4 octobre 2026, complétées par la relecture du 5 octobre 2026 ([`relecture-18-2026-10-05.md`](relecture-18-2026-10-05.md)).**
 
 Ce document remplace les documents 16 (Décisions consolidées) et 17 (Combinaison des analyses), ainsi que leurs sources 14 et 15bis, retirés du dépôt. Il reprend leurs décisions communes et fixe les huit arbitrages issus de leur dernière comparaison. En cas de contradiction avec une analyse antérieure, ce document fait foi.
 
@@ -213,6 +213,8 @@ Chaque résultat doit être explicable par une phrase type propre à sa fonction
 
 L'application fournit les types de barèmes et leurs variantes usuelles. Les équipes peuvent configurer le nombre de paliers, leurs noms et leurs couleurs. Des échelles et palettes par défaut facilitent la préparation.
 
+**Une grille peut utiliser plusieurs barèmes.** Le barème n'est pas un réglage unique de la grille : chaque nœud de données note sur son propre barème, d'où l'exigence d'influence comparable ci-dessous. La manière de définir et de réutiliser les barèmes dans une grille reste à concevoir (section 13, point 1).
+
 La liberté de définir des correspondances numériques arbitraires reste ouverte dans le travail sur les conversions. Personnaliser les libellés d'un barème ne signifie pas programmer un nouveau type.
 
 ### Présentation et propagation
@@ -314,7 +316,7 @@ Une nouvelle finalisation remplace la précédente. L'historique habituel des ch
 
 Un délai d'archivage est proposé par défaut après le cours. **Ce délai reste configurable par cours et déclenche l'archivage automatique. L'archivage manuel reste également possible.**
 
-La durée par défaut n'est pas fixée. Après archivage, aucune réédition n'est possible ; les résultats restent consultables.
+**La durée par défaut est de 30 jours** (relecture du 5 octobre 2026). Après archivage, aucune réédition n'est possible ; les résultats restent consultables.
 
 L'articulation détaillée entre archivage du cours, des grilles coexistantes et des dossiers individuels reste à concevoir, notamment si certains dossiers ne sont pas finalisés à l'échéance.
 
@@ -326,7 +328,9 @@ L'articulation détaillée entre archivage du cours, des grilles coexistantes et
 
 Un **cache de résultats est possible** pour accélérer le calcul ou la consultation. Il reste dérivé des données sources, supprimable et entièrement reconstructible. Il doit restituer le même résultat que le recalcul et ne remplace ni les sources ni les fonctions nécessaires à ce recalcul.
 
-La stratégie de cache reste un choix technique. La rejouabilité intégrale, l'immuabilité des fonctions publiées et la stabilité des résultats finalisés sont des décisions acquises.
+**Le recalcul doit être possible aussi bien sur le client que sur le serveur**, à partir des mêmes données (relecture du 5 octobre 2026).
+
+La stratégie de cache reste un choix technique, à décider selon les performances mesurées. Orientation : d'abord le cache intégré au framework client, sinon une simple table de cache en mémoire ; un cache partagé seulement si le besoin apparaît. La rejouabilité intégrale, l'immuabilité des fonctions publiées et la stabilité des résultats finalisés sont des décisions acquises.
 
 ## 11. Vues et exports
 
@@ -374,14 +378,16 @@ Le besoin de requêtes selon plusieurs dimensions ne prescrit pas un store clien
 
 Les points ci-dessous demandent une conception complémentaire ; ils ne remettent pas en cause les décisions précédentes.
 
-1. **Calcul et barèmes** : catalogue précis, paramètres, conventions de conversion, normalisation à poids égal, valeurs associées aux paliers, arrondis et compatibilités entre fonctions.
+Calendrier fixé à la relecture du 5 octobre 2026 : le point 1 fera l'objet d'une session de grill dédiée ; les points 3, 4 et 8 seront rediscutés après un premier prototype ; les points 6 et 7 plus tard. Pour le point 5, la durée d'archivage par défaut est fixée à 30 jours.
+
+1. **Calcul et barèmes** : catalogue précis, paramètres, conventions de conversion, normalisation à poids égal, valeurs associées aux paliers, arrondis et compatibilités entre fonctions ; définition et réutilisation de plusieurs barèmes dans une grille ; colorations. Session de grill prévue pour fixer les généralisations et la liste des barèmes et fonctions proposés.
 2. **Jokers** : catalogue d'actions, propagation d'un statut forcé, règles de combinaison de plusieurs usages et rendu visuel du signalement jusqu'à la synthèse.
 3. **Remplissage** : rendu de « non évalué » et des notes conservées à titre indicatif, contenu complet de l'onglet d'erreurs, libellé de l'avertissement et portée de l'acceptation groupée.
 4. **Navigation et vues** : interactions du graphe, rendu des deux signalements de chemins multiples, catalogue de graphiques, outils de composition des matrices et d'adaptation des vues.
-5. **Cycle de vie** : durée d'archivage par défaut, articulation des périmètres d'archivage, traitement des dossiers non finalisés à l'échéance et devenir des états lors d'une copie.
+5. **Cycle de vie** : articulation des périmètres d'archivage, traitement des dossiers non finalisés à l'échéance et devenir des états lors d'une copie.
 6. **Gabarits et publication** : cycle des brouillons et publications, forme de l'autocomplétion des objectifs officiels ; comparaison de grilles éventuelle.
 7. **Exports et conservation** : formats, mise en page, assemblage des vues et mise en œuvre de la rejouabilité, sans exiger la conservation des anciens exports.
-8. **Architecture** : schéma de stockage, représentation des liens et identités, historique, moteur de calcul, cache éventuel et organisation du client, dans le respect des garanties fixées.
+8. **Architecture** : schéma de stockage, représentation des liens et identités, historique, moteur de calcul, cache éventuel et organisation du client, dans le respect des garanties fixées. À fixer après un premier prototype.
 9. **Sujets hors entretien** : vocabulaire produit définitif, droits, correspondance des rôles MiData, protection des données, suppression ou anonymisation et positionnement face à Qualix.
 
 ## 14. Arbitrages finaux validés
@@ -390,8 +396,8 @@ Ces huit arbitrages fixent les écarts entre les documents 16 et 17. Ils sont in
 
 | Point | Décision définitive |
 | --- | --- |
-| 1. Conservation des résultats | Choix de 16 : recalcul intégral, aucun instantané de référence, fonctions publiées immuables. Cache dérivé et reconstructible possible. |
-| 2. Archivage | Choix de 17 : délai proposé par défaut, configurable par cours ; archivage automatique et manuel. Durée par défaut encore à fixer. |
+| 1. Conservation des résultats | Choix de 16 : recalcul intégral, aucun instantané de référence, fonctions publiées immuables. Recalcul possible sur le client et sur le serveur. Cache dérivé et reconstructible possible, selon les performances. |
+| 2. Archivage | Choix de 17 : délai proposé par défaut, configurable par cours ; archivage automatique et manuel. Durée par défaut : 30 jours (relecture du 5 octobre). |
 | 3. Réussite | Nœud de calcul ordinaire désigné comme résultat final et marqué décisif ; ses dépendances contribuent à la réussite. Choix indépendant de l'axe principal. |
 | 4. Dispense | Possible sur une case ou n'importe quel regroupement, héritée par ses feuilles. Notes déjà saisies conservées, exclues du calcul et affichables à titre indicatif. |
 | 5. Vues pendant le cours | Adaptation et création à partir de nœuds existants permises sans copie ; aucune reconfiguration de l'architecture de calcul par une vue. |
