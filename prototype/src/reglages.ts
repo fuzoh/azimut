@@ -4,6 +4,7 @@
 // pour qu'un lien copié la reproduise même si un défaut change.
 
 import { type CommutateursResolus, resoudreCommutateurs } from "./noyau/compile";
+import { MAX_PARTICIPANTS } from "./sources/cle";
 
 export interface ReglagesStore {
   calcul: "signaux" | "dag";
@@ -175,12 +176,19 @@ function lireChoix<T extends string>(q: URLSearchParams, nom: string, choix: rea
   return defaut;
 }
 
-function lireEntier(q: URLSearchParams, nom: string, defaut: number, min: number, avertir: (m: string) => void): number {
+function lireEntier(
+  q: URLSearchParams,
+  nom: string,
+  defaut: number,
+  min: number,
+  avertir: (m: string) => void,
+  max = Number.MAX_SAFE_INTEGER,
+): number {
   const brut = q.get(nom);
   if (brut === null) return defaut;
   const v = Number(brut);
-  if (Number.isInteger(v) && v >= min) return v;
-  avertir(`${nom}=${brut} invalide (entier ≥ ${min} attendu)`);
+  if (Number.isInteger(v) && v >= min && v <= max) return v;
+  avertir(`${nom}=${brut} invalide (entier ${max === Number.MAX_SAFE_INTEGER ? `≥ ${min}` : `entre ${min} et ${max}`} attendu)`);
   return defaut;
 }
 
@@ -232,7 +240,7 @@ export function lireUrl(search: string): LectureUrl {
         jeu,
         remplissage: lireChoix(q, "remplissage", CHOIX_GENERATEUR.remplissage, d.generateur.remplissage, avertir),
         graine: lireEntier(q, "graine", d.generateur.graine, 0, avertir),
-        participants: lireEntier(q, "participants", PARTICIPANTS_PAR_DEFAUT[jeu], 0, avertir),
+        participants: lireEntier(q, "participants", PARTICIPANTS_PAR_DEFAUT[jeu], 0, avertir, MAX_PARTICIPANTS),
       },
       session: {
         verification: lireBool(q, "verif", d.session.verification, avertir),

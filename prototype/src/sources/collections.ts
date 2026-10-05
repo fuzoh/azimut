@@ -40,16 +40,39 @@ export interface LigneJoker {
   date: string;
 }
 
-export function creerSources() {
+export interface LignesInitiales {
+  participants?: LigneParticipant[];
+  cases?: LigneCase[];
+  nonEvaluations?: LigneNonEvaluation[];
+  jokers?: LigneJoker[];
+}
+
+/**
+ * Collections en mémoire. `initiales` : chargement « eager » par `initialData`
+ * (écriture de synchronisation, sans transaction optimiste par ligne).
+ */
+export function creerSources(initiales: LignesInitiales = {}) {
   return {
     participants: createCollection(
-      localOnlyCollectionOptions<LigneParticipant, number>({ id: "participants", getKey: (l) => l.p }),
+      localOnlyCollectionOptions<LigneParticipant, number>({
+        id: "participants",
+        getKey: (l) => l.p,
+        initialData: initiales.participants,
+      }),
     ),
-    cases: createCollection(localOnlyCollectionOptions<LigneCase, number>({ id: "cases", getKey: (l) => l.k })),
+    cases: createCollection(
+      localOnlyCollectionOptions<LigneCase, number>({ id: "cases", getKey: (l) => l.k, initialData: initiales.cases }),
+    ),
     nonEvaluations: createCollection(
-      localOnlyCollectionOptions<LigneNonEvaluation, number>({ id: "nonEvaluations", getKey: (l) => l.k }),
+      localOnlyCollectionOptions<LigneNonEvaluation, number>({
+        id: "nonEvaluations",
+        getKey: (l) => l.k,
+        initialData: initiales.nonEvaluations,
+      }),
     ),
-    jokers: createCollection(localOnlyCollectionOptions<LigneJoker, number>({ id: "jokers", getKey: (l) => l.id })),
+    jokers: createCollection(
+      localOnlyCollectionOptions<LigneJoker, number>({ id: "jokers", getKey: (l) => l.id, initialData: initiales.jokers }),
+    ),
   };
 }
 

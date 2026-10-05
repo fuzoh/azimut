@@ -95,12 +95,25 @@ export function creerStoreProvisoire(sources: Sources, plans: Plan[]): StoreNote
     return r;
   };
 
+  /**
+   * Cellules lues sans souscription (mode « vérification » sur le jeu
+   * « charge » : ~1,3M cellules) : oubliées à la tâche suivante, pour ne pas
+   * garder un objet par cellule lue. Une cellule souscrite entre-temps reste.
+   */
+  let lues: number[] = [];
+  const oublierLues = () => {
+    for (const k of lues) if (cellules.get(k)?.rappels.size === 0) cellules.delete(k);
+    lues = [];
+  };
+
   const cellule = (g: number, p: number, n: number): Cellule => {
     const k = cle(g, p, n);
     let c = cellules.get(k);
     if (!c) {
       c = { instantane: instantane(g, p, n), rappels: new Set() };
       cellules.set(k, c);
+      if (lues.length === 0) setTimeout(oublierLues, 0);
+      lues.push(k);
     }
     return c;
   };

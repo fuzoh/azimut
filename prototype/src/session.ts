@@ -1,20 +1,17 @@
 // Session de l'essai : grilles compilées, sources TanStack DB, store.
 // Jeu « corpus » : A01, A03, G3 V1 (état à la copie) et G3 V2 (état final),
-// avec leurs participants types.
+// avec leurs participants types, plus des participants générés (0 par défaut).
+// Jeu « charge » : 3 × G3 étendue, participants générés seulement.
 
-import a01 from "@corpus/a01-structure.json";
-import a01Participants from "@corpus/a01-participants.json";
-import a03 from "@corpus/a03-structure.json";
-import a03Participants from "@corpus/a03-participants.json";
-import g3Participants from "@corpus/g3-participants.json";
-import g3v1 from "@corpus/g3-v1-structure.json";
-import g3v2 from "@corpus/g3-v2-structure.json";
+import { sommeControle } from "./generateur/controle";
+import { generer, type ProfilRemplissage } from "./generateur/generer";
+import { grillesDuJeu, type Jeu, STRUCTURES_CORPUS } from "./generateur/jeux";
 import { type Commutateurs, compile, type Plan } from "./noyau/compile";
 import { copier, type ElementRapport, type OptionsCopie, structureIdentique } from "./noyau/copier";
 import type { SourcesParticipant } from "./noyau/evaluate";
-import type { FichierG3, FichierParticipants, Grille } from "./noyau/format";
+import type { Grille } from "./noyau/format";
 import { chargerParticipantsTypes } from "./sources/chargement";
-import { cle } from "./sources/cle";
+import { cle, MAX_PARTICIPANTS } from "./sources/cle";
 import { creerSources, type LigneCase, type LigneJoker, type LigneNonEvaluation, type Sources } from "./sources/collections";
 import { creerStoreProvisoire } from "./store/storeProvisoire";
 import type { StoreNotes } from "./store/store";
@@ -25,30 +22,70 @@ export interface Session {
   sources: Sources;
   store: StoreNotes;
   commutateurs: Commutateurs;
+  jeu: Jeu;
+  /** Somme de contrôle des sources au chargement (participants types et générés). */
+  sommeControle: string;
 }
 
-const g3 = g3Participants as unknown as FichierG3;
-const etatG3 = (etat: keyof FichierG3["etats"]): FichierParticipants => ({
-  grille: g3.etats[etat].grille,
-  source: g3.source,
-  participants: g3.etats[etat].participants,
-});
+export interface GenerationSession {
+  jeu: Jeu;
+  remplissage: ProfilRemplissage;
+  graine: number;
+  /** Participants générés (en plus des participants types du corpus). */
+  participants: number;
+}
 
-const CORPUS: [unknown, unknown][] = [
-  [a01, a01Participants],
-  [a03, a03Participants],
-  [g3v1, etatG3("V1-copie")],
-  [g3v2, etatG3("V2-final")],
-];
+export const GENERATION_PAR_DEFAUT: GenerationSession = { jeu: "corpus", remplissage: "milieu", graine: 1, participants: 0 };
 
-export function creerSession(commutateurs: Commutateurs = {}): Session {
-  const sources = creerSources();
-  const plans = CORPUS.map(([structure, participants], g) => {
-    const plan = compile(structure as Grille, commutateurs);
-    chargerParticipantsTypes(sources, g, plan, participants as FichierParticipants);
-    return plan;
-  });
-  return { plans, sources, store: creerStoreProvisoire(sources, plans), commutateurs };
+/** Marque une phase du démarrage (mesures, spec 20 « Scénarios de performance »). */
+function phase<T>(nom: string, f: () => T): T {
+  const debut = `demarrage:${nom}:debut`;
+  performance.mark(debut);
+  const r = f();
+  performance.measure(`demarrage:${nom}`, debut);
+  return r;
+}
+
+export function creerSession(commutateurs: Commutateurs = {}, generation: GenerationSession = GENERATION_PAR_DEFAUT): Session {
+  const grilles = phase("structures", () => grillesDuJeu(generation.jeu));
+  const plans = phase("compile", () => grilles.map(({ structure }) => compile(structure, commutateurs)));
+  let sources: Sources;
+  if (generation.jeu === "charge") {
+    const generees = phase("generation", () =>
+      generer(plans, generation.graine, { remplissage: generation.remplissage, participants: generation.participants }),
+    );
+    sources = phase("insertion", () => creerSources(generees));
+  } else {
+    sources = creerSources();
+    grilles.forEach(({ participantsTypes }, g) => {
+      if (participantsTypes) chargerParticipantsTypes(sources, g, plans[g], participantsTypes);
+    });
+    const generees = phase("generation", () =>
+      generer(plans, generation.graine, {
+        remplissage: generation.remplissage,
+        // Les participants types occupent les premiers index : on borne le reste.
+        participants: Math.min(generation.participants, MAX_PARTICIPANTS - sources.participants.size),
+        premierP: sources.participants.size,
+      }),
+    );
+    phase("insertion", () => {
+      if (generees.participants.length > 0) sources.participants.insert(generees.participants);
+      if (generees.cases.length > 0) sources.cases.insert(generees.cases);
+      if (generees.nonEvaluations.length > 0) sources.nonEvaluations.insert(generees.nonEvaluations);
+      if (generees.jokers.length > 0) sources.jokers.insert(generees.jokers);
+    });
+  }
+  const somme = phase("somme", () =>
+    sommeControle({ cases: sources.cases.values(), nonEvaluations: sources.nonEvaluations.values(), jokers: sources.jokers.values() }),
+  );
+  return {
+    plans,
+    sources,
+    store: creerStoreProvisoire(sources, plans),
+    commutateurs,
+    jeu: generation.jeu,
+    sommeControle: somme,
+  };
 }
 
 /**
@@ -68,7 +105,7 @@ export function appliquerCommutateurs(session: Session, commutateurs: Commutateu
 /** Structures cibles proposées pour copier la grille g : celles qui en proviennent, et la copie à l'identique. */
 export function ciblesCopie(session: Session, g: number): { libelle: string; structure: Grille }[] {
   const source = session.plans[g].grille;
-  const corpus = CORPUS.map(([s]) => s as Grille).filter((s) => s.provenance?.grille === source.grille);
+  const corpus = STRUCTURES_CORPUS.filter((s) => s.provenance?.grille === source.grille);
   return [
     ...corpus.map((s) => ({ libelle: s.grille, structure: s })),
     { libelle: "copie à l'identique", structure: structureIdentique(source) },
@@ -80,15 +117,15 @@ export function lireSourcesGrille(session: Pick<Session, "plans" | "sources">, g
   const plan = session.plans[g];
   const { sources } = session;
   const res = new Map<number, SourcesParticipant>();
-  for (const { p } of sources.participants.toArray) {
+  for (const { p } of sources.participants.values()) {
     const cases = new Float64Array(plan.D);
     for (let d = 0; d < plan.D; d++) cases[d] = sources.cases.get(cle(g, p, d))?.valeur ?? NaN;
-    res.set(p, {
-      cases,
-      nonEvaluations: sources.nonEvaluations.toArray.filter((l) => l.g === g && l.p === p).map((l) => ({ n: l.n, axe: l.axe })),
-      jokers: sources.jokers.toArray.filter((l) => l.g === g && l.p === p).map((l) => ({ id: l.id, jokerDef: l.jokerDef })),
-    });
+    res.set(p, { cases, nonEvaluations: [], jokers: [] });
   }
+  // Un seul passage sur les non-évaluations et les jokers (jeu « charge »).
+  for (const l of sources.nonEvaluations.values())
+    if (l.g === g) res.get(l.p)?.nonEvaluations.push({ n: l.n, axe: l.axe });
+  for (const l of sources.jokers.values()) if (l.g === g) res.get(l.p)?.jokers.push({ id: l.id, jokerDef: l.jokerDef });
   return res;
 }
 

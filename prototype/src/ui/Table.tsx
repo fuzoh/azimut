@@ -1,7 +1,7 @@
 // Table participants × nœuds d'un axe, avec édition d'une case. Un nœud placé
 // à plusieurs endroits garde une seule case : chaque colonne lit le même nœud n.
 
-import { memo, useMemo, useState } from "react";
+import { memo, useLayoutEffect, useMemo, useRef, useState } from "react";
 import {
   type BaremeCompile,
   CHEMIN_INFLUENCE_MULTIPLE,
@@ -177,33 +177,59 @@ export function Table({
     const index = new Map(cols.map((c, i) => [c, i]));
     return filtrer(plan, cols, filtre).map((c) => ({ ...c, i: index.get(c)! }));
   }, [plan, cols, filtre]);
-  // Ligne de groupes : le placement de 1er niveau de chaque colonne.
-  const groupes = useMemo(() => {
-    const res: { n: number; span: number }[] = [];
-    let precedent = -1;
-    for (const c of visibles) {
-      const r = racine(cols, c.i);
-      if (r === precedent) res[res.length - 1].span++;
-      else res.push({ n: cols[r].n, span: 1 });
-      precedent = r;
-    }
-    return res;
-  }, [cols, visibles]);
+  const conteneur = useRef<HTMLDivElement>(null);
+  const fenetre = useFenetre(conteneur);
+  // Fenêtre de colonnes et de lignes rendues (virtualisation, avec une marge).
+  const c0 = Math.max(0, Math.floor((fenetre.gauche - LARGEUR_NOM) / LARGEUR_COLONNE) - MARGE_COLONNES);
+  const c1 = Math.min(visibles.length, Math.ceil((fenetre.gauche + fenetre.largeur) / LARGEUR_COLONNE) + MARGE_COLONNES);
+  const l0 = Math.max(0, Math.floor((fenetre.haut - HAUTEUR_ENTETE) / HAUTEUR_LIGNE) - MARGE_LIGNES);
+  const l1 = Math.min(participants.length, Math.ceil((fenetre.haut + fenetre.hauteur) / HAUTEUR_LIGNE) + MARGE_LIGNES);
+  const rendues = visibles.slice(c0, c1);
+  const lignes = participants.slice(l0, l1);
+  const gauche = c0 * LARGEUR_COLONNE;
+  const droite = (visibles.length - c1) * LARGEUR_COLONNE;
+  // Ligne de groupes : le placement de 1er niveau de chaque colonne rendue.
+  const groupes: { n: number; span: number }[] = [];
+  let precedent = -1;
+  for (const c of rendues) {
+    const r = racine(cols, c.i);
+    if (r === precedent) groupes[groupes.length - 1].span++;
+    else groupes.push({ n: cols[r].n, span: 1 });
+    precedent = r;
+  }
+  const espaceur = <td className="espaceur" />;
   return (
-    <div className="defilement">
-      <table>
+    <div className="defilement" ref={conteneur} data-testid="table" data-lignes={participants.length} data-colonnes={visibles.length}>
+      <table className="virtuelle" style={{ width: LARGEUR_NOM + visibles.length * LARGEUR_COLONNE }}>
+        <colgroup>
+          <col style={{ width: LARGEUR_NOM }} />
+          <col style={{ width: gauche }} />
+          {rendues.map((c) => (
+            <col key={c.i} style={{ width: LARGEUR_COLONNE }} />
+          ))}
+          <col style={{ width: droite }} />
+        </colgroup>
         <thead>
           <tr className="groupes">
             <th className="coin" />
+            <th className="espaceur" />
             {groupes.map(({ n, span }, i) => (
               <th key={i} colSpan={span} title={plan.grille.noeuds[n].libelle} data-groupe={plan.ids[n]}>
-                {plan.grille.noeuds[n].libelle}
+                <span className="libelle-groupe">{plan.grille.noeuds[n].libelle}</span>
               </th>
             ))}
+            <th className="espaceur" />
           </tr>
           <tr className="noeuds">
-            <th className="coin">Participant</th>
-            {visibles.map(({ n, profondeur, i }) => (
+            <th className="coin">
+              Participant
+              <br />
+              <span className="aide">
+                {participants.length} × {visibles.length} colonnes
+              </span>
+            </th>
+            <th className="espaceur" />
+            {rendues.map(({ n, profondeur, i }) => (
               <th
                 key={i}
                 title={infoColonne(plan, n, sansCompter.has(i))}
@@ -215,13 +241,20 @@ export function Table({
                 <span className="marques">{marques(plan, n, sansCompter.has(i))}</span>
               </th>
             ))}
+            <th className="espaceur" />
           </tr>
         </thead>
         <tbody>
-          {participants.map((pt) => (
-            <tr key={pt.p} className={pt.p === selection ? "selection" : undefined}>
+          {l0 > 0 && (
+            <tr className="espaceur" style={{ height: l0 * HAUTEUR_LIGNE }}>
+              <td colSpan={rendues.length + 3} />
+            </tr>
+          )}
+          {lignes.map((pt) => (
+            <tr key={pt.p} className={pt.p === selection ? "selection" : undefined} style={{ height: HAUTEUR_LIGNE }}>
               <NomParticipant g={g} p={pt.p} nom={pt.nom} onClick={() => onSelection(pt.p)} />
-              {visibles.map(({ n }, i) => (
+              {espaceur}
+              {rendues.map(({ n, i }) => (
                 <Cellule
                   key={i}
                   g={g}
@@ -236,12 +269,66 @@ export function Table({
                   ecart={pt.p === selection ? ecarts?.get(n) : undefined}
                 />
               ))}
+              {espaceur}
             </tr>
           ))}
+          {l1 < participants.length && (
+            <tr className="espaceur" style={{ height: (participants.length - l1) * HAUTEUR_LIGNE }}>
+              <td colSpan={rendues.length + 3} />
+            </tr>
+          )}
         </tbody>
       </table>
     </div>
   );
+}
+
+// --- Virtualisation --------------------------------------------------------------
+
+const LARGEUR_NOM = 150;
+const LARGEUR_COLONNE = 64;
+const HAUTEUR_LIGNE = 24;
+/** Hauteur des deux lignes d'en-tête (groupes + nœuds), voir styles.css. */
+const HAUTEUR_ENTETE = 22 + 110;
+const MARGE_COLONNES = 4;
+const MARGE_LIGNES = 6;
+
+interface Fenetre {
+  haut: number;
+  gauche: number;
+  hauteur: number;
+  largeur: number;
+}
+
+/** Position de défilement et taille du conteneur, relues à chaque frame de défilement. */
+function useFenetre(ref: React.RefObject<HTMLDivElement | null>): Fenetre {
+  const [fenetre, setFenetre] = useState<Fenetre>({ haut: 0, gauche: 0, hauteur: 800, largeur: 1600 });
+  useLayoutEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    let frame = 0;
+    const lire = () => {
+      frame = 0;
+      setFenetre((f) =>
+        f.haut === el.scrollTop && f.gauche === el.scrollLeft && f.hauteur === el.clientHeight && f.largeur === el.clientWidth
+          ? f
+          : { haut: el.scrollTop, gauche: el.scrollLeft, hauteur: el.clientHeight, largeur: el.clientWidth },
+      );
+    };
+    const planifier = () => {
+      if (frame === 0) frame = requestAnimationFrame(lire);
+    };
+    lire();
+    el.addEventListener("scroll", planifier, { passive: true });
+    const observateur = new ResizeObserver(planifier);
+    observateur.observe(el);
+    return () => {
+      el.removeEventListener("scroll", planifier);
+      observateur.disconnect();
+      if (frame !== 0) cancelAnimationFrame(frame);
+    };
+  }, [ref]);
+  return fenetre;
 }
 
 /** Nom du participant, avec l'avertissement « données provisoires » ; un clic ouvre son onglet d'erreurs. */
