@@ -1,0 +1,5729 @@
+{
+ "grille": "A03",
+ "source": "qualif3.xlsx",
+ "baremes": [
+  {
+   "id": "note-1-5",
+   "type": "numerique",
+   "min": 1,
+   "max": 5,
+   "pas": 0.1
+  },
+  {
+   "id": "echelle-1-5",
+   "type": "ordinal",
+   "paliers": [
+    {
+     "valeur": 1,
+     "libelle": "Insuffisant, objectif non atteint …"
+    },
+    {
+     "valeur": 2,
+     "libelle": "Objectif en voie d'aquisition …"
+    },
+    {
+     "valeur": 3,
+     "libelle": "Objectif atteint, la participante a …"
+    },
+    {
+     "valeur": 4,
+     "libelle": "Objectif atteint avec aisance, le …"
+    },
+    {
+     "valeur": 5,
+     "libelle": "Travail excellent, au-delà des attentes …"
+    }
+   ]
+  },
+  {
+   "id": "pct-0-150",
+   "type": "numerique",
+   "min": 0,
+   "max": 150,
+   "pas": 1,
+   "colorations": [
+    [
+     0,
+     80,
+     "rouge"
+    ],
+    [
+     80,
+     90,
+     "jaune"
+    ],
+    [
+     90,
+     110,
+     "vert"
+    ],
+    [
+     110,
+     150,
+     "bleu"
+    ]
+   ]
+  },
+  {
+   "id": "ok-ko",
+   "type": "ordinal",
+   "prereglage": "binaire"
+  }
+ ],
+ "noeuds": [
+  {
+   "id": "ind:A/1.1/1",
+   "type": "donnees",
+   "libelle": "A 1.1 indicateur 1",
+   "definition": "def:a03-1",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/1.1/2",
+   "type": "donnees",
+   "libelle": "A 1.1 indicateur 2",
+   "definition": "def:a03-2",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/1.1/3",
+   "type": "donnees",
+   "libelle": "A 1.1 indicateur 3",
+   "definition": "def:a03-3",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/1.1/4",
+   "type": "donnees",
+   "libelle": "A 1.1 indicateur 4",
+   "definition": "def:a03-4",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/1.1/5",
+   "type": "donnees",
+   "libelle": "A 1.1 indicateur 5",
+   "definition": "def:a03-5",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "crit:A/1.1",
+   "type": "calcul",
+   "libelle": "1.1 1. Un tracé de randonnée adapté est conçu",
+   "definition": "def:a03-6",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:A/1.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/1.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/1.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/1.1/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/1.1/5",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "ind:A/1.2/1",
+   "type": "donnees",
+   "libelle": "A 1.2 indicateur 1",
+   "definition": "def:a03-7",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/1.2/2",
+   "type": "donnees",
+   "libelle": "A 1.2 indicateur 2",
+   "definition": "def:a03-8",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/1.2/3",
+   "type": "donnees",
+   "libelle": "A 1.2 indicateur 3",
+   "definition": "def:a03-9",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/1.2/4",
+   "type": "donnees",
+   "libelle": "A 1.2 indicateur 4",
+   "definition": "def:a03-10",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/1.2/5",
+   "type": "donnees",
+   "libelle": "A 1.2 indicateur 5",
+   "definition": "def:a03-11",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/1.2/6",
+   "type": "donnees",
+   "libelle": "A 1.2 indicateur 6",
+   "definition": "def:a03-12",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/1.2/7",
+   "type": "donnees",
+   "libelle": "A 1.2 indicateur 7",
+   "definition": "def:a03-13",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "crit:A/1.2",
+   "type": "calcul",
+   "libelle": "1.2 2. Un dispositif de marche de randonnée est …",
+   "definition": "def:a03-14",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:A/1.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/1.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/1.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/1.2/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/1.2/5",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/1.2/6",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/1.2/7",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "ind:A/1.3/1",
+   "type": "donnees",
+   "libelle": "A 1.3 indicateur 1",
+   "definition": "def:a03-15",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/1.3/2",
+   "type": "donnees",
+   "libelle": "A 1.3 indicateur 2",
+   "definition": "def:a03-16",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/1.3/3",
+   "type": "donnees",
+   "libelle": "A 1.3 indicateur 3",
+   "definition": "def:a03-17",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/1.3/4",
+   "type": "donnees",
+   "libelle": "A 1.3 indicateur 4",
+   "definition": "def:a03-18",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/1.3/5",
+   "type": "donnees",
+   "libelle": "A 1.3 indicateur 5",
+   "definition": "def:a03-19",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/1.3/6",
+   "type": "donnees",
+   "libelle": "A 1.3 indicateur 6",
+   "definition": "def:a03-20",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/1.3/7",
+   "type": "donnees",
+   "libelle": "A 1.3 indicateur 7",
+   "definition": "def:a03-21",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/1.3/8",
+   "type": "donnees",
+   "libelle": "A 1.3 indicateur 8",
+   "definition": "def:a03-22",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "crit:A/1.3",
+   "type": "calcul",
+   "libelle": "1.3 3. Un concept de sécurité spécifique pour une …",
+   "definition": "def:a03-23",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:A/1.3/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/1.3/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/1.3/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/1.3/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/1.3/5",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/1.3/6",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/1.3/7",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/1.3/8",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "obj:A/1",
+   "type": "calcul",
+   "libelle": "A1 Planifier une randonnée pour la branche éclais",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "crit:A/1.1",
+     "poids": 1
+    },
+    {
+     "noeud": "crit:A/1.2",
+     "poids": 1
+    },
+    {
+     "noeud": "crit:A/1.3",
+     "poids": 2
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "obj-pct:A/1",
+   "type": "calcul",
+   "libelle": "A1 en %",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "obj:A/1",
+     "poids": 1
+    }
+   ],
+   "conversion": [
+    [
+     1,
+     0
+    ],
+    [
+     3,
+     100
+    ],
+    [
+     5,
+     150
+    ]
+   ],
+   "bareme_sortie": "pct-0-150",
+   "arrondi": 1
+  },
+  {
+   "id": "ind:A/2.1/1",
+   "type": "donnees",
+   "libelle": "A 2.1 indicateur 1",
+   "definition": "def:a03-24",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/2.1/2",
+   "type": "donnees",
+   "libelle": "A 2.1 indicateur 2",
+   "definition": "def:a03-25",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/2.1/3",
+   "type": "donnees",
+   "libelle": "A 2.1 indicateur 3",
+   "definition": "def:a03-26",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/2.1/4",
+   "type": "donnees",
+   "libelle": "A 2.1 indicateur 4",
+   "definition": "def:a03-27",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "crit:A/2.1",
+   "type": "calcul",
+   "libelle": "2.1 1. Une adaptation aux éléments prévus dans le …",
+   "definition": "def:a03-28",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:A/2.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/2.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/2.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/2.1/4",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "ind:A/2.2/1",
+   "type": "donnees",
+   "libelle": "A 2.2 indicateur 1",
+   "definition": "def:a03-29",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/2.2/2",
+   "type": "donnees",
+   "libelle": "A 2.2 indicateur 2",
+   "definition": "def:a03-30",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/2.2/3",
+   "type": "donnees",
+   "libelle": "A 2.2 indicateur 3",
+   "definition": "def:a03-31",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/2.2/4",
+   "type": "donnees",
+   "libelle": "A 2.2 indicateur 4",
+   "definition": "def:a03-32",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "crit:A/2.2",
+   "type": "calcul",
+   "libelle": "2.2 2. Les outils d'orientation et topographiques …",
+   "definition": "def:a03-33",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:A/2.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/2.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/2.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/2.2/4",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "obj:A/2",
+   "type": "calcul",
+   "libelle": "A2 Réaliser une randonnée pour la branche éclais",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "crit:A/2.1",
+     "poids": 1
+    },
+    {
+     "noeud": "crit:A/2.2",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "obj-pct:A/2",
+   "type": "calcul",
+   "libelle": "A2 en %",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "obj:A/2",
+     "poids": 1
+    }
+   ],
+   "conversion": [
+    [
+     1,
+     0
+    ],
+    [
+     3,
+     100
+    ],
+    [
+     5,
+     150
+    ]
+   ],
+   "bareme_sortie": "pct-0-150",
+   "arrondi": 1
+  },
+  {
+   "id": "ind:A/3.1/1",
+   "type": "donnees",
+   "libelle": "A 3.1 indicateur 1",
+   "definition": "def:a03-34",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/3.1/2",
+   "type": "donnees",
+   "libelle": "A 3.1 indicateur 2",
+   "definition": "def:a03-35",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/3.1/3",
+   "type": "donnees",
+   "libelle": "A 3.1 indicateur 3",
+   "definition": "def:a03-36",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/3.1/4",
+   "type": "donnees",
+   "libelle": "A 3.1 indicateur 4",
+   "definition": "def:a03-37",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/3.1/5",
+   "type": "donnees",
+   "libelle": "A 3.1 indicateur 5",
+   "definition": "def:a03-38",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/3.1/6",
+   "type": "donnees",
+   "libelle": "A 3.1 indicateur 6",
+   "definition": "def:a03-39",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/3.1/7",
+   "type": "donnees",
+   "libelle": "A 3.1 indicateur 7",
+   "definition": "def:a03-40",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "crit:A/3.1",
+   "type": "calcul",
+   "libelle": "3.1 1. Les aspects importants d'une randonnée sont …",
+   "definition": "def:a03-41",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:A/3.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/3.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/3.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/3.1/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/3.1/5",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/3.1/6",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/3.1/7",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "ind:A/3.2/1",
+   "type": "donnees",
+   "libelle": "A 3.2 indicateur 1",
+   "definition": "def:a03-42",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/3.2/2",
+   "type": "donnees",
+   "libelle": "A 3.2 indicateur 2",
+   "definition": "def:a03-43",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/3.2/3",
+   "type": "donnees",
+   "libelle": "A 3.2 indicateur 3",
+   "definition": "def:a03-44",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/3.2/4",
+   "type": "donnees",
+   "libelle": "A 3.2 indicateur 4",
+   "definition": "def:a03-45",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/3.2/5",
+   "type": "donnees",
+   "libelle": "A 3.2 indicateur 5",
+   "definition": "def:a03-46",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/3.2/6",
+   "type": "donnees",
+   "libelle": "A 3.2 indicateur 6",
+   "definition": "def:a03-47",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "crit:A/3.2",
+   "type": "calcul",
+   "libelle": "3.2 2. Les aspects importants d'un concept de …",
+   "definition": "def:a03-48",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:A/3.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/3.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/3.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/3.2/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/3.2/5",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/3.2/6",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "ind:A/3.3/1",
+   "type": "donnees",
+   "libelle": "A 3.3 indicateur 1",
+   "definition": "def:a03-49",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/3.3/2",
+   "type": "donnees",
+   "libelle": "A 3.3 indicateur 2",
+   "definition": "def:a03-50",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/3.3/3",
+   "type": "donnees",
+   "libelle": "A 3.3 indicateur 3",
+   "definition": "def:a03-51",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/3.3/4",
+   "type": "donnees",
+   "libelle": "A 3.3 indicateur 4",
+   "definition": "def:a03-52",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/3.3/5",
+   "type": "donnees",
+   "libelle": "A 3.3 indicateur 5",
+   "definition": "def:a03-53",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "crit:A/3.3",
+   "type": "calcul",
+   "libelle": "3.3 3. Des commentaires pertinents et de qualité …",
+   "definition": "def:a03-54",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:A/3.3/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/3.3/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/3.3/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/3.3/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/3.3/5",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "obj:A/3",
+   "type": "calcul",
+   "libelle": "A3 Effecuer des corrections de qualité et donner …",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "crit:A/3.1",
+     "poids": 1
+    },
+    {
+     "noeud": "crit:A/3.2",
+     "poids": 2
+    },
+    {
+     "noeud": "crit:A/3.3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "obj-pct:A/3",
+   "type": "calcul",
+   "libelle": "A3 en %",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "obj:A/3",
+     "poids": 1
+    }
+   ],
+   "conversion": [
+    [
+     1,
+     0
+    ],
+    [
+     3,
+     100
+    ],
+    [
+     5,
+     150
+    ]
+   ],
+   "bareme_sortie": "pct-0-150",
+   "arrondi": 1
+  },
+  {
+   "id": "ind:A/4.1/1",
+   "type": "donnees",
+   "libelle": "A 4.1 indicateur 1",
+   "definition": "def:a03-55",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/4.1/2",
+   "type": "donnees",
+   "libelle": "A 4.1 indicateur 2",
+   "definition": "def:a03-56",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/4.1/3",
+   "type": "donnees",
+   "libelle": "A 4.1 indicateur 3",
+   "definition": "def:a03-57",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/4.1/4",
+   "type": "donnees",
+   "libelle": "A 4.1 indicateur 4",
+   "definition": "def:a03-58",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/4.1/5",
+   "type": "donnees",
+   "libelle": "A 4.1 indicateur 5",
+   "definition": "def:a03-59",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/4.1/6",
+   "type": "donnees",
+   "libelle": "A 4.1 indicateur 6",
+   "definition": "def:a03-60",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "crit:A/4.1",
+   "type": "calcul",
+   "libelle": "4.1 1. Une déclaration pour une activité de grande …",
+   "definition": "def:a03-61",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:A/4.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/4.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/4.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/4.1/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/4.1/5",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/4.1/6",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "ind:A/4.2/1",
+   "type": "donnees",
+   "libelle": "A 4.2 indicateur 1",
+   "definition": "def:a03-62",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/4.2/2",
+   "type": "donnees",
+   "libelle": "A 4.2 indicateur 2",
+   "definition": "def:a03-63",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/4.2/3",
+   "type": "donnees",
+   "libelle": "A 4.2 indicateur 3",
+   "definition": "def:a03-64",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/4.2/4",
+   "type": "donnees",
+   "libelle": "A 4.2 indicateur 4",
+   "definition": "def:a03-65",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/4.2/5",
+   "type": "donnees",
+   "libelle": "A 4.2 indicateur 5",
+   "definition": "def:a03-66",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/4.2/6",
+   "type": "donnees",
+   "libelle": "A 4.2 indicateur 6",
+   "definition": "def:a03-67",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/4.2/7",
+   "type": "donnees",
+   "libelle": "A 4.2 indicateur 7",
+   "definition": "def:a03-68",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/4.2/8",
+   "type": "donnees",
+   "libelle": "A 4.2 indicateur 8",
+   "definition": "def:a03-69",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "crit:A/4.2",
+   "type": "calcul",
+   "libelle": "4.2 2. Une déclaration pour un poste SC de 30 min …",
+   "definition": "def:a03-70",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:A/4.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/4.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/4.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/4.2/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/4.2/5",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/4.2/6",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/4.2/7",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/4.2/8",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "ind:A/4.3/1",
+   "type": "donnees",
+   "libelle": "A 4.3 indicateur 1",
+   "definition": "def:a03-71",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/4.3/2",
+   "type": "donnees",
+   "libelle": "A 4.3 indicateur 2",
+   "definition": "def:a03-72",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/4.3/3",
+   "type": "donnees",
+   "libelle": "A 4.3 indicateur 3",
+   "definition": "def:a03-73",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/4.3/4",
+   "type": "donnees",
+   "libelle": "A 4.3 indicateur 4",
+   "definition": "def:a03-65",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/4.3/5",
+   "type": "donnees",
+   "libelle": "A 4.3 indicateur 5",
+   "definition": "def:a03-66",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/4.3/6",
+   "type": "donnees",
+   "libelle": "A 4.3 indicateur 6",
+   "definition": "def:a03-67",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "crit:A/4.3",
+   "type": "calcul",
+   "libelle": "4.3 3. Une déclaration pour un poste AC de 30 min …",
+   "definition": "def:a03-74",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:A/4.3/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/4.3/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/4.3/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/4.3/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/4.3/5",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/4.3/6",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "obj:A/4",
+   "type": "calcul",
+   "libelle": "A4 Planifier une activité de grande ampleur pour …",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "crit:A/4.1",
+     "poids": 1
+    },
+    {
+     "noeud": "crit:A/4.2",
+     "poids": 1
+    },
+    {
+     "noeud": "crit:A/4.3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "obj-pct:A/4",
+   "type": "calcul",
+   "libelle": "A4 en %",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "obj:A/4",
+     "poids": 1
+    }
+   ],
+   "conversion": [
+    [
+     1,
+     0
+    ],
+    [
+     3,
+     100
+    ],
+    [
+     5,
+     150
+    ]
+   ],
+   "bareme_sortie": "pct-0-150",
+   "arrondi": 1
+  },
+  {
+   "id": "ind:A/5.1/1",
+   "type": "donnees",
+   "libelle": "A 5.1 indicateur 1",
+   "definition": "def:a03-75",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/5.1/2",
+   "type": "donnees",
+   "libelle": "A 5.1 indicateur 2",
+   "definition": "def:a03-76",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/5.1/3",
+   "type": "donnees",
+   "libelle": "A 5.1 indicateur 3",
+   "definition": "def:a03-77",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/5.1/4",
+   "type": "donnees",
+   "libelle": "A 5.1 indicateur 4",
+   "definition": "def:a03-78",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/5.1/5",
+   "type": "donnees",
+   "libelle": "A 5.1 indicateur 5",
+   "definition": "def:a03-79",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "crit:A/5.1",
+   "type": "calcul",
+   "libelle": "5.1 1. Un sport de camp est adapté en prenant en …",
+   "definition": "def:a03-80",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:A/5.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/5.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/5.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/5.1/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/5.1/5",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "ind:A/5.2/1",
+   "type": "donnees",
+   "libelle": "A 5.2 indicateur 1",
+   "definition": "def:a03-81",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/5.2/2",
+   "type": "donnees",
+   "libelle": "A 5.2 indicateur 2",
+   "definition": "def:a03-82",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/5.2/3",
+   "type": "donnees",
+   "libelle": "A 5.2 indicateur 3",
+   "definition": "def:a03-83",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "crit:A/5.2",
+   "type": "calcul",
+   "libelle": "5.2 2. Un sport de camp est animé de manière adaptée",
+   "definition": "def:a03-84",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:A/5.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/5.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/5.2/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "ind:A/5.3/1",
+   "type": "donnees",
+   "libelle": "A 5.3 indicateur 1",
+   "definition": "def:a03-85",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/5.3/2",
+   "type": "donnees",
+   "libelle": "A 5.3 indicateur 2",
+   "definition": "def:a03-86",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/5.3/3",
+   "type": "donnees",
+   "libelle": "A 5.3 indicateur 3",
+   "definition": "def:a03-87",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "crit:A/5.3",
+   "type": "calcul",
+   "libelle": "5.3 3. Un sport de camp est évalué de manière …",
+   "definition": "def:a03-88",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:A/5.3/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/5.3/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/5.3/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "obj:A/5",
+   "type": "calcul",
+   "libelle": "A5 Adapter et animer un sport de camp selon des …",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "crit:A/5.1",
+     "poids": 2
+    },
+    {
+     "noeud": "crit:A/5.2",
+     "poids": 2
+    },
+    {
+     "noeud": "crit:A/5.3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "obj-pct:A/5",
+   "type": "calcul",
+   "libelle": "A5 en %",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "obj:A/5",
+     "poids": 1
+    }
+   ],
+   "conversion": [
+    [
+     1,
+     0
+    ],
+    [
+     3,
+     100
+    ],
+    [
+     5,
+     150
+    ]
+   ],
+   "bareme_sortie": "pct-0-150",
+   "arrondi": 1
+  },
+  {
+   "id": "ind:A/6.1/1",
+   "type": "donnees",
+   "libelle": "A 6.1 indicateur 1",
+   "definition": "def:a03-89",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/6.1/2",
+   "type": "donnees",
+   "libelle": "A 6.1 indicateur 2",
+   "definition": "def:a03-78",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/6.1/3",
+   "type": "donnees",
+   "libelle": "A 6.1 indicateur 3",
+   "definition": "def:a03-90",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/6.1/4",
+   "type": "donnees",
+   "libelle": "A 6.1 indicateur 4",
+   "definition": "def:a03-91",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/6.1/5",
+   "type": "donnees",
+   "libelle": "A 6.1 indicateur 5",
+   "definition": "def:a03-92",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/6.1/6",
+   "type": "donnees",
+   "libelle": "A 6.1 indicateur 6",
+   "definition": "def:a03-93",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "crit:A/6.1",
+   "type": "calcul",
+   "libelle": "6.1 1. Les aspects essentiels d'un sport de camp …",
+   "definition": "def:a03-94",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:A/6.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/6.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/6.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/6.1/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/6.1/5",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/6.1/6",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "ind:A/6.2/1",
+   "type": "donnees",
+   "libelle": "A 6.2 indicateur 1",
+   "definition": "def:a03-49",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/6.2/2",
+   "type": "donnees",
+   "libelle": "A 6.2 indicateur 2",
+   "definition": "def:a03-50",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/6.2/3",
+   "type": "donnees",
+   "libelle": "A 6.2 indicateur 3",
+   "definition": "def:a03-51",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/6.2/4",
+   "type": "donnees",
+   "libelle": "A 6.2 indicateur 4",
+   "definition": "def:a03-52",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/6.2/5",
+   "type": "donnees",
+   "libelle": "A 6.2 indicateur 5",
+   "definition": "def:a03-53",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "crit:A/6.2",
+   "type": "calcul",
+   "libelle": "6.2 2. Des commentaires pertinents et de qualité …",
+   "definition": "def:a03-95",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:A/6.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/6.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/6.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/6.2/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/6.2/5",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "obj:A/6",
+   "type": "calcul",
+   "libelle": "A6 Effectuer des corrections de qualité pour un …",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "crit:A/6.1",
+     "poids": 1
+    },
+    {
+     "noeud": "crit:A/6.2",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "obj-pct:A/6",
+   "type": "calcul",
+   "libelle": "A6 en %",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "obj:A/6",
+     "poids": 1
+    }
+   ],
+   "conversion": [
+    [
+     1,
+     0
+    ],
+    [
+     3,
+     100
+    ],
+    [
+     5,
+     150
+    ]
+   ],
+   "bareme_sortie": "pct-0-150",
+   "arrondi": 1
+  },
+  {
+   "id": "ind:A/7.1/1",
+   "type": "donnees",
+   "libelle": "A 7.1 indicateur 1",
+   "definition": "def:a03-96",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/7.1/2",
+   "type": "donnees",
+   "libelle": "A 7.1 indicateur 2",
+   "definition": "def:a03-78",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/7.1/3",
+   "type": "donnees",
+   "libelle": "A 7.1 indicateur 3",
+   "definition": "def:a03-90",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/7.1/4",
+   "type": "donnees",
+   "libelle": "A 7.1 indicateur 4",
+   "definition": "def:a03-91",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/7.1/5",
+   "type": "donnees",
+   "libelle": "A 7.1 indicateur 5",
+   "definition": "def:a03-92",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/7.1/6",
+   "type": "donnees",
+   "libelle": "A 7.1 indicateur 6",
+   "definition": "def:a03-93",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "crit:A/7.1",
+   "type": "calcul",
+   "libelle": "7.1 1. Les aspects essentiels d'une activité de …",
+   "definition": "def:a03-97",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:A/7.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/7.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/7.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/7.1/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/7.1/5",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/7.1/6",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "ind:A/7.2/1",
+   "type": "donnees",
+   "libelle": "A 7.2 indicateur 1",
+   "definition": "def:a03-49",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/7.2/2",
+   "type": "donnees",
+   "libelle": "A 7.2 indicateur 2",
+   "definition": "def:a03-50",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/7.2/3",
+   "type": "donnees",
+   "libelle": "A 7.2 indicateur 3",
+   "definition": "def:a03-51",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/7.2/4",
+   "type": "donnees",
+   "libelle": "A 7.2 indicateur 4",
+   "definition": "def:a03-52",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:A/7.2/5",
+   "type": "donnees",
+   "libelle": "A 7.2 indicateur 5",
+   "definition": "def:a03-53",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "crit:A/7.2",
+   "type": "calcul",
+   "libelle": "7.2 2. Des commentaires pertinents et de qualité …",
+   "definition": "def:a03-95",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:A/7.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/7.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/7.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/7.2/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:A/7.2/5",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "obj:A/7",
+   "type": "calcul",
+   "libelle": "A7 Effectuer des corrections de qualité pour une …",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "crit:A/7.1",
+     "poids": 1
+    },
+    {
+     "noeud": "crit:A/7.2",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "obj-pct:A/7",
+   "type": "calcul",
+   "libelle": "A7 en %",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "obj:A/7",
+     "poids": 1
+    }
+   ],
+   "conversion": [
+    [
+     1,
+     0
+    ],
+    [
+     3,
+     100
+    ],
+    [
+     5,
+     150
+    ]
+   ],
+   "bareme_sortie": "pct-0-150",
+   "arrondi": 1
+  },
+  {
+   "id": "sph:A",
+   "type": "calcul",
+   "libelle": "Sphère A - Techniques JS",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "obj:A/1",
+     "poids": 2
+    },
+    {
+     "noeud": "obj:A/2",
+     "poids": 1
+    },
+    {
+     "noeud": "obj:A/3",
+     "poids": 2
+    },
+    {
+     "noeud": "obj:A/4",
+     "poids": 2
+    },
+    {
+     "noeud": "obj:A/5",
+     "poids": 1
+    },
+    {
+     "noeud": "obj:A/6",
+     "poids": 1
+    },
+    {
+     "noeud": "obj:A/7",
+     "poids": 1
+    }
+   ],
+   "conversion": [
+    [
+     1,
+     0
+    ],
+    [
+     3,
+     100
+    ],
+    [
+     5,
+     150
+    ]
+   ],
+   "bareme_sortie": "pct-0-150",
+   "arrondi": 1
+  },
+  {
+   "id": "seuil:A",
+   "type": "calcul",
+   "libelle": "Sphère A ≥ 80 %",
+   "fonction": "F2",
+   "params": {
+    "seuil": 80
+   },
+   "entrees": [
+    {
+     "noeud": "sph:A",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "ok-ko"
+  },
+  {
+   "id": "ind:B/1.1/1",
+   "type": "donnees",
+   "libelle": "B 1.1 indicateur 1",
+   "definition": "def:a03-98",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/1.1/2",
+   "type": "donnees",
+   "libelle": "B 1.1 indicateur 2",
+   "definition": "def:a03-99",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/1.1/3",
+   "type": "donnees",
+   "libelle": "B 1.1 indicateur 3",
+   "definition": "def:a03-100",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/1.1/4",
+   "type": "donnees",
+   "libelle": "B 1.1 indicateur 4",
+   "definition": "def:a03-101",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "crit:B/1.1",
+   "type": "calcul",
+   "libelle": "1.1 1. Le programme de camp est lisible",
+   "definition": "def:a03-102",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:B/1.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/1.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/1.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/1.1/4",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "ind:B/1.2/1",
+   "type": "donnees",
+   "libelle": "B 1.2 indicateur 1",
+   "definition": "def:a03-103",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/1.2/2",
+   "type": "donnees",
+   "libelle": "B 1.2 indicateur 2",
+   "definition": "def:a03-104",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/1.2/3",
+   "type": "donnees",
+   "libelle": "B 1.2 indicateur 3",
+   "definition": "def:a03-105",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/1.2/4",
+   "type": "donnees",
+   "libelle": "B 1.2 indicateur 4",
+   "definition": "def:a03-106",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/1.2/5",
+   "type": "donnees",
+   "libelle": "B 1.2 indicateur 5",
+   "definition": "def:a03-107",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "crit:B/1.2",
+   "type": "calcul",
+   "libelle": "1.2 2. Le programme de camp respecte les exigences …",
+   "definition": "def:a03-108",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:B/1.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/1.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/1.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/1.2/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/1.2/5",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "obj:B/1",
+   "type": "calcul",
+   "libelle": "B1 Réaliser un programme de camp",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "crit:B/1.1",
+     "poids": 1
+    },
+    {
+     "noeud": "crit:B/1.2",
+     "poids": 2
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "obj-pct:B/1",
+   "type": "calcul",
+   "libelle": "B1 en %",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "obj:B/1",
+     "poids": 1
+    }
+   ],
+   "conversion": [
+    [
+     1,
+     0
+    ],
+    [
+     3,
+     100
+    ],
+    [
+     5,
+     150
+    ]
+   ],
+   "bareme_sortie": "pct-0-150",
+   "arrondi": 1
+  },
+  {
+   "id": "ind:B/2.1/1",
+   "type": "donnees",
+   "libelle": "B 2.1 indicateur 1",
+   "definition": "def:a03-109",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/2.1/2",
+   "type": "donnees",
+   "libelle": "B 2.1 indicateur 2",
+   "definition": "def:a03-110",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/2.1/3",
+   "type": "donnees",
+   "libelle": "B 2.1 indicateur 3",
+   "definition": "def:a03-111",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/2.1/4",
+   "type": "donnees",
+   "libelle": "B 2.1 indicateur 4",
+   "definition": "def:a03-112",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/2.1/5",
+   "type": "donnees",
+   "libelle": "B 2.1 indicateur 5",
+   "definition": "def:a03-113",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/2.1/6",
+   "type": "donnees",
+   "libelle": "B 2.1 indicateur 6",
+   "definition": "def:a03-114",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/2.1/7",
+   "type": "donnees",
+   "libelle": "B 2.1 indicateur 7",
+   "definition": "def:a03-115",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/2.1/8",
+   "type": "donnees",
+   "libelle": "B 2.1 indicateur 8",
+   "definition": "def:a03-116",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "crit:B/2.1",
+   "type": "calcul",
+   "libelle": "2.1 1. Les quantités figurant dans la liste de …",
+   "definition": "def:a03-117",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:B/2.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/2.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/2.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/2.1/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/2.1/5",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/2.1/6",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/2.1/7",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/2.1/8",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "ind:B/2.2/1",
+   "type": "donnees",
+   "libelle": "B 2.2 indicateur 1",
+   "definition": "def:a03-118",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/2.2/2",
+   "type": "donnees",
+   "libelle": "B 2.2 indicateur 2",
+   "definition": "def:a03-119",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/2.2/3",
+   "type": "donnees",
+   "libelle": "B 2.2 indicateur 3",
+   "definition": "def:a03-120",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/2.2/4",
+   "type": "donnees",
+   "libelle": "B 2.2 indicateur 4",
+   "definition": "def:a03-121",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/2.2/5",
+   "type": "donnees",
+   "libelle": "B 2.2 indicateur 5",
+   "definition": "def:a03-122",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "crit:B/2.2",
+   "type": "calcul",
+   "libelle": "2.2 2. L'implémentation du terrain de camp est …",
+   "definition": "def:a03-123",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:B/2.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/2.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/2.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/2.2/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/2.2/5",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "ind:B/2.3/1",
+   "type": "donnees",
+   "libelle": "B 2.3 indicateur 1",
+   "definition": "def:a03-124",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/2.3/2",
+   "type": "donnees",
+   "libelle": "B 2.3 indicateur 2",
+   "definition": "def:a03-125",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/2.3/3",
+   "type": "donnees",
+   "libelle": "B 2.3 indicateur 3",
+   "definition": "def:a03-126",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/2.3/4",
+   "type": "donnees",
+   "libelle": "B 2.3 indicateur 4",
+   "definition": "def:a03-127",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/2.3/5",
+   "type": "donnees",
+   "libelle": "B 2.3 indicateur 5",
+   "definition": "def:a03-128",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/2.3/6",
+   "type": "donnees",
+   "libelle": "B 2.3 indicateur 6",
+   "definition": "def:a03-129",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "crit:B/2.3",
+   "type": "calcul",
+   "libelle": "2.3 3. La circulaire de camp est rédigée de manière …",
+   "definition": "def:a03-130",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:B/2.3/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/2.3/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/2.3/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/2.3/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/2.3/5",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/2.3/6",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "ind:B/2.4/1",
+   "type": "donnees",
+   "libelle": "B 2.4 indicateur 1",
+   "definition": "def:a03-131",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/2.4/2",
+   "type": "donnees",
+   "libelle": "B 2.4 indicateur 2",
+   "definition": "def:a03-132",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/2.4/3",
+   "type": "donnees",
+   "libelle": "B 2.4 indicateur 3",
+   "definition": "def:a03-133",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/2.4/4",
+   "type": "donnees",
+   "libelle": "B 2.4 indicateur 4",
+   "definition": "def:a03-134",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/2.4/5",
+   "type": "donnees",
+   "libelle": "B 2.4 indicateur 5",
+   "definition": "def:a03-135",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "crit:B/2.4",
+   "type": "calcul",
+   "libelle": "2.4 4. Les informations essentielles du camp sont …",
+   "definition": "def:a03-136",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:B/2.4/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/2.4/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/2.4/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/2.4/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/2.4/5",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "obj:B/2",
+   "type": "calcul",
+   "libelle": "B2 Planifier et administrer un camp à l'aide des …",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "crit:B/2.1",
+     "poids": 1
+    },
+    {
+     "noeud": "crit:B/2.2",
+     "poids": 1
+    },
+    {
+     "noeud": "crit:B/2.3",
+     "poids": 1
+    },
+    {
+     "noeud": "crit:B/2.4",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "obj-pct:B/2",
+   "type": "calcul",
+   "libelle": "B2 en %",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "obj:B/2",
+     "poids": 1
+    }
+   ],
+   "conversion": [
+    [
+     1,
+     0
+    ],
+    [
+     3,
+     100
+    ],
+    [
+     5,
+     150
+    ]
+   ],
+   "bareme_sortie": "pct-0-150",
+   "arrondi": 1
+  },
+  {
+   "id": "ind:B/3.1/1",
+   "type": "donnees",
+   "libelle": "B 3.1 indicateur 1",
+   "definition": "def:a03-137",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/3.1/2",
+   "type": "donnees",
+   "libelle": "B 3.1 indicateur 2",
+   "definition": "def:a03-138",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/3.1/3",
+   "type": "donnees",
+   "libelle": "B 3.1 indicateur 3",
+   "definition": "def:a03-139",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/3.1/4",
+   "type": "donnees",
+   "libelle": "B 3.1 indicateur 4",
+   "definition": "def:a03-140",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "crit:B/3.1",
+   "type": "calcul",
+   "libelle": "3.1 1. La gestion de crise pendant le camp est …",
+   "definition": "def:a03-141",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:B/3.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/3.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/3.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/3.1/4",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "ind:B/3.2/1",
+   "type": "donnees",
+   "libelle": "B 3.2 indicateur 1",
+   "definition": "def:a03-142",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/3.2/2",
+   "type": "donnees",
+   "libelle": "B 3.2 indicateur 2",
+   "definition": "def:a03-143",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/3.2/3",
+   "type": "donnees",
+   "libelle": "B 3.2 indicateur 3",
+   "definition": "def:a03-144",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/3.2/4",
+   "type": "donnees",
+   "libelle": "B 3.2 indicateur 4",
+   "definition": "def:a03-145",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "crit:B/3.2",
+   "type": "calcul",
+   "libelle": "3.2 2. Les risques sont identifiés",
+   "definition": "def:a03-146",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:B/3.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/3.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/3.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/3.2/4",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "ind:B/3.3/1",
+   "type": "donnees",
+   "libelle": "B 3.3 indicateur 1",
+   "definition": "def:a03-147",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/3.3/2",
+   "type": "donnees",
+   "libelle": "B 3.3 indicateur 2",
+   "definition": "def:a03-148",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/3.3/3",
+   "type": "donnees",
+   "libelle": "B 3.3 indicateur 3",
+   "definition": "def:a03-149",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/3.3/4",
+   "type": "donnees",
+   "libelle": "B 3.3 indicateur 4",
+   "definition": "def:a03-150",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "crit:B/3.3",
+   "type": "calcul",
+   "libelle": "3.3 3. Les mesures préventives relatives aux …",
+   "definition": "def:a03-151",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:B/3.3/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/3.3/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/3.3/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/3.3/4",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "ind:B/3.4/1",
+   "type": "donnees",
+   "libelle": "B 3.4 indicateur 1",
+   "definition": "def:a03-152",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/3.4/2",
+   "type": "donnees",
+   "libelle": "B 3.4 indicateur 2",
+   "definition": "def:a03-153",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/3.4/3",
+   "type": "donnees",
+   "libelle": "B 3.4 indicateur 3",
+   "definition": "def:a03-154",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/3.4/4",
+   "type": "donnees",
+   "libelle": "B 3.4 indicateur 4",
+   "definition": "def:a03-155",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "crit:B/3.4",
+   "type": "calcul",
+   "libelle": "3.4 4. Les informations générales du camp sont …",
+   "definition": "def:a03-156",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:B/3.4/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/3.4/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/3.4/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/3.4/4",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "ind:B/3.5/1",
+   "type": "donnees",
+   "libelle": "B 3.5 indicateur 1",
+   "definition": "def:a03-157",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/3.5/2",
+   "type": "donnees",
+   "libelle": "B 3.5 indicateur 2",
+   "definition": "def:a03-158",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/3.5/3",
+   "type": "donnees",
+   "libelle": "B 3.5 indicateur 3",
+   "definition": "def:a03-159",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "crit:B/3.5",
+   "type": "calcul",
+   "libelle": "3.5 5. Les règles liées à la santé et l'hygiène …",
+   "definition": "def:a03-160",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:B/3.5/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/3.5/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/3.5/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "ind:B/3.6/1",
+   "type": "donnees",
+   "libelle": "B 3.6 indicateur 1",
+   "definition": "def:a03-161",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/3.6/2",
+   "type": "donnees",
+   "libelle": "B 3.6 indicateur 2",
+   "definition": "def:a03-162",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/3.6/3",
+   "type": "donnees",
+   "libelle": "B 3.6 indicateur 3",
+   "definition": "def:a03-163",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "crit:B/3.6",
+   "type": "calcul",
+   "libelle": "3.6 6. La réaction en cas d'urgence est appliquée",
+   "definition": "def:a03-164",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:B/3.6/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/3.6/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/3.6/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "obj:B/3",
+   "type": "calcul",
+   "libelle": "B3 Réaliser un concept de sécurité de camp complet",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "crit:B/3.1",
+     "poids": 2
+    },
+    {
+     "noeud": "crit:B/3.2",
+     "poids": 1
+    },
+    {
+     "noeud": "crit:B/3.3",
+     "poids": 2
+    },
+    {
+     "noeud": "crit:B/3.4",
+     "poids": 1
+    },
+    {
+     "noeud": "crit:B/3.5",
+     "poids": 1
+    },
+    {
+     "noeud": "crit:B/3.6",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "obj-pct:B/3",
+   "type": "calcul",
+   "libelle": "B3 en %",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "obj:B/3",
+     "poids": 1
+    }
+   ],
+   "conversion": [
+    [
+     1,
+     0
+    ],
+    [
+     3,
+     100
+    ],
+    [
+     5,
+     150
+    ]
+   ],
+   "bareme_sortie": "pct-0-150",
+   "arrondi": 1
+  },
+  {
+   "id": "ind:B/4.1/1",
+   "type": "donnees",
+   "libelle": "B 4.1 indicateur 1",
+   "definition": "def:a03-165",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/4.1/2",
+   "type": "donnees",
+   "libelle": "B 4.1 indicateur 2",
+   "definition": "def:a03-166",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/4.1/3",
+   "type": "donnees",
+   "libelle": "B 4.1 indicateur 3",
+   "definition": "def:a03-167",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/4.1/4",
+   "type": "donnees",
+   "libelle": "B 4.1 indicateur 4",
+   "definition": "def:a03-168",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/4.1/5",
+   "type": "donnees",
+   "libelle": "B 4.1 indicateur 5",
+   "definition": "def:a03-169",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/4.1/6",
+   "type": "donnees",
+   "libelle": "B 4.1 indicateur 6",
+   "definition": "def:a03-170",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "crit:B/4.1",
+   "type": "calcul",
+   "libelle": "4.1 1. Réalisation d'un ordre du jour et tenue d'un …",
+   "definition": "def:a03-171",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:B/4.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/4.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/4.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/4.1/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/4.1/5",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/4.1/6",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "ind:B/4.2/1",
+   "type": "donnees",
+   "libelle": "B 4.2 indicateur 1",
+   "definition": "def:a03-172",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/4.2/2",
+   "type": "donnees",
+   "libelle": "B 4.2 indicateur 2",
+   "definition": "def:a03-173",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/4.2/3",
+   "type": "donnees",
+   "libelle": "B 4.2 indicateur 3",
+   "definition": "def:a03-174",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/4.2/4",
+   "type": "donnees",
+   "libelle": "B 4.2 indicateur 4",
+   "definition": "def:a03-175",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/4.2/5",
+   "type": "donnees",
+   "libelle": "B 4.2 indicateur 5",
+   "definition": "def:a03-176",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "crit:B/4.2",
+   "type": "calcul",
+   "libelle": "4.2 2. Une maîtrise est menée",
+   "definition": "def:a03-177",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:B/4.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/4.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/4.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/4.2/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/4.2/5",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "ind:B/4.3/1",
+   "type": "donnees",
+   "libelle": "B 4.3 indicateur 1",
+   "definition": "def:a03-49",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/4.3/2",
+   "type": "donnees",
+   "libelle": "B 4.3 indicateur 2",
+   "definition": "def:a03-50",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/4.3/3",
+   "type": "donnees",
+   "libelle": "B 4.3 indicateur 3",
+   "definition": "def:a03-178",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/4.3/4",
+   "type": "donnees",
+   "libelle": "B 4.3 indicateur 4",
+   "definition": "def:a03-179",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/4.3/5",
+   "type": "donnees",
+   "libelle": "B 4.3 indicateur 5",
+   "definition": "def:a03-180",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "crit:B/4.3",
+   "type": "calcul",
+   "libelle": "4.3 3. Un retour à chaud constructif sur les …",
+   "definition": "def:a03-181",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:B/4.3/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/4.3/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/4.3/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/4.3/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/4.3/5",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "obj:B/4",
+   "type": "calcul",
+   "libelle": "B4 Planifier et diriger des maîtrises",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "crit:B/4.1",
+     "poids": 1
+    },
+    {
+     "noeud": "crit:B/4.2",
+     "poids": 1
+    },
+    {
+     "noeud": "crit:B/4.3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "obj-pct:B/4",
+   "type": "calcul",
+   "libelle": "B4 en %",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "obj:B/4",
+     "poids": 1
+    }
+   ],
+   "conversion": [
+    [
+     1,
+     0
+    ],
+    [
+     3,
+     100
+    ],
+    [
+     5,
+     150
+    ]
+   ],
+   "bareme_sortie": "pct-0-150",
+   "arrondi": 1
+  },
+  {
+   "id": "ind:B/5.1/1",
+   "type": "donnees",
+   "libelle": "B 5.1 indicateur 1",
+   "definition": "def:a03-182",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/5.1/2",
+   "type": "donnees",
+   "libelle": "B 5.1 indicateur 2",
+   "definition": "def:a03-183",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/5.1/3",
+   "type": "donnees",
+   "libelle": "B 5.1 indicateur 3",
+   "definition": "def:a03-184",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "crit:B/5.1",
+   "type": "calcul",
+   "libelle": "5.1 1. La gestion de la maîtrise est planifié dans …",
+   "definition": "def:a03-185",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:B/5.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/5.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/5.1/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "ind:B/5.2/1",
+   "type": "donnees",
+   "libelle": "B 5.2 indicateur 1",
+   "definition": "def:a03-186",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/5.2/2",
+   "type": "donnees",
+   "libelle": "B 5.2 indicateur 2",
+   "definition": "def:a03-187",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/5.2/3",
+   "type": "donnees",
+   "libelle": "B 5.2 indicateur 3",
+   "definition": "def:a03-188",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "ind:B/5.2/4",
+   "type": "donnees",
+   "libelle": "B 5.2 indicateur 4",
+   "definition": "def:a03-189",
+   "bareme": "note-1-5"
+  },
+  {
+   "id": "crit:B/5.2",
+   "type": "calcul",
+   "libelle": "5.2 2. La gestion de la maîtrise est planifié dans …",
+   "definition": "def:a03-190",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:B/5.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/5.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/5.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:B/5.2/4",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "obj:B/5",
+   "type": "calcul",
+   "libelle": "B5 Organiser sa maîtrise d'unité/de camp pour une …",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "crit:B/5.1",
+     "poids": 1
+    },
+    {
+     "noeud": "crit:B/5.2",
+     "poids": 2
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "obj-pct:B/5",
+   "type": "calcul",
+   "libelle": "B5 en %",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "obj:B/5",
+     "poids": 1
+    }
+   ],
+   "conversion": [
+    [
+     1,
+     0
+    ],
+    [
+     3,
+     100
+    ],
+    [
+     5,
+     150
+    ]
+   ],
+   "bareme_sortie": "pct-0-150",
+   "arrondi": 1
+  },
+  {
+   "id": "sph:B",
+   "type": "calcul",
+   "libelle": "Sphère B - Organisation",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "obj:B/1",
+     "poids": 2
+    },
+    {
+     "noeud": "obj:B/2",
+     "poids": 1
+    },
+    {
+     "noeud": "obj:B/3",
+     "poids": 2
+    },
+    {
+     "noeud": "obj:B/4",
+     "poids": 1
+    },
+    {
+     "noeud": "obj:B/5",
+     "poids": 1
+    }
+   ],
+   "conversion": [
+    [
+     1,
+     0
+    ],
+    [
+     3,
+     100
+    ],
+    [
+     5,
+     150
+    ]
+   ],
+   "bareme_sortie": "pct-0-150",
+   "arrondi": 1
+  },
+  {
+   "id": "seuil:B",
+   "type": "calcul",
+   "libelle": "Sphère B ≥ 80 %",
+   "fonction": "F2",
+   "params": {
+    "seuil": 80
+   },
+   "entrees": [
+    {
+     "noeud": "sph:B",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "ok-ko"
+  },
+  {
+   "id": "ind:C/1.1/1",
+   "type": "donnees",
+   "libelle": "C 1.1 indicateur 1",
+   "definition": "def:a03-191",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "ind:C/1.1/2",
+   "type": "donnees",
+   "libelle": "C 1.1 indicateur 2",
+   "definition": "def:a03-192",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "ind:C/1.1/3",
+   "type": "donnees",
+   "libelle": "C 1.1 indicateur 3",
+   "definition": "def:a03-193",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "crit:C/1.1",
+   "type": "calcul",
+   "libelle": "1.1 1. L'activité intègre la méthodologie scoute de …",
+   "definition": "def:a03-194",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:C/1.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:C/1.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:C/1.1/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "ind:C/1.2/1",
+   "type": "donnees",
+   "libelle": "C 1.2 indicateur 1",
+   "definition": "def:a03-195",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "ind:C/1.2/2",
+   "type": "donnees",
+   "libelle": "C 1.2 indicateur 2",
+   "definition": "def:a03-196",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "ind:C/1.2/3",
+   "type": "donnees",
+   "libelle": "C 1.2 indicateur 3",
+   "definition": "def:a03-197",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "crit:C/1.2",
+   "type": "calcul",
+   "libelle": "1.2 2. Un thème est présent dans l'activité",
+   "definition": "def:a03-198",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:C/1.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:C/1.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:C/1.2/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "obj:C/1",
+   "type": "calcul",
+   "libelle": "C1 Concevoir une journée d'activité de camp pour …",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "crit:C/1.1",
+     "poids": 2
+    },
+    {
+     "noeud": "crit:C/1.2",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "obj-pct:C/1",
+   "type": "calcul",
+   "libelle": "C1 en %",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "obj:C/1",
+     "poids": 1
+    }
+   ],
+   "conversion": [
+    [
+     1,
+     0
+    ],
+    [
+     3,
+     100
+    ],
+    [
+     5,
+     150
+    ]
+   ],
+   "bareme_sortie": "pct-0-150",
+   "arrondi": 1
+  },
+  {
+   "id": "ind:C/2.1/1",
+   "type": "donnees",
+   "libelle": "C 2.1 indicateur 1",
+   "definition": "def:a03-199",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "ind:C/2.1/2",
+   "type": "donnees",
+   "libelle": "C 2.1 indicateur 2",
+   "definition": "def:a03-200",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "ind:C/2.1/3",
+   "type": "donnees",
+   "libelle": "C 2.1 indicateur 3",
+   "definition": "def:a03-201",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "ind:C/2.1/4",
+   "type": "donnees",
+   "libelle": "C 2.1 indicateur 4",
+   "definition": "def:a03-202",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "crit:C/2.1",
+   "type": "calcul",
+   "libelle": "2.1 1. Le programme respecte les besoins généraux …",
+   "definition": "def:a03-203",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:C/2.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:C/2.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:C/2.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:C/2.1/4",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "ind:C/2.2/1",
+   "type": "donnees",
+   "libelle": "C 2.2 indicateur 1",
+   "definition": "def:a03-196",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "ind:C/2.2/2",
+   "type": "donnees",
+   "libelle": "C 2.2 indicateur 2",
+   "definition": "def:a03-197",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "ind:C/2.2/3",
+   "type": "donnees",
+   "libelle": "C 2.2 indicateur 3",
+   "definition": "def:a03-204",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "crit:C/2.2",
+   "type": "calcul",
+   "libelle": "2.2 2. Le programme propose un thème adapté au …",
+   "definition": "def:a03-205",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:C/2.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:C/2.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:C/2.2/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "ind:C/2.3/1",
+   "type": "donnees",
+   "libelle": "C 2.3 indicateur 1",
+   "definition": "def:a03-206",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "ind:C/2.3/2",
+   "type": "donnees",
+   "libelle": "C 2.3 indicateur 2",
+   "definition": "def:a03-207",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "ind:C/2.3/3",
+   "type": "donnees",
+   "libelle": "C 2.3 indicateur 3",
+   "definition": "def:a03-208",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "crit:C/2.3",
+   "type": "calcul",
+   "libelle": "2.3 3. Le programme intègre les relations et les …",
+   "definition": "def:a03-209",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:C/2.3/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:C/2.3/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:C/2.3/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "ind:C/2.4/1",
+   "type": "donnees",
+   "libelle": "C 2.4 indicateur 1",
+   "definition": "def:a03-210",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "ind:C/2.4/2",
+   "type": "donnees",
+   "libelle": "C 2.4 indicateur 2",
+   "definition": "def:a03-211",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "ind:C/2.4/3",
+   "type": "donnees",
+   "libelle": "C 2.4 indicateur 3",
+   "definition": "def:a03-212",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "ind:C/2.4/4",
+   "type": "donnees",
+   "libelle": "C 2.4 indicateur 4",
+   "definition": "def:a03-213",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "ind:C/2.4/5",
+   "type": "donnees",
+   "libelle": "C 2.4 indicateur 5",
+   "definition": "def:a03-214",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "ind:C/2.4/6",
+   "type": "donnees",
+   "libelle": "C 2.4 indicateur 6",
+   "definition": "def:a03-215",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "ind:C/2.4/7",
+   "type": "donnees",
+   "libelle": "C 2.4 indicateur 7",
+   "definition": "def:a03-216",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "ind:C/2.4/8",
+   "type": "donnees",
+   "libelle": "C 2.4 indicateur 8",
+   "definition": "def:a03-217",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "crit:C/2.4",
+   "type": "calcul",
+   "libelle": "2.4 4. Le programme intègre les spécificités de la …",
+   "definition": "def:a03-218",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:C/2.4/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:C/2.4/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:C/2.4/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:C/2.4/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:C/2.4/5",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:C/2.4/6",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:C/2.4/7",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:C/2.4/8",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "obj:C/2",
+   "type": "calcul",
+   "libelle": "C2 Concevoir un programme de camp pour la branche …",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "crit:C/2.1",
+     "poids": 1
+    },
+    {
+     "noeud": "crit:C/2.2",
+     "poids": 1
+    },
+    {
+     "noeud": "crit:C/2.3",
+     "poids": 2
+    },
+    {
+     "noeud": "crit:C/2.4",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "obj-pct:C/2",
+   "type": "calcul",
+   "libelle": "C2 en %",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "obj:C/2",
+     "poids": 1
+    }
+   ],
+   "conversion": [
+    [
+     1,
+     0
+    ],
+    [
+     3,
+     100
+    ],
+    [
+     5,
+     150
+    ]
+   ],
+   "bareme_sortie": "pct-0-150",
+   "arrondi": 1
+  },
+  {
+   "id": "ind:C/3.1/1",
+   "type": "donnees",
+   "libelle": "C 3.1 indicateur 1",
+   "definition": "def:a03-219",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "ind:C/3.1/2",
+   "type": "donnees",
+   "libelle": "C 3.1 indicateur 2",
+   "definition": "def:a03-100",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "ind:C/3.1/3",
+   "type": "donnees",
+   "libelle": "C 3.1 indicateur 3",
+   "definition": "def:a03-101",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "crit:C/3.1",
+   "type": "calcul",
+   "libelle": "3.1 1. Les informations générales figurent sur le …",
+   "definition": "def:a03-220",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:C/3.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:C/3.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:C/3.1/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "ind:C/3.2/1",
+   "type": "donnees",
+   "libelle": "C 3.2 indicateur 1",
+   "definition": "def:a03-221",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "ind:C/3.2/2",
+   "type": "donnees",
+   "libelle": "C 3.2 indicateur 2",
+   "definition": "def:a03-222",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "ind:C/3.2/3",
+   "type": "donnees",
+   "libelle": "C 3.2 indicateur 3",
+   "definition": "def:a03-223",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "crit:C/3.2",
+   "type": "calcul",
+   "libelle": "3.2 2. La structure générale du programme est …",
+   "definition": "def:a03-224",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:C/3.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:C/3.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:C/3.2/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "ind:C/3.3/1",
+   "type": "donnees",
+   "libelle": "C 3.3 indicateur 1",
+   "definition": "def:a03-225",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "ind:C/3.3/2",
+   "type": "donnees",
+   "libelle": "C 3.3 indicateur 2",
+   "definition": "def:a03-226",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "ind:C/3.3/3",
+   "type": "donnees",
+   "libelle": "C 3.3 indicateur 3",
+   "definition": "def:a03-227",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "crit:C/3.3",
+   "type": "calcul",
+   "libelle": "3.3 3. Le programme intègre les relations et les …",
+   "definition": "def:a03-209",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:C/3.3/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:C/3.3/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:C/3.3/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "ind:C/3.4/1",
+   "type": "donnees",
+   "libelle": "C 3.4 indicateur 1",
+   "definition": "def:a03-228",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "ind:C/3.4/2",
+   "type": "donnees",
+   "libelle": "C 3.4 indicateur 2",
+   "definition": "def:a03-229",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "ind:C/3.4/3",
+   "type": "donnees",
+   "libelle": "C 3.4 indicateur 3",
+   "definition": "def:a03-230",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "ind:C/3.4/4",
+   "type": "donnees",
+   "libelle": "C 3.4 indicateur 4",
+   "definition": "def:a03-231",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "ind:C/3.4/5",
+   "type": "donnees",
+   "libelle": "C 3.4 indicateur 5",
+   "definition": "def:a03-232",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "ind:C/3.4/6",
+   "type": "donnees",
+   "libelle": "C 3.4 indicateur 6",
+   "definition": "def:a03-233",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "ind:C/3.4/7",
+   "type": "donnees",
+   "libelle": "C 3.4 indicateur 7",
+   "definition": "def:a03-234",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "ind:C/3.4/8",
+   "type": "donnees",
+   "libelle": "C 3.4 indicateur 8",
+   "definition": "def:a03-235",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "ind:C/3.4/9",
+   "type": "donnees",
+   "libelle": "C 3.4 indicateur 9",
+   "definition": "def:a03-236",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "crit:C/3.4",
+   "type": "calcul",
+   "libelle": "3.4 4. Le programme intègre les spécificités de la …",
+   "definition": "def:a03-237",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:C/3.4/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:C/3.4/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:C/3.4/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:C/3.4/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:C/3.4/5",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:C/3.4/6",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:C/3.4/7",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:C/3.4/8",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:C/3.4/9",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "obj:C/3",
+   "type": "calcul",
+   "libelle": "C3 Concevoir un programme annuel pour la branche …",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "crit:C/3.1",
+     "poids": 1
+    },
+    {
+     "noeud": "crit:C/3.2",
+     "poids": 1
+    },
+    {
+     "noeud": "crit:C/3.3",
+     "poids": 2
+    },
+    {
+     "noeud": "crit:C/3.4",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "note-1-5"
+  },
+  {
+   "id": "obj-pct:C/3",
+   "type": "calcul",
+   "libelle": "C3 en %",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "obj:C/3",
+     "poids": 1
+    }
+   ],
+   "conversion": [
+    [
+     1,
+     0
+    ],
+    [
+     3,
+     100
+    ],
+    [
+     5,
+     150
+    ]
+   ],
+   "bareme_sortie": "pct-0-150",
+   "arrondi": 1
+  },
+  {
+   "id": "sph:C",
+   "type": "calcul",
+   "libelle": "Sphère C - Scoutisme",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "obj:C/1",
+     "poids": 1
+    },
+    {
+     "noeud": "obj:C/2",
+     "poids": 2
+    },
+    {
+     "noeud": "obj:C/3",
+     "poids": 2
+    }
+   ],
+   "conversion": [
+    [
+     1,
+     0
+    ],
+    [
+     3,
+     100
+    ],
+    [
+     5,
+     150
+    ]
+   ],
+   "bareme_sortie": "pct-0-150",
+   "arrondi": 1
+  },
+  {
+   "id": "seuil:C",
+   "type": "calcul",
+   "libelle": "Sphère C ≥ 80 %",
+   "fonction": "F2",
+   "params": {
+    "seuil": 80
+   },
+   "entrees": [
+    {
+     "noeud": "sph:C",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "ok-ko"
+  },
+  {
+   "id": "reussite",
+   "type": "calcul",
+   "libelle": "Réussite",
+   "fonction": "F3",
+   "entrees": [
+    {
+     "noeud": "seuil:A",
+     "poids": 1
+    },
+    {
+     "noeud": "seuil:B",
+     "poids": 1
+    },
+    {
+     "noeud": "seuil:C",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "ok-ko"
+  },
+  {
+   "id": "pos-meta:1",
+   "type": "regroupement",
+   "libelle": "Énergie globale"
+  },
+  {
+   "id": "pos-meta:2",
+   "type": "regroupement",
+   "libelle": "Énergie individuelle"
+  },
+  {
+   "id": "pos-meta:3",
+   "type": "regroupement",
+   "libelle": "Comportement du/de la participant.e"
+  },
+  {
+   "id": "pos-meta:4",
+   "type": "regroupement",
+   "libelle": "Personnalité du/de la participant.e"
+  },
+  {
+   "id": "pos-axe:A",
+   "type": "regroupement",
+   "libelle": "A. Collaboration - Maîtrise/Humain"
+  },
+  {
+   "id": "pos:A1",
+   "type": "donnees",
+   "libelle": "Posture A1",
+   "definition": "def:a03-238",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos:A2",
+   "type": "donnees",
+   "libelle": "Posture A2",
+   "definition": "def:a03-239",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos:A3",
+   "type": "donnees",
+   "libelle": "Posture A3",
+   "definition": "def:a03-240",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos:A4",
+   "type": "donnees",
+   "libelle": "Posture A4",
+   "definition": "def:a03-241",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos:A5",
+   "type": "donnees",
+   "libelle": "Posture A5",
+   "definition": "def:a03-242",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos-axe:B",
+   "type": "regroupement",
+   "libelle": "B. Collaboration - Objectif commun"
+  },
+  {
+   "id": "pos:B1",
+   "type": "donnees",
+   "libelle": "Posture B1",
+   "definition": "def:a03-243",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos:B2",
+   "type": "donnees",
+   "libelle": "Posture B2",
+   "definition": "def:a03-244",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos:B3",
+   "type": "donnees",
+   "libelle": "Posture B3",
+   "definition": "def:a03-245",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos:B4",
+   "type": "donnees",
+   "libelle": "Posture B4",
+   "definition": "def:a03-246",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos:B5",
+   "type": "donnees",
+   "libelle": "Posture B5",
+   "definition": "def:a03-247",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos-axe:C",
+   "type": "regroupement",
+   "libelle": "C. Environnement - Vision d'ensemble"
+  },
+  {
+   "id": "pos:C1",
+   "type": "donnees",
+   "libelle": "Posture C1",
+   "definition": "def:a03-248",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos:C2",
+   "type": "donnees",
+   "libelle": "Posture C2",
+   "definition": "def:a03-249",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos-axe:D",
+   "type": "regroupement",
+   "libelle": "D. Adaptation - Réaction au stress"
+  },
+  {
+   "id": "pos:D1",
+   "type": "donnees",
+   "libelle": "Posture D1",
+   "definition": "def:a03-250",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos:D2",
+   "type": "donnees",
+   "libelle": "Posture D2",
+   "definition": "def:a03-251",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos:D3",
+   "type": "donnees",
+   "libelle": "Posture D3",
+   "definition": "def:a03-252",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos-axe:E",
+   "type": "regroupement",
+   "libelle": "E. Engagement personnel - Proactivité"
+  },
+  {
+   "id": "pos:E1",
+   "type": "donnees",
+   "libelle": "Posture E1",
+   "definition": "def:a03-253",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos:E2",
+   "type": "donnees",
+   "libelle": "Posture E2",
+   "definition": "def:a03-254",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos:E3",
+   "type": "donnees",
+   "libelle": "Posture E3",
+   "definition": "def:a03-255",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos:E4",
+   "type": "donnees",
+   "libelle": "Posture E4",
+   "definition": "def:a03-256",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos:E5",
+   "type": "donnees",
+   "libelle": "Posture E5",
+   "definition": "def:a03-257",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos:E6",
+   "type": "donnees",
+   "libelle": "Posture E6",
+   "definition": "def:a03-258",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos-axe:F",
+   "type": "regroupement",
+   "libelle": "F. Comportement - Communication"
+  },
+  {
+   "id": "pos:F1",
+   "type": "donnees",
+   "libelle": "Posture F1",
+   "definition": "def:a03-259",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos:F2",
+   "type": "donnees",
+   "libelle": "Posture F2",
+   "definition": "def:a03-260",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos:F3",
+   "type": "donnees",
+   "libelle": "Posture F3",
+   "definition": "def:a03-261",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos:F4",
+   "type": "donnees",
+   "libelle": "Posture F4",
+   "definition": "def:a03-262",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos-axe:G",
+   "type": "regroupement",
+   "libelle": "G. Comportement - Actions"
+  },
+  {
+   "id": "pos:G1",
+   "type": "donnees",
+   "libelle": "Posture G1",
+   "definition": "def:a03-263",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos:G2",
+   "type": "donnees",
+   "libelle": "Posture G2",
+   "definition": "def:a03-264",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos:G3",
+   "type": "donnees",
+   "libelle": "Posture G3",
+   "definition": "def:a03-265",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos:G4",
+   "type": "donnees",
+   "libelle": "Posture G4",
+   "definition": "def:a03-266",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos:G5",
+   "type": "donnees",
+   "libelle": "Posture G5",
+   "definition": "def:a03-267",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos-axe:H",
+   "type": "regroupement",
+   "libelle": "H. Comportement - Attitude"
+  },
+  {
+   "id": "pos:H1",
+   "type": "donnees",
+   "libelle": "Posture H1",
+   "definition": "def:a03-268",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos:H2",
+   "type": "donnees",
+   "libelle": "Posture H2",
+   "definition": "def:a03-269",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos:H3",
+   "type": "donnees",
+   "libelle": "Posture H3",
+   "definition": "def:a03-270",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos:H4",
+   "type": "donnees",
+   "libelle": "Posture H4",
+   "definition": "def:a03-271",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos:H5",
+   "type": "donnees",
+   "libelle": "Posture H5",
+   "definition": "def:a03-272",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos:H6",
+   "type": "donnees",
+   "libelle": "Posture H6",
+   "definition": "def:a03-273",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos:H7",
+   "type": "donnees",
+   "libelle": "Posture H7",
+   "definition": "def:a03-274",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos:H8",
+   "type": "donnees",
+   "libelle": "Posture H8",
+   "definition": "def:a03-275",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos:H9",
+   "type": "donnees",
+   "libelle": "Posture H9",
+   "definition": "def:a03-276",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos:H10",
+   "type": "donnees",
+   "libelle": "Posture H10",
+   "definition": "def:a03-277",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos:H11",
+   "type": "donnees",
+   "libelle": "Posture H11",
+   "definition": "def:a03-278",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos-axe:I",
+   "type": "regroupement",
+   "libelle": "I. Personnalité - Estime de soi"
+  },
+  {
+   "id": "pos:I1",
+   "type": "donnees",
+   "libelle": "Posture I1",
+   "definition": "def:a03-279",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos:I2",
+   "type": "donnees",
+   "libelle": "Posture I2",
+   "definition": "def:a03-280",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos:I3",
+   "type": "donnees",
+   "libelle": "Posture I3",
+   "definition": "def:a03-281",
+   "bareme": "echelle-1-5"
+  },
+  {
+   "id": "pos-axe:J",
+   "type": "regroupement",
+   "libelle": "J. Personnalité - Forces et limites"
+  },
+  {
+   "id": "pos:J1",
+   "type": "donnees",
+   "libelle": "Posture J1",
+   "definition": "def:a03-282",
+   "bareme": "echelle-1-5"
+  }
+ ],
+ "axes": [
+  {
+   "id": "spheres",
+   "libelle": "Sphères",
+   "principal": true,
+   "arbre": [
+    {
+     "noeud": "sph:A",
+     "enfants": [
+      {
+       "noeud": "seuil:A"
+      },
+      {
+       "noeud": "obj:A/1",
+       "enfants": [
+        {
+         "noeud": "obj-pct:A/1"
+        },
+        {
+         "noeud": "crit:A/1.1",
+         "enfants": [
+          {
+           "noeud": "ind:A/1.1/1"
+          },
+          {
+           "noeud": "ind:A/1.1/2"
+          },
+          {
+           "noeud": "ind:A/1.1/3"
+          },
+          {
+           "noeud": "ind:A/1.1/4"
+          },
+          {
+           "noeud": "ind:A/1.1/5"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:A/1.2",
+         "enfants": [
+          {
+           "noeud": "ind:A/1.2/1"
+          },
+          {
+           "noeud": "ind:A/1.2/2"
+          },
+          {
+           "noeud": "ind:A/1.2/3"
+          },
+          {
+           "noeud": "ind:A/1.2/4"
+          },
+          {
+           "noeud": "ind:A/1.2/5"
+          },
+          {
+           "noeud": "ind:A/1.2/6"
+          },
+          {
+           "noeud": "ind:A/1.2/7"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:A/1.3",
+         "enfants": [
+          {
+           "noeud": "ind:A/1.3/1"
+          },
+          {
+           "noeud": "ind:A/1.3/2"
+          },
+          {
+           "noeud": "ind:A/1.3/3"
+          },
+          {
+           "noeud": "ind:A/1.3/4"
+          },
+          {
+           "noeud": "ind:A/1.3/5"
+          },
+          {
+           "noeud": "ind:A/1.3/6"
+          },
+          {
+           "noeud": "ind:A/1.3/7"
+          },
+          {
+           "noeud": "ind:A/1.3/8"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "noeud": "obj:A/2",
+       "enfants": [
+        {
+         "noeud": "obj-pct:A/2"
+        },
+        {
+         "noeud": "crit:A/2.1",
+         "enfants": [
+          {
+           "noeud": "ind:A/2.1/1"
+          },
+          {
+           "noeud": "ind:A/2.1/2"
+          },
+          {
+           "noeud": "ind:A/2.1/3"
+          },
+          {
+           "noeud": "ind:A/2.1/4"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:A/2.2",
+         "enfants": [
+          {
+           "noeud": "ind:A/2.2/1"
+          },
+          {
+           "noeud": "ind:A/2.2/2"
+          },
+          {
+           "noeud": "ind:A/2.2/3"
+          },
+          {
+           "noeud": "ind:A/2.2/4"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "noeud": "obj:A/3",
+       "enfants": [
+        {
+         "noeud": "obj-pct:A/3"
+        },
+        {
+         "noeud": "crit:A/3.1",
+         "enfants": [
+          {
+           "noeud": "ind:A/3.1/1"
+          },
+          {
+           "noeud": "ind:A/3.1/2"
+          },
+          {
+           "noeud": "ind:A/3.1/3"
+          },
+          {
+           "noeud": "ind:A/3.1/4"
+          },
+          {
+           "noeud": "ind:A/3.1/5"
+          },
+          {
+           "noeud": "ind:A/3.1/6"
+          },
+          {
+           "noeud": "ind:A/3.1/7"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:A/3.2",
+         "enfants": [
+          {
+           "noeud": "ind:A/3.2/1"
+          },
+          {
+           "noeud": "ind:A/3.2/2"
+          },
+          {
+           "noeud": "ind:A/3.2/3"
+          },
+          {
+           "noeud": "ind:A/3.2/4"
+          },
+          {
+           "noeud": "ind:A/3.2/5"
+          },
+          {
+           "noeud": "ind:A/3.2/6"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:A/3.3",
+         "enfants": [
+          {
+           "noeud": "ind:A/3.3/1"
+          },
+          {
+           "noeud": "ind:A/3.3/2"
+          },
+          {
+           "noeud": "ind:A/3.3/3"
+          },
+          {
+           "noeud": "ind:A/3.3/4"
+          },
+          {
+           "noeud": "ind:A/3.3/5"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "noeud": "obj:A/4",
+       "enfants": [
+        {
+         "noeud": "obj-pct:A/4"
+        },
+        {
+         "noeud": "crit:A/4.1",
+         "enfants": [
+          {
+           "noeud": "ind:A/4.1/1"
+          },
+          {
+           "noeud": "ind:A/4.1/2"
+          },
+          {
+           "noeud": "ind:A/4.1/3"
+          },
+          {
+           "noeud": "ind:A/4.1/4"
+          },
+          {
+           "noeud": "ind:A/4.1/5"
+          },
+          {
+           "noeud": "ind:A/4.1/6"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:A/4.2",
+         "enfants": [
+          {
+           "noeud": "ind:A/4.2/1"
+          },
+          {
+           "noeud": "ind:A/4.2/2"
+          },
+          {
+           "noeud": "ind:A/4.2/3"
+          },
+          {
+           "noeud": "ind:A/4.2/4"
+          },
+          {
+           "noeud": "ind:A/4.2/5"
+          },
+          {
+           "noeud": "ind:A/4.2/6"
+          },
+          {
+           "noeud": "ind:A/4.2/7"
+          },
+          {
+           "noeud": "ind:A/4.2/8"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:A/4.3",
+         "enfants": [
+          {
+           "noeud": "ind:A/4.3/1"
+          },
+          {
+           "noeud": "ind:A/4.3/2"
+          },
+          {
+           "noeud": "ind:A/4.3/3"
+          },
+          {
+           "noeud": "ind:A/4.3/4"
+          },
+          {
+           "noeud": "ind:A/4.3/5"
+          },
+          {
+           "noeud": "ind:A/4.3/6"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "noeud": "obj:A/5",
+       "enfants": [
+        {
+         "noeud": "obj-pct:A/5"
+        },
+        {
+         "noeud": "crit:A/5.1",
+         "enfants": [
+          {
+           "noeud": "ind:A/5.1/1"
+          },
+          {
+           "noeud": "ind:A/5.1/2"
+          },
+          {
+           "noeud": "ind:A/5.1/3"
+          },
+          {
+           "noeud": "ind:A/5.1/4"
+          },
+          {
+           "noeud": "ind:A/5.1/5"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:A/5.2",
+         "enfants": [
+          {
+           "noeud": "ind:A/5.2/1"
+          },
+          {
+           "noeud": "ind:A/5.2/2"
+          },
+          {
+           "noeud": "ind:A/5.2/3"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:A/5.3",
+         "enfants": [
+          {
+           "noeud": "ind:A/5.3/1"
+          },
+          {
+           "noeud": "ind:A/5.3/2"
+          },
+          {
+           "noeud": "ind:A/5.3/3"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "noeud": "obj:A/6",
+       "enfants": [
+        {
+         "noeud": "obj-pct:A/6"
+        },
+        {
+         "noeud": "crit:A/6.1",
+         "enfants": [
+          {
+           "noeud": "ind:A/6.1/1"
+          },
+          {
+           "noeud": "ind:A/6.1/2"
+          },
+          {
+           "noeud": "ind:A/6.1/3"
+          },
+          {
+           "noeud": "ind:A/6.1/4"
+          },
+          {
+           "noeud": "ind:A/6.1/5"
+          },
+          {
+           "noeud": "ind:A/6.1/6"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:A/6.2",
+         "enfants": [
+          {
+           "noeud": "ind:A/6.2/1"
+          },
+          {
+           "noeud": "ind:A/6.2/2"
+          },
+          {
+           "noeud": "ind:A/6.2/3"
+          },
+          {
+           "noeud": "ind:A/6.2/4"
+          },
+          {
+           "noeud": "ind:A/6.2/5"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "noeud": "obj:A/7",
+       "enfants": [
+        {
+         "noeud": "obj-pct:A/7"
+        },
+        {
+         "noeud": "crit:A/7.1",
+         "enfants": [
+          {
+           "noeud": "ind:A/7.1/1"
+          },
+          {
+           "noeud": "ind:A/7.1/2"
+          },
+          {
+           "noeud": "ind:A/7.1/3"
+          },
+          {
+           "noeud": "ind:A/7.1/4"
+          },
+          {
+           "noeud": "ind:A/7.1/5"
+          },
+          {
+           "noeud": "ind:A/7.1/6"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:A/7.2",
+         "enfants": [
+          {
+           "noeud": "ind:A/7.2/1"
+          },
+          {
+           "noeud": "ind:A/7.2/2"
+          },
+          {
+           "noeud": "ind:A/7.2/3"
+          },
+          {
+           "noeud": "ind:A/7.2/4"
+          },
+          {
+           "noeud": "ind:A/7.2/5"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "noeud": "sph:B",
+     "enfants": [
+      {
+       "noeud": "seuil:B"
+      },
+      {
+       "noeud": "obj:B/1",
+       "enfants": [
+        {
+         "noeud": "obj-pct:B/1"
+        },
+        {
+         "noeud": "crit:B/1.1",
+         "enfants": [
+          {
+           "noeud": "ind:B/1.1/1"
+          },
+          {
+           "noeud": "ind:B/1.1/2"
+          },
+          {
+           "noeud": "ind:B/1.1/3"
+          },
+          {
+           "noeud": "ind:B/1.1/4"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:B/1.2",
+         "enfants": [
+          {
+           "noeud": "ind:B/1.2/1"
+          },
+          {
+           "noeud": "ind:B/1.2/2"
+          },
+          {
+           "noeud": "ind:B/1.2/3"
+          },
+          {
+           "noeud": "ind:B/1.2/4"
+          },
+          {
+           "noeud": "ind:B/1.2/5"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "noeud": "obj:B/2",
+       "enfants": [
+        {
+         "noeud": "obj-pct:B/2"
+        },
+        {
+         "noeud": "crit:B/2.1",
+         "enfants": [
+          {
+           "noeud": "ind:B/2.1/1"
+          },
+          {
+           "noeud": "ind:B/2.1/2"
+          },
+          {
+           "noeud": "ind:B/2.1/3"
+          },
+          {
+           "noeud": "ind:B/2.1/4"
+          },
+          {
+           "noeud": "ind:B/2.1/5"
+          },
+          {
+           "noeud": "ind:B/2.1/6"
+          },
+          {
+           "noeud": "ind:B/2.1/7"
+          },
+          {
+           "noeud": "ind:B/2.1/8"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:B/2.2",
+         "enfants": [
+          {
+           "noeud": "ind:B/2.2/1"
+          },
+          {
+           "noeud": "ind:B/2.2/2"
+          },
+          {
+           "noeud": "ind:B/2.2/3"
+          },
+          {
+           "noeud": "ind:B/2.2/4"
+          },
+          {
+           "noeud": "ind:B/2.2/5"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:B/2.3",
+         "enfants": [
+          {
+           "noeud": "ind:B/2.3/1"
+          },
+          {
+           "noeud": "ind:B/2.3/2"
+          },
+          {
+           "noeud": "ind:B/2.3/3"
+          },
+          {
+           "noeud": "ind:B/2.3/4"
+          },
+          {
+           "noeud": "ind:B/2.3/5"
+          },
+          {
+           "noeud": "ind:B/2.3/6"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:B/2.4",
+         "enfants": [
+          {
+           "noeud": "ind:B/2.4/1"
+          },
+          {
+           "noeud": "ind:B/2.4/2"
+          },
+          {
+           "noeud": "ind:B/2.4/3"
+          },
+          {
+           "noeud": "ind:B/2.4/4"
+          },
+          {
+           "noeud": "ind:B/2.4/5"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "noeud": "obj:B/3",
+       "enfants": [
+        {
+         "noeud": "obj-pct:B/3"
+        },
+        {
+         "noeud": "crit:B/3.1",
+         "enfants": [
+          {
+           "noeud": "ind:B/3.1/1"
+          },
+          {
+           "noeud": "ind:B/3.1/2"
+          },
+          {
+           "noeud": "ind:B/3.1/3"
+          },
+          {
+           "noeud": "ind:B/3.1/4"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:B/3.2",
+         "enfants": [
+          {
+           "noeud": "ind:B/3.2/1"
+          },
+          {
+           "noeud": "ind:B/3.2/2"
+          },
+          {
+           "noeud": "ind:B/3.2/3"
+          },
+          {
+           "noeud": "ind:B/3.2/4"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:B/3.3",
+         "enfants": [
+          {
+           "noeud": "ind:B/3.3/1"
+          },
+          {
+           "noeud": "ind:B/3.3/2"
+          },
+          {
+           "noeud": "ind:B/3.3/3"
+          },
+          {
+           "noeud": "ind:B/3.3/4"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:B/3.4",
+         "enfants": [
+          {
+           "noeud": "ind:B/3.4/1"
+          },
+          {
+           "noeud": "ind:B/3.4/2"
+          },
+          {
+           "noeud": "ind:B/3.4/3"
+          },
+          {
+           "noeud": "ind:B/3.4/4"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:B/3.5",
+         "enfants": [
+          {
+           "noeud": "ind:B/3.5/1"
+          },
+          {
+           "noeud": "ind:B/3.5/2"
+          },
+          {
+           "noeud": "ind:B/3.5/3"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:B/3.6",
+         "enfants": [
+          {
+           "noeud": "ind:B/3.6/1"
+          },
+          {
+           "noeud": "ind:B/3.6/2"
+          },
+          {
+           "noeud": "ind:B/3.6/3"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "noeud": "obj:B/4",
+       "enfants": [
+        {
+         "noeud": "obj-pct:B/4"
+        },
+        {
+         "noeud": "crit:B/4.1",
+         "enfants": [
+          {
+           "noeud": "ind:B/4.1/1"
+          },
+          {
+           "noeud": "ind:B/4.1/2"
+          },
+          {
+           "noeud": "ind:B/4.1/3"
+          },
+          {
+           "noeud": "ind:B/4.1/4"
+          },
+          {
+           "noeud": "ind:B/4.1/5"
+          },
+          {
+           "noeud": "ind:B/4.1/6"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:B/4.2",
+         "enfants": [
+          {
+           "noeud": "ind:B/4.2/1"
+          },
+          {
+           "noeud": "ind:B/4.2/2"
+          },
+          {
+           "noeud": "ind:B/4.2/3"
+          },
+          {
+           "noeud": "ind:B/4.2/4"
+          },
+          {
+           "noeud": "ind:B/4.2/5"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:B/4.3",
+         "enfants": [
+          {
+           "noeud": "ind:B/4.3/1"
+          },
+          {
+           "noeud": "ind:B/4.3/2"
+          },
+          {
+           "noeud": "ind:B/4.3/3"
+          },
+          {
+           "noeud": "ind:B/4.3/4"
+          },
+          {
+           "noeud": "ind:B/4.3/5"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "noeud": "obj:B/5",
+       "enfants": [
+        {
+         "noeud": "obj-pct:B/5"
+        },
+        {
+         "noeud": "crit:B/5.1",
+         "enfants": [
+          {
+           "noeud": "ind:B/5.1/1"
+          },
+          {
+           "noeud": "ind:B/5.1/2"
+          },
+          {
+           "noeud": "ind:B/5.1/3"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:B/5.2",
+         "enfants": [
+          {
+           "noeud": "ind:B/5.2/1"
+          },
+          {
+           "noeud": "ind:B/5.2/2"
+          },
+          {
+           "noeud": "ind:B/5.2/3"
+          },
+          {
+           "noeud": "ind:B/5.2/4"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "noeud": "sph:C",
+     "enfants": [
+      {
+       "noeud": "seuil:C"
+      },
+      {
+       "noeud": "obj:C/1",
+       "enfants": [
+        {
+         "noeud": "obj-pct:C/1"
+        },
+        {
+         "noeud": "crit:C/1.1",
+         "enfants": [
+          {
+           "noeud": "ind:C/1.1/1"
+          },
+          {
+           "noeud": "ind:C/1.1/2"
+          },
+          {
+           "noeud": "ind:C/1.1/3"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:C/1.2",
+         "enfants": [
+          {
+           "noeud": "ind:C/1.2/1"
+          },
+          {
+           "noeud": "ind:C/1.2/2"
+          },
+          {
+           "noeud": "ind:C/1.2/3"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "noeud": "obj:C/2",
+       "enfants": [
+        {
+         "noeud": "obj-pct:C/2"
+        },
+        {
+         "noeud": "crit:C/2.1",
+         "enfants": [
+          {
+           "noeud": "ind:C/2.1/1"
+          },
+          {
+           "noeud": "ind:C/2.1/2"
+          },
+          {
+           "noeud": "ind:C/2.1/3"
+          },
+          {
+           "noeud": "ind:C/2.1/4"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:C/2.2",
+         "enfants": [
+          {
+           "noeud": "ind:C/2.2/1"
+          },
+          {
+           "noeud": "ind:C/2.2/2"
+          },
+          {
+           "noeud": "ind:C/2.2/3"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:C/2.3",
+         "enfants": [
+          {
+           "noeud": "ind:C/2.3/1"
+          },
+          {
+           "noeud": "ind:C/2.3/2"
+          },
+          {
+           "noeud": "ind:C/2.3/3"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:C/2.4",
+         "enfants": [
+          {
+           "noeud": "ind:C/2.4/1"
+          },
+          {
+           "noeud": "ind:C/2.4/2"
+          },
+          {
+           "noeud": "ind:C/2.4/3"
+          },
+          {
+           "noeud": "ind:C/2.4/4"
+          },
+          {
+           "noeud": "ind:C/2.4/5"
+          },
+          {
+           "noeud": "ind:C/2.4/6"
+          },
+          {
+           "noeud": "ind:C/2.4/7"
+          },
+          {
+           "noeud": "ind:C/2.4/8"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "noeud": "obj:C/3",
+       "enfants": [
+        {
+         "noeud": "obj-pct:C/3"
+        },
+        {
+         "noeud": "crit:C/3.1",
+         "enfants": [
+          {
+           "noeud": "ind:C/3.1/1"
+          },
+          {
+           "noeud": "ind:C/3.1/2"
+          },
+          {
+           "noeud": "ind:C/3.1/3"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:C/3.2",
+         "enfants": [
+          {
+           "noeud": "ind:C/3.2/1"
+          },
+          {
+           "noeud": "ind:C/3.2/2"
+          },
+          {
+           "noeud": "ind:C/3.2/3"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:C/3.3",
+         "enfants": [
+          {
+           "noeud": "ind:C/3.3/1"
+          },
+          {
+           "noeud": "ind:C/3.3/2"
+          },
+          {
+           "noeud": "ind:C/3.3/3"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:C/3.4",
+         "enfants": [
+          {
+           "noeud": "ind:C/3.4/1"
+          },
+          {
+           "noeud": "ind:C/3.4/2"
+          },
+          {
+           "noeud": "ind:C/3.4/3"
+          },
+          {
+           "noeud": "ind:C/3.4/4"
+          },
+          {
+           "noeud": "ind:C/3.4/5"
+          },
+          {
+           "noeud": "ind:C/3.4/6"
+          },
+          {
+           "noeud": "ind:C/3.4/7"
+          },
+          {
+           "noeud": "ind:C/3.4/8"
+          },
+          {
+           "noeud": "ind:C/3.4/9"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "noeud": "reussite"
+    }
+   ]
+  },
+  {
+   "id": "posture",
+   "libelle": "Posture",
+   "arbre": [
+    {
+     "noeud": "pos-meta:1",
+     "enfants": [
+      {
+       "noeud": "pos-axe:A",
+       "enfants": [
+        {
+         "noeud": "pos:A1"
+        },
+        {
+         "noeud": "pos:A2"
+        },
+        {
+         "noeud": "pos:A3"
+        },
+        {
+         "noeud": "pos:A4"
+        },
+        {
+         "noeud": "pos:A5"
+        }
+       ]
+      },
+      {
+       "noeud": "pos-axe:B",
+       "enfants": [
+        {
+         "noeud": "pos:B1"
+        },
+        {
+         "noeud": "pos:B2"
+        },
+        {
+         "noeud": "pos:B3"
+        },
+        {
+         "noeud": "pos:B4"
+        },
+        {
+         "noeud": "pos:B5"
+        }
+       ]
+      },
+      {
+       "noeud": "pos-axe:C",
+       "enfants": [
+        {
+         "noeud": "pos:C1"
+        },
+        {
+         "noeud": "pos:C2"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "noeud": "pos-meta:2",
+     "enfants": [
+      {
+       "noeud": "pos-axe:D",
+       "enfants": [
+        {
+         "noeud": "pos:D1"
+        },
+        {
+         "noeud": "pos:D2"
+        },
+        {
+         "noeud": "pos:D3"
+        }
+       ]
+      },
+      {
+       "noeud": "pos-axe:E",
+       "enfants": [
+        {
+         "noeud": "pos:E1"
+        },
+        {
+         "noeud": "pos:E2"
+        },
+        {
+         "noeud": "pos:E3"
+        },
+        {
+         "noeud": "pos:E4"
+        },
+        {
+         "noeud": "pos:E5"
+        },
+        {
+         "noeud": "pos:E6"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "noeud": "pos-meta:3",
+     "enfants": [
+      {
+       "noeud": "pos-axe:F",
+       "enfants": [
+        {
+         "noeud": "pos:F1"
+        },
+        {
+         "noeud": "pos:F2"
+        },
+        {
+         "noeud": "pos:F3"
+        },
+        {
+         "noeud": "pos:F4"
+        }
+       ]
+      },
+      {
+       "noeud": "pos-axe:G",
+       "enfants": [
+        {
+         "noeud": "pos:G1"
+        },
+        {
+         "noeud": "pos:G2"
+        },
+        {
+         "noeud": "pos:G3"
+        },
+        {
+         "noeud": "pos:G4"
+        },
+        {
+         "noeud": "pos:G5"
+        }
+       ]
+      },
+      {
+       "noeud": "pos-axe:H",
+       "enfants": [
+        {
+         "noeud": "pos:H1"
+        },
+        {
+         "noeud": "pos:H2"
+        },
+        {
+         "noeud": "pos:H3"
+        },
+        {
+         "noeud": "pos:H4"
+        },
+        {
+         "noeud": "pos:H5"
+        },
+        {
+         "noeud": "pos:H6"
+        },
+        {
+         "noeud": "pos:H7"
+        },
+        {
+         "noeud": "pos:H8"
+        },
+        {
+         "noeud": "pos:H9"
+        },
+        {
+         "noeud": "pos:H10"
+        },
+        {
+         "noeud": "pos:H11"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "noeud": "pos-meta:4",
+     "enfants": [
+      {
+       "noeud": "pos-axe:I",
+       "enfants": [
+        {
+         "noeud": "pos:I1"
+        },
+        {
+         "noeud": "pos:I2"
+        },
+        {
+         "noeud": "pos:I3"
+        }
+       ]
+      },
+      {
+       "noeud": "pos-axe:J",
+       "enfants": [
+        {
+         "noeud": "pos:J1"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "decisif": "reussite",
+ "exigences": {
+  "obligatoires": [],
+  "minimum_par_regroupement": [
+   {
+    "regroupement": "crit:A/1.1",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:A/1.2",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:A/1.3",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:A/2.1",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:A/2.2",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:A/3.1",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:A/3.2",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:A/3.3",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:A/4.1",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:A/4.2",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:A/4.3",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:A/5.1",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:A/5.2",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:A/5.3",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:A/6.1",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:A/6.2",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:A/7.1",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:A/7.2",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:B/1.1",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:B/1.2",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:B/2.1",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:B/2.2",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:B/2.3",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:B/2.4",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:B/3.1",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:B/3.2",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:B/3.3",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:B/3.4",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:B/3.5",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:B/3.6",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:B/4.1",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:B/4.2",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:B/4.3",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:B/5.1",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:B/5.2",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:C/1.1",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:C/1.2",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:C/2.1",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:C/2.2",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:C/2.3",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:C/2.4",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:C/3.1",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:C/3.2",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:C/3.3",
+    "min_actives": 1
+   },
+   {
+    "regroupement": "crit:C/3.4",
+    "min_actives": 1
+   }
+  ]
+ },
+ "jokers": {
+  "quota": 1,
+  "autorises": [
+   {
+    "noeud": "sph:A",
+    "action": {
+     "type": "ajout",
+     "valeur": 25
+    },
+    "libelle": "≈ ½ point"
+   },
+   {
+    "noeud": "sph:B",
+    "action": {
+     "type": "ajout",
+     "valeur": 25
+    },
+    "libelle": "≈ ½ point"
+   },
+   {
+    "noeud": "sph:C",
+    "action": {
+     "type": "ajout",
+     "valeur": 25
+    },
+    "libelle": "≈ ½ point"
+   }
+  ]
+ },
+ "ecarts_excel": [
+  {
+   "critere": "crit:C/3.4",
+   "cellule": "C - Scoutisme!I56",
+   "formule": "=IFERROR(AVERAGEIF(H57:H64, \"<>0\"), \"\")",
+   "indicateurs_omis": [
+    "ind:C/3.4/9"
+   ]
+  }
+ ]
+}
