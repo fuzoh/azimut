@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { creerSession } from "../session";
 import { StoreContext } from "../store/hooks";
 import { Erreurs } from "./Erreurs";
+import { Explication } from "./Explication";
+import { Graphe } from "./Graphe";
 import { Jokers } from "./Jokers";
 import { Table } from "./Table";
 import { useLiveParticipants } from "./useParticipants";
@@ -11,6 +13,13 @@ export function App() {
   const [filtre, setFiltre] = useState("");
   const [g, setG] = useState(0);
   const [selection, setSelection] = useState(0);
+  /** Nœud expliqué (index n de la grille g), -1 = aucun. */
+  const [noeud, setNoeud] = useState(-1);
+  const [vue, setVue] = useState<"table" | "graphe">("table");
+  const choisir = useCallback((p: number, n: number) => {
+    setSelection(p);
+    setNoeud(n);
+  }, []);
   const participants = useLiveParticipants(session.sources);
   const choisi = participants.find((pt) => pt.p === selection) ?? participants[0];
   const plan = session.plans[g];
@@ -29,6 +38,7 @@ export function App() {
               const nouvelle = Number(e.target.value);
               setG(nouvelle);
               setAxe(session.plans[nouvelle].axePrincipal);
+              setNoeud(-1);
             }}
             data-testid="grille"
           >
@@ -51,7 +61,10 @@ export function App() {
             ))}
           </select>
         </label>{" "}
-        · {decisif}
+        · {decisif} ·{" "}
+        <button type="button" data-action="vue" onClick={() => setVue(vue === "table" ? "graphe" : "table")}>
+          {vue === "table" ? "graphe du participant" : "retour à la table"}
+        </button>
         <label>
           {" "}
           · colonnes contenant <input value={filtre} onChange={(e) => setFiltre(e.target.value)} placeholder="ex. C/3" />
@@ -70,18 +83,25 @@ export function App() {
         </span>
       </header>
       <div className="principal">
-        <Table
-          key={`${g}-${axe}`}
-          g={g}
-          plan={plan}
-          axe={axe}
-          sources={session.sources}
-          filtre={filtre}
-          selection={choisi?.p ?? -1}
-          onSelection={setSelection}
-        />
+        {vue === "table" || !choisi ? (
+          <Table
+            key={`${g}-${axe}`}
+            g={g}
+            plan={plan}
+            axe={axe}
+            sources={session.sources}
+            filtre={filtre}
+            selection={choisi?.p ?? -1}
+            onSelection={setSelection}
+            noeud={noeud}
+            onChoisir={choisir}
+          />
+        ) : (
+          <Graphe g={g} p={choisi.p} nom={choisi.nom} plan={plan} n={noeud} onChoisir={setNoeud} />
+        )}
         {choisi && (
           <aside className="erreurs">
+            <Explication g={g} p={choisi.p} n={noeud} plan={plan} onGraphe={() => setVue("graphe")} />
             <Erreurs g={g} p={choisi.p} nom={choisi.nom} plan={plan} />
             <Jokers key={`${g}-${choisi.p}`} g={g} p={choisi.p} plan={plan} sources={session.sources} />
           </aside>

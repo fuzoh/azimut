@@ -16,6 +16,8 @@ import { couverture, feuillesDispense } from "./dispense";
 import { CAUSE, evaluate, MARQUE_CHEMIN_DISPENSE, type SourcesParticipant } from "./evaluate";
 import type { FichierG3, FichierParticipants, Grille, NonEvaluationFigee, ParticipantType } from "./format";
 import { sourcesDepuisFige } from "./participants";
+import { explain } from "./explain";
+import { graphe } from "./graphe";
 import { etatCase, idsExigences, remplissage } from "./remplissage";
 
 const v1 = v1Json as unknown as Grille;
@@ -343,6 +345,23 @@ describe("1a-B, dispense sur la contribution (cas construit)", () => {
     const marques = ids.filter((id) => r.marques[plan.index.get(id)!] & MARQUE_CHEMIN_DISPENSE);
     expect(marques).toEqual(["m0", "m1"]);
     expect(remplissage(plan, s).signalements.map((x) => plan.ids[x.n])).toEqual(["m0", "m1"]);
+  });
+
+  test("1a-B, graphe et explication : m2 = 3 sans c (arête c → m2 inactive), x = 4 avec c (arête c → x active)", () => {
+    const plan = compile(CONSTRUIT, { dispense1a: "B" });
+    const s = sourcesConstruit(plan, cases, ["d"]);
+    const id = (n: number) => plan.ids[n];
+    const actives = graphe(plan, s).aretes.filter((a) => a.active).map((a) => `${id(a.de)}→${id(a.vers)}`);
+    expect(actives).toContain("m1→m2");
+    expect(actives).toContain("c→x");
+    expect(actives).not.toContain("c→m2");
+    expect(actives).not.toContain("m3→m2");
+    const m2 = explain(plan, s, plan.index.get("m2")!);
+    expect(m2.entrees.map((e) => [e.id, e.statut])).toEqual([
+      ["c", "horsCone"],
+      ["m1", "active"],
+      ["m3", "sansResultat"],
+    ]);
   });
 
   test("en 1a-A (1b-B), la même dispense couvre a, b, c partout : x aussi est sans résultat", () => {
