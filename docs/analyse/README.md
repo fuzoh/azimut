@@ -18,7 +18,7 @@ Les documents de travail intermédiaires (01 à 17, hors 03, 05, 06 et 09) ont �
 
 ## Faits vérifiés dans les Excel
 
-Vérifiés dans les formules des trois Excel actuels. Les points 1 et 2 ne sont pas encore reportés dans `FEATURES.md` (constat 2).
+Vérifiés dans les formules des trois Excel actuels. Ils sont reportés dans `FEATURES.md` : les points 1 et 2 au constat 2, les points 3 à 5 dans « Ce qui est commun ».
 
 | # | Fait | Preuve |
 | --- | --- | --- |

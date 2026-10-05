@@ -1,6 +1,6 @@
 # Azimut — décisions et points à explorer
 
-Domaine et comportement : voir `FEATURES.md`. Faits techniques vérifiés : voir `PRACTICES.md`.
+Domaine et comportement : voir `FEATURES.md`. Modèle de qualification : voir `analyse/18-decisions-definitives.md`, qui fait foi. Faits techniques vérifiés : voir `PRACTICES.md`.
 
 ## Décisions prises
 
@@ -20,7 +20,7 @@ Domaine et comportement : voir `FEATURES.md`. Faits techniques vérifiés : voir
 - **Contrats :** des schémas partagés, avec inversion des dépendances. La DB et le client *implémentent* les contrats ; les types ne remontent jamais de la DB vers le client. Type safety de bout en bout.
 - **Bleeding edge :** décidé bibliothèque par bibliothèque, sans budget global.
 - **shadcn lint :** il s'agit de [`@shadcn/lint`](https://github.com/shadcn-ui/lint), un plugin JS pour oxlint.
-- **Calculs de qualification :** dans le package `domain`, exécutés sur le client. On recalcule de façon incrémentale, comme un tableur (piste : signaux ou graphe de dépendances), sans recalculer tout l'arbre.
+- **Calculs de qualification :** dans le package `domain`, exécutés sur le client. On recalcule de façon incrémentale, comme un tableur (piste : signaux ou graphe de dépendances), sans recalculer tout le graphe. Le domaine impose la rejouabilité intégrale et des fonctions publiées immuables (18 §7, §10).
 - **Licence :** AGPL-3.0. Une instance modifiée et hébergée doit publier ses sources.
 
 ### Technique de base (grill du 2026-10-03, suite)
@@ -30,9 +30,9 @@ Faits mesurés pendant ce grill : `PRACTICES.md` §9.
 - **APIs Bun :** autorisées uniquement dans `apps/server`, dans la couche infra (DB, WebSocket, hash). Les packages partagés (`contracts`, `domain`, `env`) et le web restent neutres vis-à-vis du runtime.
 - **TypeScript :** 7 comme compilateur et vérificateur. Lint type-aware avec oxlint (tsgolint). Pas d'ESLint.
 - **Effect :** utilisé côté serveur et côté client. Le package `domain` reste en fonctions TypeScript pures, sans `Effect`, appelées depuis le code Effect.
-- **Données stockées :** le serveur ne stocke que les données maîtres, dans la structure du domaine. Moyennes et autres calculs sont faits sur le client, à l'affichage : l'accès et la mise à jour des données restent séparés des calculs d'affichage. Le serveur peut aussi calculer avec `domain` quand il en a besoin (routes d'export).
+- **Données stockées :** le serveur ne stocke que les données maîtres, dans la structure du domaine. Moyennes et autres calculs sont faits sur le client, à l'affichage : l'accès et la mise à jour des données restent séparés des calculs d'affichage. Le serveur peut aussi calculer avec `domain` quand il en a besoin (routes d'export). Conforme à 18 §10 : aucun instantané de résultats ne sert de référence ; un cache dérivé et reconstructible reste possible.
 - **Store client :** TanStack DB. Eden et HTTP pour tout ce qui n'a pas besoin de live ; Electric ou WebSocket pour les parties live, à décider une fois le domaine détaillé.
-- **Historique :** une table d'état courant et une table d'historique append-only, écrite par le repository dans la même transaction, avec l'auteur tiré de l'utilisateur connecté. À confirmer avec le domaine.
+- **Historique :** une table d'état courant et une table d'historique append-only, écrite par le repository dans la même transaction, avec l'auteur tiré de l'utilisateur connecté. Le domaine confirme le besoin (qui, quoi, quand : 18 §5) sans prescrire de schéma (18 §12).
 - **Verrous :** en mémoire dans le serveur, derrière une interface (service Effect), pour passer à Valkey le jour où c'est nécessaire.
 - **IDs :** UUIDv7.
 - **Origine unique :** l'app est derrière un reverse proxy, sur un seul domaine. `/api` et `/ws` sont routés par chemin, sans sous-domaines, donc sans CORS ni cookie partagé entre sous-domaines. Traefik est envisagé en dev.
@@ -126,7 +126,7 @@ Idée reprise d'Ascent : chaque worktree reçoit un **slot** (1 à 9), le clone 
 
 ## Grill — reprendre ici
 
-Le grill technique a commencé le 2026-10-03 (décisions dans « Technique de base » plus haut). Il reprend sur les décisions ouvertes ci-dessous, puis passe au domaine, à partir d'exemples de qualifications réelles.
+Le grill technique a commencé le 2026-10-03 (décisions dans « Technique de base » plus haut). Le modèle de qualification a été tranché le 2026-10-04 (`analyse/18-decisions-definitives.md`). Le grill reprend sur les décisions ouvertes ci-dessous.
 
 ### Technique : décisions ouvertes
 - [ ] **Réponses au format wire :** pas de schéma de transformation dans les `response:`, car c'est cassé dans les deux bibliothèques (`PRACTICES.md` §9). Les dates voyagent en chaînes ISO et le client convertit explicitement. Un test qui parcourt les routes l'impose. Proposé, à confirmer.
@@ -134,7 +134,7 @@ Le grill technique a commencé le 2026-10-03 (décisions dans « Technique de ba
 - [ ] **Architecture par feature :** packages par feature ou dossiers colocalisés dans les apps ? À décider après le domaine.
 - [ ] **Coupure courte, mécanisme :** TanStack DB seul ne retente pas les écritures. Une écriture échouée est annulée et la saisie disparaît, donc il faut une couche de retry. Piste : `@tanstack/offline-transactions` 1.0 (outbox IndexedDB, replay avec backoff, `idempotencyKey` que le serveur doit dédupliquer). Il couvrirait aussi le rechargement de l'onglet, sans que ce soit exigé. Alternative : un retry maison en mémoire. À explorer (`PRACTICES.md` §9).
 - [ ] **Conformité contract-first :** assertion de type entre `$inferSelect` / `$inferInsert` de Drizzle et le type du contrat, dans un `*.test-d.ts`. On ne génère jamais le contrat à partir de la DB.
-- [ ] **Recalcul incrémental côté client :** signaux (bibliothèque ?), graphe de dépendances maison, ou live queries TanStack DB ? Dépend du domaine.
+- [ ] **Recalcul incrémental côté client :** signaux (bibliothèque ?), graphe de dépendances maison, ou live queries TanStack DB ? Le domaine est fixé : graphe de nœuds sans cycle (18 §3), fonctions immuables (18 §7), cache éventuel reconstructible (18 §10).
 - [ ] **Ops :** hébergeur suisse, reverse proxy en prod (Traefik ou Caddy), sauvegardes, suivi d'erreurs (auto-hébergé à cause de la nLPD ?), job runner (`pg-boss`) pour la synchronisation MiData.
 - [ ] **Mises à jour de dépendances :** ni Dependabot (#14320) ni Renovate (PR #42909 non fusionnée) ne gèrent les catalogues Bun. Options :
   - Renovate avec un `customManagers` en regex ;
@@ -147,14 +147,15 @@ Le grill technique a commencé le 2026-10-03 (décisions dans « Technique de ba
 - [ ] **Worktrees parallèles :** scripts de slots (ports, bases, session navigateur), ou un projet compose complet par worktree ? Voir plus bas. Piste : Traefik en dev avec un hostname `*.localhost` par worktree (ex. `w1.azimut.localhost`) à la place des ports par slot ; les cookies seraient aussi isolés par worktree.
 
 ### Domaine : décisions ouvertes
-Voir « Questions ouvertes » dans `FEATURES.md`. Points à traiter en priorité :
-- la généralisation des échelles, des seuils, des conversions et des agrégations, à partir des exemples de qualifications réelles ;
-- un modèle de données qu'on peut projeter vers plusieurs vues (par exercice, par thème, par rendu, bilan final, état du cours) et les statistiques de suivi (voir « Projections et visualisations » dans `FEATURES.md`) ;
-- la généralisation au-delà de l'arbre : référentiel et instances, regroupements n-n décisifs ou indicatifs, règle de décision finale (voir « Analyse de trois qualifications réelles » dans `FEATURES.md`) ;
-- obtenir au moins une qualification **remplie** et anonymisée, pour voir l'usage réel (commentaires, cases vides, ajustements de fin de cours) ;
-- la correspondance entre les rôles de cours MiData et les droits dans Azimut, la synchronisation des cours (à la connexion ? périodique ?), et le report des qualifications dans MiData ;
+Le modèle de qualification est fixé par `analyse/18-decisions-definitives.md`. Ses points ouverts sont dans sa section 13 : catalogue de calcul, conversions et normalisation ; catalogue des jokers ; rendu du remplissage ; navigation et vues ; cycle de vie et archivage ; gabarits et publication ; exports ; schéma de stockage et moteur de calcul.
+
+Hors modèle, voir « Questions ouvertes » dans `FEATURES.md`. Points à traiter en priorité :
+- la correspondance entre les rôles de cours MiData et les droits dans Azimut, les groupes d'évaluation et le formateur référent ;
+- la synchronisation MiData : cours et rôles (à la connexion ? périodique ?), participants (moment, devenir des données d'un participant écarté), et le report des qualifications dans MiData ;
+- la conservation des données, l'anonymisation et la nLPD ;
+- les critères éliminatoires, que 18 ne traite pas ;
+- obtenir au moins une qualification **remplie** et anonymisée, pour voir l'usage réel (commentaires, cases vides, ajustements de fin de cours) et éprouver le modèle ;
 - le positionnement face à Qualix ;
 - les verrous (durée, inactivité) et le moment de la sauvegarde ;
-- l'historique et la restauration ;
-- la conservation des données et la nLPD ;
-- les idées notées dans « Idées à explorer » de `FEATURES.md` : brouillon hors cours, figer, archivage, anonymisation à 3 mois, seuil final, éléments commentés sans note, accueil personnalisé, statistiques par cours, entre cours et dans le temps, synchronisation des participants MiData, envoi par mail.
+- la consultation de l'historique et la restauration ;
+- les idées notées dans « Idées à explorer » de `FEATURES.md` : accès aux grilles archivées, anonymisation à 3 mois, accueil personnalisé, statistiques par cours, entre cours et dans le temps, envoi par mail.
