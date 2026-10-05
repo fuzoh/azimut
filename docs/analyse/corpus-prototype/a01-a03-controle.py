@@ -12,7 +12,8 @@ Ce n'est pas le moteur du prototype : c'est une seconde source pour ses tests.
     uv run docs/analyse/corpus-prototype/a01-a03-controle.py
     uv run docs/analyse/corpus-prototype/a01-a03-controle.py --figer
 
-`--figer` écrit aussi `a03-participants.json` : sources des participants types,
+`--figer` écrit aussi `a01-participants.json` et `a03-participants.json` :
+sources des participants types,
 dans la forme des collections du prototype (nœuds désignés par leur id, case
 ordinale en rang du palier, à partir de 0), et résultats attendus de tous les
 nœuds de calcul (`null` : sans résultat) ; pour Basile, aussi sans arrondi propagé.
@@ -116,27 +117,18 @@ def evaluer(grille, cases, excel=False, jokers=(), arrondi=True, h4_strict=False
 def erreurs(grille, cases):
     """Exigences de remplissage non satisfaites.
 
-    Lit le format commun (`obligatoire` sur le nœud, `minimumParRegroupement`)
-    et l'ancien format de A01 (`obligatoires`, `minimum_par_regroupement`).
+    Lit le format commun : `obligatoire` sur le nœud, `minimumParRegroupement`.
     """
     noeuds = {n["id"]: n for n in grille["noeuds"]}
-    ex = grille["exigences"]
-    err = []
-    if ex.get("obligatoires"):
-        err += [
-            n["id"]
-            for n in grille["noeuds"]
-            if n["type"] == "donnees" and cases.get(n["id"]) is None
-        ]
-    err += [
+    err = [
         n["id"]
         for n in grille["noeuds"]
         if n.get("obligatoire") and cases.get(n["id"]) is None
     ]
     minimums = [
-        (m["regroupement"], m["min_actives"])
-        for m in ex.get("minimum_par_regroupement", [])
-    ] + [(m["noeud"], m["minActives"]) for m in ex.get("minimumParRegroupement", [])]
+        (m["noeud"], m["minActives"])
+        for m in grille.get("exigences", {}).get("minimumParRegroupement", [])
+    ]
     for rid, mini in minimums:
         actives = sum(cases.get(e["noeud"]) is not None for e in noeuds[rid]["entrees"])
         if actives < mini:
@@ -436,6 +428,47 @@ def en_nombre(v):
     return None if v is None else float(v)
 
 
+def figer_a01():
+    """Écrit `a01-participants.json`, seconde source des tests du prototype.
+
+    Barème numérique : la valeur stockée est la note. Les résultats attendus
+    couvrent tous les nœuds de calcul (exercices, objectifs, critères, thèmes,
+    objectifs transversaux), en sémantique 18.
+    """
+    g = json.loads((ICI / "a01-structure.json").read_text())
+    noeuds = {n["id"]: n for n in g["noeuds"]}
+    participants = []
+    for nom, cases in participants_a01(g).items():
+        v = evaluer(g, cases)
+        participants.append(
+            {
+                "nom": nom,
+                "sources": {
+                    "cases": [
+                        {"noeud": i, "valeur": float(x)}
+                        for i, x in cases.items()
+                        if x is not None
+                    ],
+                    "nonEvaluations": [],
+                    "jokers": [],
+                },
+                "attendus": {
+                    i: en_nombre(v[i]) for i, n in noeuds.items() if n["type"] == "calcul"
+                },
+                "erreursRemplissage": erreurs(g, cases),
+            }
+        )
+    sortie = {
+        "grille": "A01",
+        "source": "a01-a03-controle.py --figer",
+        "participants": participants,
+    }
+    (ICI / "a01-participants.json").write_text(
+        json.dumps(sortie, ensure_ascii=False, indent=1) + "\n"
+    )
+    print(f"\na01-participants.json : {len(participants)} participants")
+
+
 def figer_a03():
     """Écrit `a03-participants.json`, seconde source des tests du prototype."""
     g = json.loads((ICI / "a03-structure.json").read_text())
@@ -508,4 +541,5 @@ if __name__ == "__main__":
     controle_a01()
     controle_a03()
     if "--figer" in sys.argv:
+        figer_a01()
         figer_a03()

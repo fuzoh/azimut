@@ -73,4 +73,23 @@ describe("compile", () => {
     ]);
     expect(erreurs(g)).toEqual(["cycle entre x"]);
   });
+
+  test("refuse F4 à F7 sans leurs paramètres requis", () => {
+    const g = grilleMinimale([
+      { id: "a", type: "donnees", libelle: "a", bareme: "note" },
+      { id: "f4", type: "calcul", libelle: "f4", fonction: "F4", entrees: [{ noeud: "a", poids: 1 }] },
+      { id: "f5", type: "calcul", libelle: "f5", fonction: "F5", entrees: [{ noeud: "a", poids: 1 }] },
+      { id: "f6", type: "calcul", libelle: "f6", fonction: "F6", entrees: [{ noeud: "a", poids: 1 }], params: { kHautes: 1 } },
+      { id: "f7", type: "calcul", libelle: "f7", fonction: "F7", entrees: [{ noeud: "a", poids: 1 }], params: { pivot: 4 } },
+    ]);
+    expect(erreurs(g).map((e) => e.split(" : ")[0])).toEqual(["f4", "f5", "f6", "f7"]);
+  });
+
+  test("refuse un pas d'arrondi hors de 1 ; 0,5 ; 0,1", () => {
+    const g = grilleMinimale([
+      { id: "a", type: "donnees", libelle: "a", bareme: "note" },
+      { id: "m", type: "calcul", libelle: "m", fonction: "F1", entrees: [{ noeud: "a", poids: 1 }], arrondi: 0.25 },
+    ]);
+    expect(erreurs(g)).toEqual(["m : pas d'arrondi 0.25 hors de 1 ; 0,5 ; 0,1"]);
+  });
 });

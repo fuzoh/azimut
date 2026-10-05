@@ -1,7 +1,7 @@
 // `compile(grille, commutateurs) → plan` (spec 20, « Plan compilé »).
-// Ce ticket couvre ce dont A03 a besoin : validation (références, barème commun
-// entre entrées de données, absence de cycle), ordre topologique, CSR des
-// entrées, barèmes, pipeline et tables id ↔ index.
+// Validation (références, catalogue F1–F7 et ses paramètres, barème commun
+// entre entrées de données, absence de cycle, pas d'arrondi), ordre
+// topologique, CSR des entrées, barèmes, pipeline, définitions et tables id ↔ index.
 
 import type { ActionJoker, Bareme, Grille, Noeud, ParametresFonction } from "./format";
 
@@ -13,7 +13,8 @@ export const TYPE_COMMENTAIRE = 3;
 
 /** Code de fonction : 0 = aucune, 1…7 = F1…F7. */
 export const FONCTIONS = ["", "F1", "F2", "F3", "F4", "F5", "F6", "F7"] as const;
-const IMPLEMENTEES = new Set(["F1", "F2", "F3"]);
+/** Pas d'arrondi propagé admis (spec 20, « Modèle de valeur »). */
+const PAS_ARRONDI = [1, 0.5, 0.1];
 
 export interface BaremeCompile {
   id: string;
@@ -24,6 +25,7 @@ export interface BaremeCompile {
   min: number;
   max: number;
   pas: number;
+  pourcentage: boolean;
   colorations: [number, number, string][];
 }
 
@@ -67,6 +69,8 @@ export interface Plan {
   conversions: Float64Array[];
   /** Pas d'arrondi propagé, 0 = aucun. */
   arrondi: Float64Array;
+  /** Définition → ses occurrences (index n), dans l'ordre du fichier. */
+  occurrences: Map<string, number[]>;
   jokerDefs: JokerDefCompile[];
   indexJoker: Map<string, number>;
   quotaJokers: number;
@@ -90,6 +94,7 @@ function compilerBareme(b: Bareme): BaremeCompile {
       min: b.min,
       max: b.max,
       pas: b.pas,
+      pourcentage: b.presentation === "pourcentage",
       colorations: b.colorations ?? [],
     };
   }
@@ -110,6 +115,7 @@ function compilerBareme(b: Bareme): BaremeCompile {
     min: Math.min(...valeurs),
     max: Math.max(...valeurs),
     pas: 1,
+    pourcentage: false,
     colorations: [],
   };
 }
@@ -172,12 +178,11 @@ export function compile(grille: Grille, _commutateurs: Commutateurs = {}): Plan 
     if (noeud.type !== "calcul") return;
     const code = FONCTIONS.indexOf(noeud.fonction);
     if (code <= 0) erreurs.push(`${noeud.id} : fonction inconnue ${noeud.fonction}`);
-    else if (!IMPLEMENTEES.has(noeud.fonction))
-      erreurs.push(`${noeud.id} : ${noeud.fonction} pas encore implémentée`);
     fonction[n] = Math.max(code, 0);
     params[n] = noeud.params ?? null;
-    if (noeud.fonction === "F2" && typeof noeud.params?.seuil !== "number")
-      erreurs.push(`${noeud.id} : F2 sans seuil`);
+    erreurs.push(...verifierParams(noeud.id, noeud.fonction, noeud.params ?? {}));
+    if (noeud.arrondi !== undefined && !PAS_ARRONDI.includes(noeud.arrondi))
+      erreurs.push(`${noeud.id} : pas d'arrondi ${noeud.arrondi} hors de 1 ; 0,5 ; 0,1`);
     for (const e of noeud.entrees) {
       const s = index.get(e.noeud);
       if (s === undefined) {
@@ -272,6 +277,16 @@ export function compile(grille: Grille, _commutateurs: Commutateurs = {}): Plan 
 
   if (erreurs.length > 0) throw new ErreurCompilation(erreurs);
 
+  // Définitions partagées : une définition ne porte aucune case et ne compte
+  // nulle part ; elle relie seulement ses occurrences.
+  const occurrences = new Map<string, number[]>();
+  noeuds.forEach((noeud, n) => {
+    if (noeud.type === "regroupement" || noeud.definition === undefined) return;
+    const liste = occurrences.get(noeud.definition) ?? [];
+    liste.push(n);
+    occurrences.set(noeud.definition, liste);
+  });
+
   return {
     grille,
     N,
@@ -293,6 +308,7 @@ export function compile(grille: Grille, _commutateurs: Commutateurs = {}): Plan 
     conversionIndex,
     conversions,
     arrondi,
+    occurrences,
     jokerDefs,
     indexJoker,
     quotaJokers: grille.jokers?.quota ?? 0,
@@ -301,11 +317,41 @@ export function compile(grille: Grille, _commutateurs: Commutateurs = {}): Plan 
   };
 }
 
+/** Paramètres requis par chaque fonction du catalogue (spec 20, « Catalogue de fonctions »). */
+function verifierParams(id: string, f: string, p: ParametresFonction): string[] {
+  const e: string[] = [];
+  const nombre = (v: unknown) => typeof v === "number" && Number.isFinite(v);
+  const entier = (v: unknown) => Number.isInteger(v) && (v as number) >= 0;
+  if (p.minEntreesActives !== undefined && !entier(p.minEntreesActives))
+    e.push(`${id} : minEntreesActives doit être un entier ≥ 0`);
+  switch (f) {
+    case "F2":
+      if (!nombre(p.seuil)) e.push(`${id} : F2 sans seuil`);
+      break;
+    case "F4":
+      if (p.k !== "toutes" && !(entier(p.k) && (p.k as number) >= 1)) e.push(`${id} : F4 sans k (entier ≥ 1 ou « toutes »)`);
+      if (p.seuil !== undefined && !nombre(p.seuil)) e.push(`${id} : F4 seuil invalide`);
+      break;
+    case "F5":
+      if (p.mode !== "meilleure" && p.mode !== "derniere") e.push(`${id} : F5 sans mode (meilleure ou derniere)`);
+      if (p.plafond !== undefined && !nombre(p.plafond)) e.push(`${id} : F5 plafond invalide`);
+      break;
+    case "F6":
+      if (!entier(p.kHautes) || !entier(p.kBasses)) e.push(`${id} : F6 sans kHautes / kBasses entiers ≥ 0`);
+      break;
+    case "F7":
+      if (!nombre(p.pivot) || !nombre(p.facteurBas) || !entier(p.maxInsuffisantes))
+        e.push(`${id} : F7 sans pivot, facteurBas ou maxInsuffisantes`);
+      break;
+  }
+  return e;
+}
+
 /**
  * Barème de sortie par défaut (spec, « Barèmes ») : le barème commun des
  * entrées ; `0–100 %` pour des entrées hétérogènes ou binaires ; un numérique
- * couvrant les valeurs associées pour des entrées ordinales. F2 et F3 sortent
- * en binaire. Les barèmes implicites sont ajoutés à la liste du plan.
+ * couvrant les valeurs associées pour des entrées ordinales. F2, F3, F4 et F7
+ * sortent en binaire. Les barèmes implicites sont ajoutés à la liste du plan.
  */
 function baremeParDefaut(
   fonction: string,
@@ -320,8 +366,8 @@ function baremeParDefaut(
     indexBareme.set(b.id, baremes.length - 1);
     return baremes.length - 1;
   };
-  const vide = { valeurs: new Float64Array(0), libelles: [], colorations: [] };
-  if (fonction === "F2" || fonction === "F3") {
+  const vide = { valeurs: new Float64Array(0), libelles: [], colorations: [], pourcentage: false };
+  if (fonction === "F2" || fonction === "F3" || fonction === "F4" || fonction === "F7") {
     return ajouter({ ...vide, id: "(binaire)", type: "ordinal", valeurs: Float64Array.of(0, 1), libelles: ["KO", "OK"], min: 0, max: 1, pas: 1 });
   }
   const pourcent = (): number => ajouter({ ...vide, id: "(0–100 %)", type: "numerique", min: 0, max: 100, pas: 1 });

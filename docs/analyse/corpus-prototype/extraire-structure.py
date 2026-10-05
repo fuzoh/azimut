@@ -231,11 +231,7 @@ def a01():
                     "arbre": arbre_tr,
                 },
             ],
-            "decisif": None,
-            "exigences": {
-                "obligatoires": "tous les nœuds de données",
-                "minimum_par_regroupement": [],
-            },
+            "exigences": {"minimumParRegroupement": []},
             "jokers": {"quota": 0, "autorises": []},
         },
     )
