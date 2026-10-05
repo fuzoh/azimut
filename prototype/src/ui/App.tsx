@@ -2,7 +2,9 @@ import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
 import { creerEssai } from "../essai";
 import type { Grille } from "../noyau/format";
 import { ecrireUrl } from "../reglages";
+import { fabriquePourReglages } from "../store/fabriques";
 import { StoreContext } from "../store/hooks";
+import { PastilleWorker } from "./PastilleWorker";
 import { Copie } from "./Copie";
 import { Erreurs } from "./Erreurs";
 import { Explication } from "./Explication";
@@ -26,7 +28,7 @@ function exporterStructure(grille: Grille) {
 export function App() {
   // Les paramètres d'URL font foi au chargement ; l'URL est aussitôt réécrite
   // complète, pour qu'un lien copié reproduise toute la configuration.
-  const [essai] = useState(() => creerEssai(location.search));
+  const [essai] = useState(() => creerEssai(location.search, { fabrique: fabriquePourReglages }));
   const etat = useSyncExternalStore(essai.abonner, essai.etat);
   useEffect(() => history.replaceState(null, "", ecrireUrl(essai.etat().reglages)), [essai]);
   const session = essai.session;
@@ -97,6 +99,7 @@ export function App() {
           réglages
         </button>
         <PastilleVerification etat={etat} />
+        <PastilleWorker store={session.store} />
         {etat.reglages.comparaison && (
           <span className="comparaison-active" data-testid="comparaison-active" title="Comparaison avec la configuration B active">
             A → B{ecarts ? ` : ${ecarts.size} nœud(s) diffèrent` : ""}

@@ -140,3 +140,22 @@ export function poserJoker(
 export function retirerJoker(sources: Sources, id: number): void {
   if (sources.jokers.has(id)) sources.jokers.delete(id);
 }
+
+/**
+ * Origine distante (spec 20, « Worker ») : l'émetteur (simulateur de saisies
+ * distantes, synchronisation) inscrit ses clés ici avant d'écrire ; le relais
+ * du store les retire et marque le changement `distante`.
+ */
+export const origineDistante = {
+  cases: new Set<number>(),
+  nonEvaluations: new Set<number>(),
+  jokers: new Set<number>(),
+};
+
+/** Saisie venue de la synchronisation : comme `ecrireCase`, clé inscrite d'abord. */
+export function ecrireCaseDistante(sources: Sources, g: number, p: number, d: number, valeur: number): void {
+  const k = cle(g, p, d);
+  if (Number.isNaN(valeur) && !sources.cases.has(k)) return;
+  origineDistante.cases.add(k);
+  ecrireCase(sources, g, p, d, valeur);
+}

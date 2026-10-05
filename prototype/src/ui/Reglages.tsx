@@ -153,7 +153,7 @@ export function Reglages({ essai, etat }: { essai: Essai; etat: EtatEssai }) {
 
       <fieldset>
         <legend>Store et générateur (au rechargement)</legend>
-        <p className="aide">Mécanisme seulement : effet aux tickets #23 (générateur), #24 et #25 (store).</p>
+        <p className="aide">Configuration de base (signaux, worker, paresseux, périmée) et N du LRU actifs ; les variantes du store arrivent au ticket #25 (en attendant : store provisoire sur le thread principal).</p>
         <div className="grille-reglages">
           {(Object.keys(CHOIX_STORE) as (keyof typeof CHOIX_STORE)[]).map((k) => (
             <Choix

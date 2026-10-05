@@ -6,8 +6,9 @@ import { memeValeur } from "./comparaison";
 import { type Plan, TYPE_DONNEES } from "./noyau/compile";
 import { evaluate, type SourcesParticipant } from "./noyau/evaluate";
 import { lireSourcesGrille } from "./session";
+import { cle } from "./sources/cle";
 import type { Sources } from "./sources/collections";
-import type { ResultatCellule, StoreNotes } from "./store/store";
+import type { InstantaneStore, ResultatCellule, StoreNotes } from "./store/store";
 
 export interface EcartVerification {
   g: number;
@@ -26,6 +27,8 @@ export interface RapportVerification {
   comparees: number;
   /** Cellules « en calcul » au moment de la vérification, non comparées. */
   enCalcul: number;
+  /** Store asynchrone : cellules souscrites du store mince, comparées en plus de l'instantané (comptées dans `comparees`). */
+  souscrites: number;
   ecarts: EcartVerification[];
   dureeMs: number;
 }
@@ -52,37 +55,65 @@ function comparerCellule(
   if (!Object.is(oracle.saisie, store.saisie)) ajouter("saisie", oracle.saisie, store.saisie);
 }
 
-/** Recalcul complet par l'oracle, comparé au store. Synchrone. */
-export function verifier({ plans, sources, store }: ContexteVerification, numero = 0): RapportVerification {
+/**
+ * Recalcul complet par l'oracle, comparé au store. Synchrone. `instantane` :
+ * résultats complets d'un store asynchrone (worker), lus à la place de
+ * `getResult` ; la saisie se relit alors dans les sources. Les cellules
+ * souscrites du store mince (thread principal) sont alors comparées en plus.
+ */
+export function verifier({ plans, sources, store }: ContexteVerification, numero = 0, instantane?: InstantaneStore): RapportVerification {
   const debut = performance.now();
   const ecarts: EcartVerification[] = [];
   let comparees = 0;
   let enCalcul = 0;
+  /** Résultats de l'oracle par (g, p), relus pour les cellules souscrites. */
+  const oracles = new Map<number, { r: ReturnType<typeof evaluate>; s: SourcesParticipant }>();
+  const comparer = (g: number, p: number, n: number, obtenu: ResultatCellule) => {
+    const plan = plans[g];
+    const o = oracles.get(cle(g, p, 0));
+    if (!o || n >= plan.N) return;
+    if (obtenu.enCalcul) {
+      enCalcul++;
+      return;
+    }
+    comparees++;
+    const d = plan.type[n] === TYPE_DONNEES ? plan.indexDonnee[n] : -1;
+    const attendu = { valeur: o.r.valeurs[n], cause: o.r.causes[n], marques: o.r.marques[n], saisie: d >= 0 ? o.s.cases[d] : NaN, enCalcul: false };
+    comparerCellule(g, p, n, plan.ids[n], attendu, obtenu, ecarts);
+  };
   plans.forEach((plan, g) => {
     const parParticipant: Map<number, SourcesParticipant> = lireSourcesGrille({ plans, sources }, g);
+    const i = instantane?.grilles[g];
     for (const [p, s] of parParticipant) {
-      const r = evaluate(plan, s);
+      oracles.set(cle(g, p, 0), { r: evaluate(plan, s), s });
       for (let n = 0; n < plan.N; n++) {
-        const obtenu = store.getResult(g, p, n);
-        if (obtenu.enCalcul) {
-          enCalcul++;
-          continue;
-        }
-        comparees++;
         const d = plan.type[n] === TYPE_DONNEES ? plan.indexDonnee[n] : -1;
-        const attendu = { valeur: r.valeurs[n], cause: r.causes[n], marques: r.marques[n], saisie: d >= 0 ? s.cases[d] : NaN, enCalcul: false };
-        comparerCellule(g, p, n, plan.ids[n], attendu, obtenu, ecarts);
+        comparer(
+          g,
+          p,
+          n,
+          i
+            ? { valeur: i.valeurs[p * plan.N + n], cause: i.causes[p * plan.N + n], marques: i.marques[p * plan.N + n], saisie: d >= 0 ? s.cases[d] : NaN, enCalcul: false }
+            : store.getResult(g, p, n),
+        );
       }
     }
   });
-  return { numero, comparees, enCalcul, ecarts, dureeMs: performance.now() - debut };
+  let souscrites = 0;
+  if (instantane && store.cellulesSouscrites) {
+    for (const [g, p, n] of store.cellulesSouscrites()) {
+      souscrites++;
+      comparer(g, p, n, store.getResult(g, p, n));
+    }
+  }
+  return { numero, comparees, enCalcul, souscrites, ecarts, dureeMs: performance.now() - debut };
 }
 
 export interface Verification {
   /** Dernier rapport ; null avant la première vérification. */
   dernier(): RapportVerification | null;
   /** Vérifie tout de suite (après une bascule du modèle, par exemple). */
-  maintenant(): RapportVerification;
+  maintenant(): RapportVerification | null;
   abonner(rappel: (r: RapportVerification) => void): () => void;
   arreter(): void;
 }
@@ -103,9 +134,32 @@ export function creerVerification(contexte: () => ContexteVerification): Verific
   // Stores asynchrones (#24/#25) : des cellules peuvent être « en calcul » au
   // moment de la vérification. On revérifie alors, un nombre borné de fois.
   let relances = 0;
+  /** Store asynchrone : l'instantané demandé au worker, puis la comparaison ; relancée si les sources ont bougé entre-temps. */
+  let demande = 0;
+  const verifierAsynchrone = (ctx: ContexteVerification) => {
+    const ma = ++demande;
+    const version = ctx.store.version!();
+    void ctx.store.instantane!().then((inst) => {
+      if (ma !== demande || arretee) return;
+      if (inst.version !== version || ctx.store.version!() !== version) {
+        if (relances++ < RELANCES_MAX) planifiee = setTimeout(verifierEtRelancer, DELAI_RELANCE_MS);
+        return;
+      }
+      rapport = verifier(contexte(), ++numero, inst);
+      // Cellules souscrites encore « en calcul » (intérêt tout juste déclaré) : on revérifie.
+      if (rapport.enCalcul > 0 && relances++ < RELANCES_MAX) planifiee = setTimeout(verifierEtRelancer, DELAI_RELANCE_MS);
+      for (const r of rappels) r(rapport);
+    });
+  };
+  let arretee = false;
   const verifierEtRelancer = () => {
     planifiee = null;
-    rapport = verifier(contexte(), ++numero);
+    const ctx = contexte();
+    if (ctx.store.instantane) {
+      verifierAsynchrone(ctx);
+      return rapport;
+    }
+    rapport = verifier(ctx, ++numero);
     if (rapport.enCalcul > 0 && relances < RELANCES_MAX) {
       relances++;
       planifiee = setTimeout(verifierEtRelancer, DELAI_RELANCE_MS);
@@ -140,6 +194,7 @@ export function creerVerification(contexte: () => ContexteVerification): Verific
       };
     },
     arreter() {
+      arretee = true;
       if (planifiee !== null) clearTimeout(planifiee);
       for (const a of abonnements) a.unsubscribe();
       rappels.clear();
