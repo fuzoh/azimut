@@ -1,6 +1,7 @@
 import { useCallback, useState } from "react";
 import { creerSession } from "../session";
 import { StoreContext } from "../store/hooks";
+import { Copie } from "./Copie";
 import { Erreurs } from "./Erreurs";
 import { Explication } from "./Explication";
 import { Graphe } from "./Graphe";
@@ -104,6 +105,15 @@ export function App() {
             <Explication g={g} p={choisi.p} n={noeud} plan={plan} onGraphe={() => setVue("graphe")} />
             <Erreurs g={g} p={choisi.p} nom={choisi.nom} plan={plan} />
             <Jokers key={`${g}-${choisi.p}`} g={g} p={choisi.p} plan={plan} sources={session.sources} />
+            <Copie
+              session={session}
+              g={g}
+              onCopie={(nouvelle) => {
+                setG(nouvelle);
+                setAxe(session.plans[nouvelle].axePrincipal);
+                setNoeud(-1);
+              }}
+            />
           </aside>
         )}
       </div>

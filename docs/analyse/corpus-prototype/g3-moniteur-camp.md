@@ -232,6 +232,12 @@ E2 change (suppression d'Appréciation globale), Animation change (poids 2), SR5
 | Emma | sans joker | Animation 2,75, **Réussite KO** | joker : 3,00, Réussite OK |
 | Félix | H4 strict (une entrée sans résultat rend F3 sans résultat) | Minimaux remplis et Réussite **sans résultat** | Réussite OK |
 
+### Variante J3 : dispense et joker posés avant la copie
+
+Ajoutée pour la copie de grille ([#21](https://github.com/fuzoh/azimut/issues/21)). La dispense de E3 de Chloé et le joker d'Emma sont posés en V1 au soir de J3, avant la copie. La copie les reprend tels quels ; l'héritage de la dispense se recalcule sur V2, donc **SR5**, ajouté sous E3, est couvert pour Chloé. Juste après la copie, les valeurs égalent la table « V2 juste après la copie » (E3 n'est pas encore saisi) ; Emma porte « joker appliqué » sur Animation. En poursuivant la saisie, on retrouve la table « V2 à l'état final ».
+
+Si la copie supprime le regroupement E3, la dispense de Chloé est soit **reportée** sur les feuilles V1 de E3 encore présentes (Consignes E3, Itinéraire, SR1–SR4, mais pas SR5) : à l'état final Animation 3,33, Sécurité KO, Planification 63,9 %, Réussite KO, erreurs SR1–SR4 ; soit **perdue** : résultats de « Chloé sans dispense ». `g3-controle.py --figer` fige ces résultats et les cases perdues attendues dans le rapport de copie (Appréciation globale E2 de chacun).
+
 ## Ce que chaque participant montre
 
 - **Alice** : chemin nominal. Le plafond s'applique à l'occurrence 2 (91,7 → 60), sans effet, car l'occurrence 1 est meilleure.
@@ -243,6 +249,6 @@ E2 change (suppression d'Appréciation globale), Animation change (poids 2), SR5
 
 ## Laissé à d'autres tickets
 
-- **Reprise par la copie des dispenses, des « non évalué » et des jokers** (18 §13.5, devenir des états lors d'une copie) : G3 l'évite en posant dispense et joker après la copie. À traiter dans le mécanisme de copie de grille.
+- **Reprise par la copie des dispenses, des « non évalué » et des jokers** (18 §13.5, devenir des états lors d'une copie) : G3 l'évite en posant dispense et joker après la copie. La variante J3 ci-dessus l'éprouve.
 - **F4 à k absolu face à une dispense** : gardé tel quel. Le résultat de Chloé est un constat à montrer, pas une décision.
 - **Génération du volume et des données ×5** : relève du générateur déterministe.
