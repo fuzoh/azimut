@@ -153,9 +153,13 @@ export const origineDistante = {
 };
 
 /** Saisie venue de la synchronisation : comme `ecrireCase`, clé inscrite d'abord. */
-export function ecrireCaseDistante(sources: Sources, g: number, p: number, d: number, valeur: number): void {
+/** Renvoie false si la valeur est inchangée (rien n'est écrit). */
+export function ecrireCaseDistante(sources: Sources, g: number, p: number, d: number, valeur: number): boolean {
   const k = cle(g, p, d);
-  if (Number.isNaN(valeur) && !sources.cases.has(k)) return;
+  // Sans changement, aucune notification : la clé resterait inscrite et
+  // marquerait à tort la prochaine saisie locale de cette case.
+  if (Object.is(sources.cases.get(k)?.valeur ?? NaN, valeur)) return false;
   origineDistante.cases.add(k);
   ecrireCase(sources, g, p, d, valeur);
+  return true;
 }

@@ -1,29 +1,41 @@
 // Fabriques de store pour la session, selon les réglages de la classe Store.
 
 import type { FabriqueStore } from "../session";
-import { storeProvisoire } from "../session";
 import type { ReglagesStore } from "../reglages";
 import { canalLocal, canalWorker, type OptionsCanalLocal } from "./canal";
-import type { Canal } from "./protocole";
+import type { Canal, VariantesMoteur } from "./protocole";
 import { creerStoreBase } from "./storeBase";
+import { creerStorePrincipal } from "./storePrincipal";
 
-/** Configuration de base : signaux dans le worker (ou le moteur en mémoire, derrière le même canal). */
-export function fabriqueBase(lru: number, canal: () => Canal): FabriqueStore {
-  return (ctx) => creerStoreBase({ ...ctx, lru, canal: canal() });
+/** Moteur dans le worker (ou en mémoire, derrière le même canal) ; défaut : la configuration de base. */
+export function fabriqueBase(lru: number, canal: () => Canal, variantes?: VariantesMoteur): FabriqueStore {
+  return (ctx) => creerStoreBase({ ...ctx, lru, canal: canal(), variantes });
 }
 
 /** Base avec le moteur en mémoire (tests, Node). */
-export function fabriqueBaseLocale(lru = 50, options: OptionsCanalLocal = {}): FabriqueStore {
-  return fabriqueBase(lru, () => canalLocal(options));
+export function fabriqueBaseLocale(lru = 50, options: OptionsCanalLocal = {}, variantes?: VariantesMoteur): FabriqueStore {
+  return fabriqueBase(lru, () => canalLocal(options), variantes);
 }
 
 /**
- * Store choisi par les réglages. Seule la configuration de base existe pour
- * l'instant (#24) ; les autres axes (#25) retombent sur le store provisoire.
- * Sans `Worker` (Node), la base passe par le canal en mémoire.
+ * Store choisi par les réglages, un axe à la fois par rapport à la base
+ * (spec 20, « Variantes à comparer »). Lieu « principal » : le moteur sur le
+ * thread principal, sans worker ; la cohorte y reste paresseuse (le précalcul
+ * en arrière-plan n'est construit que dans le worker). Sans `Worker` (Node),
+ * le moteur passe par le canal en mémoire.
  */
 export function fabriquePourReglages(r: ReglagesStore): FabriqueStore {
-  const base = r.calcul === "signaux" && r.lieu === "worker" && r.cohorte === "paresseux" && r.distante === "perimee";
-  if (!base) return storeProvisoire;
-  return fabriqueBase(r.lru, typeof Worker === "function" ? canalWorker : () => canalLocal());
+  if (r.lieu === "principal")
+    return ({ sources, plans }) => creerStorePrincipal({ sources, plans, lru: r.lru, calcul: r.calcul, distante: r.distante });
+  const variantes: VariantesMoteur = { calcul: r.calcul, cohorte: r.cohorte, distante: r.distante };
+  return fabriqueBase(r.lru, typeof Worker === "function" ? canalWorker : () => canalLocal(), variantes);
 }
+
+/** Les 5 configurations comparées : la base, puis un axe à la fois. */
+export const CONFIGURATIONS: { nom: string; store: Omit<ReglagesStore, "lru"> }[] = [
+  { nom: "base", store: { calcul: "signaux", lieu: "worker", cohorte: "paresseux", distante: "perimee" } },
+  { nom: "dag", store: { calcul: "dag", lieu: "worker", cohorte: "paresseux", distante: "perimee" } },
+  { nom: "principal", store: { calcul: "signaux", lieu: "principal", cohorte: "paresseux", distante: "perimee" } },
+  { nom: "precalcul", store: { calcul: "signaux", lieu: "worker", cohorte: "precalcul", distante: "perimee" } },
+  { nom: "immediat", store: { calcul: "signaux", lieu: "worker", cohorte: "paresseux", distante: "immediat" } },
+];

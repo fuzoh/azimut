@@ -13,6 +13,7 @@ import {
   type ReglagesStore,
 } from "./reglages";
 import { appliquerCommutateurs, creerSession, type FabriqueStore, lireSourcesGrille, type Session, storeProvisoire } from "./session";
+import { creerSimulateur, type OptionsSimulateur, type Simulateur } from "./simulateur";
 import { creerVerification, type RapportVerification, type Verification } from "./verification";
 
 export interface EtatEssai {
@@ -23,6 +24,8 @@ export interface EtatEssai {
   verification: RapportVerification | null;
   /** Change à chaque bascule à chaud : la vue relit les plans. */
   revision: number;
+  /** Écritures du simulateur de saisies distantes depuis le chargement. */
+  saisiesDistantes: number;
 }
 
 export interface ResultatChangement {
@@ -44,6 +47,8 @@ export interface Essai {
   comparaisonDisponible(): boolean;
   /** Écarts A → B du participant affiché ; null sans comparaison. */
   comparer(g: number, p: number): Map<number, EcartAB> | null;
+  /** Simulateur de saisies distantes de la session (démarré et arrêté par `changer`). */
+  simulateur(): Simulateur;
   dispose(): void;
 }
 
@@ -53,12 +58,14 @@ export interface OptionsEssai {
    * Défaut : store provisoire, synchrone.
    */
   fabrique?: (r: ReglagesStore) => FabriqueStore;
+  /** Rythme du simulateur (tests) ; défaut : 5 formateurs, une case toutes les 2 s. */
+  simulateur?: OptionsSimulateur;
 }
 
 export function creerEssai(search: string, options: OptionsEssai = {}): Essai {
   const { reglages: initiaux, avertissements } = lireUrl(search);
   const session = creerSession(initiaux.modele, initiaux.generateur, options.fabrique?.(initiaux.store) ?? storeProvisoire);
-  let etat: EtatEssai = { reglages: initiaux, avertissements, verification: null, revision: 0 };
+  let etat: EtatEssai = { reglages: initiaux, avertissements, verification: null, revision: 0, saisiesDistantes: 0 };
   const rappels = new Set<() => void>();
   const notifier = (maj: Partial<EtatEssai>) => {
     etat = { ...etat, ...maj };
@@ -90,6 +97,11 @@ export function creerEssai(search: string, options: OptionsEssai = {}): Essai {
   };
   activerVerification(initiaux.session.verification);
 
+  const simulateur: Simulateur = creerSimulateur(session, { graine: initiaux.generateur.graine, ...options.simulateur });
+  simulateur.abonner(() => notifier({ saisiesDistantes: simulateur.ecritures() }));
+  const activerSimulateur = (actif: boolean) => (actif ? simulateur.demarrer() : simulateur.arreter());
+  activerSimulateur(initiaux.session.simulateur);
+
   /** Plans B par grille, recompilés à la demande (une copie ajoute une grille). */
   let plansB: { cle: string; plans: Plan[] } = { cle: "", plans: [] };
   const planB = (g: number, b: CommutateursResolus): Plan => {
@@ -118,6 +130,7 @@ export function creerEssai(search: string, options: OptionsEssai = {}): Essai {
       if (classes.has("modele")) appliquerCommutateurs(session, nouveaux.modele);
       etat = { ...etat, reglages: nouveaux };
       activerVerification(nouveaux.session.verification);
+      activerSimulateur(nouveaux.session.simulateur);
       // Une bascule du modèle n'est pas une saisie, mais l'oracle repasse.
       if (classes.has("modele") && verification) verification.maintenant();
       notifier({ revision: etat.revision + 1 });
@@ -132,7 +145,9 @@ export function creerEssai(search: string, options: OptionsEssai = {}): Essai {
       if (!sources) return null;
       return comparer(session.plans[g], planB(g, b), sources);
     },
+    simulateur: () => simulateur,
     dispose() {
+      simulateur.arreter();
       activerVerification(false);
       for (const c of compteurs) c.unsubscribe();
       session.store.dispose();

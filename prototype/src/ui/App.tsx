@@ -100,6 +100,14 @@ export function App() {
         </button>
         <PastilleVerification etat={etat} />
         <PastilleWorker store={session.store} />
+        <span className="config-store" data-testid="config-store" title="Configuration du store (au rechargement)">
+          · store {etat.reglages.store.calcul}/{etat.reglages.store.lieu}/{etat.reglages.store.cohorte}/{etat.reglages.store.distante}
+        </span>
+        {etat.reglages.session.simulateur && (
+          <span className="simulateur" data-testid="simulateur" title="Simulateur de saisies distantes actif">
+            · ⇄ {etat.saisiesDistantes} saisie(s) distante(s)
+          </span>
+        )}
         {etat.reglages.comparaison && (
           <span className="comparaison-active" data-testid="comparaison-active" title="Comparaison avec la configuration B active">
             A → B{ecarts ? ` : ${ecarts.size} nœud(s) diffèrent` : ""}

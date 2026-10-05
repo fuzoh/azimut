@@ -147,13 +147,19 @@ export function Reglages({ essai, etat }: { essai: Essai; etat: EtatEssai }) {
             checked={r.session.simulateur}
             onChange={(e) => appliquer({ ...r, session: { ...r.session, simulateur: e.target.checked } })}
           />{" "}
-          simulateur de saisies distantes <span className="aide">(effet au ticket #25)</span>
+          simulateur de saisies distantes <span className="aide">(5 formateurs, une case toutes les 2 s chacun)</span>
         </label>
+        <p className="aide" data-testid="saisies-distantes">
+          {etat.saisiesDistantes} saisie(s) distante(s) depuis le chargement{essai.simulateur().actif() ? " · en cours" : ""}
+        </p>
       </fieldset>
 
       <fieldset>
         <legend>Store et générateur (au rechargement)</legend>
-        <p className="aide">Configuration de base (signaux, worker, paresseux, périmée) et N du LRU actifs ; les variantes du store arrivent au ticket #25 (en attendant : store provisoire sur le thread principal).</p>
+        <p className="aide">
+          Base : signaux, worker, paresseux, saisie distante marquée périmée ; on fait varier un axe à la fois. Le précalcul de la cohorte
+          n'existe que dans le worker (ignoré avec lieu « principal »).
+        </p>
         <div className="grille-reglages">
           {(Object.keys(CHOIX_STORE) as (keyof typeof CHOIX_STORE)[]).map((k) => (
             <Choix

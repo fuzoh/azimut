@@ -17,8 +17,17 @@ export type Changement =
   | ["joker", id: number, g: number, p: number, jokerDef: number, distante?: 1]
   | ["jokerRetrait", id: number, distante?: 1];
 
+/** Axes du store qui se règlent dans le moteur (spec 20, « Variantes à comparer »). */
+export interface VariantesMoteur {
+  calcul: "signaux" | "dag";
+  cohorte: "paresseux" | "precalcul";
+  distante: "perimee" | "immediat";
+}
+
+export const VARIANTES_BASE: VariantesMoteur = { calcul: "signaux", cohorte: "paresseux", distante: "perimee" };
+
 export type VersWorker =
-  | { type: "init"; generation: GenerationSession; commutateurs: CommutateursResolus; lru: number }
+  | { type: "init"; generation: GenerationSession; commutateurs: CommutateursResolus; lru: number; variantes?: VariantesMoteur }
   | { type: "lot"; version: number; changements: Changement[] }
   /** Intérêts : clés k(g, p, n) des cellules, et (g, p) (clé k(g, p, 0)) des états de remplissage. */
   | { type: "interets"; ajouts: number[]; retraits: number[]; remplissageAjouts: number[]; remplissageRetraits: number[] }
@@ -50,7 +59,7 @@ export interface InstantaneGrille {
 }
 
 export type DepuisWorker =
-  | { type: "pret"; somme: string; dureeMs: number }
+  | { type: "pret"; somme: string; dureeMs: number; variantes: VariantesMoteur }
   | {
       type: "resultats";
       /** Version des sources prise en compte (dernier lot reçu). */
