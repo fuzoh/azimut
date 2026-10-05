@@ -51,6 +51,20 @@ export function creerSession(commutateurs: Commutateurs = {}): Session {
   return { plans, sources, store: creerStoreProvisoire(sources, plans), commutateurs };
 }
 
+/**
+ * Bascule à chaud des commutateurs du modèle : recompile chaque grille de la
+ * session (copies comprises, mêmes index g), puis purge les caches du store.
+ * Les sources (cases, non-évaluations, jokers) sont conservées telles quelles.
+ */
+export function appliquerCommutateurs(session: Session, commutateurs: Commutateurs): void {
+  const plans = session.plans.map((plan) => compile(plan.grille, commutateurs));
+  plans.forEach((plan, g) => {
+    session.plans[g] = plan;
+  });
+  session.commutateurs = commutateurs;
+  session.store.purger();
+}
+
 /** Structures cibles proposées pour copier la grille g : celles qui en proviennent, et la copie à l'identique. */
 export function ciblesCopie(session: Session, g: number): { libelle: string; structure: Grille }[] {
   const source = session.plans[g].grille;
@@ -62,7 +76,7 @@ export function ciblesCopie(session: Session, g: number): { libelle: string; str
 }
 
 /** Sources de la grille g dans les collections, par participant. */
-export function lireSourcesGrille(session: Session, g: number): Map<number, SourcesParticipant> {
+export function lireSourcesGrille(session: Pick<Session, "plans" | "sources">, g: number): Map<number, SourcesParticipant> {
   const plan = session.plans[g];
   const { sources } = session;
   const res = new Map<number, SourcesParticipant>();

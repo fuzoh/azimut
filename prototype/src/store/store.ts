@@ -33,5 +33,11 @@ export interface StoreNotes {
   explain(g: number, p: number, n: number): Promise<Explication>;
   /** Graphe de propagation d'un participant. */
   graphe(g: number, p: number): Promise<Graphe>;
+  /**
+   * Bascule à chaud du modèle : les plans viennent d'être recompilés (même
+   * tableau, mêmes index g). Purge les caches, recalcule ce qui est souscrit
+   * et notifie ce qui change ; les sources sont conservées.
+   */
+  purger(): void;
   dispose(): void;
 }

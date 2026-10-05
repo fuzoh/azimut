@@ -2,11 +2,28 @@
 
 import { useEffect, useState } from "react";
 import type { Plan } from "../noyau/compile";
-import type { Explication as ExplicationNoyau } from "../noyau/explain";
+import type { EcartAB } from "../comparaison";
+import { type Explication as ExplicationNoyau, TEXTE_CAUSE } from "../noyau/explain";
 import { useStoreNotes } from "../store/hooks";
 import { useVersionParticipant } from "./useVersionParticipant";
 
-export function Explication({ g, p, n, plan, onGraphe }: { g: number; p: number; n: number; plan: Plan; onGraphe: () => void }) {
+export function Explication({
+  g,
+  p,
+  n,
+  plan,
+  onGraphe,
+  ecarts = null,
+}: {
+  g: number;
+  p: number;
+  n: number;
+  plan: Plan;
+  onGraphe: () => void;
+  /** Comparaison A → B du participant ; null sans comparaison. */
+  ecarts?: Map<number, EcartAB> | null;
+}) {
+  const ecart = n >= 0 ? ecarts?.get(n) : undefined;
   const store = useStoreNotes();
   const version = useVersionParticipant(g, p, n >= 0);
   const [e, setE] = useState<ExplicationNoyau | null>(null);
@@ -37,6 +54,13 @@ export function Explication({ g, p, n, plan, onGraphe }: { g: number; p: number;
           <p className={Number.isNaN(e.valeur) ? "sans-resultat" : "valeur"} data-testid="explication-valeur">
             {Number.isNaN(e.valeur) ? `Sans résultat : ${e.texteCause}` : `Résultat : ${e.texte}`}
           </p>
+          {ecarts && (
+            <p className={ecart ? "ecart-ab" : "aide"} data-testid="explication-ecart" data-ecart={ecart?.texte ?? ""}>
+              {ecart
+                ? `Comparaison A → B : ${ecart.texte}${Number.isNaN(ecart.b.valeur) && TEXTE_CAUSE[ecart.b.cause] ? ` (sous B : ${TEXTE_CAUSE[ecart.b.cause]})` : ""}`
+                : "Comparaison A → B : identique sous B."}
+            </p>
+          )}
           {e.entrees.length > 0 && (
             <table className="entrees">
               <thead>
