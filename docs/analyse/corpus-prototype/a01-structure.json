@@ -1,0 +1,5281 @@
+{
+ "grille": "A01",
+ "source": "qualif1.xlsx",
+ "baremes": [
+  {
+   "id": "points-0-1",
+   "type": "numerique",
+   "min": 0,
+   "max": 1,
+   "pas": 0.5,
+   "presentation": "pourcentage"
+  }
+ ],
+ "noeuds": [
+  {
+   "id": "ind:construction/1.6.1/1",
+   "type": "donnees",
+   "libelle": "1.6.1 indicateur 1",
+   "definition": "def:a01-1",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:construction/1.6.1/2",
+   "type": "donnees",
+   "libelle": "1.6.1 indicateur 2",
+   "definition": "def:a01-2",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:construction/1.6.1/3",
+   "type": "donnees",
+   "libelle": "1.6.1 indicateur 3",
+   "definition": "def:a01-3",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:construction/1.6.1/4",
+   "type": "donnees",
+   "libelle": "1.6.1 indicateur 4",
+   "definition": "def:a01-4",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:construction/1.6.2/1",
+   "type": "donnees",
+   "libelle": "1.6.2 indicateur 1",
+   "definition": "def:a01-5",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:construction/1.6.2/2",
+   "type": "donnees",
+   "libelle": "1.6.2 indicateur 2",
+   "definition": "def:a01-6",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:construction/1.6.2/3",
+   "type": "donnees",
+   "libelle": "1.6.2 indicateur 3",
+   "definition": "def:a01-7",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:construction/1.6.3/1",
+   "type": "donnees",
+   "libelle": "1.6.3 indicateur 1",
+   "definition": "def:a01-8",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:construction/1.6.3/2",
+   "type": "donnees",
+   "libelle": "1.6.3 indicateur 2",
+   "definition": "def:a01-9",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:construction/1.7.1/1",
+   "type": "donnees",
+   "libelle": "1.7.1 indicateur 1",
+   "definition": "def:a01-10",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:construction/1.7.1/2",
+   "type": "donnees",
+   "libelle": "1.7.1 indicateur 2",
+   "definition": "def:a01-11",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:construction/1.7.1/3",
+   "type": "donnees",
+   "libelle": "1.7.1 indicateur 3",
+   "definition": "def:a01-12",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:construction/1.7.1/4",
+   "type": "donnees",
+   "libelle": "1.7.1 indicateur 4",
+   "definition": "def:a01-13",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:construction/1.7.1/5",
+   "type": "donnees",
+   "libelle": "1.7.1 indicateur 5",
+   "definition": "def:a01-14",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:construction/1.7.2/1",
+   "type": "donnees",
+   "libelle": "1.7.2 indicateur 1",
+   "definition": "def:a01-15",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:construction/1.7.2/2",
+   "type": "donnees",
+   "libelle": "1.7.2 indicateur 2",
+   "definition": "def:a01-16",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:construction/1.7.2/3",
+   "type": "donnees",
+   "libelle": "1.7.2 indicateur 3",
+   "definition": "def:a01-17",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:construction/1.7.2/4",
+   "type": "donnees",
+   "libelle": "1.7.2 indicateur 4",
+   "definition": "def:a01-18",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:construction/1.7.3/1",
+   "type": "donnees",
+   "libelle": "1.7.3 indicateur 1",
+   "definition": "def:a01-19",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:construction/1.7.3/2",
+   "type": "donnees",
+   "libelle": "1.7.3 indicateur 2",
+   "definition": "def:a01-20",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:construction/2.3.1/1",
+   "type": "donnees",
+   "libelle": "2.3.1 indicateur 1",
+   "definition": "def:a01-21",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:construction/2.3.1/2",
+   "type": "donnees",
+   "libelle": "2.3.1 indicateur 2",
+   "definition": "def:a01-22",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:construction/2.3.1/3",
+   "type": "donnees",
+   "libelle": "2.3.1 indicateur 3",
+   "definition": "def:a01-23",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:construction/2.3.1/4",
+   "type": "donnees",
+   "libelle": "2.3.1 indicateur 4",
+   "definition": "def:a01-24",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:construction/2.3.2/1",
+   "type": "donnees",
+   "libelle": "2.3.2 indicateur 1",
+   "definition": "def:a01-25",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:construction/2.3.2/2",
+   "type": "donnees",
+   "libelle": "2.3.2 indicateur 2",
+   "definition": "def:a01-26",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:construction/2.3.2/3",
+   "type": "donnees",
+   "libelle": "2.3.2 indicateur 3",
+   "definition": "def:a01-27",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:construction/2.3.3/1",
+   "type": "donnees",
+   "libelle": "2.3.3 indicateur 1",
+   "definition": "def:a01-28",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:construction/2.3.3/2",
+   "type": "donnees",
+   "libelle": "2.3.3 indicateur 2",
+   "definition": "def:a01-29",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:construction/4.1.1/1",
+   "type": "donnees",
+   "libelle": "4.1.1 indicateur 1",
+   "definition": "def:a01-30",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:construction/4.1.1/2",
+   "type": "donnees",
+   "libelle": "4.1.1 indicateur 2",
+   "definition": "def:a01-31",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:construction/4.1.1/3",
+   "type": "donnees",
+   "libelle": "4.1.1 indicateur 3",
+   "definition": "def:a01-32",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:construction/4.1.2/1",
+   "type": "donnees",
+   "libelle": "4.1.2 indicateur 1",
+   "definition": "def:a01-33",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:construction/4.1.2/2",
+   "type": "donnees",
+   "libelle": "4.1.2 indicateur 2",
+   "definition": "def:a01-34",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:construction/4.1.2/3",
+   "type": "donnees",
+   "libelle": "4.1.2 indicateur 3",
+   "definition": "def:a01-35",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:construction/4.1.2/4",
+   "type": "donnees",
+   "libelle": "4.1.2 indicateur 4",
+   "definition": "def:a01-36",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "crit:construction/1.6.1",
+   "type": "calcul",
+   "libelle": "1.6.1 Listing des contenus pertinent et exhaustif",
+   "definition": "def:a01-37",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:construction/1.6.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.6.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.6.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.6.1/4",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:construction/1.6.2",
+   "type": "calcul",
+   "libelle": "1.6.2 Objectifs de formation du point fort imposé …",
+   "definition": "def:a01-38",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:construction/1.6.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.6.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.6.2/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:construction/1.6.3",
+   "type": "calcul",
+   "libelle": "1.6.3 Adéquation des contenus avec le besoin de …",
+   "definition": "def:a01-39",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:construction/1.6.3/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.6.3/2",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "obj:construction/1.6",
+   "type": "calcul",
+   "libelle": "1.6 …sont capables de choisir les contenus de cours …",
+   "definition": "def:a01-40",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:construction/1.6.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.6.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.6.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.6.1/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.6.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.6.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.6.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.6.3/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.6.3/2",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:construction/1.7.1",
+   "type": "calcul",
+   "libelle": "1.7.1 Détermination cohérente des ensembles de points …",
+   "definition": "def:a01-41",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:construction/1.7.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.1/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.1/5",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:construction/1.7.2",
+   "type": "calcul",
+   "libelle": "1.7.2 Détermination cohérente des points de cours (= …",
+   "definition": "def:a01-42",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:construction/1.7.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.2/4",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:construction/1.7.3",
+   "type": "calcul",
+   "libelle": "1.7.3 Sélection adéquate des dispositions méthodiques …",
+   "definition": "def:a01-43",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:construction/1.7.3/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.3/2",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "obj:construction/1.7",
+   "type": "calcul",
+   "libelle": "1.7 …sont capables de définir des ensembles de …",
+   "definition": "def:a01-44",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:construction/1.7.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.1/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.1/5",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.2/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.3/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.3/2",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:construction/2.3.1",
+   "type": "calcul",
+   "libelle": "2.3.1 Formulation des objectifs spécifiques ( = …",
+   "definition": "def:a01-45",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:construction/2.3.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/2.3.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/2.3.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/2.3.1/4",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:construction/2.3.2",
+   "type": "calcul",
+   "libelle": "2.3.2 Choix du niveau taxonomique des objectifs …",
+   "definition": "def:a01-46",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:construction/2.3.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/2.3.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/2.3.2/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:construction/2.3.3",
+   "type": "calcul",
+   "libelle": "2.3.3 Mobilisation des contenus dans la formulation …",
+   "definition": "def:a01-47",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:construction/2.3.3/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/2.3.3/2",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "obj:construction/2.3",
+   "type": "calcul",
+   "libelle": "2.3 …sont capables de formuler des objectifs de …",
+   "definition": "def:a01-48",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:construction/2.3.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/2.3.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/2.3.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/2.3.1/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/2.3.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/2.3.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/2.3.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/2.3.3/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/2.3.3/2",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:construction/4.1.1",
+   "type": "calcul",
+   "libelle": "4.1.1 Capacité à diriger une maitrise de cours",
+   "definition": "def:a01-49",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:construction/4.1.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/4.1.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/4.1.1/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:construction/4.1.2",
+   "type": "calcul",
+   "libelle": "4.1.2 Contribution à une dynamique d’équipe positive …",
+   "definition": "def:a01-50",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:construction/4.1.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/4.1.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/4.1.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/4.1.2/4",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "obj:construction/4.1",
+   "type": "calcul",
+   "libelle": "4.1 ...sont capables de diriger une maîtrise de …",
+   "definition": "def:a01-51",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:construction/4.1.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/4.1.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/4.1.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/4.1.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/4.1.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/4.1.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/4.1.2/4",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "ex:construction",
+   "type": "calcul",
+   "libelle": "Construction de cours",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:construction/1.6.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.6.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.6.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.6.1/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.6.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.6.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.6.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.6.3/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.6.3/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.1/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.1/5",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.2/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.3/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.3/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/2.3.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/2.3.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/2.3.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/2.3.1/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/2.3.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/2.3.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/2.3.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/2.3.3/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/2.3.3/2",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "ind:programme/1.8.1/1",
+   "type": "donnees",
+   "libelle": "1.8.1 indicateur 1",
+   "definition": "def:a01-52",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:programme/1.8.1/2",
+   "type": "donnees",
+   "libelle": "1.8.1 indicateur 2",
+   "definition": "def:a01-53",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:programme/1.8.1/3",
+   "type": "donnees",
+   "libelle": "1.8.1 indicateur 3",
+   "definition": "def:a01-54",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:programme/1.8.1/4",
+   "type": "donnees",
+   "libelle": "1.8.1 indicateur 4",
+   "definition": "def:a01-55",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:programme/1.8.1/5",
+   "type": "donnees",
+   "libelle": "1.8.1 indicateur 5",
+   "definition": "def:a01-56",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:programme/1.8.2/1",
+   "type": "donnees",
+   "libelle": "1.8.2 indicateur 1",
+   "definition": "def:a01-57",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:programme/1.8.2/2",
+   "type": "donnees",
+   "libelle": "1.8.2 indicateur 2",
+   "definition": "def:a01-58",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:programme/1.8.2/3",
+   "type": "donnees",
+   "libelle": "1.8.2 indicateur 3",
+   "definition": "def:a01-59",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:programme/1.8.2/4",
+   "type": "donnees",
+   "libelle": "1.8.2 indicateur 4",
+   "definition": "def:a01-60",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:programme/4.1.1/1",
+   "type": "donnees",
+   "libelle": "4.1.1 indicateur 1",
+   "definition": "def:a01-30",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:programme/4.1.1/2",
+   "type": "donnees",
+   "libelle": "4.1.1 indicateur 2",
+   "definition": "def:a01-31",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:programme/4.1.1/3",
+   "type": "donnees",
+   "libelle": "4.1.1 indicateur 3",
+   "definition": "def:a01-32",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:programme/4.1.2/1",
+   "type": "donnees",
+   "libelle": "4.1.2 indicateur 1",
+   "definition": "def:a01-33",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:programme/4.1.2/2",
+   "type": "donnees",
+   "libelle": "4.1.2 indicateur 2",
+   "definition": "def:a01-34",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:programme/4.1.2/3",
+   "type": "donnees",
+   "libelle": "4.1.2 indicateur 3",
+   "definition": "def:a01-35",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:programme/4.1.2/4",
+   "type": "donnees",
+   "libelle": "4.1.2 indicateur 4",
+   "definition": "def:a01-36",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "crit:programme/1.8.1",
+   "type": "calcul",
+   "libelle": "1.8.1 Équilibre du programme de cours et attention …",
+   "definition": "def:a01-61",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:programme/1.8.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/1.8.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/1.8.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/1.8.1/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/1.8.1/5",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:programme/1.8.2",
+   "type": "calcul",
+   "libelle": "1.8.2 Prise en compte de la progression pédagogique …",
+   "definition": "def:a01-62",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:programme/1.8.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/1.8.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/1.8.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/1.8.2/4",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "obj:programme/1.8",
+   "type": "calcul",
+   "libelle": "1.8 …sont capables d’élaborer un programme de cours …",
+   "definition": "def:a01-63",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:programme/1.8.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/1.8.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/1.8.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/1.8.1/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/1.8.1/5",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/1.8.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/1.8.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/1.8.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/1.8.2/4",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:programme/4.1.1",
+   "type": "calcul",
+   "libelle": "4.1.1 Capacité à diriger une maitrise de cours",
+   "definition": "def:a01-49",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:programme/4.1.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/4.1.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/4.1.1/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:programme/4.1.2",
+   "type": "calcul",
+   "libelle": "4.1.2 Contribution à une dynamique d’équipe positive …",
+   "definition": "def:a01-50",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:programme/4.1.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/4.1.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/4.1.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/4.1.2/4",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "obj:programme/4.1",
+   "type": "calcul",
+   "libelle": "4.1 ...sont capables de diriger une maîtrise de …",
+   "definition": "def:a01-51",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:programme/4.1.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/4.1.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/4.1.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/4.1.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/4.1.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/4.1.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/4.1.2/4",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "ex:programme",
+   "type": "calcul",
+   "libelle": "Programme de cours",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:programme/1.8.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/1.8.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/1.8.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/1.8.1/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/1.8.1/5",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/1.8.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/1.8.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/1.8.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/1.8.2/4",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "ind:pdc-filme/2.6.1/1",
+   "type": "donnees",
+   "libelle": "2.6.1 indicateur 1",
+   "definition": "def:a01-64",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:pdc-filme/2.6.1/2",
+   "type": "donnees",
+   "libelle": "2.6.1 indicateur 2",
+   "definition": "def:a01-65",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:pdc-filme/2.6.1/3",
+   "type": "donnees",
+   "libelle": "2.6.1 indicateur 3",
+   "definition": "def:a01-66",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:pdc-filme/2.6.2/1",
+   "type": "donnees",
+   "libelle": "2.6.2 indicateur 1",
+   "definition": "def:a01-67",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:pdc-filme/2.6.2/2",
+   "type": "donnees",
+   "libelle": "2.6.2 indicateur 2",
+   "definition": "def:a01-68",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:pdc-filme/2.6.2/3",
+   "type": "donnees",
+   "libelle": "2.6.2 indicateur 3",
+   "definition": "def:a01-69",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:pdc-filme/2.6.3/1",
+   "type": "donnees",
+   "libelle": "2.6.3 indicateur 1",
+   "definition": "def:a01-70",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:pdc-filme/2.6.3/2",
+   "type": "donnees",
+   "libelle": "2.6.3 indicateur 2",
+   "definition": "def:a01-71",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:pdc-filme/2.6.4/1",
+   "type": "donnees",
+   "libelle": "2.6.4 indicateur 1",
+   "definition": "def:a01-72",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:pdc-filme/2.6.4/2",
+   "type": "donnees",
+   "libelle": "2.6.4 indicateur 2",
+   "definition": "def:a01-73",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:pdc-filme/2.6.5/1",
+   "type": "donnees",
+   "libelle": "2.6.5 indicateur 1",
+   "definition": "def:a01-74",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:pdc-filme/2.6.5/2",
+   "type": "donnees",
+   "libelle": "2.6.5 indicateur 2",
+   "definition": "def:a01-75",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:pdc-filme/2.1.1/1",
+   "type": "donnees",
+   "libelle": "2.1.1 indicateur 1",
+   "definition": "def:a01-76",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:pdc-filme/2.1.1/2",
+   "type": "donnees",
+   "libelle": "2.1.1 indicateur 2",
+   "definition": "def:a01-77",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:pdc-filme/2.1.1/3",
+   "type": "donnees",
+   "libelle": "2.1.1 indicateur 3",
+   "definition": "def:a01-78",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "crit:pdc-filme/2.6.1",
+   "type": "calcul",
+   "libelle": "2.6.1 Posture de transmission : capacité à …",
+   "definition": "def:a01-79",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:pdc-filme/2.6.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.1/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:pdc-filme/2.6.2",
+   "type": "calcul",
+   "libelle": "2.6.2 Posture de co-animation : capacité à …",
+   "definition": "def:a01-80",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:pdc-filme/2.6.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.2/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:pdc-filme/2.6.3",
+   "type": "calcul",
+   "libelle": "2.6.3 Maitrise du sujet de transmission",
+   "definition": "def:a01-81",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:pdc-filme/2.6.3/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.3/2",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:pdc-filme/2.6.4",
+   "type": "calcul",
+   "libelle": "2.6.4 Utilisation du support pour transmettre la …",
+   "definition": "def:a01-82",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:pdc-filme/2.6.4/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.4/2",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:pdc-filme/2.6.5",
+   "type": "calcul",
+   "libelle": "2.6.5 Capacité d’expérimentation et d’innovation",
+   "definition": "def:a01-83",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:pdc-filme/2.6.5/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.5/2",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "obj:pdc-filme/2.6-3.8",
+   "type": "calcul",
+   "libelle": "2.6/3.8 ...sont capables d’animer un point de cours …",
+   "definition": "def:a01-84",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:pdc-filme/2.6.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.3/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.3/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.4/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.4/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.5/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.5/2",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:pdc-filme/2.1.1",
+   "type": "calcul",
+   "libelle": "2.1.1 Capacité d’analyse et d’évaluation [OZR …",
+   "definition": "def:a01-85",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:pdc-filme/2.1.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.1.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.1.1/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "obj:pdc-filme/2.1",
+   "type": "calcul",
+   "libelle": "2.1 ...se penchent de manière critique sur …",
+   "definition": "def:a01-86",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:pdc-filme/2.1.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.1.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.1.1/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "ex:pdc-filme",
+   "type": "calcul",
+   "libelle": "Point de cours filmé",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:pdc-filme/2.6.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.3/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.3/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.4/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.4/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.5/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.5/2",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "ind:planif-ozr/2.4.1/1",
+   "type": "donnees",
+   "libelle": "2.4.1 indicateur 1",
+   "definition": "def:a01-87",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:planif-ozr/2.4.1/2",
+   "type": "donnees",
+   "libelle": "2.4.1 indicateur 2",
+   "definition": "def:a01-88",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:planif-ozr/2.4.2/1",
+   "type": "donnees",
+   "libelle": "2.4.2 indicateur 1",
+   "definition": "def:a01-89",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:planif-ozr/2.4.2/2",
+   "type": "donnees",
+   "libelle": "2.4.2 indicateur 2",
+   "definition": "def:a01-90",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:planif-ozr/2.5.1/1",
+   "type": "donnees",
+   "libelle": "2.5.1 indicateur 1",
+   "definition": "def:a01-91",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:planif-ozr/2.5.1/2",
+   "type": "donnees",
+   "libelle": "2.5.1 indicateur 2",
+   "definition": "def:a01-92",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:planif-ozr/2.5.2/1",
+   "type": "donnees",
+   "libelle": "2.5.2 indicateur 1",
+   "definition": "def:a01-93",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:planif-ozr/2.5.2/2",
+   "type": "donnees",
+   "libelle": "2.5.2 indicateur 2",
+   "definition": "def:a01-94",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:planif-ozr/2.5.2/3",
+   "type": "donnees",
+   "libelle": "2.5.2 indicateur 3",
+   "definition": "def:a01-95",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:planif-ozr/2.8.1/1",
+   "type": "donnees",
+   "libelle": "2.8.1 indicateur 1",
+   "definition": "def:a01-96",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:planif-ozr/2.8.1/2",
+   "type": "donnees",
+   "libelle": "2.8.1 indicateur 2",
+   "definition": "def:a01-97",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:planif-ozr/2.8.1/3",
+   "type": "donnees",
+   "libelle": "2.8.1 indicateur 3",
+   "definition": "def:a01-98",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:planif-ozr/2.8.2/1",
+   "type": "donnees",
+   "libelle": "2.8.2 indicateur 1",
+   "definition": "def:a01-99",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:planif-ozr/2.8.2/2",
+   "type": "donnees",
+   "libelle": "2.8.2 indicateur 2",
+   "definition": "def:a01-100",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:planif-ozr/2.8.2/3",
+   "type": "donnees",
+   "libelle": "2.8.2 indicateur 3",
+   "definition": "def:a01-101",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:planif-ozr/4.1.1/1",
+   "type": "donnees",
+   "libelle": "4.1.1 indicateur 1",
+   "definition": "def:a01-30",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:planif-ozr/4.1.1/2",
+   "type": "donnees",
+   "libelle": "4.1.1 indicateur 2",
+   "definition": "def:a01-31",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:planif-ozr/4.1.1/3",
+   "type": "donnees",
+   "libelle": "4.1.1 indicateur 3",
+   "definition": "def:a01-32",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:planif-ozr/4.1.2/1",
+   "type": "donnees",
+   "libelle": "4.1.2 indicateur 1",
+   "definition": "def:a01-33",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:planif-ozr/4.1.2/2",
+   "type": "donnees",
+   "libelle": "4.1.2 indicateur 2",
+   "definition": "def:a01-102",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:planif-ozr/4.1.2/3",
+   "type": "donnees",
+   "libelle": "4.1.2 indicateur 3",
+   "definition": "def:a01-35",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:planif-ozr/4.1.2/4",
+   "type": "donnees",
+   "libelle": "4.1.2 indicateur 4",
+   "definition": "def:a01-36",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "crit:planif-ozr/2.4.1",
+   "type": "calcul",
+   "libelle": "2.4.1 Choix des méthodes de transmission adapté aux …",
+   "definition": "def:a01-103",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:planif-ozr/2.4.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.4.1/2",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:planif-ozr/2.4.2",
+   "type": "calcul",
+   "libelle": "2.4.2 Choix des méthodes adapté aux besoins des …",
+   "definition": "def:a01-104",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:planif-ozr/2.4.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.4.2/2",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "obj:planif-ozr/2.4",
+   "type": "calcul",
+   "libelle": "2.4 ...sont capables de choisir des méthodes de …",
+   "definition": "def:a01-105",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:planif-ozr/2.4.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.4.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.4.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.4.2/2",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:planif-ozr/2.5.1",
+   "type": "calcul",
+   "libelle": "2.5.1 Capacité à mobiliser le schéma de transmission …",
+   "definition": "def:a01-106",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:planif-ozr/2.5.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.5.1/2",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:planif-ozr/2.5.2",
+   "type": "calcul",
+   "libelle": "2.5.2 Capacité à produire un descriptif de cours …",
+   "definition": "def:a01-107",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:planif-ozr/2.5.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.5.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.5.2/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "obj:planif-ozr/2.5",
+   "type": "calcul",
+   "libelle": "2.5 ...sont capables de structurer de manière …",
+   "definition": "def:a01-108",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:planif-ozr/2.5.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.5.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.5.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.5.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.5.2/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:planif-ozr/2.8.1",
+   "type": "calcul",
+   "libelle": "2.8.1 Capacité à choisir et à expliciter la matière …",
+   "definition": "def:a01-109",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:planif-ozr/2.8.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.8.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.8.1/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:planif-ozr/2.8.2",
+   "type": "calcul",
+   "libelle": "2.8.2 Capacité à planifier la logistique d’une …",
+   "definition": "def:a01-110",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:planif-ozr/2.8.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.8.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.8.2/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "obj:planif-ozr/2.8",
+   "type": "calcul",
+   "libelle": "2.8 ...sont capables de planifier (réaliser et …",
+   "definition": "def:a01-111",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:planif-ozr/2.8.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.8.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.8.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.8.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.8.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.8.2/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:planif-ozr/4.1.1",
+   "type": "calcul",
+   "libelle": "4.1.1 Capacité à diriger une maitrise de cours",
+   "definition": "def:a01-49",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:planif-ozr/4.1.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/4.1.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/4.1.1/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:planif-ozr/4.1.2",
+   "type": "calcul",
+   "libelle": "4.1.2 Contribution à une dynamique d’équipe positive …",
+   "definition": "def:a01-50",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:planif-ozr/4.1.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/4.1.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/4.1.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/4.1.2/4",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "obj:planif-ozr/4.1",
+   "type": "calcul",
+   "libelle": "4.1 ...sont capables de diriger une maîtrise de …",
+   "definition": "def:a01-51",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:planif-ozr/4.1.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/4.1.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/4.1.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/4.1.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/4.1.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/4.1.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/4.1.2/4",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "ex:planif-ozr",
+   "type": "calcul",
+   "libelle": "Planification point de cours OZR",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:planif-ozr/2.4.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.4.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.4.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.4.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.5.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.5.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.5.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.5.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.5.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.8.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.8.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.8.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.8.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.8.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.8.2/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "ind:anim-ozr/2.6.1/1",
+   "type": "donnees",
+   "libelle": "2.6.1 indicateur 1",
+   "definition": "def:a01-64",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:anim-ozr/2.6.1/2",
+   "type": "donnees",
+   "libelle": "2.6.1 indicateur 2",
+   "definition": "def:a01-65",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:anim-ozr/2.6.1/3",
+   "type": "donnees",
+   "libelle": "2.6.1 indicateur 3",
+   "definition": "def:a01-66",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:anim-ozr/2.6.2/1",
+   "type": "donnees",
+   "libelle": "2.6.2 indicateur 1",
+   "definition": "def:a01-67",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:anim-ozr/2.6.2/2",
+   "type": "donnees",
+   "libelle": "2.6.2 indicateur 2",
+   "definition": "def:a01-68",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:anim-ozr/2.6.2/3",
+   "type": "donnees",
+   "libelle": "2.6.2 indicateur 3",
+   "definition": "def:a01-69",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:anim-ozr/2.6.3/1",
+   "type": "donnees",
+   "libelle": "2.6.3 indicateur 1",
+   "definition": "def:a01-112",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:anim-ozr/2.6.3/2",
+   "type": "donnees",
+   "libelle": "2.6.3 indicateur 2",
+   "definition": "def:a01-113",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:anim-ozr/2.6.4/1",
+   "type": "donnees",
+   "libelle": "2.6.4 indicateur 1",
+   "definition": "def:a01-70",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:anim-ozr/2.6.4/2",
+   "type": "donnees",
+   "libelle": "2.6.4 indicateur 2",
+   "definition": "def:a01-71",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:anim-ozr/2.6.5/1",
+   "type": "donnees",
+   "libelle": "2.6.5 indicateur 1",
+   "definition": "def:a01-72",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:anim-ozr/2.6.5/2",
+   "type": "donnees",
+   "libelle": "2.6.5 indicateur 2",
+   "definition": "def:a01-73",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:anim-ozr/2.6.6/1",
+   "type": "donnees",
+   "libelle": "2.6.6 indicateur 1",
+   "definition": "def:a01-114",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:anim-ozr/2.6.6/2",
+   "type": "donnees",
+   "libelle": "2.6.6 indicateur 2",
+   "definition": "def:a01-115",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:anim-ozr/2.6.6/3",
+   "type": "donnees",
+   "libelle": "2.6.6 indicateur 3",
+   "definition": "def:a01-116",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:anim-ozr/2.6.6/4",
+   "type": "donnees",
+   "libelle": "2.6.6 indicateur 4",
+   "definition": "def:a01-117",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:anim-ozr/2.6.6/5",
+   "type": "donnees",
+   "libelle": "2.6.6 indicateur 5",
+   "definition": "def:a01-118",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:anim-ozr/2.6.7/1",
+   "type": "donnees",
+   "libelle": "2.6.7 indicateur 1",
+   "definition": "def:a01-74",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:anim-ozr/2.6.7/2",
+   "type": "donnees",
+   "libelle": "2.6.7 indicateur 2",
+   "definition": "def:a01-75",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:anim-ozr/2.1.1/1",
+   "type": "donnees",
+   "libelle": "2.1.1 indicateur 1",
+   "definition": "def:a01-76",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:anim-ozr/2.1.1/2",
+   "type": "donnees",
+   "libelle": "2.1.1 indicateur 2",
+   "definition": "def:a01-77",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:anim-ozr/2.1.1/3",
+   "type": "donnees",
+   "libelle": "2.1.1 indicateur 3",
+   "definition": "def:a01-78",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "crit:anim-ozr/2.6.1",
+   "type": "calcul",
+   "libelle": "2.6.1 Posture de transmission : capacité à …",
+   "definition": "def:a01-79",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:anim-ozr/2.6.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.1/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:anim-ozr/2.6.2",
+   "type": "calcul",
+   "libelle": "2.6.2 Posture de co-animation : capacité à …",
+   "definition": "def:a01-80",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:anim-ozr/2.6.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.2/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:anim-ozr/2.6.3",
+   "type": "calcul",
+   "libelle": "2.6.3 Capacité à s’appuyer sur les apports des …",
+   "definition": "def:a01-119",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:anim-ozr/2.6.3/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.3/2",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:anim-ozr/2.6.4",
+   "type": "calcul",
+   "libelle": "2.6.4 Maitrise du sujet de transmission",
+   "definition": "def:a01-81",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:anim-ozr/2.6.4/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.4/2",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:anim-ozr/2.6.5",
+   "type": "calcul",
+   "libelle": "2.6.5 Utilisation du support pour transmettre la …",
+   "definition": "def:a01-82",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:anim-ozr/2.6.5/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.5/2",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:anim-ozr/2.6.6",
+   "type": "calcul",
+   "libelle": "2.6.6 Gestion du cadre et prise en compte des …",
+   "definition": "def:a01-120",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:anim-ozr/2.6.6/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.6/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.6/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.6/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.6/5",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:anim-ozr/2.6.7",
+   "type": "calcul",
+   "libelle": "2.6.7 Capacité d’expérimentation et d’innovation",
+   "definition": "def:a01-83",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:anim-ozr/2.6.7/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.7/2",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "obj:anim-ozr/2.6-3.8",
+   "type": "calcul",
+   "libelle": "2.6/3.8 ...sont capables d’animer un point de cours …",
+   "definition": "def:a01-84",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:anim-ozr/2.6.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.3/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.3/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.4/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.4/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.5/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.5/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.6/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.6/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.6/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.6/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.6/5",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.7/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.7/2",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:anim-ozr/2.1.1",
+   "type": "calcul",
+   "libelle": "2.1.1 Capacité d’analyse et d’évaluation [OZR …",
+   "definition": "def:a01-85",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:anim-ozr/2.1.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.1.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.1.1/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "obj:anim-ozr/2.1",
+   "type": "calcul",
+   "libelle": "2.1 ...se penchent de manière critique sur …",
+   "definition": "def:a01-86",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:anim-ozr/2.1.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.1.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.1.1/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "ex:anim-ozr",
+   "type": "calcul",
+   "libelle": "Animation de point de cours OZR",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:anim-ozr/2.6.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.3/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.3/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.4/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.4/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.5/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.5/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.6/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.6/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.6/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.6/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.6/5",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.7/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.7/2",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "ind:entretien/3.1.1/1",
+   "type": "donnees",
+   "libelle": "3.1.1 indicateur 1",
+   "definition": "def:a01-121",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:entretien/3.1.1/2",
+   "type": "donnees",
+   "libelle": "3.1.1 indicateur 2",
+   "definition": "def:a01-122",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:entretien/3.2.1/1",
+   "type": "donnees",
+   "libelle": "3.2.1 indicateur 1",
+   "definition": "def:a01-123",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:entretien/3.2.1/2",
+   "type": "donnees",
+   "libelle": "3.2.1 indicateur 2",
+   "definition": "def:a01-124",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:entretien/3.2.1/3",
+   "type": "donnees",
+   "libelle": "3.2.1 indicateur 3",
+   "definition": "def:a01-125",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:entretien/3.2.1/4",
+   "type": "donnees",
+   "libelle": "3.2.1 indicateur 4",
+   "definition": "def:a01-126",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:entretien/3.2.1/5",
+   "type": "donnees",
+   "libelle": "3.2.1 indicateur 5",
+   "definition": "def:a01-127",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:entretien/3.2.1/6",
+   "type": "donnees",
+   "libelle": "3.2.1 indicateur 6",
+   "definition": "def:a01-128",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:entretien/3.2.1/7",
+   "type": "donnees",
+   "libelle": "3.2.1 indicateur 7",
+   "definition": "def:a01-129",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:entretien/3.2.2/1",
+   "type": "donnees",
+   "libelle": "3.2.2 indicateur 1",
+   "definition": "def:a01-130",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:entretien/3.2.2/2",
+   "type": "donnees",
+   "libelle": "3.2.2 indicateur 2",
+   "definition": "def:a01-131",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:entretien/3.5.1/1",
+   "type": "donnees",
+   "libelle": "3.5.1 indicateur 1",
+   "definition": "def:a01-132",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:entretien/3.5.1/2",
+   "type": "donnees",
+   "libelle": "3.5.1 indicateur 2",
+   "definition": "def:a01-133",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:entretien/3.5.1/3",
+   "type": "donnees",
+   "libelle": "3.5.1 indicateur 3",
+   "definition": "def:a01-134",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:entretien/3.5.2/1",
+   "type": "donnees",
+   "libelle": "3.5.2 indicateur 1",
+   "definition": "def:a01-135",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:entretien/3.5.2/2",
+   "type": "donnees",
+   "libelle": "3.5.2 indicateur 2",
+   "definition": "def:a01-136",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:entretien/3.5.2/3",
+   "type": "donnees",
+   "libelle": "3.5.2 indicateur 3",
+   "definition": "def:a01-137",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:entretien/2.1.1/1",
+   "type": "donnees",
+   "libelle": "2.1.1 indicateur 1",
+   "definition": "def:a01-76",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:entretien/2.1.1/2",
+   "type": "donnees",
+   "libelle": "2.1.1 indicateur 2",
+   "definition": "def:a01-77",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:entretien/2.1.1/3",
+   "type": "donnees",
+   "libelle": "2.1.1 indicateur 3",
+   "definition": "def:a01-78",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "crit:entretien/3.1.1",
+   "type": "calcul",
+   "libelle": "3.1.1 Adéquation des perspectives et pistes …",
+   "definition": "def:a01-138",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:entretien/3.1.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.1.1/2",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "obj:entretien/3.1",
+   "type": "calcul",
+   "libelle": "3.1 ...sont capables de déclencher les processus …",
+   "definition": "def:a01-139",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:entretien/3.1.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.1.1/2",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:entretien/3.2.1",
+   "type": "calcul",
+   "libelle": "3.2.1 Déroulement de l’entretien selon une structure …",
+   "definition": "def:a01-140",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:entretien/3.2.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.2.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.2.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.2.1/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.2.1/5",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.2.1/6",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.2.1/7",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:entretien/3.2.2",
+   "type": "calcul",
+   "libelle": "3.2.2 Cohérence de l’entretien avec les observations …",
+   "definition": "def:a01-141",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:entretien/3.2.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.2.2/2",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "obj:entretien/3.2",
+   "type": "calcul",
+   "libelle": "3.2 ...sont capables de donner un retour …",
+   "definition": "def:a01-142",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:entretien/3.2.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.2.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.2.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.2.1/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.2.1/5",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.2.1/6",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.2.1/7",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.2.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.2.2/2",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:entretien/3.5.1",
+   "type": "calcul",
+   "libelle": "3.5.1 Conduite de l’entretien de manière …",
+   "definition": "def:a01-143",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:entretien/3.5.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.5.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.5.1/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:entretien/3.5.2",
+   "type": "calcul",
+   "libelle": "3.5.2 Adaptation aux besoins du·de la participant·e …",
+   "definition": "def:a01-144",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:entretien/3.5.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.5.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.5.2/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "obj:entretien/3.5",
+   "type": "calcul",
+   "libelle": "3.5 ...sont capables de concevoir un entretien avec …",
+   "definition": "def:a01-145",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:entretien/3.5.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.5.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.5.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.5.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.5.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.5.2/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:entretien/2.1.1",
+   "type": "calcul",
+   "libelle": "2.1.1 Capacité d’analyse et d’évaluation [OZR …",
+   "definition": "def:a01-85",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:entretien/2.1.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/2.1.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/2.1.1/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "obj:entretien/2.1",
+   "type": "calcul",
+   "libelle": "2.1 ...se penchent de manière critique sur …",
+   "definition": "def:a01-86",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:entretien/2.1.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/2.1.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/2.1.1/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "ex:entretien",
+   "type": "calcul",
+   "libelle": "Entretien de qualification",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:entretien/3.1.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.1.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.2.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.2.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.2.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.2.1/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.2.1/5",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.2.1/6",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.2.1/7",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.2.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.2.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.5.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.5.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.5.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.5.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.5.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.5.2/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "ind:systeme/3.4.1/1",
+   "type": "donnees",
+   "libelle": "3.4.1 indicateur 1",
+   "definition": "def:a01-146",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:systeme/3.4.1/2",
+   "type": "donnees",
+   "libelle": "3.4.1 indicateur 2",
+   "definition": "def:a01-147",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:systeme/3.4.2/1",
+   "type": "donnees",
+   "libelle": "3.4.2 indicateur 1",
+   "definition": "def:a01-148",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:systeme/3.4.2/2",
+   "type": "donnees",
+   "libelle": "3.4.2 indicateur 2",
+   "definition": "def:a01-149",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:systeme/3.4.2/3",
+   "type": "donnees",
+   "libelle": "3.4.2 indicateur 3",
+   "definition": "def:a01-150",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:systeme/3.4.2/4",
+   "type": "donnees",
+   "libelle": "3.4.2 indicateur 4",
+   "definition": "def:a01-151",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:systeme/3.4.2/5",
+   "type": "donnees",
+   "libelle": "3.4.2 indicateur 5",
+   "definition": "def:a01-152",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:systeme/3.4.3/1",
+   "type": "donnees",
+   "libelle": "3.4.3 indicateur 1",
+   "definition": "def:a01-153",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:systeme/3.4.3/2",
+   "type": "donnees",
+   "libelle": "3.4.3 indicateur 2",
+   "definition": "def:a01-154",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:systeme/3.4.3/3",
+   "type": "donnees",
+   "libelle": "3.4.3 indicateur 3",
+   "definition": "def:a01-155",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:systeme/3.4.4/1",
+   "type": "donnees",
+   "libelle": "3.4.4 indicateur 1",
+   "definition": "def:a01-156",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:systeme/3.4.4/2",
+   "type": "donnees",
+   "libelle": "3.4.4 indicateur 2",
+   "definition": "def:a01-157",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:systeme/3.4.4/3",
+   "type": "donnees",
+   "libelle": "3.4.4 indicateur 3",
+   "definition": "def:a01-158",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:systeme/3.4.5/1",
+   "type": "donnees",
+   "libelle": "3.4.5 indicateur 1",
+   "definition": "def:a01-159",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:systeme/3.4.5/2",
+   "type": "donnees",
+   "libelle": "3.4.5 indicateur 2",
+   "definition": "def:a01-160",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:systeme/3.4.5/3",
+   "type": "donnees",
+   "libelle": "3.4.5 indicateur 3",
+   "definition": "def:a01-161",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:systeme/3.4.5/4",
+   "type": "donnees",
+   "libelle": "3.4.5 indicateur 4",
+   "definition": "def:a01-162",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:systeme/3.4.5/5",
+   "type": "donnees",
+   "libelle": "3.4.5 indicateur 5",
+   "definition": "def:a01-163",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:systeme/4.1.1/1",
+   "type": "donnees",
+   "libelle": "4.1.1 indicateur 1",
+   "definition": "def:a01-30",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:systeme/4.1.1/2",
+   "type": "donnees",
+   "libelle": "4.1.1 indicateur 2",
+   "definition": "def:a01-31",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:systeme/4.1.1/3",
+   "type": "donnees",
+   "libelle": "4.1.1 indicateur 3",
+   "definition": "def:a01-32",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:systeme/4.1.2/1",
+   "type": "donnees",
+   "libelle": "4.1.2 indicateur 1",
+   "definition": "def:a01-33",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:systeme/4.1.2/2",
+   "type": "donnees",
+   "libelle": "4.1.2 indicateur 2",
+   "definition": "def:a01-34",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:systeme/4.1.2/3",
+   "type": "donnees",
+   "libelle": "4.1.2 indicateur 3",
+   "definition": "def:a01-35",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "ind:systeme/4.1.2/4",
+   "type": "donnees",
+   "libelle": "4.1.2 indicateur 4",
+   "definition": "def:a01-36",
+   "bareme": "points-0-1",
+   "obligatoire": true
+  },
+  {
+   "id": "crit:systeme/3.4.1",
+   "type": "calcul",
+   "libelle": "3.4.1 Cohérence du système de qualification avec les …",
+   "definition": "def:a01-164",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:systeme/3.4.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.1/2",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:systeme/3.4.2",
+   "type": "calcul",
+   "libelle": "3.4.2 Adéquation de la structure et de la pondération …",
+   "definition": "def:a01-165",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:systeme/3.4.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.2/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.2/5",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:systeme/3.4.3",
+   "type": "calcul",
+   "libelle": "3.4.3 Formulation des critères",
+   "definition": "def:a01-166",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:systeme/3.4.3/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.3/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.3/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:systeme/3.4.4",
+   "type": "calcul",
+   "libelle": "3.4.4 Formulation des indicateurs",
+   "definition": "def:a01-167",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:systeme/3.4.4/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.4/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.4/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:systeme/3.4.5",
+   "type": "calcul",
+   "libelle": "3.4.5 Support de qualification",
+   "definition": "def:a01-168",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:systeme/3.4.5/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.5/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.5/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.5/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.5/5",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "obj:systeme/3.4",
+   "type": "calcul",
+   "libelle": "3.4 ...sont capables de concevoir des exigences …",
+   "definition": "def:a01-169",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:systeme/3.4.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.2/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.2/5",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.3/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.3/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.3/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.4/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.4/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.4/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.5/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.5/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.5/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.5/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.5/5",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:systeme/4.1.1",
+   "type": "calcul",
+   "libelle": "4.1.1 Capacité à diriger une maitrise de cours",
+   "definition": "def:a01-49",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:systeme/4.1.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/4.1.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/4.1.1/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "crit:systeme/4.1.2",
+   "type": "calcul",
+   "libelle": "4.1.2 Contribution à une dynamique d’équipe positive …",
+   "definition": "def:a01-50",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:systeme/4.1.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/4.1.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/4.1.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/4.1.2/4",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "obj:systeme/4.1",
+   "type": "calcul",
+   "libelle": "4.1 ...sont capables de diriger une maîtrise de …",
+   "definition": "def:a01-51",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:systeme/4.1.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/4.1.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/4.1.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/4.1.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/4.1.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/4.1.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/4.1.2/4",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "ex:systeme",
+   "type": "calcul",
+   "libelle": "Système de qualification",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:systeme/3.4.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.2/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.2/5",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.3/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.3/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.3/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.4/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.4/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.4/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.5/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.5/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.5/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.5/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.5/5",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "theme:T1",
+   "type": "calcul",
+   "libelle": "Élaboration des supports",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:systeme/3.4.5/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.5/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.5/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.5/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.5/5",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.4/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.4/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.4/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.3/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.3/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.3/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/2.3.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/2.3.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/2.3.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/2.3.1/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.8.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.8.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.8.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.6.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.6.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.6.2/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "theme:T2",
+   "type": "calcul",
+   "libelle": "Conception pédagogique et réflexion stratégique",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:pdc-filme/2.6.5/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.5/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.7/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.7/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.8.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.8.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.8.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/2.3.3/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/2.3.3/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.6.3/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.6.3/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/2.3.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/2.3.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/2.3.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.3/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.3/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.1/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.1/5",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.7.2/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.6.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.6.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.6.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:construction/1.6.1/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/1.8.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/1.8.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/1.8.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/1.8.1/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/1.8.1/5",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/1.8.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/1.8.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/1.8.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:programme/1.8.2/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.4.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.4.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.4.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.4.2/2",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "theme:T3",
+   "type": "calcul",
+   "libelle": "Animation et transmission",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:planif-ozr/2.5.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:planif-ozr/2.5.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.4/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.4/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.5/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.5/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.6/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.6/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.6/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.6/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.6/5",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.3/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.3/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.3/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:pdc-filme/2.6.3/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.4/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:anim-ozr/2.6.4/2",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "theme:T4",
+   "type": "calcul",
+   "libelle": "Accompagnement et évaluation des part",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "ind:systeme/3.4.5/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.5/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.5/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.5/4",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:systeme/3.4.5/5",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.5.2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.5.2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.5.2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.5.1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.5.1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "ind:entretien/3.5.1/3",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "transv:4.1",
+   "type": "calcul",
+   "libelle": "Objectif 4.1, moyenne des exercices",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "obj:construction/4.1",
+     "poids": 1
+    },
+    {
+     "noeud": "obj:programme/4.1",
+     "poids": 1
+    },
+    {
+     "noeud": "obj:planif-ozr/4.1",
+     "poids": 1
+    },
+    {
+     "noeud": "obj:systeme/4.1",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  },
+  {
+   "id": "transv:2.1",
+   "type": "calcul",
+   "libelle": "Objectif 2.1, moyenne des exercices",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "obj:pdc-filme/2.1",
+     "poids": 1
+    },
+    {
+     "noeud": "obj:anim-ozr/2.1",
+     "poids": 1
+    },
+    {
+     "noeud": "obj:entretien/2.1",
+     "poids": 1
+    }
+   ],
+   "bareme_sortie": "points-0-1"
+  }
+ ],
+ "axes": [
+  {
+   "id": "exercices",
+   "libelle": "Exercices",
+   "principal": true,
+   "arbre": [
+    {
+     "noeud": "ex:construction",
+     "enfants": [
+      {
+       "noeud": "obj:construction/1.6",
+       "enfants": [
+        {
+         "noeud": "crit:construction/1.6.1",
+         "enfants": [
+          {
+           "noeud": "ind:construction/1.6.1/1"
+          },
+          {
+           "noeud": "ind:construction/1.6.1/2"
+          },
+          {
+           "noeud": "ind:construction/1.6.1/3"
+          },
+          {
+           "noeud": "ind:construction/1.6.1/4"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:construction/1.6.2",
+         "enfants": [
+          {
+           "noeud": "ind:construction/1.6.2/1"
+          },
+          {
+           "noeud": "ind:construction/1.6.2/2"
+          },
+          {
+           "noeud": "ind:construction/1.6.2/3"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:construction/1.6.3",
+         "enfants": [
+          {
+           "noeud": "ind:construction/1.6.3/1"
+          },
+          {
+           "noeud": "ind:construction/1.6.3/2"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "noeud": "obj:construction/1.7",
+       "enfants": [
+        {
+         "noeud": "crit:construction/1.7.1",
+         "enfants": [
+          {
+           "noeud": "ind:construction/1.7.1/1"
+          },
+          {
+           "noeud": "ind:construction/1.7.1/2"
+          },
+          {
+           "noeud": "ind:construction/1.7.1/3"
+          },
+          {
+           "noeud": "ind:construction/1.7.1/4"
+          },
+          {
+           "noeud": "ind:construction/1.7.1/5"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:construction/1.7.2",
+         "enfants": [
+          {
+           "noeud": "ind:construction/1.7.2/1"
+          },
+          {
+           "noeud": "ind:construction/1.7.2/2"
+          },
+          {
+           "noeud": "ind:construction/1.7.2/3"
+          },
+          {
+           "noeud": "ind:construction/1.7.2/4"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:construction/1.7.3",
+         "enfants": [
+          {
+           "noeud": "ind:construction/1.7.3/1"
+          },
+          {
+           "noeud": "ind:construction/1.7.3/2"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "noeud": "obj:construction/2.3",
+       "enfants": [
+        {
+         "noeud": "crit:construction/2.3.1",
+         "enfants": [
+          {
+           "noeud": "ind:construction/2.3.1/1"
+          },
+          {
+           "noeud": "ind:construction/2.3.1/2"
+          },
+          {
+           "noeud": "ind:construction/2.3.1/3"
+          },
+          {
+           "noeud": "ind:construction/2.3.1/4"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:construction/2.3.2",
+         "enfants": [
+          {
+           "noeud": "ind:construction/2.3.2/1"
+          },
+          {
+           "noeud": "ind:construction/2.3.2/2"
+          },
+          {
+           "noeud": "ind:construction/2.3.2/3"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:construction/2.3.3",
+         "enfants": [
+          {
+           "noeud": "ind:construction/2.3.3/1"
+          },
+          {
+           "noeud": "ind:construction/2.3.3/2"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "noeud": "obj:construction/4.1",
+       "enfants": [
+        {
+         "noeud": "crit:construction/4.1.1",
+         "enfants": [
+          {
+           "noeud": "ind:construction/4.1.1/1"
+          },
+          {
+           "noeud": "ind:construction/4.1.1/2"
+          },
+          {
+           "noeud": "ind:construction/4.1.1/3"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:construction/4.1.2",
+         "enfants": [
+          {
+           "noeud": "ind:construction/4.1.2/1"
+          },
+          {
+           "noeud": "ind:construction/4.1.2/2"
+          },
+          {
+           "noeud": "ind:construction/4.1.2/3"
+          },
+          {
+           "noeud": "ind:construction/4.1.2/4"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "noeud": "ex:programme",
+     "enfants": [
+      {
+       "noeud": "obj:programme/1.8",
+       "enfants": [
+        {
+         "noeud": "crit:programme/1.8.1",
+         "enfants": [
+          {
+           "noeud": "ind:programme/1.8.1/1"
+          },
+          {
+           "noeud": "ind:programme/1.8.1/2"
+          },
+          {
+           "noeud": "ind:programme/1.8.1/3"
+          },
+          {
+           "noeud": "ind:programme/1.8.1/4"
+          },
+          {
+           "noeud": "ind:programme/1.8.1/5"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:programme/1.8.2",
+         "enfants": [
+          {
+           "noeud": "ind:programme/1.8.2/1"
+          },
+          {
+           "noeud": "ind:programme/1.8.2/2"
+          },
+          {
+           "noeud": "ind:programme/1.8.2/3"
+          },
+          {
+           "noeud": "ind:programme/1.8.2/4"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "noeud": "obj:programme/4.1",
+       "enfants": [
+        {
+         "noeud": "crit:programme/4.1.1",
+         "enfants": [
+          {
+           "noeud": "ind:programme/4.1.1/1"
+          },
+          {
+           "noeud": "ind:programme/4.1.1/2"
+          },
+          {
+           "noeud": "ind:programme/4.1.1/3"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:programme/4.1.2",
+         "enfants": [
+          {
+           "noeud": "ind:programme/4.1.2/1"
+          },
+          {
+           "noeud": "ind:programme/4.1.2/2"
+          },
+          {
+           "noeud": "ind:programme/4.1.2/3"
+          },
+          {
+           "noeud": "ind:programme/4.1.2/4"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "noeud": "ex:pdc-filme",
+     "enfants": [
+      {
+       "noeud": "obj:pdc-filme/2.6-3.8",
+       "enfants": [
+        {
+         "noeud": "crit:pdc-filme/2.6.1",
+         "enfants": [
+          {
+           "noeud": "ind:pdc-filme/2.6.1/1"
+          },
+          {
+           "noeud": "ind:pdc-filme/2.6.1/2"
+          },
+          {
+           "noeud": "ind:pdc-filme/2.6.1/3"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:pdc-filme/2.6.2",
+         "enfants": [
+          {
+           "noeud": "ind:pdc-filme/2.6.2/1"
+          },
+          {
+           "noeud": "ind:pdc-filme/2.6.2/2"
+          },
+          {
+           "noeud": "ind:pdc-filme/2.6.2/3"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:pdc-filme/2.6.3",
+         "enfants": [
+          {
+           "noeud": "ind:pdc-filme/2.6.3/1"
+          },
+          {
+           "noeud": "ind:pdc-filme/2.6.3/2"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:pdc-filme/2.6.4",
+         "enfants": [
+          {
+           "noeud": "ind:pdc-filme/2.6.4/1"
+          },
+          {
+           "noeud": "ind:pdc-filme/2.6.4/2"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:pdc-filme/2.6.5",
+         "enfants": [
+          {
+           "noeud": "ind:pdc-filme/2.6.5/1"
+          },
+          {
+           "noeud": "ind:pdc-filme/2.6.5/2"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "noeud": "obj:pdc-filme/2.1",
+       "enfants": [
+        {
+         "noeud": "crit:pdc-filme/2.1.1",
+         "enfants": [
+          {
+           "noeud": "ind:pdc-filme/2.1.1/1"
+          },
+          {
+           "noeud": "ind:pdc-filme/2.1.1/2"
+          },
+          {
+           "noeud": "ind:pdc-filme/2.1.1/3"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "noeud": "ex:planif-ozr",
+     "enfants": [
+      {
+       "noeud": "obj:planif-ozr/2.4",
+       "enfants": [
+        {
+         "noeud": "crit:planif-ozr/2.4.1",
+         "enfants": [
+          {
+           "noeud": "ind:planif-ozr/2.4.1/1"
+          },
+          {
+           "noeud": "ind:planif-ozr/2.4.1/2"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:planif-ozr/2.4.2",
+         "enfants": [
+          {
+           "noeud": "ind:planif-ozr/2.4.2/1"
+          },
+          {
+           "noeud": "ind:planif-ozr/2.4.2/2"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "noeud": "obj:planif-ozr/2.5",
+       "enfants": [
+        {
+         "noeud": "crit:planif-ozr/2.5.1",
+         "enfants": [
+          {
+           "noeud": "ind:planif-ozr/2.5.1/1"
+          },
+          {
+           "noeud": "ind:planif-ozr/2.5.1/2"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:planif-ozr/2.5.2",
+         "enfants": [
+          {
+           "noeud": "ind:planif-ozr/2.5.2/1"
+          },
+          {
+           "noeud": "ind:planif-ozr/2.5.2/2"
+          },
+          {
+           "noeud": "ind:planif-ozr/2.5.2/3"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "noeud": "obj:planif-ozr/2.8",
+       "enfants": [
+        {
+         "noeud": "crit:planif-ozr/2.8.1",
+         "enfants": [
+          {
+           "noeud": "ind:planif-ozr/2.8.1/1"
+          },
+          {
+           "noeud": "ind:planif-ozr/2.8.1/2"
+          },
+          {
+           "noeud": "ind:planif-ozr/2.8.1/3"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:planif-ozr/2.8.2",
+         "enfants": [
+          {
+           "noeud": "ind:planif-ozr/2.8.2/1"
+          },
+          {
+           "noeud": "ind:planif-ozr/2.8.2/2"
+          },
+          {
+           "noeud": "ind:planif-ozr/2.8.2/3"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "noeud": "obj:planif-ozr/4.1",
+       "enfants": [
+        {
+         "noeud": "crit:planif-ozr/4.1.1",
+         "enfants": [
+          {
+           "noeud": "ind:planif-ozr/4.1.1/1"
+          },
+          {
+           "noeud": "ind:planif-ozr/4.1.1/2"
+          },
+          {
+           "noeud": "ind:planif-ozr/4.1.1/3"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:planif-ozr/4.1.2",
+         "enfants": [
+          {
+           "noeud": "ind:planif-ozr/4.1.2/1"
+          },
+          {
+           "noeud": "ind:planif-ozr/4.1.2/2"
+          },
+          {
+           "noeud": "ind:planif-ozr/4.1.2/3"
+          },
+          {
+           "noeud": "ind:planif-ozr/4.1.2/4"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "noeud": "ex:anim-ozr",
+     "enfants": [
+      {
+       "noeud": "obj:anim-ozr/2.6-3.8",
+       "enfants": [
+        {
+         "noeud": "crit:anim-ozr/2.6.1",
+         "enfants": [
+          {
+           "noeud": "ind:anim-ozr/2.6.1/1"
+          },
+          {
+           "noeud": "ind:anim-ozr/2.6.1/2"
+          },
+          {
+           "noeud": "ind:anim-ozr/2.6.1/3"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:anim-ozr/2.6.2",
+         "enfants": [
+          {
+           "noeud": "ind:anim-ozr/2.6.2/1"
+          },
+          {
+           "noeud": "ind:anim-ozr/2.6.2/2"
+          },
+          {
+           "noeud": "ind:anim-ozr/2.6.2/3"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:anim-ozr/2.6.3",
+         "enfants": [
+          {
+           "noeud": "ind:anim-ozr/2.6.3/1"
+          },
+          {
+           "noeud": "ind:anim-ozr/2.6.3/2"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:anim-ozr/2.6.4",
+         "enfants": [
+          {
+           "noeud": "ind:anim-ozr/2.6.4/1"
+          },
+          {
+           "noeud": "ind:anim-ozr/2.6.4/2"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:anim-ozr/2.6.5",
+         "enfants": [
+          {
+           "noeud": "ind:anim-ozr/2.6.5/1"
+          },
+          {
+           "noeud": "ind:anim-ozr/2.6.5/2"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:anim-ozr/2.6.6",
+         "enfants": [
+          {
+           "noeud": "ind:anim-ozr/2.6.6/1"
+          },
+          {
+           "noeud": "ind:anim-ozr/2.6.6/2"
+          },
+          {
+           "noeud": "ind:anim-ozr/2.6.6/3"
+          },
+          {
+           "noeud": "ind:anim-ozr/2.6.6/4"
+          },
+          {
+           "noeud": "ind:anim-ozr/2.6.6/5"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:anim-ozr/2.6.7",
+         "enfants": [
+          {
+           "noeud": "ind:anim-ozr/2.6.7/1"
+          },
+          {
+           "noeud": "ind:anim-ozr/2.6.7/2"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "noeud": "obj:anim-ozr/2.1",
+       "enfants": [
+        {
+         "noeud": "crit:anim-ozr/2.1.1",
+         "enfants": [
+          {
+           "noeud": "ind:anim-ozr/2.1.1/1"
+          },
+          {
+           "noeud": "ind:anim-ozr/2.1.1/2"
+          },
+          {
+           "noeud": "ind:anim-ozr/2.1.1/3"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "noeud": "ex:entretien",
+     "enfants": [
+      {
+       "noeud": "obj:entretien/3.1",
+       "enfants": [
+        {
+         "noeud": "crit:entretien/3.1.1",
+         "enfants": [
+          {
+           "noeud": "ind:entretien/3.1.1/1"
+          },
+          {
+           "noeud": "ind:entretien/3.1.1/2"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "noeud": "obj:entretien/3.2",
+       "enfants": [
+        {
+         "noeud": "crit:entretien/3.2.1",
+         "enfants": [
+          {
+           "noeud": "ind:entretien/3.2.1/1"
+          },
+          {
+           "noeud": "ind:entretien/3.2.1/2"
+          },
+          {
+           "noeud": "ind:entretien/3.2.1/3"
+          },
+          {
+           "noeud": "ind:entretien/3.2.1/4"
+          },
+          {
+           "noeud": "ind:entretien/3.2.1/5"
+          },
+          {
+           "noeud": "ind:entretien/3.2.1/6"
+          },
+          {
+           "noeud": "ind:entretien/3.2.1/7"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:entretien/3.2.2",
+         "enfants": [
+          {
+           "noeud": "ind:entretien/3.2.2/1"
+          },
+          {
+           "noeud": "ind:entretien/3.2.2/2"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "noeud": "obj:entretien/3.5",
+       "enfants": [
+        {
+         "noeud": "crit:entretien/3.5.1",
+         "enfants": [
+          {
+           "noeud": "ind:entretien/3.5.1/1"
+          },
+          {
+           "noeud": "ind:entretien/3.5.1/2"
+          },
+          {
+           "noeud": "ind:entretien/3.5.1/3"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:entretien/3.5.2",
+         "enfants": [
+          {
+           "noeud": "ind:entretien/3.5.2/1"
+          },
+          {
+           "noeud": "ind:entretien/3.5.2/2"
+          },
+          {
+           "noeud": "ind:entretien/3.5.2/3"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "noeud": "obj:entretien/2.1",
+       "enfants": [
+        {
+         "noeud": "crit:entretien/2.1.1",
+         "enfants": [
+          {
+           "noeud": "ind:entretien/2.1.1/1"
+          },
+          {
+           "noeud": "ind:entretien/2.1.1/2"
+          },
+          {
+           "noeud": "ind:entretien/2.1.1/3"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "noeud": "ex:systeme",
+     "enfants": [
+      {
+       "noeud": "obj:systeme/3.4",
+       "enfants": [
+        {
+         "noeud": "crit:systeme/3.4.1",
+         "enfants": [
+          {
+           "noeud": "ind:systeme/3.4.1/1"
+          },
+          {
+           "noeud": "ind:systeme/3.4.1/2"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:systeme/3.4.2",
+         "enfants": [
+          {
+           "noeud": "ind:systeme/3.4.2/1"
+          },
+          {
+           "noeud": "ind:systeme/3.4.2/2"
+          },
+          {
+           "noeud": "ind:systeme/3.4.2/3"
+          },
+          {
+           "noeud": "ind:systeme/3.4.2/4"
+          },
+          {
+           "noeud": "ind:systeme/3.4.2/5"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:systeme/3.4.3",
+         "enfants": [
+          {
+           "noeud": "ind:systeme/3.4.3/1"
+          },
+          {
+           "noeud": "ind:systeme/3.4.3/2"
+          },
+          {
+           "noeud": "ind:systeme/3.4.3/3"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:systeme/3.4.4",
+         "enfants": [
+          {
+           "noeud": "ind:systeme/3.4.4/1"
+          },
+          {
+           "noeud": "ind:systeme/3.4.4/2"
+          },
+          {
+           "noeud": "ind:systeme/3.4.4/3"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:systeme/3.4.5",
+         "enfants": [
+          {
+           "noeud": "ind:systeme/3.4.5/1"
+          },
+          {
+           "noeud": "ind:systeme/3.4.5/2"
+          },
+          {
+           "noeud": "ind:systeme/3.4.5/3"
+          },
+          {
+           "noeud": "ind:systeme/3.4.5/4"
+          },
+          {
+           "noeud": "ind:systeme/3.4.5/5"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "noeud": "obj:systeme/4.1",
+       "enfants": [
+        {
+         "noeud": "crit:systeme/4.1.1",
+         "enfants": [
+          {
+           "noeud": "ind:systeme/4.1.1/1"
+          },
+          {
+           "noeud": "ind:systeme/4.1.1/2"
+          },
+          {
+           "noeud": "ind:systeme/4.1.1/3"
+          }
+         ]
+        },
+        {
+         "noeud": "crit:systeme/4.1.2",
+         "enfants": [
+          {
+           "noeud": "ind:systeme/4.1.2/1"
+          },
+          {
+           "noeud": "ind:systeme/4.1.2/2"
+          },
+          {
+           "noeud": "ind:systeme/4.1.2/3"
+          },
+          {
+           "noeud": "ind:systeme/4.1.2/4"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "themes",
+   "libelle": "Thèmes transversaux",
+   "arbre": [
+    {
+     "noeud": "theme:T1",
+     "enfants": [
+      {
+       "noeud": "crit:systeme/3.4.5"
+      },
+      {
+       "noeud": "crit:systeme/3.4.4"
+      },
+      {
+       "noeud": "crit:systeme/3.4.3"
+      },
+      {
+       "noeud": "crit:construction/2.3.1"
+      },
+      {
+       "noeud": "crit:planif-ozr/2.8.1"
+      },
+      {
+       "noeud": "crit:construction/1.6.2"
+      }
+     ]
+    },
+    {
+     "noeud": "theme:T2",
+     "enfants": [
+      {
+       "noeud": "crit:pdc-filme/2.6.5"
+      },
+      {
+       "noeud": "crit:anim-ozr/2.6.7"
+      },
+      {
+       "noeud": "crit:planif-ozr/2.8.2"
+      },
+      {
+       "noeud": "crit:construction/2.3.3"
+      },
+      {
+       "noeud": "crit:construction/1.6.3"
+      },
+      {
+       "noeud": "crit:construction/2.3.2"
+      },
+      {
+       "noeud": "crit:construction/1.7.3"
+      },
+      {
+       "noeud": "crit:construction/1.7.1"
+      },
+      {
+       "noeud": "crit:construction/1.7.2"
+      },
+      {
+       "noeud": "crit:construction/1.6.1"
+      },
+      {
+       "noeud": "crit:programme/1.8.1"
+      },
+      {
+       "noeud": "crit:programme/1.8.2"
+      },
+      {
+       "noeud": "crit:planif-ozr/2.4.1"
+      },
+      {
+       "noeud": "crit:planif-ozr/2.4.2"
+      }
+     ]
+    },
+    {
+     "noeud": "theme:T3",
+     "enfants": [
+      {
+       "noeud": "crit:planif-ozr/2.5.1"
+      },
+      {
+       "noeud": "crit:pdc-filme/2.6.4"
+      },
+      {
+       "noeud": "crit:anim-ozr/2.6.5"
+      },
+      {
+       "noeud": "crit:pdc-filme/2.6.2"
+      },
+      {
+       "noeud": "crit:anim-ozr/2.6.2"
+      },
+      {
+       "noeud": "crit:anim-ozr/2.6.6"
+      },
+      {
+       "noeud": "crit:anim-ozr/2.6.3"
+      },
+      {
+       "noeud": "crit:pdc-filme/2.6.1"
+      },
+      {
+       "noeud": "crit:anim-ozr/2.6.1"
+      },
+      {
+       "noeud": "crit:pdc-filme/2.6.3"
+      },
+      {
+       "noeud": "crit:anim-ozr/2.6.4"
+      }
+     ]
+    },
+    {
+     "noeud": "theme:T4",
+     "enfants": [
+      {
+       "noeud": "crit:systeme/3.4.5"
+      },
+      {
+       "noeud": "crit:entretien/3.5.2"
+      },
+      {
+       "noeud": "crit:entretien/3.5.1"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "objectifs-transversaux",
+   "libelle": "Objectifs transversaux",
+   "arbre": [
+    {
+     "noeud": "transv:4.1",
+     "enfants": [
+      {
+       "noeud": "obj:construction/4.1"
+      },
+      {
+       "noeud": "obj:programme/4.1"
+      },
+      {
+       "noeud": "obj:planif-ozr/4.1"
+      },
+      {
+       "noeud": "obj:systeme/4.1"
+      }
+     ]
+    },
+    {
+     "noeud": "transv:2.1",
+     "enfants": [
+      {
+       "noeud": "obj:pdc-filme/2.1"
+      },
+      {
+       "noeud": "obj:anim-ozr/2.1"
+      },
+      {
+       "noeud": "obj:entretien/2.1"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "decisif": null,
+ "exigences": {
+  "obligatoires": "tous les nœuds de données",
+  "minimum_par_regroupement": []
+ },
+ "jokers": {
+  "quota": 0,
+  "autorises": []
+ }
+}
