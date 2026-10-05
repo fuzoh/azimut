@@ -1,0 +1,1365 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Azimut — modèle de qualification (support de relecture du doc 18)</title>
+<style>
+:root{
+  --bg:#f6f6f2;--card:#fff;--ink:#1d2330;--muted:#5d6675;--line:#d9dce2;--soft:#eef0f3;--accent:#2f5bd3;
+  --data:#2563eb;--data-bg:#e8f0fe;--calc:#7c3aed;--calc-bg:#f3edff;--dec:#a86a0c;--dec-bg:#fff4dc;
+  --ok:#15803d;--ok-bg:#e3f6e8;--ko:#c2410c;--ko-bg:#fdeee6;--warn:#92600a;--warn-bg:#fef4d4;
+  --joker:#c0267a;--joker-bg:#fde7f1;--ne:#6b7280;--ne-bg:#eceef1;--multi:#0e7490;--multi-bg:#e0f5f8;
+  --rv:#fffbe6;--rv-line:#ead27a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:16px}
+body{margin:0;font:15px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+a{color:var(--accent)}
+code{font:12.5px ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--soft);padding:1px 5px;border-radius:4px}
+h1{font-size:26px;margin:0 0 6px}
+h2{font-size:21px;margin:0 0 4px}
+h3{font-size:16px;margin:18px 0 6px}
+p{margin:8px 0}
+ul{margin:6px 0;padding-left:22px}
+li{margin:3px 0}
+button{font:inherit;font-size:13.5px;border:1px solid var(--line);background:#fff;border-radius:7px;padding:5px 11px;cursor:pointer;color:var(--ink)}
+button:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
+button:disabled{opacity:.45;cursor:not-allowed}
+button.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+button.primary:hover:not(:disabled){filter:brightness(1.1);color:#fff}
+select,input[type=text],input[type=number],textarea{font:inherit;font-size:13.5px;border:1px solid var(--line);border-radius:6px;padding:4px 7px;background:#fff;color:var(--ink)}
+
+/* layout */
+#side{position:fixed;top:0;left:0;bottom:0;width:240px;background:#1f2633;color:#d6dbe4;padding:18px 14px;overflow:auto}
+#side .brand{font-weight:700;color:#fff;font-size:17px}
+#side .brand small{display:block;font-weight:400;color:#9aa4b5;font-size:12px;margin-top:2px}
+#side nav{margin-top:16px}
+#side nav a{display:block;color:#cfd6e2;text-decoration:none;padding:5px 8px;border-radius:6px;font-size:14px}
+#side nav a:hover,#side nav a.on{background:#323c4e;color:#fff}
+#side nav a .n{display:inline-block;width:22px;color:#8592a8}
+#side .tools{margin-top:18px;border-top:1px solid #36404f;padding-top:14px}
+#side .tools button{width:100%;margin-bottom:7px;background:#2c3545;color:#e6eaf1;border-color:#455066;text-align:left}
+#side .tools button:hover{color:#fff;border-color:#8ea6ff}
+#side .count{float:right;background:#e9c84e;color:#1f2633;border-radius:9px;padding:0 7px;font-weight:700;font-size:12px}
+#side .hint{font-size:12px;color:#8f9ab0;margin-top:8px}
+main{margin-left:240px;padding:26px 34px 80px;max-width:1260px}
+section.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px 26px;margin:0 0 24px}
+.lead{color:var(--muted);margin-top:2px}
+.ref{display:inline-block;font-size:11.5px;font-weight:600;color:var(--accent);background:#eaf0ff;border-radius:5px;padding:0 6px;margin-left:4px;vertical-align:1px;white-space:nowrap}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.box{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:#fcfcfd}
+.box.good{border-color:#9ed3ae;background:#f5fbf6}
+.box.bad{border-color:#f0b79b;background:#fff8f4}
+.box h4{margin:0 0 6px;font-size:14px}
+.note{font-size:13px;color:var(--muted)}
+.interp{border-left:3px solid var(--warn);background:var(--warn-bg);padding:6px 10px;border-radius:0 6px 6px 0;font-size:13px;margin:8px 0}
+.term{color:inherit;text-decoration:underline dotted var(--accent);text-underline-offset:3px;cursor:pointer}
+.term:hover{color:var(--accent)}
+table.t{border-collapse:collapse;width:100%;font-size:14px}
+table.t th,table.t td{border-bottom:1px solid var(--line);padding:7px 8px;text-align:left;vertical-align:top}
+table.t th{background:var(--soft);font-size:13px}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:12.5px;color:var(--muted);margin:8px 0}
+.legend span{display:inline-flex;align-items:center;gap:5px}
+.sw{display:inline-block;width:14px;height:14px;border-radius:4px;border:1.5px solid}
+
+/* badges */
+.b{display:inline-block;font-size:11.5px;font-weight:600;border-radius:5px;padding:0 6px;line-height:18px;white-space:nowrap}
+.b.ok{background:var(--ok-bg);color:var(--ok)}.b.ko{background:var(--ko-bg);color:var(--ko)}
+.b.warn{background:var(--warn-bg);color:var(--warn)}.b.j{background:var(--joker-bg);color:var(--joker)}
+.b.m{background:var(--multi-bg);color:var(--multi)}.b.ne{background:var(--ne-bg);color:var(--ne)}
+.b.dec{background:var(--dec-bg);color:var(--dec)}.b.ind{background:var(--soft);color:var(--muted)}
+.b.data{background:var(--data-bg);color:var(--data)}.b.calc{background:var(--calc-bg);color:var(--calc)}
+
+/* diagrams */
+svg.dia{width:100%;height:auto;display:block;font-family:inherit}
+svg .dn{cursor:pointer}
+svg .dn rect{transition:filter .1s}
+svg .dn:hover rect{filter:drop-shadow(0 2px 6px rgba(0,0,0,.18))}
+svg .el{font-size:11.5px;fill:#4b5563}
+svg .elbg{fill:#fff;opacity:.92}
+svg .ed{fill:none;stroke:#8b93a3;stroke-width:1.5}
+svg .ed.dash{stroke-dasharray:5 4}
+svg .ed.red{stroke:var(--ko)}
+svg .ed.green{stroke:var(--ok)}
+.diawrap{border:1px solid var(--line);border-radius:10px;background:#fbfbfc;padding:8px;margin:10px 0}
+
+/* review boxes */
+.review{margin-top:14px}
+.rv{border:1px solid var(--rv-line);background:var(--rv);border-radius:9px;padding:8px 10px}
+.rv-h{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:12.5px;color:#6b5a14;font-weight:600}
+.rv-h .lbl{margin-right:auto}
+.rv-chip{font-size:12px;padding:1px 8px;border-radius:12px;border:1px solid #dcc874;background:#fff;color:#6b5a14;cursor:pointer}
+.rv-chip.on[data-s=ok]{background:var(--ok-bg);border-color:var(--ok);color:var(--ok)}
+.rv-chip.on[data-s=question]{background:#e6efff;border-color:var(--accent);color:var(--accent)}
+.rv-chip.on[data-s=desaccord]{background:var(--ko-bg);border-color:var(--ko);color:var(--ko)}
+.rv-chip.on[data-s=reformuler]{background:#f2e9ff;border-color:var(--calc);color:var(--calc)}
+.rv textarea{width:100%;margin-top:6px;min-height:46px;resize:vertical;border-color:#e2d08a;background:#fffef8;line-height:1.45}
+.rv-meta{font-size:11px;color:#9a8a45;margin-top:2px;min-height:14px}
+.rv.has{border-color:#d4b23c;box-shadow:inset 3px 0 0 #d4b23c}
+.rv.mini textarea{min-height:34px}
+
+/* modal + drawer */
+#modal{position:fixed;inset:0;background:rgba(20,25,35,.45);display:none;align-items:flex-start;justify-content:center;z-index:50;padding:6vh 16px;overflow:auto}
+#modal.on{display:flex}
+#modal .mbox{background:#fff;border-radius:12px;max-width:680px;width:100%;padding:20px 24px;box-shadow:0 18px 50px rgba(0,0,0,.25)}
+#modal .mhead{display:flex;align-items:flex-start;gap:10px}
+#modal .mhead h3{margin:0;flex:1;font-size:19px}
+#modal .x{border:none;font-size:22px;line-height:1;padding:0 4px}
+#drawer{position:fixed;top:0;right:0;bottom:0;width:470px;max-width:100%;background:#fff;border-left:1px solid var(--line);box-shadow:-10px 0 40px rgba(0,0,0,.12);transform:translateX(105%);transition:transform .2s;z-index:40;display:flex;flex-direction:column}
+#drawer.on{transform:none}
+#drawer .dh{padding:16px 18px;border-bottom:1px solid var(--line);display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+#drawer .dh h3{margin:0;flex:1 1 100%}
+#drawer .dl{overflow:auto;padding:12px 18px;flex:1}
+#drawer .it{border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin-bottom:8px;cursor:pointer}
+#drawer .it:hover{border-color:var(--accent)}
+#drawer .it .k{font-size:12px;color:var(--muted)}
+#drawer .it .tx{white-space:pre-wrap;font-size:13.5px;margin-top:3px}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#1f2633;color:#fff;padding:8px 16px;border-radius:8px;font-size:14px;z-index:60;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.on{opacity:1}
+
+/* simulator */
+.simbar{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;background:var(--soft);border-radius:10px;padding:10px 12px;margin:12px 0}
+.simbar label{font-size:12px;color:var(--muted);display:flex;flex-direction:column;gap:3px}
+.ptabs{display:flex;gap:6px;flex-wrap:wrap}
+.ptab{padding:4px 10px;border-radius:16px}
+.ptab.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.ptab.on:hover{color:#fff}
+.banner{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:9px 12px;border-radius:10px;border:1px solid var(--line);background:#fff;margin-bottom:10px}
+.banner .big{font-size:16px;font-weight:700;margin-right:6px}
+.prov{background:var(--warn-bg);border:1px solid #ecc96a;color:var(--warn);border-radius:8px;padding:6px 10px;font-size:13.5px;margin-bottom:10px}
+.graphwrap{border:1px solid var(--line);border-radius:10px;background:#fbfbfc;overflow:auto}
+svg#g{display:block;min-width:900px;width:100%;height:auto}
+#g .gn{cursor:pointer}
+#g .gn.fade{opacity:.35}
+#g .ge{fill:none;stroke:#a3aab7;stroke-width:1.6}
+#g .ge.hl{stroke:#4b5563;stroke-width:2.2}
+#g .ge.fade{opacity:.25}
+#g .ge.jk{stroke:var(--joker)}
+#g .ge.place{stroke:var(--warn);stroke-dasharray:3 4;stroke-width:1.6}
+#g text{font-family:inherit}
+.simgrid{display:grid;grid-template-columns:300px 1fr;gap:14px;margin-top:14px}
+.panel{border:1px solid var(--line);border-radius:10px;background:#fff;padding:12px 14px}
+.panel h4{margin:0 0 8px;font-size:14.5px}
+.tree .grp{margin:6px 0 8px}
+.tree .gl{font-weight:600;font-size:13.5px;cursor:pointer;display:flex;justify-content:space-between;gap:6px;padding:3px 6px;border-radius:6px}
+.tree .gl:hover,.tree .it:hover{background:var(--soft)}
+.tree .it{font-size:13px;padding:2px 6px 2px 18px;cursor:pointer;display:flex;justify-content:space-between;gap:6px;border-radius:6px}
+.tree .sel{background:#e7edff !important}
+.kv{display:grid;grid-template-columns:150px 1fr;gap:4px 10px;font-size:13.5px;margin:8px 0}
+.kv>div:nth-child(odd){color:var(--muted)}
+.phrase{background:#f5f3ff;border:1px solid #ddd3fb;border-radius:8px;padding:8px 10px;font-size:14px;margin:8px 0}
+.chips{display:flex;gap:5px;flex-wrap:wrap;margin:4px 0}
+.chip{padding:3px 9px;border-radius:14px;font-size:13px}
+.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.chip.on:hover{color:#fff}
+.flag{border-radius:8px;padding:7px 10px;font-size:13.5px;margin:6px 0}
+.flag.j{background:var(--joker-bg);color:#7d1550}
+.flag.m{background:var(--multi-bg);color:#0b5566}
+.flag.ne{background:var(--ne-bg);color:#374151}
+.flag.w{background:var(--warn-bg);color:#6f4a06}
+.dcom{background:#f0f7ff;border:1px dashed #9cbcf0;border-radius:8px;padding:6px 10px;font-size:13.5px;margin:8px 0}
+.tabs{display:flex;gap:4px;margin-top:16px;border-bottom:1px solid var(--line)}
+.tabs button{border:none;border-bottom:2px solid transparent;border-radius:0;background:none;padding:7px 12px}
+.tabs button.on{border-bottom-color:var(--accent);color:var(--accent);font-weight:600}
+.tabc{padding:12px 2px}
+table.saisie{border-collapse:collapse;font-size:13px;width:100%}
+table.saisie th,table.saisie td{border:1px solid var(--line);padding:4px 6px;text-align:center}
+table.saisie th{background:var(--soft);font-weight:600}
+table.saisie td.nm{text-align:left;white-space:nowrap}
+table.saisie tr.grp td{background:#f6f9ff}
+table.saisie select{padding:2px 3px;font-size:12.5px}
+table.saisie td.disp{background:repeating-linear-gradient(45deg,#f3f4f6,#f3f4f6 5px,#e5e7eb 5px,#e5e7eb 10px)}
+table.saisie td.ne select{color:var(--ne);font-style:italic}
+table.saisie td.vide select{color:#9ca3af}
+.hist{font-size:13px}
+.hist div{border-bottom:1px dotted var(--line);padding:4px 0}
+.hist .w{color:var(--muted);font-size:12px}
+.matrix td,.matrix th{text-align:center !important}
+.matrix td.ref{cursor:pointer}
+.matrix td.ref:hover{background:#eef3ff}
+.matrix td.none{color:#9ca3af;font-style:italic}
+@media (max-width:980px){#side{display:none}main{margin-left:0;padding:16px}.cols,.simgrid{grid-template-columns:1fr}}
+@media print{#side,#drawer,.simbar,.tools{display:none}main{margin:0}}
+</style>
+</head>
+<body>
+
+<aside id="side">
+  <div class="brand">Azimut<small>Modèle de qualification · relecture du doc 18</small></div>
+  <nav id="nav">
+    <a href="#lire"><span class="n">0</span>Lire cette page</a>
+    <a href="#carte"><span class="n">1</span>Carte du domaine</a>
+    <a href="#simulateur"><span class="n">2</span>Simulateur de grille</a>
+    <a href="#etats"><span class="n">3</span>États d'une case</a>
+    <a href="#joker"><span class="n">4</span>Joker</a>
+    <a href="#repetitions"><span class="n">5</span>Évaluations répétées</a>
+    <a href="#cycle"><span class="n">6</span>Cycle de vie</a>
+    <a href="#copies"><span class="n">7</span>Grilles et copies</a>
+    <a href="#vues"><span class="n">8</span>Vues et exports</a>
+    <a href="#rejouabilite"><span class="n">9</span>Rejouabilité</a>
+    <a href="#arbitrages"><span class="n">10</span>Arbitrages finaux</a>
+    <a href="#ouverts"><span class="n">11</span>Points ouverts</a>
+  </nav>
+  <div class="tools">
+    <button id="openDrawer">📝 Mes commentaires <span class="count" id="cnt">0</span></button>
+    <button id="expMd">⬇ Exporter en Markdown</button>
+    <button id="cpMd">⧉ Copier le Markdown</button>
+    <div class="hint">Les commentaires sont enregistrés automatiquement dans ce navigateur (localStorage).</div>
+  </div>
+</aside>
+
+<main>
+
+<!-- 0 -->
+<section class="card" id="lire">
+  <h1>Modèle de qualification Azimut</h1>
+  <p class="lead">Support visuel de relecture de <code>docs/analyse/18-decisions-definitives.md</code> (décisions du 4 octobre 2026). Le document 18 fait foi ; cette page n'ajoute aucune décision.</p>
+  <div class="cols">
+    <div>
+      <h3>Comment lire</h3>
+      <ul>
+        <li>Les <a class="term" data-ent="CASE">termes soulignés</a> ouvrent une fiche avec la définition et la référence au doc 18.</li>
+        <li>Les boîtes des diagrammes sont cliquables.</li>
+        <li>Le <a href="#simulateur">simulateur</a> exécute une grille d'exemple : modifiez des notes, posez une dispense, appliquez un joker, finalisez un dossier, et observez la propagation.</li>
+        <li>Les références <span class="ref">§6</span> renvoient aux sections du doc 18.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Comment commenter</h3>
+      <ul>
+        <li>Chaque section, fiche, nœud du simulateur, arbitrage et point ouvert a un champ jaune <b>📝</b>.</li>
+        <li>Qualifiez le commentaire : <b>OK</b>, <b>Question</b>, <b>Désaccord</b>, <b>À reformuler</b>.</li>
+        <li>« Mes commentaires » liste tout. L'export Markdown rassemble les commentaires avec leur contexte, prêts à être recollés dans une discussion ou un fichier.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="interp"><b>Hypothèses de la maquette.</b> Quand le doc 18 laisse un point ouvert (conversion, normalisation, catalogue, joker sur statut…), le simulateur choisit une convention <i>illustrative</i>, signalée par un encadré de cette couleur. Ce ne sont pas des décisions.</div>
+  <div class="review" data-key="global" data-label="Commentaire général"></div>
+</section>
+
+<!-- 1 -->
+<section class="card" id="carte">
+  <h2>1. Carte du domaine</h2>
+  <p class="lead">Les objets du modèle et leurs relations. Cliquez une boîte pour sa fiche.</p>
+  <div class="legend">
+    <span><i class="sw" style="background:#eaf2ff;border-color:#5b8def"></i>Cours et participants</span>
+    <span><i class="sw" style="background:#eefaf1;border-color:#4caf6e"></i>Grille et structure</span>
+    <span><i class="sw" style="background:#f3edff;border-color:#8b5cf6"></i>Calcul</span>
+    <span><i class="sw" style="background:#fff4dc;border-color:#d39b2a"></i>Saisie et données d'un apprenant</span>
+    <span><i class="sw" style="background:#f7f7f7;border-color:#9ca3af"></i>Hors grille / facultatif</span>
+  </div>
+  <div class="diawrap" id="dia-carte"></div>
+  <h3>Les trois idées structurantes</h3>
+  <div class="cols">
+    <div class="box"><h4>Un graphe, pas un arbre</h4>Une grille est un graphe sans cycle de <a class="term" data-ent="NDATA">nœuds de données</a> et de <a class="term" data-ent="NCALC">nœuds de calcul</a>. Les <a class="term" data-ent="AXE">axes</a> sont des lectures de ce graphe. Un élément peut être <b>placé</b> à un endroit et <b>compter</b> ailleurs. <span class="ref">§3</span></div>
+    <div class="box"><h4>La réussite est un nœud ordinaire</h4>Un <a class="term" data-ent="FINAL">nœud de calcul décisif</a> porte la réussite. Tout ce dont il dépend contribue ; le reste est indicatif. Changer d'axe principal ne change rien. <span class="ref">§3</span></div>
+    <div class="box"><h4>Tout se recalcule</h4>Aucun instantané de résultats de référence. Notes + structure + <a class="term" data-ent="FONCTION">fonctions immuables</a> → résultat. Un <a class="term" data-ent="CACHE">cache</a> est permis s'il est dérivé. <span class="ref">§10</span></div>
+    <div class="box"><h4>Changer le calcul = copier la grille</h4>Les règles sont fixées avant le cours. Pendant le cours, les <a class="term" data-ent="VUE">vues</a> s'adaptent librement, mais toute reconfiguration du calcul passe par une <a class="term" data-ent="GRILLE">copie complète</a>. <span class="ref">§9</span> <span class="ref">§11</span></div>
+  </div>
+  <div class="review" data-key="s:carte" data-label="1. Carte du domaine"></div>
+</section>
+
+<!-- 2 -->
+<section class="card" id="simulateur">
+  <h2>2. Simulateur de grille</h2>
+  <p class="lead">Une grille d'exemple, « Cours de base — animation », avec deux exercices et deux compétences transversales. Le calcul suit les règles du doc 18 et se refait à chaque modification.</p>
+  <details class="box" style="margin:8px 0"><summary><b>Ce que montre cette grille</b> (cliquer pour déplier)</summary>
+    <ul>
+      <li><b>Deux axes</b> : <i>Exercices</i> et <i>Compétences</i>. Changez l'axe principal : la navigation change, la réussite non. <span class="ref">§3</span></li>
+      <li><b>Placement ≠ contribution</b> : « Sécurité de la veillée » est placée dans l'Exercice 2 mais compte seulement pour la compétence Sécurité (trait orange pointillé). <span class="ref">§3</span></li>
+      <li><b>Même définition, deux occurrences</b> : « Consignes claires » est évaluée dans les deux exercices, avec deux cases distinctes. <span class="ref">§4</span></li>
+      <li><b>Appréciation globale</b> = nœud de données supplémentaire, pondéré ×2 dans l'Exercice 1. <span class="ref">§3</span></li>
+      <li><b>Chemins multiples</b> : « Consignes (Ex.1) » compte pour deux exigences et deux fois dans la moyenne globale, ce qui est signalé sans être bloqué. <span class="ref">§3</span></li>
+      <li><b>Nœuds indicatifs</b> : « Moyenne globale » et « Progression consignes » ne contribuent pas à la réussite. <span class="ref">§3</span></li>
+      <li><b>Scénarios</b> : <i>Léa</i> réussit ; <i>Noah</i> échoue de peu, et un seul joker ne suffit pas ; <i>Zoé</i> a un dossier provisoire, avec un indicateur obligatoire vide et une dispense ; <i>Malik</i> ne s'est pas présenté (à écarter).</li>
+    </ul>
+  </details>
+  <div class="interp"><b>Conventions illustratives (non décidées, §7 et §13.1).</b> Barème 1–5 pour tous les indicateurs. Normalisation 0–100 % au choix ci-dessous. Un « point » de joker vaut un palier (25 %). Les résultats intermédiaires transmettent leur valeur numérique (orientation §7). Un « ET » ou un « tous ≥ seuil » ignore les entrées sans résultat, comme un tableur ; la protection repose sur les exigences de remplissage (§6).</div>
+
+  <div class="simbar">
+    <label>Apprenant (dossier)<div class="ptabs" id="ptabs"></div></label>
+    <label>Axe principal<select id="axisSel"><option value="exercices">Exercices</option><option value="competences">Compétences</option></select></label>
+    <label>Conversion 1–5 → %<select id="convSel"><option value="extremes">Distance entre extrêmes (3 = 50 %)</option><option value="cible">Atteinte d'une cible (3 = 100 %)</option></select></label>
+    <label>Quota de jokers / apprenant<input type="number" id="quota" min="0" max="5" style="width:70px"></label>
+    <label>Je saisis en tant que<select id="author"><option>Formatrice A</option><option>Formateur B</option></select></label>
+    <label>&nbsp;<button id="reset">↺ Réinitialiser</button></label>
+  </div>
+  <div id="excluded" class="note"></div>
+  <div id="banner"></div>
+  <div class="legend">
+    <span><i class="sw" style="background:var(--data-bg);border-color:var(--data)"></i>Nœud de données</span>
+    <span><i class="sw" style="background:var(--calc-bg);border-color:var(--calc)"></i>Nœud de calcul</span>
+    <span><i class="sw" style="background:var(--dec-bg);border-color:var(--dec)"></i>Résultat final décisif</span>
+    <span><i class="sw" style="background:#fff;border-color:#9ca3af;border-style:dashed"></i>Indicatif (ne contribue pas)</span>
+    <span class="b j">J joker appliqué</span><span class="b j" style="background:#fff;border:1px solid var(--joker)">J↓ influencé par un joker</span>
+    <span class="b m">⇉ 2 exig. = plusieurs exigences</span><span class="b m">⇉ ×2 = influence multiple</span><span class="b warn">! oblig. (manquant)</span><span class="b ne">dispense</span>
+    <span><svg width="34" height="10"><line x1="0" y1="5" x2="34" y2="5" stroke="#92600a" stroke-dasharray="3 4" stroke-width="2"/></svg>placé, non compté</span>
+  </div>
+  <div class="graphwrap"><svg id="g" viewBox="0 0 1080 520"></svg></div>
+  <p class="note">Cliquez un nœud pour le détail, la saisie de la case, le joker ou la dispense. Le chemin de calcul du nœud sélectionné est mis en évidence.</p>
+
+  <div class="simgrid">
+    <div class="panel tree" id="tree"></div>
+    <div class="panel" id="detail"></div>
+  </div>
+
+  <div class="tabs" id="tabs">
+    <button data-t="saisie" class="on">Vue de saisie</button>
+    <button data-t="erreurs">Erreurs</button>
+    <button data-t="dossiers">Dossiers et cycle de vie</button>
+    <button data-t="historique">Historique</button>
+  </div>
+  <div class="tabc" id="tabc"></div>
+  <div class="review" data-key="s:simulateur" data-label="2. Simulateur (grille d'exemple, comportements)"></div>
+</section>
+
+<!-- 3 -->
+<section class="card" id="etats">
+  <h2>3. États d'une case, dispense et remplissage</h2>
+  <p class="lead">Une <a class="term" data-ent="CASE">case</a> = un participant × une occurrence évaluée. Une note courante partagée, un commentaire facultatif et un historique. <span class="ref">§5</span> <span class="ref">§6</span></p>
+  <div class="diawrap" id="dia-etats"></div>
+  <table class="t">
+    <tr><th>État</th><th>Sens</th><th>Effet sur le calcul</th><th>Satisfait « obligatoire » ?</th></tr>
+    <tr><td><span class="b data">Note</span></td><td>Note renseignée sur le barème, sans dispense applicable.</td><td>Contribue selon les règles.</td><td>Oui</td></tr>
+    <tr><td><span class="b ind">Vide</span></td><td>Case encore à traiter.</td><td>Exclue, sans pénalité. Jamais convertie en zéro.</td><td>Non</td></tr>
+    <tr><td><span class="b ne">Non évalué</span></td><td>Situation examinée ; évaluation volontairement exclue, avec ou sans note antérieure conservée.</td><td>Exclue, sans pénalité. Note antérieure affichable à titre indicatif.</td><td>Non, même avec une note conservée</td></tr>
+  </table>
+  <div class="cols" style="margin-top:14px">
+    <div class="box"><h4>Dispense</h4>Utilise « non évalué ». Elle se pose sur une case <b>ou n'importe quel regroupement</b> (exercice, objectif, sphère) et s'hérite par ses feuilles. Les notes présentes sont conservées mais ne comptent plus. La dispense <b>ne lève pas</b> les exigences de remplissage. <span class="ref">§6</span><div class="note" style="margin-top:6px">À essayer : sélectionnez « Exercice 2 » pour Noah dans le simulateur, puis cochez la dispense.</div></div>
+    <div class="box"><h4>Ce qui n'existe pas</h4><ul><li>Pas d'état « absent » avec pénalité automatique : pour pénaliser un non-rendu, on saisit la pire valeur à la main.</li><li>Pas d'état « non applicable » ni « dispensé ».</li><li>« Obligatoire » est une exigence sur l'élément, pas un état de case.</li></ul></div>
+  </div>
+  <h3>Complétude, résultat courant, finalisation : trois choses distinctes</h3>
+  <div class="diawrap" id="dia-complet"></div>
+  <ul>
+    <li>Les résultats se calculent <b>dès que possible</b> sur les notes présentes et non dispensées. Pas de logique à trois valeurs. <span class="ref">§6</span></li>
+    <li>Tant qu'une exigence de remplissage n'est pas satisfaite, l'avertissement <b>« données provisoires »</b> reste visible. Les cases facultatives vides ne le maintiennent pas.</li>
+    <li>On peut finaliser malgré des erreurs, après <b>acceptation explicite</b>. L'avertissement reste, l'incomplétude apparaît dans l'export, aucun joker n'est consommé et le résultat ne change pas.</li>
+  </ul>
+  <div class="review" data-key="s:etats" data-label="3. États d'une case, dispense, remplissage"></div>
+</section>
+
+<!-- 4 -->
+<section class="card" id="joker">
+  <h2>4. Joker et propagation de son influence</h2>
+  <p class="lead">Une action prévue avant le cours, appliquée sur un nœud autorisé, avec justification, dans la limite d'un quota par apprenant. <span class="ref">§8</span></p>
+  <div class="diawrap" id="dia-joker"></div>
+  <div class="cols">
+    <div class="box"><h4>Exemple du doc 18</h4>Objectif à <code>2,5/5</code>, seuil <code>3/5</code>. Le joker « remonter au seuil » donne une valeur effective de <code>3/5</code>. La moyenne suivante utilise <code>3/5</code>. Initial, ajustement et effectif restent consultables.</div>
+    <div class="box"><h4>Limites</h4><ul><li>Pas de remplacement arbitraire d'un calcul ni de garantie de réussite : si l'effet ne suffit pas, l'échec reste.</li><li>Quota configurable par grille, pas limité à un seul usage.</li><li>Indépendant de l'acceptation d'erreurs de remplissage.</li></ul><div class="note">À essayer : Noah, joker sur « Exercice 1 ». L'exercice passe, mais l'Animation reste sous 70 %.</div></div>
+  </div>
+  <div class="review" data-key="s:joker" data-label="4. Joker"></div>
+</section>
+
+<!-- 5 -->
+<section class="card" id="repetitions">
+  <h2>5. Évaluations répétées</h2>
+  <p class="lead">La temporalité est portée par les occurrences prévues dans la grille. Aucune dimension « contexte » ou « tentative » sur la case. <span class="ref">§4</span></p>
+  <div class="diawrap" id="dia-rep"></div>
+  <table class="t">
+    <tr><th>Situation</th><th>Comportement retenu</th><th>Dans le simulateur</th></tr>
+    <tr><td>Même évaluation affichée plusieurs fois</td><td>Une seule donnée, plusieurs affichages.</td><td>« Consignes (Ex.1) » apparaît sous Ex.1 et sous Animation : une seule case.</td></tr>
+    <tr><td>Même exercice prévu plusieurs fois</td><td>Occurrences et évaluations distinctes, préparées en amont, avec leur règle (meilleure, dernière, combinaison).</td><td>« Progression consignes » applique « dernière renseignée » aux deux occurrences.</td></tr>
+    <tr><td>Exercices différents, même compétence</td><td>Évaluations distinctes, rapprochées pour lire la progression.</td><td>Compétence Animation.</td></tr>
+    <tr><td>Correction ou rattrapage exceptionnel</td><td>Remplace la note courante ; l'ancienne valeur reste dans l'historique. Aucun statut spécifique.</td><td>Historique de Léa sur « Consignes (Ex.2) ».</td></tr>
+    <tr><td>Changer les règles ou ajouter une occurrence en cours de route</td><td>Copie complète de la grille avec les données, puis poursuite dans la copie (§9).</td><td>Voir <a href="#copies">section 7</a>.</td></tr>
+  </table>
+  <div class="review" data-key="s:repetitions" data-label="5. Évaluations répétées"></div>
+</section>
+
+<!-- 6 -->
+<section class="card" id="cycle">
+  <h2>6. Cycle de vie d'un dossier</h2>
+  <p class="lead">Préparation en brouillon, saisie pendant le cours, puis finalisation <b>par apprenant</b> (action groupée possible), réouverture avant archivage et archivage automatique ou manuel. <span class="ref">§10</span></p>
+  <div class="diawrap" id="dia-cycle"></div>
+  <div class="cols">
+    <div class="box"><h4>Acquis</h4><ul><li>Un dossier finalisé est verrouillé ; les autres restent en cours.</li><li>Les résultats finalisés restent stables et consultables jusqu'à une réouverture explicite.</li><li>La réouverture est signalée à l'équipe et tracée (auteur, date). Une nouvelle finalisation remplace la précédente.</li><li>Le délai d'archivage proposé par défaut est configurable par cours. L'archivage manuel reste possible.</li><li>Après archivage, aucune réédition n'est possible.</li></ul></div>
+    <div class="box bad"><h4>Ouvert (§13.5)</h4><ul><li>Durée d'archivage par défaut.</li><li>Articulation entre l'archivage du cours, des grilles coexistantes et des dossiers.</li><li>Dossiers non finalisés à l'échéance.</li><li>Devenir des états lors d'une copie.</li><li>Portée de l'acceptation d'erreurs dans une finalisation groupée.</li></ul></div>
+  </div>
+  <div class="review" data-key="s:cycle" data-label="6. Cycle de vie"></div>
+</section>
+
+<!-- 7 -->
+<section class="card" id="copies">
+  <h2>7. Grilles coexistantes, copies et gabarits</h2>
+  <p class="lead">Copier ne fige pas l'originale ; après copie, rien ne se propage d'une grille à l'autre. <span class="ref">§9</span></p>
+  <div class="diawrap" id="dia-copies"></div>
+  <div class="cols">
+    <div class="box"><h4>Axe principal ≠ grille principale</h4>L'<b>axe principal</b> organise la navigation <i>dans</i> une grille. La <b>grille principale</b> est celle affichée par défaut <i>dans le cours</i>. Aucun des deux ne modifie les règles de réussite.</div>
+    <div class="box"><h4>Correspondances stables</h4>Les correspondances entre éléments restent traçables à travers les copies, pour reprendre les notes et permettre une comparaison. Ni des identifiants physiques identiques, ni un partage de données ne sont exigés.</div>
+  </div>
+  <div class="review" data-key="s:copies" data-label="7. Grilles et copies"></div>
+</section>
+
+<!-- 8 -->
+<section class="card" id="vues">
+  <h2>8. Vues et exports</h2>
+  <p class="lead">Une vue présente des nœuds existants. Sa disposition ne crée jamais de règle ni de résultat implicite. <span class="ref">§11</span></p>
+  <div class="cols">
+    <div class="box good"><h4>✔ Permis pendant le cours, sans copie</h4><ul><li>Filtrer, rechercher, masquer.</li><li>Ajouter une colonne affichant des nœuds existants.</li><li>Réordonner ces nœuds.</li><li>Créer une vue à partir de nœuds existants.</li><li>Saisie par groupe (copie la valeur dans les cases des membres).</li></ul></div>
+    <div class="box bad"><h4>✖ Jamais par une vue (exige une copie de grille)</h4><ul><li>Créer un nouveau nœud de calcul.</li><li>Changer une dépendance, une règle ou une pondération.</li><li>Recalculer automatiquement une intersection « exercice × compétence ».</li></ul></div>
+  </div>
+  <h3>Matrice libre : chaque cellule référence un nœud</h3>
+  <p class="note">Exemple avec la grille du simulateur (dossier courant). Une intersection sans nœud reste vide, puisque le titre « exercices × compétences » n'implique aucun calcul. Cliquez une cellule pour ouvrir le nœud.</p>
+  <div id="matrix"></div>
+  <div class="cols" style="margin-top:12px">
+    <div class="box"><h4>Formes de vues</h4>Tables, listes, graphe de propagation, matrices libres, graphiques. Les vues standard sont générées depuis l'axe principal ; les définitions de vues appartiennent à la grille, sont partagées par l'équipe et copiées avec elle. Pas de vue personnelle.</div>
+    <div class="box"><h4>Exports</h4>Toute vue s'exporte en document ; l'export de tous les dossiers en une opération est prévu. L'<b>attestation est une vue exportée</b> (vue de type document). L'incomplétude acceptée et le signalement des jokers restent visibles dans l'export. Pas d'espace apprenant pour l'instant.</div>
+  </div>
+  <div class="review" data-key="s:vues" data-label="8. Vues et exports"></div>
+</section>
+
+<!-- 9 -->
+<section class="card" id="rejouabilite">
+  <h2>9. Rejouabilité intégrale</h2>
+  <p class="lead">Tout résultat se recalcule à partir des données sources et de la structure de la grille, avec les fonctions publiées immuables qu'elle utilise. <span class="ref">§10</span> <span class="ref">§12</span></p>
+  <div class="diawrap" id="dia-rejeu"></div>
+  <ul>
+    <li><b>Données sources</b> : notes, états de non-évaluation, actions de joker.</li>
+    <li><b>Aucun instantané de résultats</b> ne sert de référence. La finalisation verrouille les données ; la consultation repose sur le recalcul.</li>
+    <li><b>Cache possible</b> : dérivé, supprimable, entièrement reconstructible, il doit restituer le même résultat.</li>
+    <li><b>Une fonction publiée ne change jamais.</b> Toute évolution crée une nouvelle fonction (<code>moyenne@2</code>) ; les grilles existantes gardent la leur.</li>
+  </ul>
+  <div class="review" data-key="s:rejouabilite" data-label="9. Rejouabilité"></div>
+</section>
+
+<!-- 10 -->
+<section class="card" id="arbitrages">
+  <h2>10. Les huit arbitrages finaux</h2>
+  <p class="lead">Ces arbitrages ont tranché les écarts entre les documents 16 et 17. <span class="ref">§14</span></p>
+  <div id="arbList"></div>
+</section>
+
+<!-- 11 -->
+<section class="card" id="ouverts">
+  <h2>11. Points restant ouverts</h2>
+  <p class="lead">Ils demandent une conception complémentaire sans rouvrir les décisions. <span class="ref">§13</span></p>
+  <div id="openList"></div>
+</section>
+
+</main>
+
+<div id="modal"><div class="mbox"><div class="mhead"><h3 id="mtitle"></h3><button class="x" id="mclose" title="Fermer (Échap)">×</button></div><div id="mbody"></div></div></div>
+
+<aside id="drawer">
+  <div class="dh">
+    <h3>Mes commentaires de relecture</h3>
+    <button id="dExpMd">⬇ Markdown</button><button id="dCpMd">⧉ Copier</button>
+    <button id="dExpJson">⬇ JSON</button><button id="dImpJson">⬆ Importer JSON</button>
+    <button id="dClear">Tout effacer</button><button id="dClose">Fermer</button>
+    <input type="file" id="impFile" accept=".json,application/json" hidden>
+  </div>
+  <div class="dl" id="dlist"></div>
+</aside>
+<div class="toast" id="toast"></div>
+
+<script>
+"use strict";
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+function toast(msg) { const t = $("#toast"); t.textContent = msg; t.classList.add("on"); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove("on"), 1800); }
+
+/* =====================================================================
+   Commentaires de relecture
+   ===================================================================== */
+const STORE_KEY = "azimut-relecture-18";
+let store = {};
+try { store = JSON.parse(localStorage.getItem(STORE_KEY) || "{}"); } catch { store = {}; }
+const STATUSES = [["ok", "✔ OK"], ["question", "? Question"], ["desaccord", "✖ Désaccord"], ["reformuler", "✎ À reformuler"]];
+const STATUS_LABEL = { ok: "OK", question: "Question", desaccord: "Désaccord", reformuler: "À reformuler" };
+function saveStore() { localStorage.setItem(STORE_KEY, JSON.stringify(store)); updateCount(); }
+function updateCount() { $("#cnt").textContent = Object.values(store).filter(e => e.text || e.status).length; }
+const KEY_ORDER = [];
+
+function reviewBox(key, label, mini) {
+  const e = store[key] || {};
+  const d = document.createElement("div");
+  d.className = "rv" + (mini ? " mini" : "") + ((e.text || e.status) ? " has" : "");
+  d.dataset.key = key;
+  d.innerHTML = `<div class="rv-h"><span class="lbl">📝 Relecture</span>${STATUSES.map(([s, l]) => `<span class="rv-chip${e.status === s ? " on" : ""}" data-s="${s}">${l}</span>`).join("")}</div>
+    <textarea placeholder="Votre commentaire sur : ${esc(label)}">${esc(e.text || "")}</textarea>
+    <div class="rv-meta">${e.at ? "Enregistré le " + new Date(e.at).toLocaleString("fr-CH") : ""}</div>`;
+  const ta = $("textarea", d), meta = $(".rv-meta", d);
+  const persist = () => {
+    const cur = store[key] || {};
+    const text = ta.value, status = cur.status || "";
+    if (!text.trim() && !status) delete store[key];
+    else store[key] = { label, text, status, at: Date.now() };
+    d.classList.toggle("has", !!store[key]);
+    meta.textContent = store[key] ? "Enregistré le " + new Date().toLocaleString("fr-CH") : "";
+    saveStore();
+  };
+  let h;
+  ta.addEventListener("input", () => { autosize(ta); clearTimeout(h); h = setTimeout(persist, 250); });
+  ta.addEventListener("blur", () => { clearTimeout(h); persist(); });
+  $$(".rv-chip", d).forEach(c => c.addEventListener("click", () => {
+    const cur = store[key] || { label, text: ta.value };
+    cur.status = cur.status === c.dataset.s ? "" : c.dataset.s;
+    cur.text = ta.value; cur.label = label; cur.at = Date.now();
+    store[key] = cur;
+    $$(".rv-chip", d).forEach(x => x.classList.toggle("on", x.dataset.s === cur.status));
+    if (!cur.text.trim() && !cur.status) delete store[key];
+    d.classList.toggle("has", !!store[key]);
+    saveStore();
+  }));
+  setTimeout(() => autosize(ta));
+  return d;
+}
+function autosize(ta) { ta.style.height = "auto"; ta.style.height = Math.max(46, ta.scrollHeight + 2) + "px"; }
+function hydrateReviews(root = document) {
+  $$(".review[data-key]", root).forEach(el => {
+    if (el._done) return; el._done = true;
+    if (!KEY_ORDER.includes(el.dataset.key)) KEY_ORDER.push(el.dataset.key);
+    el.appendChild(reviewBox(el.dataset.key, el.dataset.label, el.dataset.mini === "1"));
+  });
+}
+
+function keyRank(k) {
+  const i = KEY_ORDER.indexOf(k);
+  if (i >= 0) return i;
+  if (k.startsWith("ent:")) return 1000 + Object.keys(ENT).indexOf(k.slice(4));
+  if (k.startsWith("sim:")) return 2000 + Object.keys(NODES).indexOf(k.split(":")[2]);
+  if (k.startsWith("dia:")) return 3000;
+  return 9000;
+}
+function sortedEntries() { return Object.entries(store).filter(([, e]) => e.text || e.status).sort((a, b) => keyRank(a[0]) - keyRank(b[0])); }
+function buildMarkdown() {
+  const L = [`# Relecture — 18 Décisions définitives (visualisation)`, ``, `Exporté le ${new Date().toLocaleString("fr-CH")}.`, ``];
+  const entries = sortedEntries();
+  if (!entries.length) L.push("_Aucun commentaire._");
+  for (const [k, e] of entries) {
+    L.push(`## ${e.label}${e.status ? ` — **${STATUS_LABEL[e.status]}**` : ""}`, ``, `<!-- clé : ${k} -->`, ``, (e.text || "").trim() || "_(statut seul)_", ``);
+  }
+  return L.join("\n");
+}
+function download(name, text, type) {
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([text], { type }));
+  a.download = name; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+async function copyText(t) {
+  try { await navigator.clipboard.writeText(t); }
+  catch { const ta = document.createElement("textarea"); ta.value = t; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); ta.remove(); }
+  toast("Markdown copié");
+}
+const stamp = () => new Date().toISOString().slice(0, 10);
+const expMd = () => download(`relecture-18-${stamp()}.md`, buildMarkdown(), "text/markdown");
+const cpMd = () => copyText(buildMarkdown());
+
+function renderDrawer() {
+  const list = sortedEntries();
+  $("#dlist").innerHTML = list.length ? list.map(([k, e]) => `<div class="it" data-k="${esc(k)}"><div class="k">${esc(e.label)} ${e.status ? `<span class="b ${({ ok: "ok", question: "data", desaccord: "ko", reformuler: "calc" })[e.status]}">${STATUS_LABEL[e.status]}</span>` : ""}</div><div class="tx">${esc(e.text)}</div></div>`).join("")
+    : `<p class="note">Aucun commentaire pour l'instant.</p>`;
+  $$("#dlist .it").forEach(it => it.addEventListener("click", () => goToKey(it.dataset.k)));
+}
+function goToKey(k) {
+  $("#drawer").classList.remove("on");
+  if (k.startsWith("ent:")) return openEntity(k.slice(4));
+  if (k.startsWith("dia:")) { const [, , id] = k.split(":"); return openEntity(id); }
+  if (k.startsWith("sim:node:")) { S.selected = k.slice(9); renderSim(); $("#detail").scrollIntoView({ block: "center" }); return; }
+  const el = $(`.review[data-key="${CSS.escape(k)}"]`);
+  if (el) { el.scrollIntoView({ block: "center" }); const ta = $("textarea", el); ta && ta.focus(); }
+}
+
+/* =====================================================================
+   Fiches (entités du domaine)
+   ===================================================================== */
+const ENT = {
+  COURS: { t: "Cours Azimut", ref: "§2", b: `<p>Peut réunir <b>plusieurs événements MiData</b>. Il porte les grilles : chaque grille couvre le cours entier, et plusieurs grilles peuvent coexister, dont une <b>grille principale</b> affichée par défaut.</p><p>C'est au niveau du cours que se configure le délai d'archivage automatique (§10).</p>` },
+  MIDATA: { t: "MiData (événements)", ref: "§2", b: `<p><b>Source exclusive des participants.</b> La liste réunit les participants des événements rattachés et reste synchronisée pendant le cours. Aucun ajout manuel.</p>` },
+  PART: { t: "Participant / apprenant", ref: "§2", b: `<p>Vient exclusivement de MiData.</p><p><b>Écarter</b> un participant (pas venu, parti) s'applique <b>au cours entier</b>, donc à toutes ses grilles : il disparaît des listes et vues de qualification. Ce n'est pas un état de case et l'inscription MiData n'est pas modifiée.</p><div class="interp">Conservation ou suppression de ses données : à concevoir.</div>` },
+  ORG: { t: "Organisation faîtière · objectifs officiels", ref: "§2", b: `<p>Ses objectifs servent de <b>vocabulaire proposé</b>, d'aide à la saisie et d'<b>étiquettes facultatives</b>. Ce n'est pas un référentiel imposé.</p><p>Chaque grille reste indépendante ; la faîtière n'impose ni ne suit les grilles. Statistiques entre cours éventuelles via les étiquettes : pas une fonction arrêtée.</p>` },
+  GRILLE: { t: "Grille de qualification", ref: "§3 §9", b: `<p>Un graphe sans cycle de nœuds de données et de calcul, avec ses axes, barèmes, paramètres, exigences de remplissage, quota de jokers et définitions de vues.</p><ul><li>Préparée avant le cours (brouillons, gabarits).</li><li>Privée aux membres du cours.</li><li>Changer le calcul en cours de formation exige une <b>copie complète avec les données de tous les participants</b> et les définitions de vues. On peut marquer la copie principale et poursuivre dedans.</li><li>Originale et copie restent utilisables indépendamment, sans propagation.</li></ul>` },
+  GAB: { t: "Gabarit", ref: "§9", b: `<p>Une grille copiée puis personnalisée, éventuellement en profondeur. Modifier le gabarit ne modifie <b>jamais</b> les grilles déjà créées depuis celui-ci.</p><div class="interp">Cycle détaillé brouillon / gabarit / publication : à concevoir (§13.6).</div>` },
+  BIB: { t: "Bibliothèque publique", ref: "§9", b: `<p>L'équipe peut y publier la <b>structure sans données d'apprenants</b>. Chacun peut repartir de cette structure ; la copie conserve sa provenance et devient indépendante.</p>` },
+  AXE: { t: "Axe", ref: "§3", b: `<p>Une <b>lecture du graphe</b> : exercices, compétences, thèmes… Chaque axe a sa propre profondeur, sans niveaux imposés.</p><p><b>Un axe principal est obligatoire</b> : point d'entrée de la conception et de la navigation, source des vues standard. Il n'impose ni profondeur ni unicité de comptage, et changer d'axe principal ne change pas la réussite.</p>` },
+  NDATA: { t: "Nœud de données (occurrence évaluée)", ref: "§3 §4", b: `<p>Porte les évaluations saisies. Une <b>occurrence</b> d'une définition de critère ; chaque occurrence a ses propres cases par participant.</p><p>Une <b>appréciation globale</b> saisie en plus des critères est un nœud de données supplémentaire, éventuellement pondéré dans le parent. Elle ne fait pas d'un nœud de calcul un nœud hybride.</p><p>Les mots sphère, objectif, critère, indicateur, exercice décrivent des usages, pas des types.</p>` },
+  NCALC: { t: "Nœud de calcul", ref: "§3 §7", b: `<p>Combine les résultats d'autres nœuds selon une <b>fonction du catalogue</b>, avec ses paramètres (poids, seuils). Chaque nœud a sa propre méthode.</p><ul><li>Peut recevoir un commentaire par apprenant.</li><li>Doit être explicable par une <b>phrase type</b> de sa fonction et par sa chaîne de calcul.</li><li>Les regroupements qui servent seulement à organiser la correction sont des vues de saisie, pas des nœuds de calcul.</li></ul>` },
+  FINAL: { t: "Résultat final (nœud décisif)", ref: "§3", b: `<p>La réussite est portée par un <b>nœud de calcul ordinaire</b>, désigné résultat final et marqué décisif. Ses dépendances directes et indirectes contribuent à la réussite, sans marquage propre.</p><p>Ce qui n'y contribue pas est <b>indicatif</b>. Une grille peut n'avoir <b>aucun</b> nœud décisif (cours formatif, commentaires seuls).</p><p>Cas courant : un seuil par sphère, puis « tous les seuils requis ».</p>` },
+  DEF: { t: "Définition de critère", ref: "§4", b: `<p>Peut être utilisée dans plusieurs exercices : chaque utilisation est une <b>occurrence</b> avec ses propres notes.</p><p>Deux critères proches formulés différemment restent deux définitions ; un regroupement transversal rapproche leurs résultats.</p>` },
+  CASE: { t: "Case", ref: "§4 §5 §6", b: `<p><b>Un participant × une occurrence évaluée.</b> Réafficher l'occurrence ailleurs ne crée pas de nouvelle case.</p><ul><li>Une <b>note courante</b> partagée par les formateurs, sans avis séparés agrégés comme dans un jury.</li><li>Un commentaire facultatif, possible sans note.</li><li>Trois états : note, vide, non évalué.</li><li>Un historique qui/quoi/quand.</li></ul>` },
+  HIST: { t: "Historique des changements", ref: "§5 §4", b: `<p>Permet de savoir qui a changé quoi et quand. Ce n'est <b>pas</b> une collection d'évaluations concurrentes.</p><p>Les corrections et rattrapages remplacent la note courante ; l'ancienne valeur reste ici. Consultable par les formateurs ; la restitution à l'apprenant montre l'état final.</p>` },
+  DOSSIER: { t: "Dossier (apprenant × grille)", ref: "§10", b: `<p>Les données d'un apprenant dans une grille. <b>Se finalise par apprenant</b> (action groupée possible). Un dossier finalisé est verrouillé ; il peut être rouvert tant qu'il n'est pas archivé.</p><p>Porte le quota de jokers consommés et l'éventuelle acceptation explicite des erreurs de remplissage.</p>` },
+  BAREME: { t: "Barème", ref: "§7", b: `<p>L'application fournit les <b>types</b> de barèmes et leurs variantes. L'équipe configure le nombre de paliers, leurs noms et couleurs. Personnaliser des libellés n'est pas programmer un nouveau type.</p><p>À poids égal, deux contributions ont la même influence quelle que soit l'étendue de leur barème.</p><div class="interp">Conversions, normalisation, valeurs des paliers, arrondis : ouverts (§13.1).</div>` },
+  FONCTION: { t: "Fonction du catalogue", ref: "§7", b: `<p>Catalogue <b>fermé et paramétrable</b> : moyenne, moyenne pondérée, décompte (ex. un minimum de « OK »), seuils… Pas de formule libre. Un besoin hors catalogue attend une évolution du produit.</p><p><b>Une fonction publiée ne change jamais de définition</b> : toute évolution crée une nouvelle fonction. C'est ce qui garantit la rejouabilité.</p><p>Les fonctions non monotones ne sont pas exclues.</p>` },
+  JOKER: { t: "Joker", ref: "§8", b: `<p>Action <b>définie avant le cours</b>, sur un nœud autorisé : remonter au seuil, +1, −1, imposer un échec… Favorable ou défavorable.</p><ul><li>Une action numérique change la <b>valeur effective</b> utilisée en aval.</li><li>Quota configurable par grille, pour chaque apprenant.</li><li>Justification obligatoire ; auteur, date, nœud et action conservés ; valeurs initiale, ajustement et effective consultables.</li><li>Signalement « joker appliqué » sur le nœud, « influencé par un joker » en aval, jusqu'à la synthèse et dans l'export.</li></ul>` },
+  EXIG: { t: "Exigence de remplissage", ref: "§6", b: `<p>Indicateurs <b>obligatoires</b> et <b>nombre minimal</b> d'indicateurs renseignés, déclarés par la grille.</p><p>Un obligatoire exige une <b>note active</b> : « non évalué », même avec une note conservée, ne suffit pas. Une dispense ne lève pas les exigences.</p><p>Tant qu'une exigence est insatisfaite, l'avertissement <b>« données provisoires »</b> est visible. Un onglet liste les erreurs.</p>` },
+  VUE: { t: "Vue", ref: "§11", b: `<p>Présente des nœuds existants et leurs résultats, avec leur chaîne de calcul. Tables, listes, graphe de propagation, matrices libres, graphiques, documents.</p><p>Les définitions de vues appartiennent à la grille et sont partagées par l'équipe. Elles s'adaptent pendant le cours <b>sans copie</b>, mais une vue <b>ne reconfigure jamais le calcul</b>.</p>` },
+  EXPORT: { t: "Export · attestation", ref: "§11", b: `<p>Toute vue s'exporte en document ; l'export de tous les dossiers en une opération est prévu. L'attestation est une <b>vue exportée</b> de type document.</p><p>L'incomplétude acceptée et le signalement des jokers restent visibles.</p><div class="interp">Formats, mise en page, assemblage de plusieurs vues : ouverts (§13.7).</div>` },
+  CACHE: { t: "Cache de résultats", ref: "§10", b: `<p>Possible pour accélérer. Il reste <b>dérivé</b>, supprimable, entièrement reconstructible et doit restituer le même résultat que le recalcul. Il ne remplace ni les sources ni les fonctions.</p>` },
+  VIDE: { t: "État « vide »", ref: "§6", b: `<p>Case encore à traiter, sans note. Exclue du calcul, <b>sans pénalité</b>. Ne se transforme jamais automatiquement en zéro.</p>` },
+  NOTE: { t: "État « note »", ref: "§6", b: `<p>Une note est renseignée sur le barème, sans dispense applicable. Contribue selon les règles de la grille.</p>` },
+  NE: { t: "État « non évalué »", ref: "§6", b: `<p>Situation examinée ; évaluation volontairement exclue, <b>avec ou sans note antérieure conservée</b>. Exclue du calcul, sans pénalité. Doit se distinguer visuellement de « vide » (rendu ouvert).</p>` },
+  DISP: { t: "Dispense", ref: "§6", b: `<p>Utilise « non évalué ». Pour un apprenant, sur une case ou <b>n'importe quel regroupement</b>, héritée par ses feuilles. Les notes déjà saisies sont conservées, exclues du calcul et affichables à titre indicatif.</p>` },
+  PENAL: { t: "Pénaliser un non-rendu", ref: "§6", b: `<p>Pas d'état « absent » à pénalité automatique. Le formateur saisit lui-même la valeur appropriée, par exemple la pire valeur du barème.</p>` },
+  SNAP: { t: "Instantané de référence (écarté)", ref: "§10 §14.1", b: `<p>Arbitrage 1 : <b>aucun instantané de résultats</b> ne sert de référence pour la conservation. La rejouabilité est la garantie.</p>` },
+  COPIE: { t: "Copie complète avec données", ref: "§9 §4", b: `<p>Structure + données de tous les participants (notes, commentaires) + définitions de vues. On modifie la copie (indicateur, occurrence, règles), on la marque principale et on poursuit. L'originale reste utilisable.</p><div class="interp">Devenir des états de finalisation lors d'une copie : ouvert (§13.5).</div>` },
+};
+const ENT_SEC = { COURS: "carte", PART: "simulateur", NDATA: "simulateur", NCALC: "simulateur", FINAL: "simulateur", JOKER: "joker", EXIG: "etats", CASE: "etats", DOSSIER: "cycle", GRILLE: "copies", GAB: "copies", BIB: "copies", VUE: "vues", EXPORT: "vues", CACHE: "rejouabilite", FONCTION: "rejouabilite", HIST: "repetitions", DEF: "repetitions" };
+
+function openModal(title, html, key, label) {
+  $("#mtitle").innerHTML = title;
+  const body = $("#mbody");
+  body.innerHTML = html;
+  if (key) body.appendChild(reviewBox(key, label || title));
+  $$(".term", body).forEach(bindTerm);
+  $("#modal").classList.add("on");
+}
+function openEntity(id) {
+  const e = ENT[id]; if (!e) return;
+  const sec = ENT_SEC[id];
+  openModal(`${esc(e.t)} <span class="ref">${e.ref}</span>`, e.b + (sec ? `<p><a href="#${sec}" class="gosec">→ Voir la section correspondante</a></p>` : ""), "ent:" + id, "Fiche : " + e.t);
+  $$(".gosec", $("#mbody")).forEach(a => a.addEventListener("click", closeModal));
+}
+function closeModal() { $("#modal").classList.remove("on"); }
+function bindTerm(a) { a.addEventListener("click", ev => { ev.preventDefault(); openEntity(a.dataset.ent); }); }
+
+/* =====================================================================
+   Diagrammes génériques (SVG)
+   ===================================================================== */
+const PAL = {
+  cours: ["#eaf2ff", "#5b8def"], grille: ["#eefaf1", "#4caf6e"], calc: ["#f3edff", "#8b5cf6"], saisie: ["#fff4dc", "#d39b2a"],
+  hors: ["#f7f7f7", "#9ca3af"], ok: ["#e3f6e8", "#15803d"], ko: ["#fdeee6", "#c2410c"], j: ["#fde7f1", "#c0267a"], ne: ["#eceef1", "#6b7280"],
+};
+function diagram(el, spec) {
+  const nodes = {}; spec.nodes.forEach(n => nodes[n.id] = { w: spec.nw || 200, h: 54, pal: "grille", ...n });
+  const clip = (n, tx, ty) => {
+    const cx = n.x + n.w / 2, cy = n.y + n.h / 2, dx = tx - cx, dy = ty - cy;
+    if (!dx && !dy) return [cx, cy];
+    const t = Math.min(dx ? (n.w / 2 + 3) / Math.abs(dx) : Infinity, dy ? (n.h / 2 + 3) / Math.abs(dy) : Infinity);
+    return [cx + dx * t, cy + dy * t];
+  };
+  let s = `<svg class="dia" viewBox="0 0 ${spec.w} ${spec.h}"><defs><marker id="ar-${el.id}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#8b93a3"/></marker></defs>`;
+  for (const e of spec.edges) {
+    const a = nodes[e.from], b = nodes[e.to];
+    const ac = [a.x + a.w / 2, a.y + a.h / 2], bc = [b.x + b.w / 2, b.y + b.h / 2];
+    const mx = (ac[0] + bc[0]) / 2, my = (ac[1] + bc[1]) / 2, len = Math.hypot(bc[0] - ac[0], bc[1] - ac[1]) || 1;
+    const bend = e.bend || 0, cx = mx - (bc[1] - ac[1]) / len * bend, cy = my + (bc[0] - ac[0]) / len * bend;
+    const p0 = clip(a, cx, cy), p1 = clip(b, cx, cy);
+    const lx = .25 * p0[0] + .5 * cx + .25 * p1[0], ly = .25 * p0[1] + .5 * cy + .25 * p1[1];
+    s += `<path class="ed ${e.cls || ""}" d="M${p0}Q${cx},${cy} ${p1}" marker-end="url(#ar-${el.id})" ${e.both ? `marker-start="url(#ar-${el.id})"` : ""}/>`;
+    if (e.label) {
+      const lines = e.label.split("\n"), w = Math.max(...lines.map(l => l.length)) * 6.1 + 8, h = lines.length * 14 + 2;
+      s += `<rect class="elbg" x="${lx - w / 2}" y="${ly - h / 2}" width="${w}" height="${h}" rx="3"/>`;
+      lines.forEach((l, i) => s += `<text class="el" x="${lx}" y="${ly - h / 2 + 12 + i * 14}" text-anchor="middle">${esc(l)}</text>`);
+    }
+  }
+  for (const n of Object.values(nodes)) {
+    const [bg, bd] = PAL[n.pal];
+    const lines = n.label.split("\n");
+    s += `<g class="dn" data-id="${n.id}"><rect x="${n.x}" y="${n.y}" width="${n.w}" height="${n.h}" rx="9" fill="${bg}" stroke="${bd}" stroke-width="1.6" ${n.dash ? 'stroke-dasharray="5 4"' : ""}/>`;
+    const tot = lines.length + (n.sub ? 1 : 0), y0 = n.y + n.h / 2 - (tot - 1) * 8 + 4;
+    lines.forEach((l, i) => s += `<text x="${n.x + n.w / 2}" y="${y0 + i * 16}" text-anchor="middle" font-size="13.5" font-weight="600" fill="#1d2330" ${n.strike ? 'text-decoration="line-through"' : ""}>${esc(l)}</text>`);
+    if (n.sub) s += `<text x="${n.x + n.w / 2}" y="${y0 + lines.length * 16}" text-anchor="middle" font-size="11.5" fill="#5d6675">${esc(n.sub)}</text>`;
+    s += `</g>`;
+  }
+  el.innerHTML = s + "</svg>";
+  $$(".dn", el).forEach(g => g.addEventListener("click", () => {
+    const n = nodes[g.dataset.id];
+    if (n.ent) openEntity(n.ent);
+    else if (n.info) openModal(esc(n.label.replace(/\n/g, " ")), n.info, `dia:${el.id}:${n.id}`, `Diagramme ${el.id.replace("dia-", "")} : ${n.label.replace(/\n/g, " ")}`);
+  }));
+}
+
+function drawStaticDiagrams() {
+  diagram($("#dia-carte"), {
+    w: 1340, h: 650, nw: 190, nodes: [
+      { id: "MIDATA", x: 300, y: 20, label: "MiData", sub: "événements", pal: "hors", ent: "MIDATA" },
+      { id: "COURS", x: 580, y: 20, label: "Cours Azimut", pal: "cours", ent: "COURS" },
+      { id: "BIB", x: 860, y: 20, label: "Bibliothèque publique", sub: "structures sans données", pal: "hors", ent: "BIB" },
+      { id: "PART", x: 300, y: 160, label: "Participant", sub: "écartable (cours entier)", pal: "cours", ent: "PART" },
+      { id: "GRILLE", x: 580, y: 160, label: "Grille", sub: "graphe sans cycle", pal: "grille", ent: "GRILLE" },
+      { id: "GAB", x: 860, y: 160, label: "Gabarit", sub: "copie indépendante", pal: "hors", ent: "GAB" },
+      { id: "ORG", x: 20, y: 590, h: 46, label: "Organisation faîtière", sub: "objectifs officiels", pal: "hors", dash: 1, ent: "ORG" },
+      { id: "DOSSIER", x: 300, y: 300, label: "Dossier", sub: "apprenant × grille", pal: "saisie", ent: "DOSSIER" },
+      { id: "AXE", x: 580, y: 300, label: "Axes", sub: "1 principal obligatoire", pal: "grille", ent: "AXE" },
+      { id: "VUE", x: 860, y: 300, label: "Vues", sub: "table · matrice · graphe", pal: "grille", ent: "VUE" },
+      { id: "EXPORT", x: 1140, y: 300, label: "Export", sub: "attestation = vue", pal: "grille", ent: "EXPORT" },
+      { id: "HIST", x: 20, y: 440, label: "Historique", sub: "qui · quoi · quand", pal: "saisie", ent: "HIST" },
+      { id: "CASE", x: 300, y: 440, label: "Case", sub: "note · état · commentaire", pal: "saisie", ent: "CASE" },
+      { id: "NDATA", x: 580, y: 440, label: "Nœud de données", sub: "occurrence évaluée", pal: "grille", ent: "NDATA" },
+      { id: "NCALC", x: 860, y: 440, label: "Nœud de calcul", sub: "fonction + paramètres", pal: "calc", ent: "NCALC" },
+      { id: "FINAL", x: 1140, y: 440, label: "Résultat final", sub: "décisif (facultatif)", pal: "calc", ent: "FINAL" },
+      { id: "BAREME", x: 20, y: 20, label: "Barème", sub: "paliers configurables", pal: "grille", ent: "BAREME" },
+      { id: "DEF", x: 300, y: 590, label: "Définition de critère", pal: "grille", ent: "DEF", h: 46 },
+      { id: "EXIG", x: 580, y: 590, label: "Exigences de remplissage", pal: "saisie", ent: "EXIG", h: 46 },
+      { id: "FONCTION", x: 860, y: 590, label: "Fonction du catalogue", sub: "publiée = immuable", pal: "calc", ent: "FONCTION", h: 46 },
+      { id: "JOKER", x: 1140, y: 590, label: "Joker", sub: "action prévue · quota", pal: "calc", ent: "JOKER", h: 46 },
+    ], edges: [
+      { from: "COURS", to: "MIDATA", label: "réunit 1..n" },
+      { from: "MIDATA", to: "PART", label: "source exclusive" },
+      { from: "COURS", to: "GRILLE", label: "porte 1..n grilles" },
+      { from: "GRILLE", to: "GAB", label: "copiée en" },
+      { from: "GAB", to: "BIB", label: "publie la structure" },
+      { from: "BIB", to: "GRILLE", label: "copie + provenance", bend: -60 },
+      { from: "PART", to: "DOSSIER", label: "1 par grille" },
+      { from: "GRILLE", to: "DOSSIER", label: "1 par participant" },
+      { from: "GRILLE", to: "AXE", label: "lu selon" },
+      { from: "GRILLE", to: "VUE", label: "définit (partagées)" },
+      { from: "VUE", to: "EXPORT", label: "exporte" },
+      { from: "AXE", to: "NDATA", label: "place" },
+      { from: "AXE", to: "NCALC", label: "regroupe" },
+      { from: "DOSSIER", to: "CASE", label: "contient" },
+      { from: "NDATA", to: "CASE", label: "× participant" },
+      { from: "CASE", to: "HIST", label: "trace" },
+      { from: "NCALC", to: "NDATA", label: "combine" },
+      { from: "FINAL", to: "NCALC", label: "est un" },
+      { from: "NCALC", to: "FONCTION", label: "applique" },
+      { from: "JOKER", to: "NCALC", label: "ajuste (nœud autorisé)" },
+      { from: "DEF", to: "NDATA", label: "1..n occurrences" },
+      { from: "EXIG", to: "NDATA", label: "porte sur" },
+      { from: "ORG", to: "DEF", label: "étiquettes", cls: "dash" },
+      { from: "BAREME", to: "GRILLE", label: "paramétré dans" },
+      { from: "VUE", to: "NCALC", label: "affiche", cls: "dash" },
+    ]
+  });
+
+  diagram($("#dia-etats"), {
+    w: 1100, h: 300, nodes: [
+      { id: "VIDE", x: 30, y: 120, w: 170, label: "Vide", sub: "à traiter", pal: "hors", ent: "VIDE" },
+      { id: "NOTE", x: 420, y: 30, w: 190, label: "Note", sub: "contribue", pal: "cours", ent: "NOTE" },
+      { id: "NE", x: 420, y: 210, w: 190, label: "Non évalué", sub: "note antérieure conservée ou non", pal: "ne", ent: "NE" },
+      { id: "HIST", x: 830, y: 30, w: 230, label: "Historique", sub: "ancienne valeur conservée", pal: "saisie", ent: "HIST" },
+      { id: "DISP", x: 830, y: 210, w: 230, label: "Dispense", sub: "case ou regroupement → feuilles", pal: "ne", ent: "DISP" },
+      { id: "PENAL", x: 30, y: 10, w: 170, h: 46, label: "Non-rendu ?", sub: "saisir la pire valeur", pal: "ko", dash: 1, ent: "PENAL" },
+    ], edges: [
+      { from: "VIDE", to: "NOTE", label: "saisie" },
+      { from: "VIDE", to: "NE", label: "exclusion / dispense" },
+      { from: "NOTE", to: "NE", label: "↓ exclusion / dispense (note conservée)\n↑ levée", both: 1 },
+      { from: "NOTE", to: "HIST", label: "correction / rattrapage\nremplace la note" },
+      { from: "DISP", to: "NE", label: "produit" },
+      { from: "PENAL", to: "NOTE", label: "manuel", cls: "dash" },
+    ]
+  });
+
+  diagram($("#dia-complet"), {
+    w: 1100, h: 210, nodes: [
+      { id: "C", x: 20, y: 110, w: 300, h: 70, label: "Complétude", sub: "exigences de remplissage → avertissement", pal: "saisie", ent: "EXIG" },
+      { id: "R", x: 400, y: 110, w: 300, h: 70, label: "Résultat courant", sub: "calculé dès que possible, sans pénalité", pal: "calc", ent: "NCALC" },
+      { id: "F", x: 780, y: 110, w: 300, h: 70, label: "Finalisation", sub: "verrouille le dossier · par apprenant", pal: "saisie", ent: "DOSSIER" },
+    ], edges: [
+      { from: "C", to: "F", label: "erreurs → acceptation explicite\n(ne change ni l'avertissement ni le résultat)", bend: -150, cls: "dash" },
+      { from: "R", to: "F", label: "indépendants", cls: "dash", both: 1 },
+    ]
+  });
+
+  diagram($("#dia-joker"), {
+    w: 1100, h: 200, nodes: [
+      { id: "CFG", x: 10, y: 60, w: 200, h: 70, label: "Avant le cours", sub: "nœuds autorisés · actions · quota", pal: "grille", ent: "JOKER" },
+      { id: "APP", x: 240, y: 60, w: 200, h: 70, label: "Application", sub: "justification · auteur · date", pal: "j", info: `<p>Chaque application exige une <b>justification</b> et conserve auteur, date, nœud concerné et action. <span class="ref">§8</span></p>` },
+      { id: "LOC", x: 470, y: 60, w: 200, h: 70, label: "« joker appliqué »", sub: "2,5/5 → 3/5 (effectif)", pal: "j", info: `<p>Sur le nœud directement modifié : valeur initiale, ajustement et valeur effective restent consultables. L'information d'origine n'est jamais effacée.</p>` },
+      { id: "AVAL", x: 700, y: 60, w: 200, h: 70, label: "« influencé par un joker »", sub: "tous les résultats en aval", pal: "j", info: `<p>Les résultats en aval portent le signalement, avec un accès à l'origine et au détail de l'ajustement. Cela fait partie de la restitution, pas seulement d'un historique technique.</p>` },
+      { id: "EXP", x: 930, y: 60, w: 160, h: 70, label: "Synthèse\net export", pal: "grille", ent: "EXPORT" },
+    ], edges: [
+      { from: "CFG", to: "APP" }, { from: "APP", to: "LOC" }, { from: "LOC", to: "AVAL", label: "valeur effective" }, { from: "AVAL", to: "EXP", label: "signalement" },
+    ]
+  });
+
+  diagram($("#dia-rep"), {
+    w: 1100, h: 230, nodes: [
+      { id: "D", x: 20, y: 85, w: 210, label: "Définition", sub: "« Consignes claires »", pal: "grille", ent: "DEF" },
+      { id: "O1", x: 330, y: 20, w: 210, label: "Occurrence Ex.1", sub: "ses propres cases", pal: "grille", ent: "NDATA" },
+      { id: "O2", x: 330, y: 150, w: 210, label: "Occurrence Ex.2", sub: "ses propres cases", pal: "grille", ent: "NDATA" },
+      { id: "R", x: 640, y: 85, w: 210, label: "Regroupement", sub: "règle prévue : dernière / meilleure", pal: "calc", info: `<p>Les règles de comptage des tentatives (meilleure, dernière, combinaison) sont <b>fixées en amont</b> et s'appliquent aux occurrences membres d'un regroupement. Pas de famille de tentatives séparée. Le formateur ne choisit pas une autre règle au moment de la réévaluation. <span class="ref">§4</span></p>` },
+      { id: "H", x: 900, y: 150, w: 180, label: "Rattrapage imprévu", sub: "remplace · historique", pal: "saisie", ent: "HIST" },
+      { id: "V", x: 900, y: 20, w: 180, label: "Réaffichage", sub: "même case", pal: "hors", ent: "VUE" },
+    ], edges: [
+      { from: "D", to: "O1" }, { from: "D", to: "O2" }, { from: "O1", to: "R" }, { from: "O2", to: "R" },
+      { from: "H", to: "O2", label: "remplace la note", cls: "dash", bend: 30 },
+      { from: "V", to: "O1", label: "affiche", cls: "dash", bend: -30 },
+    ]
+  });
+
+  diagram($("#dia-cycle"), {
+    w: 1100, h: 290, nodes: [
+      { id: "BR", x: 10, y: 110, w: 160, label: "Grille en brouillon", sub: "préparation, gabarits", pal: "grille", ent: "GRILLE" },
+      { id: "EC", x: 270, y: 110, w: 190, label: "Dossier en cours", sub: "saisie pendant le cours", pal: "saisie", ent: "DOSSIER" },
+      { id: "FI", x: 590, y: 110, w: 190, label: "Dossier finalisé", sub: "verrouillé · stable", pal: "ok", info: `<p>Verrouillé ; ses résultats restent stables et consultables, <b>par recalcul</b> (pas d'instantané). Finalisation par apprenant, action groupée possible. <span class="ref">§10</span></p>` },
+      { id: "AR", x: 890, y: 110, w: 190, label: "Archivé", sub: "consultable · aucune réédition", pal: "hors", info: `<p>Automatique après un délai configurable par cours (durée par défaut à fixer), ou manuel. Après archivage, aucune réédition ; les résultats restent consultables. <span class="ref">§10</span></p>` },
+      { id: "CP", x: 270, y: 225, w: 190, h: 50, label: "Copie de la grille", sub: "pour changer le calcul", pal: "grille", dash: 1, ent: "COPIE" },
+      { id: "ER", x: 590, y: 230, w: 190, h: 50, label: "Erreurs de remplissage ?", sub: "acceptation explicite", pal: "saisie", ent: "EXIG" },
+    ], edges: [
+      { from: "BR", to: "EC", label: "début du cours" },
+      { from: "EC", to: "FI", label: "finaliser" },
+      { from: "FI", to: "EC", label: "rouvrir (signalé, tracé)", bend: -55 },
+      { from: "FI", to: "AR", label: "délai ou manuel" },
+      { from: "EC", to: "AR", label: "non finalisé à l'échéance ? (ouvert)", cls: "dash red", bend: -95 },
+      { from: "EC", to: "CP", label: "", cls: "dash" },
+      { from: "ER", to: "FI", cls: "dash" },
+    ]
+  });
+
+  diagram($("#dia-copies"), {
+    w: 1100, h: 300, nodes: [
+      { id: "BIB", x: 20, y: 20, w: 220, label: "Bibliothèque publique", sub: "structure sans données", pal: "hors", ent: "BIB" },
+      { id: "GAB", x: 20, y: 200, w: 220, label: "Gabarit", sub: "copie personnalisée", pal: "hors", ent: "GAB" },
+      { id: "A", x: 400, y: 110, w: 220, h: 64, label: "Grille A", sub: "originale · reste utilisable", pal: "grille", ent: "GRILLE" },
+      { id: "B", x: 820, y: 110, w: 250, h: 64, label: "Grille A′ ★ principale", sub: "structure modifiée + données reprises", pal: "grille", ent: "COPIE" },
+      { id: "X", x: 600, y: 230, w: 260, h: 50, label: "Saisie dans A ≠ saisie dans A′", sub: "aucune propagation", pal: "ko", dash: 1, info: `<p>Après copie, une saisie dans une grille ne se propage <b>jamais</b> dans l'autre. Ce ne sont pas des variantes de calcul branchées sur les mêmes notes. <span class="ref">§9</span></p>` },
+    ], edges: [
+      { from: "BIB", to: "A", label: "copie + provenance" },
+      { from: "GAB", to: "A", label: "copie indépendante" },
+      { from: "A", to: "BIB", label: "publier la structure", bend: 110, cls: "dash" },
+      { from: "A", to: "B", label: "copie complète\n+ données + vues" },
+    ]
+  });
+
+  diagram($("#dia-rejeu"), {
+    w: 1100, h: 270, nodes: [
+      { id: "SRC", x: 20, y: 10, w: 250, label: "Données sources", sub: "notes · non-évaluations · jokers", pal: "saisie", ent: "CASE" },
+      { id: "STR", x: 20, y: 105, w: 250, label: "Structure de la grille", sub: "nœuds · dépendances · paramètres", pal: "grille", ent: "GRILLE" },
+      { id: "FN", x: 20, y: 200, w: 250, label: "Fonctions publiées", sub: "immuables (moyenne@1…)", pal: "calc", ent: "FONCTION" },
+      { id: "RE", x: 420, y: 105, w: 200, label: "Recalcul", sub: "déterministe", pal: "calc", info: `<p>Tout résultat se recalcule depuis ces trois éléments. Une attestation reste reproductible tant que les données nécessaires existent. <span class="ref">§10</span></p>` },
+      { id: "RES", x: 800, y: 105, w: 260, label: "Résultats · attestation", sub: "stables si finalisé", pal: "ok", ent: "EXPORT" },
+      { id: "CA", x: 600, y: 215, w: 200, h: 46, label: "Cache", sub: "dérivé · supprimable", pal: "hors", dash: 1, ent: "CACHE" },
+      { id: "SN", x: 640, y: 10, w: 230, h: 46, label: "Instantané de référence", sub: "écarté (arbitrage 1)", pal: "ko", dash: 1, strike: 1, ent: "SNAP" },
+    ], edges: [
+      { from: "SRC", to: "RE" }, { from: "STR", to: "RE" }, { from: "FN", to: "RE" },
+      { from: "RE", to: "RES" },
+      { from: "RE", to: "CA", label: "peut alimenter", cls: "dash" },
+      { from: "CA", to: "RES", label: "même résultat", cls: "dash" },
+    ]
+  });
+}
+
+/* =====================================================================
+   Simulateur : structure de la grille d'exemple
+   ===================================================================== */
+const LABELS = { 1: "Insuffisant", 2: "Fragile", 3: "Acquis", 4: "Solide", 5: "Excellent" };
+const NODES = {
+  I1: { kind: "data", label: "Consignes claires", short: "Consignes (Ex.1)", sub: "Ex.1 · occurrence 1", def: "Consignes claires", x: 20, y: 30 },
+  I2: { kind: "data", label: "Sécurité du parcours", short: "Sécurité (Ex.1)", sub: "Ex.1", required: true, x: 20, y: 110 },
+  A1: { kind: "data", label: "Appréciation globale", short: "Appréciation (Ex.1)", sub: "Ex.1 · donnée supplémentaire", x: 20, y: 190 },
+  I3: { kind: "data", label: "Consignes claires", short: "Consignes (Ex.2)", sub: "Ex.2 · occurrence 2", def: "Consignes claires", x: 20, y: 290 },
+  I4: { kind: "data", label: "Gestion du groupe", short: "Groupe (Ex.2)", sub: "Ex.2", required: true, x: 20, y: 370 },
+  I5: { kind: "data", label: "Sécurité de la veillée", short: "Sécurité (veillée)", sub: "placée dans Ex.2", x: 20, y: 450 },
+  PROG: { kind: "calc", label: "Progression consignes", short: "Progression", fn: "last", inputs: [["I1"], ["I3"]], x: 300, y: 10 },
+  EX1: { kind: "calc", label: "Exercice 1 · Jeu de piste", short: "Exercice 1", fn: "wavg", inputs: [["I1", 1], ["I2", 1], ["A1", 2]], joker: 0.6, x: 300, y: 100 },
+  ANIM: { kind: "calc", label: "Compétence Animation", short: "Animation", fn: "avg", inputs: [["I1"], ["I3"], ["I4"]], joker: 0.7, x: 300, y: 210 },
+  EX2: { kind: "calc", label: "Exercice 2 · Veillée", short: "Exercice 2", fn: "avg", inputs: [["I3"], ["I4"]], joker: 0.6, x: 300, y: 320 },
+  SECU: { kind: "calc", label: "Compétence Sécurité", short: "Sécurité", fn: "avg", inputs: [["I2"], ["I5"]], x: 300, y: 440 },
+  MOY: { kind: "calc", label: "Moyenne globale", short: "Moyenne globale", fn: "avg", inputs: [["EX1"], ["ANIM"]], x: 580, y: 40 },
+  S_EX: { kind: "calc", label: "Chaque exercice ≥ 60 %", short: "Seuil exercices", fn: "allGte", param: 0.6, inputs: [["EX1"], ["EX2"]], exigence: true, x: 580, y: 170 },
+  S_AN: { kind: "calc", label: "Animation ≥ 70 %", short: "Seuil animation", fn: "gte", param: 0.7, inputs: [["ANIM"]], exigence: true, x: 580, y: 290 },
+  S_SE: { kind: "calc", label: "Sécurité ≥ 50 %", short: "Seuil sécurité", fn: "gte", param: 0.5, inputs: [["SECU"]], exigence: true, x: 580, y: 430 },
+  FINAL: { kind: "calc", label: "Réussite du cours", short: "Réussite", fn: "and", inputs: [["S_EX"], ["S_AN"], ["S_SE"]], decisive: true, x: 860, y: 290 },
+};
+const NW = 200, NH = 56;
+const IDS = Object.keys(NODES);
+const DATA_IDS = IDS.filter(i => NODES[i].kind === "data");
+const INDICATORS = ["I1", "I2", "I3", "I4", "I5"];
+const MIN_FILLED = 4;
+const AXES = {
+  exercices: { label: "Exercices", groups: [{ id: "EX1", items: ["I1", "I2", "A1"] }, { id: "EX2", items: ["I3", "I4", "I5"] }] },
+  competences: { label: "Compétences", groups: [{ id: "ANIM", items: ["I1", "I3", "I4"] }, { id: "SECU", items: ["I2", "I5"] }, { id: null, label: "Non rattaché à cet axe", items: ["A1"] }] },
+};
+const pct = x => x == null ? "—" : Math.round(x * 100) + " %";
+const sh = id => NODES[id].short;
+const FN = {
+  avg: { id: "moyenne@1", name: "Moyenne", out: "num", run: ins => mean(ins, false) },
+  wavg: { id: "moyenne-ponderee@1", name: "Moyenne pondérée", out: "num", run: ins => mean(ins, true) },
+  gte: {
+    id: "seuil@1", name: "Seuil", out: "bool", run(ins, n) {
+      const x = ins[0].r.v;
+      if (x == null) return { t: "bool", v: null, phrase: `${sh(ins[0].id)} n'a pas encore de résultat : pas de décision.` };
+      const v = x >= n.param - 1e-9;
+      return { t: "bool", v, phrase: `${sh(ins[0].id)} = ${pct(x)} ${v ? "≥" : "<"} seuil ${pct(n.param)} → ${v ? "OK" : "KO"}.` };
+    }
+  },
+  allGte: {
+    id: "tous-au-seuil@1", name: "Tous au seuil (décompte)", out: "bool", run(ins, n) {
+      const pr = ins.filter(i => i.r.v != null), miss = ins.length - pr.length;
+      if (!pr.length) return { t: "bool", v: null, phrase: `Aucun résultat présent : pas de décision.` };
+      const ok = pr.filter(i => i.r.v >= n.param - 1e-9);
+      const v = ok.length === pr.length;
+      return { t: "bool", v, phrase: `${ok.length}/${pr.length} résultat(s) présent(s) atteignent ${pct(n.param)} (${pr.map(i => `${sh(i.id)} ${pct(i.r.v)}`).join(", ")})${miss ? `, ${miss} sans résultat ignoré(s)` : ""} → ${v ? "OK" : "KO"}.` };
+    }
+  },
+  and: {
+    id: "toutes-exigences@1", name: "Toutes les exigences", out: "bool", run(ins) {
+      const pr = ins.filter(i => i.r.v != null), miss = ins.length - pr.length;
+      if (!pr.length) return { t: "bool", v: null, phrase: `Aucune exigence n'a encore de résultat.` };
+      const ok = pr.filter(i => i.r.v === true), v = ok.length === pr.length;
+      return { t: "bool", v, phrase: `${ok.length}/${pr.length} exigence(s) présente(s) remplie(s)${!v ? ` — non remplie(s) : ${pr.filter(i => !i.r.v).map(i => sh(i.id)).join(", ")}` : ""}${miss ? `, ${miss} sans résultat` : ""} → ${v ? "Réussi" : "Échoué"}.` };
+    }
+  },
+  last: {
+    id: "derniere-renseignee@1", name: "Dernière renseignée", out: "num", run(ins) {
+      const f = [...ins].reverse().find(i => i.r.v != null);
+      if (!f) return { t: "num", v: null, phrase: `Aucune occurrence renseignée.` };
+      return { t: "num", v: f.r.v, phrase: `Dernière occurrence renseignée : ${sh(f.id)} → ${pct(f.r.v)}.` };
+    }
+  },
+};
+function mean(ins, weighted) {
+  const act = ins.filter(i => i.r.v != null), excl = ins.filter(i => i.r.v == null);
+  if (!act.length) return { t: "num", v: null, phrase: `Aucune contribution active : pas de résultat, sans pénalité.` };
+  const sw = act.reduce((s, i) => s + i.w, 0), v = act.reduce((s, i) => s + i.w * i.r.v, 0) / sw;
+  return { t: "num", v, phrase: `Moyenne${weighted ? " pondérée" : ""} des ${act.length} contribution(s) active(s) : ${act.map(i => `${sh(i.id)} ${pct(i.r.v)}${i.w !== 1 ? " ×" + i.w : ""}`).join(", ")} → ${pct(v)}${excl.length ? `. Exclue(s) sans pénalité : ${excl.map(i => sh(i.id)).join(", ")}` : ""}.` };
+}
+const FN_SHORT = n => ({ avg: "moyenne", wavg: "moy. pondérée", gte: `seuil ${pct(n.param)}`, allGte: `tous ≥ ${pct(n.param)}`, and: "toutes exigences", last: "dernière renseignée" })[n.fn];
+const JOKER_ACTIONS = { seuil: "Remonter au seuil", plus: "+1 palier (+25 %)", moins: "−1 palier (−25 %)" };
+
+/* --- analyse structurelle (indépendante de l'apprenant) --- */
+const deps = id => NODES[id].kind === "data" ? [] : NODES[id].inputs.map(x => x[0]);
+function upstream(id, acc = new Set()) { deps(id).forEach(d => { if (!acc.has(d)) { acc.add(d); upstream(d, acc); } }); return acc; }
+function downstream(id) { const s = new Set(); let ch = true; while (ch) { ch = false; IDS.forEach(n => { if (!s.has(n) && deps(n).some(d => d === id || s.has(d))) { s.add(n); ch = true; } }); } return s; }
+function paths(target, leaf) { if (target === leaf) return [[leaf]]; return deps(target).flatMap(d => paths(d, leaf).map(p => [...p, target])); }
+const CONTRIB = upstream("FINAL");
+const EXIGENCES = IDS.filter(i => NODES[i].exigence && CONTRIB.has(i));
+const MULTI_REQ = {}, MULTI_NUM = {};
+DATA_IDS.forEach(l => { const ex = EXIGENCES.filter(e => paths(e, l).length); if (ex.length > 1) MULTI_REQ[l] = ex; });
+IDS.filter(i => NODES[i].kind === "calc" && FN[NODES[i].fn].out === "num").forEach(n => DATA_IDS.forEach(l => {
+  const p = paths(n, l); if (p.length > 1) (MULTI_NUM[n] = MULTI_NUM[n] || []).push({ leaf: l, paths: p });
+}));
+function placementOf(id) { return Object.entries(AXES).flatMap(([ak, a]) => a.groups.filter(g => g.items.includes(id)).map(g => ({ axis: a.label, group: g.id ? NODES[g.id].label : g.label }))); }
+function groupOf(id) { for (const a of Object.values(AXES)) for (const g of a.groups) if (g.id === id) return g; return null; }
+function leavesOf(id) { if (NODES[id].kind === "data") return [id]; const g = groupOf(id); if (g) return g.items; return [...upstream(id)].filter(d => NODES[d].kind === "data"); }
+
+/* --- état de la simulation --- */
+const NOW = Date.parse("2026-10-05T09:00:00");
+function initialState() {
+  const c = (s, v) => ({ s, v: v ?? null });
+  return {
+    author: "Formatrice A", axis: "exercices", convention: "extremes", quota: 1, selected: "FINAL", current: "noah", archived: false, tab: "saisie",
+    participants: [
+      { id: "lea", name: "Léa", group: "Aigle", excluded: false, status: "en_cours", accepted: false, dispenses: [], jokers: [], comments: {},
+        cases: { I1: c("note", 4), I2: c("note", 4), A1: c("note", 4), I3: c("note", 5), I4: c("note", 4), I5: c("note", 3) } },
+      { id: "noah", name: "Noah", group: "Aigle", excluded: false, status: "en_cours", accepted: false, dispenses: [], jokers: [], comments: { ANIM: "Bonne énergie ; consignes encore hésitantes devant le grand groupe." },
+        cases: { I1: c("note", 4), I2: c("note", 3), A1: c("note", 3), I3: c("note", 3), I4: c("note", 4), I5: c("note", 3) } },
+      { id: "zoe", name: "Zoé", group: "Castor", excluded: false, status: "en_cours", accepted: false, dispenses: [], jokers: [], comments: { I5: "Dispensée de la veillée (raison médicale) ; note partielle conservée." },
+        cases: { I1: c("note", 5), I2: c("note", 4), A1: c("vide"), I3: c("note", 4), I4: c("vide"), I5: c("ne", 2) } },
+      { id: "malik", name: "Malik", group: "Castor", excluded: false, status: "en_cours", accepted: false, dispenses: [], jokers: [], comments: {},
+        cases: Object.fromEntries(DATA_IDS.map(i => [i, c("vide")])) },
+    ],
+    history: [
+      { at: NOW - 86400000 * 2, who: "Formateur B", pid: "lea", node: "I3", from: "3 · Acquis", to: "5 · Excellent", note: "rattrapage exceptionnel : remplace la note" },
+      { at: NOW - 86400000, who: "Formatrice A", pid: "zoe", node: "I5", from: "2 · Fragile", to: "Non évalué (2 conservé)", note: "dispense médicale" },
+    ],
+  };
+}
+let S = initialState();
+const P = id => S.participants.find(p => p.id === id);
+const cur = () => P(S.current);
+const locked = p => S.archived || p.status === "finalise";
+const norm = v => S.convention === "extremes" ? (v - 1) / 4 : (v >= 3 ? 1 : (v - 1) / 2);
+const caseLabel = c => c.s === "note" ? `${c.v} · ${LABELS[c.v]}` : c.s === "ne" ? `Non évalué${c.v ? ` (${c.v} conservé)` : ""}` : "Vide";
+
+function dispensedMap(p) { const m = {}; p.dispenses.forEach(d => leavesOf(d).forEach(l => m[l] = m[l] || d)); return m; }
+function compute(p) {
+  const res = {}, dm = dispensedMap(p);
+  const ev = id => {
+    if (res[id]) return res[id];
+    const n = NODES[id]; let r;
+    if (n.kind === "data") {
+      const c = p.cases[id] || { s: "vide", v: null }, disp = dm[id];
+      const active = c.s === "note" && !disp;
+      r = { t: "num", v: active ? norm(c.v) : null, raw: c.v, state: active ? "note" : (disp || c.s === "ne") ? "ne" : "vide", disp, c };
+    } else {
+      const ins = n.inputs.map(([d, w]) => ({ id: d, w: w ?? 1, r: ev(d) }));
+      r = FN[n.fn].run(ins, n); r.ins = ins;
+      const j = p.jokers.find(j => j.node === id);
+      if (j && r.v != null && r.t === "num") {
+        r.before = r.v;
+        r.v = j.action === "seuil" ? Math.max(r.v, n.joker) : j.action === "plus" ? Math.min(1, r.v + .25) : Math.max(0, r.v - .25);
+        r.joker = j;
+        r.phrase += ` Joker « ${JOKER_ACTIONS[j.action]} » : ${pct(r.before)} → ${pct(r.v)} (valeur effective).`;
+      } else if (j) r.jokerIdle = j;
+      r.jokerFrom = [...new Set(ins.flatMap(i => [...(i.r.joker ? [i.id] : []), ...(i.r.jokerFrom || [])]))];
+    }
+    return res[id] = r;
+  };
+  IDS.forEach(ev);
+  return res;
+}
+function fillErrors(p, res) {
+  const e = [];
+  DATA_IDS.filter(i => NODES[i].required).forEach(i => {
+    if (res[i].v == null) e.push({ node: i, msg: `« ${sh(i)} » est obligatoire et n'a pas de note active (${res[i].disp ? "dispense : ne lève pas l'exigence" : res[i].state === "ne" ? "non évalué" : "vide"}).` });
+  });
+  const n = INDICATORS.filter(i => res[i].v != null).length;
+  if (n < MIN_FILLED) e.push({ node: null, msg: `Au moins ${MIN_FILLED} indicateurs renseignés sur ${INDICATORS.length} : ${n} actuellement.` });
+  return e;
+}
+const fmtRes = r => r.t === "bool" ? (r.v == null ? "—" : r.v ? "OK" : "KO") : pct(r.v);
+function finalTxt(r) { return r.v == null ? "Pas encore de résultat" : r.v ? "Réussi" : "Échoué"; }
+function log(p, node, from, to, note) { S.history.push({ at: Date.now(), who: S.author, pid: p.id, node, from, to, note }); }
+
+/* --- actions --- */
+function setCase(p, node, s, v, note) {
+  if (locked(p)) return;
+  const c = p.cases[node], before = caseLabel(c);
+  if (s === "ne") c.v = c.v ?? null; else c.v = s === "vide" ? null : v;
+  c.s = s;
+  const after = caseLabel(c);
+  if (before !== after) log(p, node, before, after, note);
+}
+
+/* =====================================================================
+   Simulateur : rendu
+   ===================================================================== */
+function renderSim() {
+  const p = cur();
+  if (!p || p.excluded) { const f = S.participants.find(x => !x.excluded); if (f) S.current = f.id; }
+  const res = compute(cur());
+  renderPtabs(); renderBanner(res); renderGraph(res); renderTree(res); renderDetail(res); renderTab(); renderMatrix(res);
+}
+function renderPtabs() {
+  $("#ptabs").innerHTML = S.participants.filter(p => !p.excluded).map(p => {
+    const r = compute(p), e = fillErrors(p, r);
+    const st = p.status === "finalise" ? "🔒" : e.length ? "⚠" : "";
+    return `<button class="ptab${p.id === S.current ? " on" : ""}" data-p="${p.id}">${p.name} ${st}</button>`;
+  }).join("");
+  $$("#ptabs .ptab").forEach(b => b.onclick = () => { S.current = b.dataset.p; renderSim(); });
+  const ex = S.participants.filter(p => p.excluded);
+  $("#excluded").innerHTML = ex.length ? `Écarté(s) du cours, donc absents de toutes ses grilles : ${ex.map(p => `<b>${p.name}</b> <button data-un="${p.id}" style="font-size:12px;padding:1px 7px">rétablir (démo)</button>`).join(" ")} <span class="ref">§2</span>` : "";
+  $$("#excluded [data-un]").forEach(b => b.onclick = () => { P(b.dataset.un).excluded = false; renderSim(); });
+}
+function renderBanner(res) {
+  const p = cur(), f = res.FINAL, e = fillErrors(p, res);
+  const cls = f.v == null ? "ind" : f.v ? "ok" : "ko";
+  let h = `<div class="banner"><span class="big">${p.name}</span><span class="b ${cls}" style="font-size:13px">★ ${finalTxt(f)}</span>`;
+  if (f.jokerFrom.length) h += `<span class="b j">J↓ influencé par un joker</span>`;
+  h += `<span class="b ind">Jokers : ${p.jokers.length}/${S.quota}</span>`;
+  h += p.status === "finalise" ? `<span class="b ok">🔒 Finalisé</span>` : `<span class="b ind">En cours de saisie</span>`;
+  if (p.status === "finalise" && p.accepted) h += `<span class="b warn">Incomplétude acceptée</span>`;
+  if (S.archived) h += `<span class="b ne">Cours archivé</span>`;
+  h += `<span style="flex:1"></span><button id="exclBtn" ${S.archived ? "disabled" : ""}>Écarter ${p.name} du cours</button></div>`;
+  if (e.length) h += `<div class="prov">⚠ <b>Données provisoires</b> : ${e.length} exigence(s) de remplissage non satisfaite(s). Le résultat courant est calculé sur les notes présentes ; il peut évoluer. <a href="#tabs" data-gotab="erreurs">Voir les erreurs</a></div>`;
+  $("#banner").innerHTML = h;
+  $("#exclBtn").onclick = () => {
+    if (!confirm(`Écarter ${p.name} du cours ?\n\nLocal au cours entier : toutes ses grilles. L'inscription MiData n'est pas modifiée.`)) return;
+    p.excluded = true; renderSim();
+  };
+  $$("[data-gotab]", $("#banner")).forEach(a => a.onclick = () => { S.tab = a.dataset.gotab; renderTab(); });
+}
+
+function nodeBadges(id, r) {
+  const n = NODES[id], p = cur(), b = [];
+  if (n.decisive) b.push(["★ décisif", "dec"]);
+  if (n.kind === "calc" && !n.decisive && !CONTRIB.has(id)) b.push(["indicatif", "ind"]);
+  if (n.exigence) b.push(["exigence", "calc"]);
+  if (n.required) b.push([r.v == null ? "! oblig." : "oblig.", r.v == null ? "warn" : "ind"]);
+  if (r.disp || p.dispenses.includes(id)) b.push(["dispense", "ne"]);
+  if (MULTI_REQ[id]) b.push([`⇉ ${MULTI_REQ[id].length} exig.`, "m"]);
+  if (MULTI_NUM[id]) b.push([`⇉ ×${MULTI_NUM[id][0].paths.length}`, "m"]);
+  if (r.joker) b.push(["J joker", "j"]);
+  else if (r.jokerFrom && r.jokerFrom.length) b.push(["J↓", "jo"]);
+  return b;
+}
+const BADGE_COL = { dec: ["#fff4dc", "#a86a0c"], ind: ["#eef0f3", "#5d6675"], calc: ["#f3edff", "#7c3aed"], warn: ["#fef4d4", "#92600a"], ne: ["#eceef1", "#4b5563"], m: ["#e0f5f8", "#0e7490"], j: ["#fde7f1", "#c0267a"], jo: ["#fff", "#c0267a"] };
+
+function renderGraph(res) {
+  const sel = S.selected, up = upstream(sel), down = downstream(sel), on = new Set([sel, ...up, ...down]);
+  const ax = AXES[S.axis];
+  let s = `<defs><marker id="gar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0L10,5L0,10z" fill="#6b7280"/></marker>
+    <marker id="gar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0L10,5L0,10z" fill="#92600a"/></marker></defs>`;
+  const edge = (a, b, cls, label, mk = "gar") => {
+    const A = NODES[a], B = NODES[b], x1 = A.x + NW, y1 = A.y + NH / 2, x2 = B.x - 2, y2 = B.y + NH / 2, mx = (x1 + x2) / 2;
+    s += `<path class="ge ${cls}" d="M${x1},${y1}C${mx},${y1} ${mx},${y2} ${x2},${y2}" marker-end="url(#${mk})"/>`;
+    if (label) s += `<rect x="${x2 - 34}" y="${y2 - 19}" width="22" height="14" rx="3" fill="#fff" stroke="#d1d5db"/><text x="${x2 - 23}" y="${y2 - 8}" font-size="11" font-weight="700" fill="#374151" text-anchor="middle">${label}</text>`;
+  };
+  IDS.forEach(id => deps(id).forEach((d, k) => {
+    const hl = on.has(id) && on.has(d) && (id === sel || d === sel || (up.has(id) || id === sel) && up.has(d) || down.has(id) && (down.has(d) || d === sel));
+    const jk = res[d].joker || (res[d].jokerFrom && res[d].jokerFrom.length);
+    const w = NODES[id].inputs[k][1];
+    edge(d, id, `${hl ? "hl" : "fade"} ${jk ? "jk" : ""}`, w && w !== 1 ? "×" + w : "");
+  }));
+  ax.groups.forEach(g => g.id && g.items.forEach(it => { if (!deps(g.id).includes(it)) edge(it, g.id, "place", "", "gar2"); }));
+  IDS.forEach(id => {
+    const n = NODES[id], r = res[id], fade = !on.has(id);
+    const [bg, bd] = n.kind === "data" ? ["#e8f0fe", "#2563eb"] : n.decisive ? ["#fff4dc", "#a86a0c"] : ["#f3edff", "#7c3aed"];
+    const ind = n.kind === "calc" && !n.decisive && !CONTRIB.has(id);
+    let val, vcol = "#1d2330", line2;
+    if (n.kind === "data") {
+      line2 = r.state === "note" ? LABELS[r.raw] : r.state === "ne" ? (r.raw ? `non évalué · ${r.raw} indicatif` : "non évalué") : "vide";
+      val = r.state === "note" ? r.raw + "/5" : r.state === "ne" ? "NÉ" : "—";
+      vcol = r.state === "note" ? "#1d4ed8" : "#9ca3af";
+    } else {
+      line2 = FN_SHORT(n); val = fmtRes(r);
+      vcol = r.t === "bool" ? (r.v == null ? "#9ca3af" : r.v ? "#15803d" : "#c2410c") : r.v == null ? "#9ca3af" : "#4c1d95";
+      if (n.decisive) val = r.v == null ? "—" : r.v ? "Réussi" : "Échoué";
+    }
+    s += `<g class="gn${fade ? " fade" : ""}" data-id="${id}"><title>${esc(n.label)} — cliquer pour le détail</title>`;
+    s += `<rect x="${n.x}" y="${n.y}" width="${NW}" height="${NH}" rx="9" fill="${ind ? "#fff" : bg}" stroke="${bd}" stroke-width="${id === sel ? 3 : n.decisive ? 2.2 : 1.5}" ${ind ? 'stroke-dasharray="5 4"' : ""}/>`;
+    if (r.state === "ne" && n.kind === "data") s += `<rect x="${n.x}" y="${n.y}" width="${NW}" height="${NH}" rx="9" fill="url(#hatch)" opacity=".6"/>`;
+    s += `<text x="${n.x + 10}" y="${n.y + 21}" font-size="12.5" font-weight="600" fill="#1d2330">${esc(n.label)}</text>`;
+    s += `<text x="${n.x + 10}" y="${n.y + 41}" font-size="11" fill="#5d6675">${esc(line2)}</text>`;
+    s += `<text x="${n.x + NW - 9}" y="${n.y + 41}" font-size="${n.decisive ? 14 : 13}" font-weight="700" fill="${vcol}" text-anchor="end">${esc(val)}</text>`;
+    let bx = n.x + NW;
+    nodeBadges(id, r).reverse().forEach(([t, c]) => {
+      const w = t.length * 6.3 + 10; bx -= w + 3; const [bgc, fg] = BADGE_COL[c];
+      s += `<rect x="${bx}" y="${n.y - 9}" width="${w}" height="15" rx="4" fill="${bgc}" stroke="${c === "jo" ? fg : "none"}"/><text x="${bx + w / 2}" y="${n.y + 2}" font-size="10" font-weight="700" fill="${fg}" text-anchor="middle">${esc(t)}</text>`;
+    });
+    s += `</g>`;
+  });
+  s = s.replace("</defs>", `<pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="8" stroke="#9ca3af" stroke-width="2"/></pattern></defs>`);
+  $("#g").innerHTML = s;
+  $$("#g .gn").forEach(g => g.onclick = () => { S.selected = g.dataset.id; renderSim(); });
+}
+
+function renderTree(res) {
+  const ax = AXES[S.axis];
+  let h = `<h4>Navigation · axe principal : ${ax.label}</h4>`;
+  ax.groups.forEach(g => {
+    h += `<div class="grp"><div class="gl${g.id === S.selected ? " sel" : ""}" ${g.id ? `data-id="${g.id}"` : ""}><span>${g.id ? esc(NODES[g.id].label) : `<i>${g.label}</i>`}</span><span>${g.id ? fmtRes(res[g.id]) : ""}</span></div>`;
+    g.items.forEach(it => {
+      const r = res[it], counted = !g.id || deps(g.id).includes(it);
+      h += `<div class="it${it === S.selected ? " sel" : ""}" data-id="${it}"><span>${esc(sh(it))}${counted ? "" : ` <span class="b warn" title="placé ici, mais ne compte pas dans ce regroupement">placé, non compté</span>`}</span><span>${r.state === "note" ? r.raw : r.state === "ne" ? "NÉ" : "—"}</span></div>`;
+    });
+    h += `</div>`;
+  });
+  h += `<div class="gl" data-id="FINAL" style="border-top:1px solid var(--line);margin-top:8px;padding-top:8px"><span>★ ${NODES.FINAL.label}</span><span>${finalTxt(res.FINAL)}</span></div>`;
+  h += `<p class="note">Changez l'axe principal dans la barre : l'arbre change, la réussite non. L'autre axe reste accessible. <span class="ref">§3</span></p>`;
+  $("#tree").innerHTML = h;
+  $$("#tree [data-id]").forEach(e => e.onclick = () => { S.selected = e.dataset.id; renderSim(); });
+}
+
+function renderDetail(res) {
+  const id = S.selected, n = NODES[id], r = res[id], p = cur(), L = locked(p);
+  let h = `<h4>${esc(n.label)} ${n.kind === "data" ? `<span class="b data">nœud de données</span>` : `<span class="b calc">nœud de calcul</span>`} ${n.decisive ? `<span class="b dec">★ résultat final décisif</span>` : ""}</h4>`;
+  const pl = placementOf(id);
+  const contrib = n.decisive ? "C'est le résultat final." : CONTRIB.has(id) ? "Oui, il contribue à la réussite (dépendance du nœud décisif)." : "Non, il est <b>indicatif</b>.";
+  const parents = IDS.filter(x => deps(x).includes(id));
+  h += `<div class="kv">`;
+  if (n.kind === "calc") h += `<div>Fonction</div><div><code>${FN[n.fn].id}</code> ${FN[n.fn].name}${n.param != null ? `, seuil ${pct(n.param)}` : ""} <span class="note">(publiée, immuable)</span></div>`;
+  if (n.kind === "calc") h += `<div>Entrées</div><div>${n.inputs.map(([d, w]) => `<a href="#" data-go="${d}">${esc(sh(d))}</a>${w && w !== 1 ? " ×" + w : ""}`).join(", ")}</div>`;
+  if (n.kind === "data") h += `<div>Barème</div><div>1–5 : ${Object.entries(LABELS).map(([k, v]) => `${k} ${v}`).join(" · ")}</div>`;
+  if (n.def) h += `<div>Définition</div><div>« ${n.def} » (2 occurrences : Ex.1 et Ex.2, cases distinctes)</div>`;
+  h += `<div>Compte dans</div><div>${parents.length ? parents.map(x => `<a href="#" data-go="${x}">${esc(sh(x))}</a>`).join(", ") : "—"}</div>`;
+  h += `<div>Placé dans</div><div>${pl.length ? pl.map(x => `${x.axis} › ${esc(x.group)}`).join("<br>") : "—"}</div>`;
+  h += `<div>Réussite</div><div>${contrib}</div>`;
+  if (n.required) h += `<div>Remplissage</div><div>Obligatoire (exige une note active)</div>`;
+  h += `</div>`;
+
+  if (n.kind === "data") {
+    const c = p.cases[id];
+    h += `<h4 style="margin-top:12px">Case de ${p.name}</h4>`;
+    if (r.disp) h += `<div class="flag ne">Couverte par la <b>dispense</b> posée sur « ${esc(NODES[r.disp].label)} » : état effectif <b>non évalué</b>${c.s === "note" ? `, note ${c.v} conservée à titre indicatif, exclue du calcul` : ""}.</div>`;
+    h += `<div class="chips">${[["vide", "Vide"], ["note", "Note"], ["ne", "Non évalué"]].map(([s, l]) => `<button class="chip${c.s === s ? " on" : ""}" data-st="${s}" ${L ? "disabled" : ""}>${l}</button>`).join("")}</div>`;
+    h += `<div class="chips">${[1, 2, 3, 4, 5].map(v => `<button class="chip${c.s === "note" && c.v === v ? " on" : ""}" data-v="${v}" ${L ? "disabled" : ""}>${v} · ${LABELS[v]}</button>`).join("")}</div>`;
+    h += `<div class="note">Valeur transmise au calcul : <b>${pct(r.v)}</b>${r.v == null ? " (exclue, sans pénalité)" : ""}. ${L ? "🔒 Dossier verrouillé." : "Une modification remplace la note courante ; l'ancienne valeur va dans l'historique."}</div>`;
+    if (MULTI_REQ[id]) h += `<div class="flag m">⇉ <b>Contribue à ${MULTI_REQ[id].length} exigences distinctes</b> : ${MULTI_REQ[id].map(sh).join(", ")}. Autorisé, signalé, sans confirmation. <span class="ref">§3</span></div>`;
+    const numHits = Object.entries(MULTI_NUM).filter(([, a]) => a.some(x => x.leaf === id));
+    numHits.forEach(([nn, a]) => { const x = a.find(y => y.leaf === id); h += `<div class="flag m">⇉ <b>Influence ${x.paths.length} fois « ${sh(nn)} »</b> par : ${x.paths.map(pp => pp.map(sh).join(" → ")).join(" ; ")}.</div>`; });
+    const hist = S.history.filter(x => x.pid === p.id && x.node === id);
+    if (hist.length) h += `<div class="hist" style="margin-top:8px"><b>Historique de la case</b>${hist.slice().reverse().map(x => `<div>${esc(x.from)} → <b>${esc(x.to)}</b> <span class="w">${esc(x.who)}, ${new Date(x.at).toLocaleString("fr-CH")}${x.note ? " — " + esc(x.note) : ""}</span></div>`).join("")}</div>`;
+  } else {
+    h += `<div class="phrase"><b>Phrase explicative</b> (${p.name}) : ${esc(r.phrase)}</div>`;
+    h += `<table class="t" style="font-size:13px"><tr><th>Entrée</th><th>Valeur</th><th>Poids</th><th>Statut</th></tr>${r.ins.map(i => `<tr><td><a href="#" data-go="${i.id}">${esc(sh(i.id))}</a></td><td>${fmtRes(i.r)}${i.r.joker ? ` <span class="b j">J</span>` : i.r.jokerFrom && i.r.jokerFrom.length ? ` <span class="b j" style="background:#fff;border:1px solid var(--joker)">J↓</span>` : ""}</td><td>${i.w}</td><td>${i.r.v == null ? (i.r.state === "ne" ? `<span class="b ne">non évalué</span>` : `<span class="b ind">${NODES[i.id].kind === "data" ? "vide" : "sans résultat"}</span>`) : `<span class="b ok">actif</span>`}</td></tr>`).join("")}</table>`;
+    if (MULTI_NUM[id]) h += `<div class="flag m">⇉ <b>Influence multiple</b> : ${MULTI_NUM[id].map(x => `« ${sh(x.leaf)} » compte ${x.paths.length} fois (${x.paths.map(pp => pp.map(sh).join(" → ")).join(" ; ")})`).join(". ")}. Autorisé et signalé. <span class="ref">§3</span></div>`;
+    if (r.joker) {
+      const j = r.joker;
+      h += `<div class="flag j"><b>J Joker appliqué</b> : « ${JOKER_ACTIONS[j.action]} ». Initial <b>${pct(r.before)}</b> · ajustement <b>${r.v - r.before >= 0 ? "+" : ""}${Math.round((r.v - r.before) * 100)} pts</b> · effectif <b>${pct(r.v)}</b>.<br>Justification : « ${esc(j.why)} » — ${esc(j.who)}, ${new Date(j.at).toLocaleString("fr-CH")}. ${L ? "" : `<button data-unjoker style="font-size:12px;padding:1px 7px">retirer (démo)</button>`}</div>`;
+    } else if (r.jokerIdle) h += `<div class="flag j">Joker posé mais sans effet : ce nœud n'a pas de résultat pour l'instant.</div>`;
+    if (r.jokerFrom.length) h += `<div class="flag j"><b>J↓ Influencé par un joker</b> appliqué sur : ${r.jokerFrom.map(x => `<a href="#" data-go="${x}">${esc(sh(x))}</a>`).join(", ")}.</div>`;
+    if (n.joker && !r.joker && !r.jokerIdle) {
+      const left = S.quota - p.jokers.length;
+      h += `<h4 style="margin-top:12px">Joker <span class="note">(nœud autorisé, seuil de référence ${pct(n.joker)})</span></h4>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center"><select id="jAct">${Object.entries(JOKER_ACTIONS).map(([k, v]) => `<option value="${k}">${v}</option>`).join("")}<option disabled>Imposer un échec (statut : propagation à définir §13.2)</option></select>
+        <input type="text" id="jWhy" placeholder="Justification (obligatoire)" style="flex:1;min-width:180px"><button class="primary" id="jApply" ${L || left <= 0 ? "disabled" : ""}>Appliquer</button></div>
+        <div class="note">Quota restant pour ${p.name} : ${left}/${S.quota}. ${left <= 0 ? "Quota épuisé." : ""}</div>`;
+    }
+  }
+  if (groupOf(id)) {
+    const dis = p.dispenses.includes(id), lv = leavesOf(id);
+    h += `<h4 style="margin-top:12px">Dispense de ${p.name} sur ce regroupement</h4><label style="font-size:13.5px"><input type="checkbox" id="dispChk" ${dis ? "checked" : ""} ${L ? "disabled" : ""}> Dispenser (non évalué hérité par les feuilles : ${lv.map(sh).join(", ")})</label>`;
+    if (groupOf(id) && lv.some(l => !deps(id).includes(l))) h += `<div class="interp">Hypothèse de la maquette : les « feuilles » d'un regroupement d'axe sont les éléments <b>placés</b> sous lui, y compris ceux qui n'y comptent pas (« Sécurité de la veillée » pour l'Exercice 2). À confirmer.</div>`;
+    h += `<div class="note">Une feuille dispensée est exclue <b>partout</b> où elle compte, puisque son état est porté par la case et non par le regroupement.</div>`;
+  }
+  if (p.comments[id]) h += `<div class="dcom"><b>Commentaire formateur pour ${p.name}</b> (donnée du domaine, exemple) : ${esc(p.comments[id])}</div>`;
+  const d = $("#detail");
+  d.innerHTML = h;
+  d.appendChild(reviewBox("sim:node:" + id, `Simulateur — nœud « ${n.label} »`, true));
+  $$("[data-go]", d).forEach(a => a.onclick = ev => { ev.preventDefault(); S.selected = a.dataset.go; renderSim(); });
+  $$("[data-st]", d).forEach(b => b.onclick = () => { const c = p.cases[id]; setCase(p, id, b.dataset.st, b.dataset.st === "note" ? (c.v || 3) : c.v); renderSim(); });
+  $$("[data-v]", d).forEach(b => b.onclick = () => { setCase(p, id, "note", +b.dataset.v); renderSim(); });
+  const ja = $("#jApply", d);
+  if (ja) ja.onclick = () => {
+    const why = $("#jWhy", d).value.trim();
+    if (!why) { toast("Justification obligatoire"); $("#jWhy", d).focus(); return; }
+    const action = $("#jAct", d).value;
+    p.jokers.push({ node: id, action, why, who: S.author, at: Date.now() });
+    log(p, id, "—", `Joker « ${JOKER_ACTIONS[action]} »`, why);
+    renderSim();
+  };
+  const uj = $("[data-unjoker]", d);
+  if (uj) uj.onclick = () => { p.jokers = p.jokers.filter(j => j.node !== id); log(p, id, "Joker", "retiré (démo)"); renderSim(); };
+  const dc = $("#dispChk", d);
+  if (dc) dc.onchange = () => {
+    if (dc.checked) { p.dispenses.push(id); log(p, id, "—", "Dispense (non évalué hérité)"); }
+    else { p.dispenses = p.dispenses.filter(x => x !== id); log(p, id, "Dispense", "levée"); }
+    renderSim();
+  };
+}
+
+function renderTab() {
+  $$("#tabs button").forEach(b => b.classList.toggle("on", b.dataset.t === S.tab));
+  const el = $("#tabc"), act = S.participants.filter(p => !p.excluded);
+  if (S.tab === "saisie") {
+    const ax = AXES[S.axis];
+    const cols = ax.groups.flatMap(g => g.items.map(it => ({ g, it })));
+    let h = `<p class="note">Vue standard générée depuis l'axe principal (${ax.label}). Une même évaluation affichée à plusieurs endroits reste une seule donnée. La ligne de groupe <b>copie</b> la valeur dans les cases des membres, ensuite modifiables une à une ; aucune note collective ne reste liée. <span class="ref">§5</span> <span class="ref">§11</span></p>`;
+    h += `<div style="overflow:auto"><table class="saisie"><tr><th rowspan="2">Apprenant</th>${ax.groups.map(g => `<th colspan="${g.items.length}">${g.id ? esc(NODES[g.id].label) : `<i>${g.label}</i>`}</th>`).join("")}<th rowspan="2">Réussite</th><th rowspan="2">Dossier</th></tr>
+      <tr>${cols.map(c => `<th>${esc(sh(c.it))}${NODES[c.it].required ? " *" : ""}</th>`).join("")}</tr>`;
+    const groups = [...new Set(act.map(p => p.group))];
+    const opt = (c) => `<option value="vide"${c && c.s === "vide" ? " selected" : ""}>—</option>${[1, 2, 3, 4, 5].map(v => `<option value="${v}"${c && c.s === "note" && c.v === v ? " selected" : ""}>${v}</option>`).join("")}<option value="ne"${c && c.s === "ne" ? " selected" : ""}>NÉ</option>`;
+    groups.forEach(gname => {
+      const mem = act.filter(p => p.group === gname);
+      h += `<tr class="grp"><td class="nm">⇣ Groupe ${gname} <span class="note">(${mem.map(m => m.name).join(", ")})</span></td>${cols.map(c => `<td><select data-grp="${gname}" data-n="${c.it}" ${S.archived ? "disabled" : ""}><option value="">copier…</option>${opt(null)}</select></td>`).join("")}<td></td><td></td></tr>`;
+      mem.forEach(p => {
+        const r = compute(p), e = fillErrors(p, r), L = locked(p);
+        h += `<tr><td class="nm"><a href="#" data-sel="${p.id}">${p.name}</a>${e.length ? ` <span class="b warn" title="données provisoires">⚠</span>` : ""}</td>${cols.map(c => {
+          const rr = r[c.it], cl = rr.disp ? "disp" : rr.state;
+          return `<td class="${cl}" title="${rr.disp ? "dispense sur " + esc(NODES[rr.disp].label) : ""}"><select data-p="${p.id}" data-n="${c.it}" ${L ? "disabled" : ""}>${opt(p.cases[c.it])}</select></td>`;
+        }).join("")}<td><span class="b ${r.FINAL.v == null ? "ind" : r.FINAL.v ? "ok" : "ko"}">${finalTxt(r.FINAL)}</span>${r.FINAL.jokerFrom.length ? ` <span class="b j">J↓</span>` : ""}</td><td>${p.status === "finalise" ? "🔒" : "en cours"}</td></tr>`;
+      });
+    });
+    h += `</table></div><p class="note">* obligatoire · NÉ = non évalué (la note antérieure est conservée) · hachures = dispense.</p>`;
+    el.innerHTML = h;
+    $$("select[data-p]", el).forEach(sl => sl.onchange = () => {
+      const p = P(sl.dataset.p), v = sl.value;
+      setCase(p, sl.dataset.n, v === "vide" || v === "ne" ? v : "note", +v); renderSim();
+    });
+    $$("select[data-grp]", el).forEach(sl => sl.onchange = () => {
+      const v = sl.value; if (!v) return;
+      const mem = act.filter(p => p.group === sl.dataset.grp);
+      const skipped = mem.filter(locked);
+      mem.filter(p => !locked(p)).forEach(p => setCase(p, sl.dataset.n, v === "vide" || v === "ne" ? v : "note", +v, `saisie groupe ${sl.dataset.grp}`));
+      if (skipped.length) toast(`Dossier(s) verrouillé(s) ignoré(s) : ${skipped.map(p => p.name).join(", ")}`);
+      renderSim();
+    });
+    $$("[data-sel]", el).forEach(a => a.onclick = ev => { ev.preventDefault(); S.current = a.dataset.sel; renderSim(); });
+  } else if (S.tab === "erreurs") {
+    let h = `<p class="note">Exigences déclarées par la grille : « Sécurité (Ex.1) » et « Groupe (Ex.2) » obligatoires ; au moins ${MIN_FILLED} indicateurs renseignés sur ${INDICATORS.length}. L'appréciation globale n'est pas un indicateur. <span class="ref">§6</span></p>
+      <table class="t"><tr><th>Apprenant</th><th>Erreurs de remplissage</th><th>Avertissement</th><th>Résultat courant</th></tr>`;
+    act.forEach(p => {
+      const r = compute(p), e = fillErrors(p, r);
+      h += `<tr><td>${p.name}</td><td>${e.length ? `<ul style="margin:0">${e.map(x => `<li>${esc(x.msg)}</li>`).join("")}</ul>` : `<span class="b ok">aucune</span>`}${p.status === "finalise" && p.accepted ? `<div><span class="b warn">acceptées à la finalisation</span></div>` : ""}</td><td>${e.length ? `<span class="b warn">données provisoires</span>` : "—"}</td><td>${finalTxt(r.FINAL)}</td></tr>`;
+    });
+    el.innerHTML = h + `</table><p class="note">Autres catégories d'erreurs : à préciser (§13.3).</p>`;
+  } else if (S.tab === "dossiers") {
+    let h = `<p class="note">Finalisation par apprenant. Les erreurs de remplissage exigent une acceptation explicite, qui ne change ni l'avertissement, ni le résultat, ni le quota de jokers. <span class="ref">§6</span> <span class="ref">§10</span></p><table class="t"><tr><th>Apprenant</th><th>Statut</th><th>Erreurs</th><th>Actions</th></tr>`;
+    act.forEach(p => {
+      const r = compute(p), e = fillErrors(p, r);
+      let a = "";
+      if (S.archived) a = `<span class="note">Archivé : consultable, aucune réédition.</span>`;
+      else if (p.status === "en_cours") a = `${e.length ? `<label style="font-size:13px"><input type="checkbox" data-acc="${p.id}"> J'accepte explicitement les ${e.length} erreur(s)</label> ` : ""}<button class="primary" data-fin="${p.id}" ${e.length ? "disabled" : ""}>Finaliser</button>`;
+      else a = `<button data-reo="${p.id}">Rouvrir pour correction</button>`;
+      h += `<tr><td>${p.name}</td><td>${p.status === "finalise" ? `🔒 Finalisé${p.accepted ? ` <span class="b warn">incomplétude acceptée</span>` : ""}` : "En cours"}</td><td>${e.length}</td><td>${a}</td></tr>`;
+    });
+    h += `</table><div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><button id="finAll" ${S.archived ? "disabled" : ""}>Finalisation groupée (dossiers sans erreur)</button><button id="arch" ${S.archived ? "disabled" : ""}>Archiver le cours (manuel)</button></div>
+      <div class="interp">Portée de l'acceptation dans une finalisation groupée, articulation entre l'archivage du cours, des grilles et des dossiers, et dossiers non finalisés à l'échéance : ouverts (§13.3, §13.5). La maquette archive tout le cours.</div>`;
+    el.innerHTML = h;
+    $$("[data-acc]", el).forEach(c => c.onchange = () => { $(`[data-fin="${c.dataset.acc}"]`, el).disabled = !c.checked; });
+    $$("[data-fin]", el).forEach(b => b.onclick = () => {
+      const p = P(b.dataset.fin), e = fillErrors(p, compute(p));
+      p.status = "finalise"; p.accepted = e.length > 0;
+      log(p, "—", "En cours", "Finalisé", e.length ? `${e.length} erreur(s) acceptée(s) explicitement` : ""); renderSim();
+    });
+    $$("[data-reo]", el).forEach(b => b.onclick = () => {
+      const p = P(b.dataset.reo); p.status = "en_cours"; p.accepted = false;
+      log(p, "—", "Finalisé", "Rouvert", "réouverture signalée à l'équipe"); toast(`Réouverture signalée à l'équipe`); renderSim();
+    });
+    $("#finAll", el).onclick = () => {
+      act.filter(p => p.status === "en_cours" && !fillErrors(p, compute(p)).length).forEach(p => { p.status = "finalise"; p.accepted = false; log(p, "—", "En cours", "Finalisé", "finalisation groupée"); });
+      renderSim();
+    };
+    $("#arch", el).onclick = () => {
+      if (!confirm("Archiver le cours ? Plus aucune réédition (utilisez « Réinitialiser » pour recommencer la démo).")) return;
+      S.archived = true; S.participants.forEach(p => log(p, "—", p.status === "finalise" ? "Finalisé" : "En cours", "Archivé", p.status === "finalise" ? "" : "non finalisé à l'archivage (cas ouvert)"));
+      renderSim();
+    };
+  } else {
+    const all = S.history.slice().reverse();
+    el.innerHTML = `<p class="note">Qui a changé quoi et quand. Ce n'est pas une collection d'évaluations concurrentes. <span class="ref">§5</span></p><div class="hist">${all.map(x => `<div><b>${esc(P(x.pid).name)}</b> · ${x.node !== "—" && NODES[x.node] ? esc(sh(x.node)) : "dossier"} : ${esc(x.from)} → <b>${esc(x.to)}</b> <span class="w">${esc(x.who)}, ${new Date(x.at).toLocaleString("fr-CH")}${x.note ? " — " + esc(x.note) : ""}</span></div>`).join("")}</div>`;
+  }
+}
+
+function renderMatrix(res) {
+  const rows = [["EX1", "Exercice 1"], ["EX2", "Exercice 2"]], colsM = [["ANIM", "Animation"], ["SECU", "Sécurité"]];
+  const cell = { "EX1|ANIM": null, "EX1|SECU": "I2", "EX2|ANIM": "I4", "EX2|SECU": "I5" };
+  let h = `<table class="t matrix" style="max-width:720px"><tr><th>${cur().name}</th>${colsM.map(c => `<th>${c[1]}<div class="note"><a href="#" data-go="${c[0]}">${pct(res[c[0]].v)}</a></div></th>`).join("")}<th>Exercice (nœud)</th></tr>`;
+  rows.forEach(([rid, rl]) => {
+    h += `<tr><th>${rl}</th>${colsM.map(([cid]) => { const k = cell[rid + "|" + cid]; return k ? `<td class="ref" data-go="${k}">${esc(sh(k))}<br><b>${res[k].state === "note" ? res[k].raw + "/5" : res[k].state === "ne" ? "NÉ" : "—"}</b></td>` : `<td class="none">aucun nœud<br>→ pas de résultat</td>`; }).join("")}<td class="ref" data-go="${rid}"><b>${pct(res[rid].v)}</b></td></tr>`;
+  });
+  h += `</table><p class="note">La cellule « Exercice 1 × Animation » ne calcule pas une moyenne de I1 implicitement. Si on veut ce résultat, il faut un nœud de calcul, donc une copie de la grille si le cours a commencé.</p>`;
+  const m = $("#matrix"); m.innerHTML = h;
+  $$("[data-go]", m).forEach(a => a.onclick = ev => { ev.preventDefault(); S.selected = a.dataset.go; renderSim(); $("#simulateur").scrollIntoView(); });
+}
+
+/* =====================================================================
+   Arbitrages et points ouverts
+   ===================================================================== */
+const ARB = [
+  ["Conservation des résultats", "Recalcul intégral, aucun instantané de référence, fonctions publiées immuables. Cache dérivé et reconstructible possible.", "rejouabilite"],
+  ["Archivage", "Délai proposé par défaut, configurable par cours ; archivage automatique et manuel. Durée par défaut encore à fixer.", "cycle"],
+  ["Réussite", "Nœud de calcul ordinaire désigné comme résultat final et marqué décisif ; ses dépendances contribuent à la réussite. Choix indépendant de l'axe principal.", "simulateur"],
+  ["Dispense", "Possible sur une case ou n'importe quel regroupement, héritée par ses feuilles. Notes déjà saisies conservées, exclues du calcul et affichables à titre indicatif.", "etats"],
+  ["Vues pendant le cours", "Adaptation et création à partir de nœuds existants permises sans copie ; aucune reconfiguration de l'architecture de calcul par une vue.", "vues"],
+  ["Tentatives et refonte", "Dans une grille inchangée, tentatives préparées en amont et réévaluation imprévue par remplacement. Une copie complète permet de modifier la grille, puis de poursuivre la qualification dans cette nouvelle grille. Les deux règles coexistent.", "repetitions"],
+  ["Participant écarté", "Exclusion locale au niveau du cours entier ; le participant n'apparaît plus dans ses listes et vues de qualification, toutes grilles confondues.", "simulateur"],
+  ["Chemins multiples", "Signalement systématique des contributions à plusieurs exigences distinctes et des influences multiples sur un même résultat numérique ; usages autorisés, sans blocage ni confirmation obligatoire.", "simulateur"],
+];
+const OPEN = [
+  ["Calcul et barèmes", "Catalogue précis, paramètres, conventions de conversion, normalisation à poids égal, valeurs associées aux paliers, arrondis et compatibilités entre fonctions."],
+  ["Jokers", "Catalogue d'actions, propagation d'un statut forcé, règles de combinaison de plusieurs usages et rendu visuel du signalement jusqu'à la synthèse."],
+  ["Remplissage", "Rendu de « non évalué » et des notes conservées à titre indicatif, contenu complet de l'onglet d'erreurs, libellé de l'avertissement et portée de l'acceptation groupée."],
+  ["Navigation et vues", "Interactions du graphe, rendu des deux signalements de chemins multiples, catalogue de graphiques, outils de composition des matrices et d'adaptation des vues."],
+  ["Cycle de vie", "Durée d'archivage par défaut, articulation des périmètres d'archivage, traitement des dossiers non finalisés à l'échéance et devenir des états lors d'une copie."],
+  ["Gabarits et publication", "Cycle des brouillons et publications, forme de l'autocomplétion des objectifs officiels ; comparaison de grilles éventuelle."],
+  ["Exports et conservation", "Formats, mise en page, assemblage des vues et mise en œuvre de la rejouabilité, sans exiger la conservation des anciens exports."],
+  ["Architecture", "Schéma de stockage, représentation des liens et identités, historique, moteur de calcul, cache éventuel et organisation du client, dans le respect des garanties fixées."],
+  ["Sujets hors entretien", "Vocabulaire produit définitif, droits, correspondance des rôles MiData, protection des données, suppression ou anonymisation et positionnement face à Qualix."],
+];
+function renderLists() {
+  $("#arbList").innerHTML = ARB.map(([t, d, sec], i) => `<div class="box" style="margin-bottom:10px"><h4>${i + 1}. ${t} <a href="#${sec}" class="note" style="font-weight:400">→ voir</a></h4>${d}<div class="review" data-key="arb:${i + 1}" data-label="Arbitrage ${i + 1} — ${t}" data-mini="1"></div></div>`).join("");
+  $("#openList").innerHTML = OPEN.map(([t, d], i) => `<div class="box" style="margin-bottom:10px"><h4>${i + 1}. ${t}</h4>${d}<div class="review" data-key="open:${i + 1}" data-label="Point ouvert ${i + 1} — ${t}" data-mini="1"></div></div>`).join("");
+}
+
+/* =====================================================================
+   Init
+   ===================================================================== */
+function syncBar() { $("#axisSel").value = S.axis; $("#convSel").value = S.convention; $("#quota").value = S.quota; $("#author").value = S.author; }
+document.addEventListener("DOMContentLoaded", () => {
+  renderLists();
+  drawStaticDiagrams();
+  hydrateReviews();
+  $$(".term").forEach(bindTerm);
+  syncBar(); renderSim(); updateCount();
+
+  $("#axisSel").onchange = e => { S.axis = e.target.value; renderSim(); };
+  $("#convSel").onchange = e => { S.convention = e.target.value; renderSim(); };
+  $("#quota").onchange = e => { S.quota = Math.max(0, +e.target.value || 0); renderSim(); };
+  $("#author").onchange = e => { S.author = e.target.value; };
+  $("#reset").onclick = () => { if (confirm("Réinitialiser la simulation ? (vos commentaires de relecture sont conservés)")) { S = initialState(); syncBar(); renderSim(); } };
+  $$("#tabs button").forEach(b => b.onclick = () => { S.tab = b.dataset.t; renderTab(); });
+
+  $("#mclose").onclick = closeModal;
+  $("#modal").addEventListener("click", e => { if (e.target.id === "modal") closeModal(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") { closeModal(); $("#drawer").classList.remove("on"); } });
+
+  const openD = () => { renderDrawer(); $("#drawer").classList.add("on"); };
+  $("#openDrawer").onclick = openD;
+  $("#dClose").onclick = () => $("#drawer").classList.remove("on");
+  $("#expMd").onclick = expMd; $("#dExpMd").onclick = expMd;
+  $("#cpMd").onclick = cpMd; $("#dCpMd").onclick = cpMd;
+  $("#dExpJson").onclick = () => download(`relecture-18-${stamp()}.json`, JSON.stringify(store, null, 2), "application/json");
+  $("#dImpJson").onclick = () => $("#impFile").click();
+  $("#impFile").onchange = async e => {
+    const f = e.target.files[0]; if (!f) return;
+    try {
+      const data = JSON.parse(await f.text());
+      Object.assign(store, data); saveStore(); location.reload();
+    } catch { toast("Fichier JSON invalide"); }
+  };
+  $("#dClear").onclick = () => { if (confirm("Effacer tous les commentaires de relecture ? Pensez à exporter d'abord.")) { store = {}; saveStore(); location.reload(); } };
+
+  const links = $$("#nav a"), secs = links.map(a => $(a.getAttribute("href")));
+  const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) links.forEach(a => a.classList.toggle("on", a.getAttribute("href") === "#" + en.target.id)); }), { rootMargin: "-30% 0px -65% 0px" });
+  secs.forEach(s => s && io.observe(s));
+});
+</script>
+</body>
+</html>
