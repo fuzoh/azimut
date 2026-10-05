@@ -5269,10 +5269,8 @@
    ]
   }
  ],
- "decisif": null,
  "exigences": {
-  "obligatoires": "tous les nœuds de données",
-  "minimum_par_regroupement": []
+  "minimumParRegroupement": []
  },
  "jokers": {
   "quota": 0,

@@ -14,6 +14,8 @@ export interface BaremeNumerique {
   min: number;
   max: number;
   pas: number;
+  /** Présentation : « pourcentage » affiche v × 100 % (A01, `Points 0–1`). */
+  presentation?: "pourcentage";
   colorations?: [number, number, string][];
 }
 
@@ -47,11 +49,23 @@ export interface Entree {
 export type CodeFonction = "F1" | "F2" | "F3" | "F4" | "F5" | "F6" | "F7";
 
 export interface ParametresFonction {
-  /** F2 : seuil s, test ≥. */
+  /** F2 : seuil s, test ≥. F4 : seuil optionnel sur chaque entrée (sinon entrée binaire, OK = 1). */
   seuil?: number;
   /** Toute fonction : en dessous, « sans résultat ». Défaut 1. */
   minEntreesActives?: number;
-  [autre: string]: unknown;
+  /** F4 : au moins k entrées réussies, ou « toutes » les entrées actives. */
+  k?: number | "toutes";
+  /** F5 : meilleure occurrence, ou dernière occurrence qui a un résultat. */
+  mode?: "meilleure" | "derniere";
+  /** F5 : plafond sur les occurrences de rang ≥ 2 (rang = ordre des `entrees`). */
+  plafond?: number;
+  /** F6 : nombre de valeurs hautes et basses retirées avant la moyenne. */
+  kHautes?: number;
+  kBasses?: number;
+  /** F7 : pivot des écarts, facteur des écarts bas, nombre maximal d'insuffisantes (< pivot). */
+  pivot?: number;
+  facteurBas?: number;
+  maxInsuffisantes?: number;
 }
 
 export interface NoeudCalcul {

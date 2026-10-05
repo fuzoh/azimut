@@ -51,6 +51,7 @@ export function formater(b: BaremeCompile, v: number): string {
     if (b.valeurs.length === 2 && b.min === 0 && b.max === 1) return v === 1 ? "OK" : "KO";
     return rang >= 0 ? String(v) : v.toFixed(2);
   }
+  if (b.pourcentage) return `${(Math.round(v * 1000) / 10).toFixed(1).replace(".", ",")} %`;
   const texte = (Math.round(v * 100) / 100).toString().replace(".", ",");
   return b.id.startsWith("pct") || b.id.includes("%") ? `${texte} %` : texte;
 }

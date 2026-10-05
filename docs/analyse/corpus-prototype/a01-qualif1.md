@@ -6,6 +6,7 @@
 
 - [`a01-structure.json`](a01-structure.json) : la grille complète (nœuds, contributions, axes, exigences), produite par [`extraire-structure.py`](extraire-structure.py) depuis l'Excel. Le dépôt est public : les objectifs et critères portent un libellé abrégé, et les indicateurs sont numérotés sans leur texte.
 - [`a01-a03-controle.py`](a01-a03-controle.py) : résultats attendus des participants types, en sémantique 18 et en sémantique Excel (`uv run docs/analyse/corpus-prototype/a01-a03-controle.py`).
+- [`a01-participants.json`](a01-participants.json) : sources et résultats attendus des participants types, figés par `a01-a03-controle.py --figer` pour les tests du prototype.
 
 ## Rôle dans le corpus
 

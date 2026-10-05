@@ -111,14 +111,15 @@ export function evaluate(plan: Plan, sources: SourcesParticipant): Resultats {
   const calculer = (n: number): [number, number] => {
     const debut = plan.inOffsets[n];
     const fin = plan.inOffsets[n + 1];
-    const actives: { v: number; w: number; s: number }[] = [];
+    /** Entrées actives ; `rang` = position dans `entrees`, à partir de 1 (F5). */
+    const actives: { v: number; w: number; s: number; rang: number }[] = [];
     let poidsNul = false;
     for (let i = debut; i < fin; i++) {
       const s = plan.inSources[i];
       const v = val(s);
       const w = plan.inPoids[i];
       if (Number.isNaN(v)) continue;
-      if (w > 0) actives.push({ v, w, s });
+      if (w > 0) actives.push({ v, w, s, rang: i - debut + 1 });
       else poidsNul = true;
     }
     // Des entrées ont un résultat mais toutes pèsent 0 : dénominateur nul (T3).
@@ -126,6 +127,10 @@ export function evaluate(plan: Plan, sources: SourcesParticipant): Resultats {
     const minimum = plan.params[n]?.minEntreesActives ?? 1;
     if (actives.length === 0 || actives.length < minimum) return [NaN, CAUSE.aucuneContribution];
     const sortie = plan.baremes[plan.bareme[n]];
+    const p = plan.params[n] ?? {};
+    // Entrées hétérogènes : calcul en normalisé, puis report sur le barème de sortie.
+    const versCalcul = (v: number, s: number) => (plan.heterogene[n] ? normaliser(plan.baremes[plan.bareme[s]], v) : v);
+    const versSortie = (m: number) => (plan.heterogene[n] ? sortie.min + m * (sortie.max - sortie.min) : m);
     switch (plan.fonction[n]) {
       case 1: {
         // F1 : moyenne pondérée ; normalisée si les entrées sont hétérogènes.
@@ -148,6 +153,47 @@ export function evaluate(plan: Plan, sources: SourcesParticipant): Resultats {
       case 3:
         // F3 : toutes ; ignore les entrées sans résultat (H4 par défaut).
         return [actives.every((a) => a.v === 1) ? 1 : 0, CAUSE.aucune];
+      case 4: {
+        // F4 : au moins k entrées réussies (v ≥ seuil, ou OK sans seuil) ;
+        // « toutes » porte sur les entrées actives (H4 par défaut).
+        const reussies = actives.filter((a) => (p.seuil === undefined ? a.v === 1 : a.v >= p.seuil)).length;
+        const k = p.k === "toutes" ? actives.length : (p.k as number);
+        return [reussies >= k ? 1 : 0, CAUSE.aucune];
+      }
+      case 5: {
+        // F5 : meilleure ou dernière occurrence ; plafond sur les rangs ≥ 2.
+        const vals = actives.map((a) =>
+          versCalcul(a.rang >= 2 && p.plafond !== undefined ? Math.min(a.v, p.plafond) : a.v, a.s),
+        );
+        return [versSortie(p.mode === "derniere" ? vals[vals.length - 1] : Math.max(...vals)), CAUSE.aucune];
+      }
+      case 6: {
+        // F6 : moyenne après retrait des kHautes plus hautes et kBasses plus basses.
+        const kh = p.kHautes ?? 0;
+        const kb = p.kBasses ?? 0;
+        const tries = actives.map((a) => versCalcul(a.v, a.s)).sort((a, b) => a - b);
+        const gardees = tries.slice(kb, Math.max(kb, tries.length - kh));
+        if (gardees.length === 0) return [NaN, CAUSE.aucuneContribution];
+        return [versSortie(gardees.reduce((x, y) => x + y, 0) / gardees.length), CAUSE.aucune];
+      }
+      case 7: {
+        // F7 : double compensation. Réussi si facteurBas × Σ écarts bas ≤ Σ écarts
+        // hauts (au pivot) et si les insuffisantes (< pivot) ne dépassent pas le maximum.
+        const pivot = p.pivot as number;
+        let hauts = 0;
+        let bas = 0;
+        let insuffisantes = 0;
+        for (const { v } of actives) {
+          if (v >= pivot) hauts += v - pivot;
+          else {
+            bas += pivot - v;
+            insuffisantes++;
+          }
+        }
+        // Tolérance des flottants : l'égalité passe (A08, « n'excède pas »).
+        const compense = (p.facteurBas as number) * bas <= hauts + 1e-9;
+        return [compense && insuffisantes <= (p.maxInsuffisantes as number) ? 1 : 0, CAUSE.aucune];
+      }
       default:
         throw new Error(`fonction ${plan.fonction[n]} non implémentée`);
     }
