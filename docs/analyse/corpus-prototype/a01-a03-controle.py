@@ -16,7 +16,9 @@ Ce n'est pas le moteur du prototype : c'est une seconde source pour ses tests.
 sources des participants types,
 dans la forme des collections du prototype (nœuds désignés par leur id, case
 ordinale en rang du palier, à partir de 0), et résultats attendus de tous les
-nœuds de calcul (`null` : sans résultat) ; pour Basile, aussi sans arrondi propagé.
+nœuds de calcul (`null` : sans résultat) ; pour Basile, aussi sans arrondi propagé ;
+marques de joker de chaque participant de A03 ; pour Capucine, résultats sans
+joker et avec deux jokers cumulés sur la sphère C (H5b « cumulés »).
 """
 
 import json
@@ -50,14 +52,14 @@ def evaluer(grille, cases, excel=False, jokers=(), arrondi=True, h4_strict=False
         if excel
         else set()
     )
-    joker = {
-        j: next(
+    # Jokers « ajout » : plusieurs jokers sur un même nœud s'additionnent (H5b cumulés).
+    joker = {}
+    for j in jokers:
+        joker[j] = joker.get(j, 0) + next(
             a["action"]["valeur"]
             for a in grille["jokers"]["autorises"]
             if a["noeud"] == j
         )
-        for j in jokers
-    }
     memo = {}
 
     def val(i):
@@ -428,6 +430,39 @@ def en_nombre(v):
     return None if v is None else float(v)
 
 
+def marques_joker(grille, v, jokers):
+    """Marques de joker, seconde implémentation (ticket #19).
+
+    « joker appliqué » : nœud qui porte un joker et a un résultat ;
+    « influencé » : nœud de calcul avec résultat dont une entrée active
+    (résultat, poids > 0) porte « joker appliqué » ou « influencé ».
+    """
+    noeuds = {n["id"]: n for n in grille["noeuds"]}
+    applique = {j for j in jokers if v[j] is not None}
+    memo = {}
+
+    def influence(i):
+        if i not in memo:
+            n = noeuds[i]
+            memo[i] = (
+                n["type"] == "calcul"
+                and v[i] is not None
+                and any(
+                    e["poids"] > 0
+                    and v[e["noeud"]] is not None
+                    and (e["noeud"] in applique or influence(e["noeud"]))
+                    for e in n["entrees"]
+                )
+            )
+        return memo[i]
+
+    ordre = [n["id"] for n in grille["noeuds"]]
+    return {
+        "jokerApplique": [i for i in ordre if i in applique],
+        "influence": [i for i in ordre if influence(i)],
+    }
+
+
 def figer_a01():
     """Écrit `a01-participants.json`, seconde source des tests du prototype.
 
@@ -509,6 +544,7 @@ def figer_a03():
                     i: en_nombre(v[i]) for i, n in noeuds.items() if n["type"] == "calcul"
                 },
                 "erreursRemplissage": erreurs(g, cases),
+                "marques": marques_joker(g, v, jok),
                 "attendusH4Strict": {
                     "reussite": en_nombre(
                         evaluer(g, cases, jokers=jok, h4_strict=True)["reussite"]
@@ -520,6 +556,20 @@ def figer_a03():
             vs = evaluer(g, cases, jokers=jok, arrondi=False)
             participants[-1]["attendusSansArrondi"] = {
                 i: en_nombre(vs[i]) for i in ("sph:A", "seuil:A", "reussite")
+            }
+        if jok:  # Capucine : sans joker, et deux jokers cumulés (H5b « cumulés »)
+            vs = evaluer(g, cases)
+            participants[-1]["attendusSansJoker"] = {
+                i: en_nombre(vs[i]) for i, n in noeuds.items() if n["type"] == "calcul"
+            }
+            deux = jok + jok
+            vc = evaluer(g, cases, jokers=deux)
+            participants[-1]["jokersCumules"] = {
+                "jokers": [jokers[n] for n in deux],
+                "attendus": {
+                    i: en_nombre(vc[i]) for i, n in noeuds.items() if n["type"] == "calcul"
+                },
+                "marques": marques_joker(g, vc, deux),
             }
         if nom == "Fanny":  # saisie « 1 » sur un indicateur de C 1.1 (test du store)
             case = "ind:C/1.1/1"

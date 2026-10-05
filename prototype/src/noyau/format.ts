@@ -161,6 +161,17 @@ export interface ParticipantType {
   /** Une case saisie en plus des sources, et les résultats attendus ensuite. */
   apresSaisie?: { case: CaseFigee; attendus: Record<string, number | null> };
   erreursRemplissage: string[];
+  /** Marques de joker attendues : ids des nœuds « joker appliqué » et « influencé ». */
+  marques?: MarquesFigees;
+  /** Les mêmes sources sans leurs jokers (Emma, Capucine). */
+  attendusSansJoker?: Record<string, number | null>;
+  /** H5b « cumulés » : jokers posés (définitions, dans l'ordre de pose) à la place des sources, résultats et marques. */
+  jokersCumules?: { jokers: string[]; attendus: Record<string, number | null>; marques: MarquesFigees };
+}
+
+export interface MarquesFigees {
+  jokerApplique: string[];
+  influence: string[];
 }
 
 export interface FichierParticipants {

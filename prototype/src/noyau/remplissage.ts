@@ -4,6 +4,7 @@
 
 import type { Plan } from "./compile";
 import { analyse1aB, couverture, type NonEvaluation, raisonSansEffet } from "./dispense";
+import { type JokerPose, jokersInvalides, type RaisonJoker } from "./jokers";
 
 export type EtatCase = "vide" | "note" | "nonEvalue";
 
@@ -15,7 +16,9 @@ export type ErreurRemplissage =
   /** Non-évaluation sans effet dans le réglage courant. */
   | { type: "dispenseSansEffet"; n: number; raison: string }
   /** Minimum sur un nœud sans feuilles dans le réglage courant (ex. regroupement en 1b-B) : inapplicable. */
-  | { type: "minimumSansFeuilles"; n: number };
+  | { type: "minimumSansFeuilles"; n: number }
+  /** Joker posé devenu invalide (quota, H5a, H5b) : « quota dépassé », sans retrait. */
+  | { type: "quotaDepasse"; n: number; joker: number; raison: RaisonJoker };
 
 export interface Signalement {
   /** 1a-B : nœud du cône d'une dispense consommé hors du cône, calculé normalement. */
@@ -34,6 +37,7 @@ export interface SourcesRemplissage {
   /** Valeur stockée de chaque case, index d ; NaN = vide. */
   cases: Float64Array;
   nonEvaluations: readonly NonEvaluation[];
+  jokers?: readonly JokerPose[];
 }
 
 /** État dérivé d'une case : non évalué si couverte, note si elle a une valeur, vide sinon. */
@@ -42,7 +46,12 @@ export function etatCase(cases: Float64Array, couvert: Uint8Array, d: number): E
   return Number.isNaN(cases[d]) ? "vide" : "note";
 }
 
-export function remplissage(plan: Plan, sources: SourcesRemplissage): EtatRemplissage {
+/**
+ * Erreurs de remplissage, dispenses sans effet et jokers invalides. `valeurs`
+ * (résultats du participant) ne sert qu'à H5a « refusé » ; sans elles, H5a
+ * n'est pas vérifié. Les jokers ne touchent pas l'avertissement (18 §8).
+ */
+export function remplissage(plan: Plan, sources: SourcesRemplissage, valeurs?: Float64Array): EtatRemplissage {
   const couvert = couverture(plan, sources.nonEvaluations);
   const erreurs: ErreurRemplissage[] = [];
   for (const d of plan.obligatoires) {
@@ -66,6 +75,8 @@ export function remplissage(plan: Plan, sources: SourcesRemplissage): EtatRempli
     const raison = raisonSansEffet(plan, ne);
     if (raison !== null) erreurs.push({ type: "dispenseSansEffet", n: ne.n, raison });
   }
+  for (const j of jokersInvalides(plan, sources.jokers ?? [], valeurs))
+    erreurs.push({ type: "quotaDepasse", n: j.n, joker: j.id, raison: j.raison });
   const signalements: Signalement[] = [];
   if (plan.commutateurs.dispense1a === "B") {
     const { signales } = analyse1aB(plan, sources.nonEvaluations);
@@ -79,7 +90,7 @@ export function remplissage(plan: Plan, sources: SourcesRemplissage): EtatRempli
 /** Ids des nœuds en erreur d'exigence (obligatoire ou minimum), comme `erreursRemplissage` des fixtures. */
 export function idsExigences(plan: Plan, etat: EtatRemplissage): string[] {
   return etat.erreurs.flatMap((e) => {
-    if (e.type === "dispenseSansEffet" || e.type === "minimumSansFeuilles") return [];
+    if (e.type === "dispenseSansEffet" || e.type === "minimumSansFeuilles" || e.type === "quotaDepasse") return [];
     return [e.n < 0 ? plan.grille.axes[plan.axePrincipal].id : plan.ids[e.n]];
   });
 }

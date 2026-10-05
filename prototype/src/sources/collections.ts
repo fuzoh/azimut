@@ -2,6 +2,8 @@
 // sans chaîne d'id dans les lignes (spec 20, « Sources dans TanStack DB »).
 
 import { createCollection, localOnlyCollectionOptions } from "@tanstack/db";
+import type { Plan } from "../noyau/compile";
+import { type RaisonJoker, refusPose } from "../noyau/jokers";
 import { cle } from "./cle";
 
 export interface LigneParticipant {
@@ -81,4 +83,37 @@ export function basculerNonEvaluation(sources: Sources, g: number, p: number, n:
   }
   sources.nonEvaluations.insert(axe === undefined ? { k, g, p, n } : { k, g, p, n, axe });
   return true;
+}
+
+/** Auteur et date fixes d'un joker posé dans l'essai ; ignorés par le calcul. */
+export const AUTEUR_JOKER = "formateur (prototype)";
+export const DATE_JOKER = "2026-10-05";
+
+/**
+ * Pose un joker autorisé (index de définition) pour (g, p), après validation
+ * à la pose (quota, H5a, H5b) dans le plan courant. `valeurNoeud` : résultat
+ * courant du nœud autorisé (NaN = sans résultat). Rend la raison du refus, ou
+ * null si le joker est posé.
+ */
+export function poserJoker(
+  sources: Sources,
+  plan: Plan,
+  g: number,
+  p: number,
+  jokerDef: number,
+  justification: string,
+  valeurNoeud: number,
+): RaisonJoker | "justification" | null {
+  if (justification.trim() === "") return "justification";
+  const poses = sources.jokers.toArray.filter((l) => l.g === g && l.p === p);
+  const refus = refusPose(plan, poses, jokerDef, valeurNoeud);
+  if (refus) return refus;
+  const id = Math.max(-1, ...sources.jokers.toArray.map((l) => l.id)) + 1;
+  sources.jokers.insert({ id, g, p, jokerDef, justification: justification.trim(), auteur: AUTEUR_JOKER, date: DATE_JOKER });
+  return null;
+}
+
+/** Retire un joker posé, ce qui libère son quota. */
+export function retirerJoker(sources: Sources, id: number): void {
+  if (sources.jokers.has(id)) sources.jokers.delete(id);
 }

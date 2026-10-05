@@ -11,7 +11,7 @@ import {
   TYPE_DONNEES,
   TYPE_REGROUPEMENT,
 } from "../noyau/compile";
-import { CAUSE, MARQUE_CHEMIN_DISPENSE } from "../noyau/evaluate";
+import { CAUSE, MARQUE_CHEMIN_DISPENSE, MARQUE_INFLUENCE_JOKER, MARQUE_JOKER_APPLIQUE } from "../noyau/evaluate";
 import type { Placement } from "../noyau/format";
 import { cle } from "../sources/cle";
 import { basculerNonEvaluation, ecrireCase, type Sources } from "../sources/collections";
@@ -315,18 +315,30 @@ function CelluleResultat(props: PropsCellule) {
   if (sansResultat) classes.push("sans-resultat");
   if (r.cause === CAUSE.nonEvalue || direct) classes.push("non-evalue");
   const chemin = r.marques & MARQUE_CHEMIN_DISPENSE;
+  const applique = r.marques & MARQUE_JOKER_APPLIQUE;
+  const influence = r.marques & MARQUE_INFLUENCE_JOKER;
+  if (applique) classes.push("joker-applique");
+  if (influence) classes.push("joker-influence");
+  const bulles = [
+    chemin ? "1a-B : calculé normalement, consommé hors du cône de la dispense (chemin multiple)" : "",
+    applique ? "★ joker appliqué" : "",
+    influence ? "☆ influencé par un joker" : "",
+  ].filter((b) => b !== "");
   return (
     <td
       className={classes.join(" ")}
       data-noeud={plan.ids[n]}
       data-participant={p}
       data-non-evalue={direct ? "1" : "0"}
-      title={chemin ? "1a-B : calculé normalement, consommé hors du cône de la dispense (chemin multiple)" : undefined}
+      data-joker={(applique ? "applique " : "") + (influence ? "influence" : "")}
+      title={bulles.length > 0 ? bulles.join("\n") : undefined}
       onContextMenu={(e) => basculer(e, props)}
     >
       {direct ? "⊘ " : ""}
       {formater(plan.baremes[plan.bareme[n]], r.valeur)}
       {chemin ? " ⇶" : ""}
+      {applique ? " ★" : ""}
+      {influence ? " ☆" : ""}
     </td>
   );
 }

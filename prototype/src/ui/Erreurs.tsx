@@ -1,6 +1,7 @@
 // Onglet d'erreurs d'un participant et avertissement « données provisoires ».
 
 import type { Plan } from "../noyau/compile";
+import { TEXTE_RAISON } from "../noyau/jokers";
 import type { ErreurRemplissage } from "../noyau/remplissage";
 import { useFillStatus } from "../store/hooks";
 
@@ -19,13 +20,15 @@ function texte(plan: Plan, e: ErreurRemplissage): string {
       return `Minimum sans feuilles dans ce réglage (inapplicable) : ${libelle(plan, e.n)}`;
     case "dispenseSansEffet":
       return `Dispense sans effet : ${libelle(plan, e.n)} (${e.raison})`;
+    case "quotaDepasse":
+      return `Quota de jokers dépassé : joker n° ${e.joker}${e.n >= 0 ? ` sur ${libelle(plan, e.n)}` : ""} (${TEXTE_RAISON[e.raison]}), conservé`;
   }
 }
 
 export function Erreurs({ g, p, nom, plan }: { g: number; p: number; nom: string; plan: Plan }) {
   const etat = useFillStatus(g, p);
   return (
-    <aside className="erreurs" data-testid="erreurs">
+    <div data-testid="erreurs">
       <h3>Erreurs — {nom}</h3>
       {etat.provisoire && (
         <p className="provisoire" data-testid="provisoire">
@@ -48,6 +51,6 @@ export function Erreurs({ g, p, nom, plan }: { g: number; p: number; nom: string
           ))}
         </ul>
       )}
-    </aside>
+    </div>
   );
 }

@@ -153,7 +153,11 @@
       "sr3",
       "sr4",
       "m6"
-     ]
+     ],
+     "marques": {
+      "jokerApplique": [],
+      "influence": []
+     }
     },
     {
      "nom": "Bruno",
@@ -303,7 +307,11 @@
       "sr3",
       "sr4",
       "m6"
-     ]
+     ],
+     "marques": {
+      "jokerApplique": [],
+      "influence": []
+     }
     },
     {
      "nom": "Chloé",
@@ -453,7 +461,11 @@
       "sr3",
       "sr4",
       "m6"
-     ]
+     ],
+     "marques": {
+      "jokerApplique": [],
+      "influence": []
+     }
     },
     {
      "nom": "David",
@@ -603,7 +615,11 @@
       "sr3",
       "sr4",
       "m6"
-     ]
+     ],
+     "marques": {
+      "jokerApplique": [],
+      "influence": []
+     }
     },
     {
      "nom": "Emma",
@@ -753,7 +769,11 @@
       "sr3",
       "sr4",
       "m6"
-     ]
+     ],
+     "marques": {
+      "jokerApplique": [],
+      "influence": []
+     }
     },
     {
      "nom": "Félix",
@@ -901,7 +921,11 @@
       "gestion",
       "m6",
       "animation"
-     ]
+     ],
+     "marques": {
+      "jokerApplique": [],
+      "influence": []
+     }
     }
    ]
   },
@@ -1053,7 +1077,11 @@
       "sr4",
       "sr5",
       "m6"
-     ]
+     ],
+     "marques": {
+      "jokerApplique": [],
+      "influence": []
+     }
     },
     {
      "nom": "Bruno",
@@ -1200,7 +1228,11 @@
       "sr4",
       "sr5",
       "m6"
-     ]
+     ],
+     "marques": {
+      "jokerApplique": [],
+      "influence": []
+     }
     },
     {
      "nom": "Chloé",
@@ -1347,7 +1379,11 @@
       "sr4",
       "sr5",
       "m6"
-     ]
+     ],
+     "marques": {
+      "jokerApplique": [],
+      "influence": []
+     }
     },
     {
      "nom": "David",
@@ -1494,7 +1530,11 @@
       "sr4",
       "sr5",
       "m6"
-     ]
+     ],
+     "marques": {
+      "jokerApplique": [],
+      "influence": []
+     }
     },
     {
      "nom": "Emma",
@@ -1641,7 +1681,11 @@
       "sr4",
       "sr5",
       "m6"
-     ]
+     ],
+     "marques": {
+      "jokerApplique": [],
+      "influence": []
+     }
     },
     {
      "nom": "Félix",
@@ -1786,7 +1830,11 @@
       "gestion",
       "m6",
       "animation"
-     ]
+     ],
+     "marques": {
+      "jokerApplique": [],
+      "influence": []
+     }
     }
    ]
   },
@@ -1983,7 +2031,11 @@
       "minimaux": 1.0,
       "reussite": 1.0
      },
-     "erreursRemplissage": []
+     "erreursRemplissage": [],
+     "marques": {
+      "jokerApplique": [],
+      "influence": []
+     }
     },
     {
      "nom": "Bruno",
@@ -2175,7 +2227,11 @@
       "minimaux": 0.0,
       "reussite": 0.0
      },
-     "erreursRemplissage": []
+     "erreursRemplissage": [],
+     "marques": {
+      "jokerApplique": [],
+      "influence": []
+     }
     },
     {
      "nom": "Chloé",
@@ -2377,7 +2433,11 @@
       "sr3",
       "sr4",
       "sr5"
-     ]
+     ],
+     "marques": {
+      "jokerApplique": [],
+      "influence": []
+     }
     },
     {
      "nom": "David",
@@ -2569,7 +2629,11 @@
       "minimaux": 1.0,
       "reussite": 1.0
      },
-     "erreursRemplissage": []
+     "erreursRemplissage": [],
+     "marques": {
+      "jokerApplique": [],
+      "influence": []
+     }
     },
     {
      "nom": "Emma",
@@ -2768,7 +2832,106 @@
       "minimaux": 1.0,
       "reussite": 1.0
      },
-     "erreursRemplissage": []
+     "erreursRemplissage": [],
+     "marques": {
+      "jokerApplique": [
+       "animation"
+      ],
+      "influence": [
+       "seuil:animation",
+       "reussite"
+      ]
+     },
+     "attendusSansJoker": {
+      "e1#1/materiel": 100.0,
+      "e1#1": 75.0,
+      "e1#2/materiel": 100.0,
+      "e1#2": 83.33333333333334,
+      "planif-e1": 75.0,
+      "securite-jeu": 100.0,
+      "e2": 66.66666666666666,
+      "seuil:e2": 1.0,
+      "securite-rando": 100.0,
+      "e3": 62.5,
+      "e4/c1": null,
+      "e4/c2": null,
+      "e4/c3": null,
+      "e4/c4": null,
+      "e4/c5": null,
+      "e4/c6": null,
+      "e4/c7": null,
+      "e4/c8": null,
+      "e4/c9": null,
+      "e4/c10": null,
+      "e4": null,
+      "e5/c1": null,
+      "e5/c2": null,
+      "e5/c3": null,
+      "e5/c4": null,
+      "e5/c5": null,
+      "e5/c6": null,
+      "e5/c7": null,
+      "e5/c8": null,
+      "e5/c9": null,
+      "e5/c10": null,
+      "e5": null,
+      "e6/c1": null,
+      "e6/c2": null,
+      "e6/c3": null,
+      "e6/c4": null,
+      "e6/c5": null,
+      "e6/c6": null,
+      "e6/c7": null,
+      "e6/c8": null,
+      "e6/c9": null,
+      "e6/c10": null,
+      "e6": null,
+      "e7/c1": null,
+      "e7/c2": null,
+      "e7/c3": null,
+      "e7/c4": null,
+      "e7/c5": null,
+      "e7/c6": null,
+      "e7/c7": null,
+      "e7/c8": null,
+      "e7/c9": null,
+      "e7/c10": null,
+      "e7": null,
+      "e8/c1": null,
+      "e8/c2": null,
+      "e8/c3": null,
+      "e8/c4": null,
+      "e8/c5": null,
+      "e8/c6": null,
+      "e8/c7": null,
+      "e8/c8": null,
+      "e8/c9": null,
+      "e8/c10": null,
+      "e8": null,
+      "comp:communication": null,
+      "seuil:comp:communication": null,
+      "comp:technique": null,
+      "seuil:comp:technique": null,
+      "comp:reflexion": null,
+      "seuil:comp:reflexion": null,
+      "comp:cooperation": null,
+      "seuil:comp:cooperation": null,
+      "animation": 2.75,
+      "securite": 1.0,
+      "planification": 62.5,
+      "moyenne-generale": 63.888888888888886,
+      "seuil:animation": 0.0,
+      "seuil:planification": 1.0,
+      "m1": 1.0,
+      "m2": 1.0,
+      "m3": 1.0,
+      "m4": 1.0,
+      "domaine:securite": 1.0,
+      "domaine:animation": 1.0,
+      "domaine:organisation": 1.0,
+      "minimaux": 1.0,
+      "reussite": 0.0
+     }
     },
     {
      "nom": "Félix",
@@ -2932,7 +3095,11 @@
       "sr5",
       "gestion",
       "m6"
-     ]
+     ],
+     "marques": {
+      "jokerApplique": [],
+      "influence": []
+     }
     }
    ]
   }

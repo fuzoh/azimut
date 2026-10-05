@@ -12,7 +12,8 @@ dans la forme des collections du prototype (nœuds désignés par leur id dans
 résultats attendus de tous les nœuds de calcul (`null` : sans résultat) en V1 à
 la copie, en V2 juste après la copie et en V2 à l'état final, résultats des
 commutateurs F5, 1b et H4 (avec leurs non-évaluations et erreurs de
-remplissage) et de Chloé sans dispense, et chemins multiples de chaque structure.
+remplissage) et de Chloé sans dispense, chemins multiples de chaque structure,
+marques de joker de chaque participant et, pour Emma, résultats sans joker.
 """
 
 import json
@@ -430,8 +431,43 @@ def attendus(grille, r):
     return out
 
 
-def figer_participant(nom, d_sources, r, version, grille, dispense=False, joker=None):
+def marques_joker(grille, v, jokers):
+    """Marques de joker, seconde implémentation (ticket #19). v : id → valeur
+    des nœuds de calcul (données : jamais marquées).
+
+    « joker appliqué » : nœud qui porte un joker et a un résultat ;
+    « influencé » : nœud de calcul avec résultat dont une entrée active
+    (résultat, poids > 0) porte « joker appliqué » ou « influencé ».
+    """
+    noeuds = {n["id"]: n for n in grille["noeuds"]}
+    applique = {j for j in jokers if v.get(j) is not None}
+    memo = {}
+
+    def influence(i):
+        if i not in memo:
+            n = noeuds[i]
+            memo[i] = (
+                n["type"] == "calcul"
+                and v.get(i) is not None
+                and any(
+                    e["poids"] > 0
+                    and v.get(e["noeud"]) is not None
+                    and (e["noeud"] in applique or influence(e["noeud"]))
+                    for e in n["entrees"]
+                )
+            )
+        return memo[i]
+
+    ordre = [n["id"] for n in grille["noeuds"]]
     return {
+        "jokerApplique": [i for i in ordre if i in applique],
+        "influence": [i for i in ordre if influence(i)],
+    }
+
+
+def figer_participant(nom, d_sources, r, version, grille, dispense=False, joker=None):
+    v = attendus(grille, r)
+    sortie = {
         "nom": nom,
         "sources": {
             "cases": sources(d_sources, version),
@@ -445,11 +481,17 @@ def figer_participant(nom, d_sources, r, version, grille, dispense=False, joker=
                 }
             ] if joker else [],
         },
-        "attendus": attendus(grille, r),
+        "attendus": v,
         "erreursRemplissage": [
             ERREURS.get(e, e.lower()) for e in r["Erreurs"]
         ],
+        "marques": marques_joker(grille, v, [IDS[joker]] if joker else []),
     }
+    if joker:  # Emma : les mêmes sources sans le joker
+        d_sans = {k: x for k, x in d_sources.items() if k != "joker"}
+        r_sans = calcule(etat_final(d_sans) if version == "V2" else d_sans, version)
+        sortie["attendusSansJoker"] = attendus(grille, r_sans)
+    return sortie
 
 
 def figer():

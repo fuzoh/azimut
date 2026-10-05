@@ -35,9 +35,12 @@ export interface JokerDefCompile {
   n: number;
   action: ActionJoker;
   libelle: string;
+  /** Action « seuil » : index du nœud de seuil (F2 consommateur direct de n) et son seuil s ; -1 / NaN sinon. */
+  noeudSeuil: number;
+  seuil: number;
 }
 
-/** Commutateurs du modèle (spec 20, « Réglages ») ; H5 arrive avec les jokers. */
+/** Commutateurs du modèle (spec 20, « Réglages »). */
 export interface Commutateurs {
   /** F5 rang : forcer « dernière » (défaut : selon la structure). */
   f5Derniere?: boolean;
@@ -51,6 +54,10 @@ export interface Commutateurs {
   minimum1c?: boolean;
   /** H4 : « toutes » / « au moins k = toutes » strict (une entrée sans résultat rend le nœud sans résultat). */
   h4Strict?: boolean;
+  /** H5a : joker sur un nœud sans résultat accepté à la pose (défaut) ou refusé. */
+  h5a?: "accepte" | "refuse";
+  /** H5b : un seul joker par nœud (défaut) ou cumulés (ajouts additionnés, puis seuil, borné). */
+  h5b?: "unSeul" | "cumules";
 }
 
 /** Commutateurs résolus, défauts compris. */
@@ -64,6 +71,8 @@ export function resoudreCommutateurs(c: Commutateurs = {}): CommutateursResolus 
     feuilles1b: c.feuilles1b ?? "A",
     minimum1c: c.minimum1c ?? true,
     h4Strict: c.h4Strict ?? false,
+    h5a: c.h5a ?? "accepte",
+    h5b: c.h5b ?? "unSeul",
   };
 }
 
@@ -361,9 +370,32 @@ export function compile(grille: Grille, commutateursBruts: Commutateurs = {}): P
       continue;
     }
     if (type[n] !== TYPE_CALCUL) erreurs.push(`joker ${j.id} : ${j.noeud} n'est pas un nœud de calcul`);
+    if (indexJoker.has(j.id)) erreurs.push(`joker en double : ${j.id}`);
+    let noeudSeuil = -1;
+    let seuil = NaN;
+    if (j.action.type === "ajout") {
+      if (!Number.isFinite(j.action.valeur)) erreurs.push(`joker ${j.id} : ajout sans valeur numérique`);
+    } else if (j.action.type === "seuil") {
+      // Le nœud de seuil doit être un F2 qui consomme directement le nœud autorisé.
+      const ns = index.get(j.action.noeudSeuil);
+      if (ns === undefined) {
+        erreurs.push(`joker ${j.id} : nœud de seuil inconnu ${j.action.noeudSeuil}`);
+      } else if (type[ns] !== TYPE_CALCUL || fonction[ns] !== 2) {
+        erreurs.push(`joker ${j.id} : le nœud de seuil ${j.action.noeudSeuil} n'est pas un F2`);
+      } else if (!inSources.subarray(inOffsets[ns], inOffsets[ns + 1]).includes(n)) {
+        erreurs.push(`joker ${j.id} : le nœud de seuil ${j.action.noeudSeuil} ne consomme pas directement ${j.noeud}`);
+      } else {
+        noeudSeuil = ns;
+        seuil = params[ns]?.seuil as number;
+      }
+    } else {
+      erreurs.push(`joker ${j.id} : action inconnue`);
+    }
     indexJoker.set(j.id, jokerDefs.length);
-    jokerDefs.push({ id: j.id, n, action: j.action, libelle: j.libelle ?? "" });
+    jokerDefs.push({ id: j.id, n, action: j.action, libelle: j.libelle ?? "", noeudSeuil, seuil });
   }
+  const quota = grille.jokers?.quota ?? 0;
+  if (!Number.isInteger(quota) || quota < 0) erreurs.push(`quota de jokers ${quota} : entier ≥ 0 attendu`);
 
   const decisif = grille.decisif === undefined ? -1 : (index.get(grille.decisif) ?? -1);
   if (grille.decisif !== undefined && decisif < 0) erreurs.push(`nœud décisif inconnu ${grille.decisif}`);

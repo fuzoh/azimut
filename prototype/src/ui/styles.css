@@ -37,3 +37,11 @@ aside.erreurs h3 { margin: 4px 0; font-size: 13px; }
 aside.erreurs ul { padding-left: 16px; }
 aside.erreurs .provisoire { background: #fff0d9; border: 1px solid #f0b060; padding: 4px; }
 aside.erreurs .erreur-dispenseSansEffet, aside.erreurs .signalement { color: #6a4fb3; }
+td.joker-applique { box-shadow: inset 0 0 0 2px #c48a00; }
+td.joker-influence { color: #8a5a00; }
+.legende .joker-applique, .legende .joker-influence { color: #8a5a00; }
+aside.erreurs section.jokers { border-top: 1px solid #ccc; margin-top: 8px; }
+aside.erreurs section.jokers .reglage { color: #666; margin: 2px 0; }
+aside.erreurs section.jokers .pose { display: flex; flex-wrap: wrap; gap: 4px; }
+aside.erreurs section.jokers select { max-width: 100%; }
+aside.erreurs .refus, aside.erreurs .erreur-quotaDepasse { color: #b00020; }

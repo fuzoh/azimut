@@ -2,6 +2,7 @@ import { useState } from "react";
 import { creerSession } from "../session";
 import { StoreContext } from "../store/hooks";
 import { Erreurs } from "./Erreurs";
+import { Jokers } from "./Jokers";
 import { Table } from "./Table";
 import { useLiveParticipants } from "./useParticipants";
 
@@ -64,6 +65,8 @@ export function App() {
           <span title="placé ici sans y compter">↗ placé sans compter</span>
           <span title="contribue à plusieurs exigences">◆ plusieurs exigences</span>
           <span title="influence plusieurs fois un même résultat">⇉ influence multiple</span>
+          <span className="joker-applique" title="joker appliqué sur ce nœud">★ joker appliqué</span>
+          <span className="joker-influence" title="résultat influencé par un joker en amont">☆ influencé</span>
         </span>
       </header>
       <div className="principal">
@@ -77,7 +80,12 @@ export function App() {
           selection={choisi?.p ?? -1}
           onSelection={setSelection}
         />
-        {choisi && <Erreurs g={g} p={choisi.p} nom={choisi.nom} plan={plan} />}
+        {choisi && (
+          <aside className="erreurs">
+            <Erreurs g={g} p={choisi.p} nom={choisi.nom} plan={plan} />
+            <Jokers key={`${g}-${choisi.p}`} g={g} p={choisi.p} plan={plan} sources={session.sources} />
+          </aside>
+        )}
       </div>
     </StoreContext.Provider>
   );
