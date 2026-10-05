@@ -416,6 +416,9 @@ export function compile(grille: Grille, commutateursBruts: Commutateurs = {}): P
     if (noeud.type === "donnees" && noeud.obligatoire && noeud.bareme === undefined)
       erreurs.push(`${noeud.id} : un nœud de commentaire ne peut pas être obligatoire`);
 
+  erreurs.push(...verifierOrigines("nœuds", noeuds), ...verifierOrigines("axes", grille.axes));
+  erreurs.push(...verifierOrigines("jokers", grille.jokers?.autorises ?? []));
+
   if (erreurs.length > 0) throw new ErreurCompilation(erreurs);
 
   // Définitions partagées : une définition ne porte aucune case et ne compte
@@ -633,6 +636,27 @@ function cheminsMultiples(
     }
   }
   return { cheminsMultiples: marques, plusieursExigences, influenceMultiple, consommateurs };
+}
+
+/**
+ * Copie (spec 20) : `origine` relie un élément à un seul élément de la grille
+ * source. Deux éléments de même origine (scission) ou une liste d'origines
+ * (fusion) sont refusés.
+ */
+function verifierOrigines(quoi: string, elements: readonly { id: string; origine?: unknown }[]): string[] {
+  const e: string[] = [];
+  const vus = new Map<string, string>();
+  for (const x of elements) {
+    if (x.origine === undefined) continue;
+    if (typeof x.origine !== "string") {
+      e.push(`${quoi} : fusion refusée, ${x.id} a plusieurs origines`);
+      continue;
+    }
+    const autre = vus.get(x.origine);
+    if (autre !== undefined) e.push(`${quoi} : scission refusée, ${autre} et ${x.id} ont la même origine ${x.origine}`);
+    else vus.set(x.origine, x.id);
+  }
+  return e;
 }
 
 /** Paramètres requis par chaque fonction du catalogue (spec 20, « Catalogue de fonctions »). */

@@ -207,4 +207,23 @@ export interface FichierG3 {
   >;
   /** Graphe de propagation de V2 final : nœud décisif, nœuds indicatifs, feuilles couvertes par participant. */
   graphe: { decisif: string; indicatifs: string[]; couvertesParDispense: Record<string, string[]> };
+  /** Copie de grille (ticket #21). */
+  copie: {
+    /** Variante J3 : dispense de Chloé et joker d'Emma posés avant la copie. */
+    J3: {
+      V1: { grille: string; participants: ParticipantType[] };
+      "V2-copie": { grille: string; participants: ParticipantType[] };
+      couvertesParDispenseV2: Record<string, string[]>;
+    };
+    /** Éléments attendus du rapport (cases perdues), par état copié. */
+    rapport: Record<"V1-copie" | "J3", { type: "casePerdue"; participant: string; noeud: string; valeur: number }[]>;
+    /** V2 sans le regroupement `noeud` : la dispense du participant reportée ou perdue (état final). */
+    regroupementSupprime: {
+      noeud: string;
+      participant: string;
+      feuillesReportees: string[];
+      reportee: { attendus: Record<string, number | null>; erreursRemplissage: string[] };
+      perdue: { attendus: Record<string, number | null>; erreursRemplissage: string[] };
+    };
+  };
 }

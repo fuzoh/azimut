@@ -77,3 +77,6 @@ aside.erreurs section.explication .aide { color: #777; }
 .g-legende.g-non-evalue { background: #fff4d6; }
 .g-legende.g-decisif { border: 2px solid #b00020; }
 .g-legende.g-indicatif { border-style: dashed; opacity: 0.6; }
+aside.erreurs section.copie { border-top: 1px solid #ccc; margin-top: 8px; }
+aside.erreurs section.copie .pose { display: flex; flex-wrap: wrap; gap: 4px; }
+aside.erreurs section.copie select { max-width: 100%; }

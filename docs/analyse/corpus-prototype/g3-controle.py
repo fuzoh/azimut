@@ -15,7 +15,9 @@ commutateurs F5, 1b et H4 (avec leurs non-évaluations et erreurs de
 remplissage) et de Chloé sans dispense, chemins multiples de chaque structure,
 marques de joker de chaque participant et, pour Emma, résultats sans joker ;
 graphe de propagation de V2 final (nœud décisif, nœuds indicatifs, feuilles
-couvertes par une dispense).
+couvertes par une dispense) ; copie de grille (ticket #21) : variante J3
+(dispense de Chloé et joker d'Emma posés avant la copie), éléments attendus du
+rapport de copie et dispense d'un regroupement supprimé, reportée ou perdue.
 """
 
 import json
@@ -432,6 +434,98 @@ def graphe(grille, participants):
     }
 
 
+# --- Copie de grille (ticket #21) ---------------------------------------------------
+#
+# Seconde implémentation, indépendante du prototype, des règles de copie de la
+# spec 20 (« Copie de grille ») restreintes à ce que G3 éprouve :
+# - correspondance par `origine` ; une case d'un nœud V1 sans descendant en V2
+#   est perdue (Appréciation globale E2) ;
+# - variante J3 : dispense de E3 pour Chloé et joker d'Emma posés en V1 au soir
+#   de J3, avant la copie ; ils sont repris tels quels, et l'héritage de la
+#   dispense se recalcule sur V2 (SR5, ajouté sous E3, est couvert) ;
+# - regroupement supprimé : V2 sans le regroupement E3 (ses enfants remontent
+#   d'un niveau). La dispense de Chloé est reportée en non-évaluations sur les
+#   feuilles V1 de E3 encore présentes (SR5 n'en fait pas partie), ou perdue.
+
+
+def a_la_copie_j3(d):
+    """Cases au matin de J4, dispense et joker posés à J3 (avant la copie)."""
+    d2 = a_la_copie(d)
+    if "joker" in d:
+        d2["joker"] = d["joker"]
+    return d2
+
+
+def rapport_cases(v1, v2, participants):
+    """Cases V1 non reprises : nœud sans descendant en V2 (perdue)."""
+    origines = {n.get("origine") for n in v2["noeuds"]} - {None}
+    return [
+        {"type": "casePerdue", "participant": p["nom"], "noeud": c["noeud"], "valeur": c["valeur"]}
+        for p in participants
+        for c in p["sources"]["cases"]
+        if c["noeud"] not in origines
+    ]
+
+
+def copie(v1, v2):
+    P = PARTICIPANTS
+    j3_v1 = [
+        figer_participant(
+            n, a_la_copie_j3(d), calcule(etat_final(a_la_copie_j3(d)), "V1"), "V1", v1,
+            dispense=d.get("dispense_E3", False), joker=d.get("joker"),
+        )
+        for n, d in P.items()
+    ]
+    j3_v2 = [
+        figer_participant(
+            n, a_la_copie_j3(d), calcule(etat_final(a_la_copie_j3(d)), "V2"), "V2", v2,
+            dispense=d.get("dispense_E3", False), joker=d.get("joker"),
+        )
+        for n, d in P.items()
+    ]
+    for p in j3_v1 + j3_v2:
+        p.pop("attendusSansJoker", None)
+    copie_v1 = [
+        figer_participant(n, a_la_copie(d), calcule(a_la_copie(d), "V1"), "V1", v1) for n, d in P.items()
+    ]
+
+    # Regroupement E3 supprimé : feuilles V1 de E3 (1b A) encore présentes en V2.
+    ids_v2 = {n["id"] for n in v2["noeuds"]}
+    feuilles = [f for f in feuilles_placees(v1, "reg:e3") if f in ids_v2]
+    chloe = dict(P["Chloé"])
+    reportee = dict(chloe)
+    reportee["ConsE3"] = None if "consignes-e3" in feuilles else chloe["ConsE3"]
+    reportee["Itin"] = None if "itineraire" in feuilles else chloe["Itin"]
+    reportee["SR"] = [None if f"sr{i}" in feuilles else v for i, v in enumerate(chloe["SR"], 1)]
+    r_rep = calcule(reportee, "V2")
+    r_per = calcule(chloe, "V2")
+    return {
+        "J3": {
+            "V1": {"grille": v1["grille"], "participants": j3_v1},
+            "V2-copie": {"grille": v2["grille"], "participants": j3_v2},
+            # Feuilles couvertes par la dispense de Chloé, recalculées sur V2.
+            "couvertesParDispenseV2": {"Chloé": feuilles_placees(v2, "reg:e3")},
+        },
+        "rapport": {
+            "V1-copie": rapport_cases(v1, v2, copie_v1),
+            "J3": rapport_cases(v1, v2, j3_v1),
+        },
+        "regroupementSupprime": {
+            "noeud": "reg:e3",
+            "participant": "Chloé",
+            "feuillesReportees": feuilles,
+            "reportee": {
+                "attendus": attendus(v2, r_rep),
+                "erreursRemplissage": [ERREURS.get(e, e.lower()) for e in r_rep["Erreurs"]],
+            },
+            "perdue": {
+                "attendus": attendus(v2, r_per),
+                "erreursRemplissage": [ERREURS.get(e, e.lower()) for e in r_per["Erreurs"]],
+            },
+        },
+    }
+
+
 # --- Participants figés ----------------------------------------------------------
 
 IDS = {
@@ -633,6 +727,8 @@ def figer():
         "cheminsMultiples": {g["grille"]: chemins_multiples(g) for g in (v1, v2)},
         # Graphe de propagation de V2 à l'état final (ticket #20).
         "graphe": graphe(v2, etats["V2-final"]["participants"]),
+        # Copie de grille (ticket #21).
+        "copie": copie(v1, v2),
     }
     (ICI / "g3-participants.json").write_text(
         json.dumps(sortie, ensure_ascii=False, indent=1) + "\n"
@@ -679,5 +775,7 @@ if __name__ == "__main__":
     f = calcule(P["Félix"], "V2", {"h4_strict": True})
     print(f"- Félix, H4 strict (une entrée sans résultat rend F3 sans résultat) : "
           f"Minimaux {fmt('Réussite', f['Minimaux remplis'])}, Réussite {fmt('Réussite', f['Réussite'])}")
+    table("Variante J3 : dispense de Chloé et joker d'Emma posés avant la copie, V2 juste après la copie",
+          [(n, calcule(etat_final(a_la_copie_j3(d)), "V2")) for n, d in P.items()])
     if "--figer" in sys.argv:
         figer()
