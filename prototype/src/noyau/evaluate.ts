@@ -4,6 +4,7 @@
 
 import {
   type BaremeCompile,
+  type JokerDefCompile,
   type Plan,
   TYPE_CALCUL,
   TYPE_DONNEES,
@@ -85,6 +86,34 @@ export function arrondir(v: number, pas: number): number {
   return Math.abs(inverse * pas - 1) < 1e-12 ? k / inverse : k * pas;
 }
 
+/**
+ * Jokers sur la valeur finale d'un nœud (spec 20, « Joker ») : les ajouts
+ * s'additionnent (un palier par unité sur un ordinal), puis le seuil
+ * max(valeur, s), le tout borné au barème de sortie.
+ */
+function appliquerJokers(b: BaremeCompile, valeur: number, defs: JokerDefCompile[]): number {
+  let ajout = 0;
+  let seuil = -Infinity;
+  for (const d of defs) {
+    if (d.action.type === "ajout") ajout += d.action.valeur;
+    else seuil = Math.max(seuil, d.seuil);
+  }
+  let r = valeur;
+  if (b.type === "ordinal") {
+    const paliers = [...b.valeurs].sort((x, y) => x - y);
+    // Palier courant : le plus proche de la valeur.
+    let rang = 0;
+    paliers.forEach((v, i) => {
+      if (Math.abs(v - r) < Math.abs(paliers[rang] - r)) rang = i;
+    });
+    r = paliers[Math.min(paliers.length - 1, Math.max(0, rang + Math.round(ajout)))];
+    if (r < seuil) r = paliers.find((v) => v >= seuil) ?? paliers[paliers.length - 1];
+    return r;
+  }
+  r = Math.max(r + ajout, seuil);
+  return Math.min(b.max, Math.max(b.min, r));
+}
+
 export function evaluate(plan: Plan, sources: SourcesParticipant): Resultats {
   const { N } = plan;
   const valeurs = new Float64Array(N).fill(NaN);
@@ -97,12 +126,19 @@ export function evaluate(plan: Plan, sources: SourcesParticipant): Resultats {
   const cone = dispense1a === "B" ? analyse1aB(plan, sources.nonEvaluations) : null;
   if (cone) for (let n = 0; n < N; n++) if (cone.signales[n]) marques[n] |= MARQUE_CHEMIN_DISPENSE;
 
-  // H5b par défaut (« un seul ») : seul le premier joker posé (par id) s'applique.
-  const jokerParNoeud = new Map<number, number>();
+  // Jokers en vigueur par nœud. H5b « un seul » (défaut) : seul le premier
+  // joker posé (par id) s'applique ; « cumulés » : tous. H5 ne gouverne que la
+  // pose : les jokers invalides restent en vigueur (voir `jokers.ts`).
+  const jokersParNoeud = new Map<number, number[]>();
   for (const j of [...sources.jokers].sort((a, b) => a.id - b.id)) {
     const def = plan.jokerDefs[j.jokerDef];
-    if (def && !jokerParNoeud.has(def.n)) jokerParNoeud.set(def.n, j.jokerDef);
+    if (!def) continue;
+    const liste = jokersParNoeud.get(def.n);
+    if (!liste) jokersParNoeud.set(def.n, [j.jokerDef]);
+    else if (plan.commutateurs.h5b === "cumules") liste.push(j.jokerDef);
   }
+  /** Une entrée active de n porte « joker appliqué » ou « influencé » (posé par `calculer`). */
+  let entreeMarquee = false;
 
   const val = (n: number): number => {
     if (fait[n]) return valeurs[n];
@@ -117,7 +153,12 @@ export function evaluate(plan: Plan, sources: SourcesParticipant): Resultats {
       if (Number.isNaN(r)) cause = CAUSE.vide;
     } else if (plan.type[n] === TYPE_CALCUL) {
       [r, cause] = calculer(n);
-      if (!Number.isNaN(r)) r = pipeline(n, r);
+      if (!Number.isNaN(r)) {
+        // Marques, en continu avec la valeur : seulement sur un nœud avec résultat.
+        if (entreeMarquee) marques[n] |= MARQUE_INFLUENCE_JOKER;
+        if (jokersParNoeud.has(n)) marques[n] |= MARQUE_JOKER_APPLIQUE;
+        r = pipeline(n, r);
+      }
     } else {
       cause = CAUSE.sansCalcul;
     }
@@ -147,6 +188,7 @@ export function evaluate(plan: Plan, sources: SourcesParticipant): Resultats {
       if (w > 0) actives.push({ v, w, s, rang: i - debut + 1 });
       else poidsNul = true;
     }
+    entreeMarquee = actives.some((a) => (marques[a.s] & (MARQUE_JOKER_APPLIQUE | MARQUE_INFLUENCE_JOKER)) !== 0);
     // Des entrées ont un résultat mais toutes pèsent 0 : dénominateur nul (T3).
     if (actives.length === 0 && poidsNul) return [NaN, CAUSE.denominateurNul];
     const minimum = plan.params[n]?.minEntreesActives ?? 1;
@@ -233,15 +275,8 @@ export function evaluate(plan: Plan, sources: SourcesParticipant): Resultats {
     const c = plan.conversionIndex[n];
     if (c >= 0) r = convertir(plan.conversions[c], r);
     if (plan.arrondi[n] > 0) r = arrondir(r, plan.arrondi[n]);
-    const j = jokerParNoeud.get(n);
-    if (j !== undefined) {
-      const action = plan.jokerDefs[j].action;
-      if (action.type === "ajout") {
-        const b = plan.baremes[plan.bareme[n]];
-        r = Math.min(b.max, Math.max(b.min, r + action.valeur));
-      }
-      // Action « seuil » : ticket des jokers.
-    }
+    const defs = jokersParNoeud.get(n);
+    if (defs !== undefined) r = appliquerJokers(plan.baremes[plan.bareme[n]], r, defs.map((j) => plan.jokerDefs[j]));
     return r;
   };
 

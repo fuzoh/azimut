@@ -29,7 +29,7 @@ interface Entree {
 export function creerStoreProvisoire(sources: Sources, plans: Plan[]): StoreNotes {
   /** Résultats par (g, p) : cache dérivé, jamais dans une collection. */
   const cache = new Map<number, Entree>();
-  /** États de remplissage souscrits ou lus, par (g, p). Décompte sans calcul des résultats. */
+  /** États de remplissage souscrits ou lus, par (g, p) ; les jokers invalides (H5a) lisent les résultats. */
   const remplissages = new Map<number, Remplissage>();
   /** Cellules souscrites ou lues, par clé (g, p, n). */
   const cellules = new Map<number, Cellule>();
@@ -70,10 +70,21 @@ export function creerStoreProvisoire(sources: Sources, plans: Plan[]): StoreNote
     };
   };
 
+  /**
+   * Remplissage, plus les jokers invalides. Décompté sur les sources seules
+   * (spec 20) ; les résultats ne sont lus qu'en H5a « refusé » avec des jokers.
+   */
+  const etatRemplissage = (g: number, p: number): EtatRemplissage => {
+    const plan = plans[g];
+    const s = lireSources(g, p);
+    const besoin = plan.commutateurs.h5a === "refuse" && s.jokers.length > 0;
+    return remplissage(plan, s, besoin ? entree(g, p).resultats.valeurs : undefined);
+  };
+
   const remplissageDe = (g: number, p: number): Remplissage => {
     let r = remplissages.get(gp(g, p));
     if (!r) {
-      const etat = remplissage(plans[g], lireSources(g, p));
+      const etat = etatRemplissage(g, p);
       r = { etat, signature: JSON.stringify(etat), rappels: new Set() };
       remplissages.set(gp(g, p), r);
     }
@@ -123,7 +134,7 @@ export function creerStoreProvisoire(sources: Sources, plans: Plan[]): StoreNote
         continue;
       }
       const { g, p } = decoderCle(k);
-      const etat = remplissage(plans[g], lireSources(g, p));
+      const etat = etatRemplissage(g, p);
       const signature = JSON.stringify(etat);
       if (signature !== r.signature) {
         r.etat = etat;
