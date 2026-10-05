@@ -13,8 +13,8 @@ import type { Graphe } from "../noyau/graphe";
 import { cle, decoderCle } from "../sources/cle";
 import { origineDistante, type Sources } from "../sources/collections";
 import type { GenerationSession } from "../sources/initiales";
-import type { Canal, Changement, DepuisWorker, VersWorker } from "./protocole";
-import { creerCohortes, type EtatRemplissage, type InstantaneStore, type ResultatCellule, type StoreNotes } from "./store";
+import type { Canal, Changement, DepuisWorker, VariantesMoteur, VersWorker } from "./protocole";
+import { creerCohortes, type EtatRemplissage, type InstantaneStore, type ResultatCellule, type StoreVerifiable } from "./store";
 
 export interface OptionsStoreBase {
   sources: Sources;
@@ -27,6 +27,8 @@ export interface OptionsStoreBase {
   /** Somme de contrôle des sources du thread principal, comparée à celle du worker. */
   sommeControle: string;
   canal: Canal;
+  /** Axes réglés dans le moteur (calcul, cohorte, saisie distante) ; défaut : la base. */
+  variantes?: VariantesMoteur;
 }
 
 export interface EtatWorker {
@@ -36,15 +38,13 @@ export interface EtatWorker {
   message?: string;
   /** Durée du chargement dans le worker (génération, compile, tableaux). */
   dureeMs?: number;
+  /** Axes appliqués par le moteur, tels qu'il les a reçus. */
+  variantes?: VariantesMoteur;
 }
 
-export interface StoreBase extends StoreNotes {
+export interface StoreBase extends StoreVerifiable {
   etatWorker(): EtatWorker;
   abonnerEtatWorker(rappel: () => void): () => void;
-  /** Se résout quand plus rien n'est en vol (lots, intérêts, requêtes) : tests et mesures. */
-  stable(): Promise<void>;
-  version(): number;
-  instantane(): Promise<InstantaneStore>;
 }
 
 interface Cellule {
@@ -296,6 +296,7 @@ export function creerStoreBase(o: OptionsStoreBase): StoreBase {
           statut: m.somme === o.sommeControle ? "pret" : "desaccord",
           sommeWorker: m.somme,
           dureeMs: m.dureeMs,
+          variantes: m.variantes,
         });
         if (m.somme !== o.sommeControle)
           console.error(`somme de contrôle en désaccord : principal ${o.sommeControle}, worker ${m.somme}`);
@@ -364,7 +365,7 @@ export function creerStoreBase(o: OptionsStoreBase): StoreBase {
     });
 
   // Chargement initial : le worker génère ses sources avec la même graine.
-  envoyer({ type: "init", generation: o.generation, commutateurs: o.commutateurs, lru: o.lru });
+  envoyer({ type: "init", generation: o.generation, commutateurs: o.commutateurs, lru: o.lru, variantes: o.variantes });
 
   const getResult = (g: number, p: number, n: number) => cellule(g, p, n).instantane;
   const subscribeResult = (g: number, p: number, n: number, rappel: () => void) => {

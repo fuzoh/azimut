@@ -72,6 +72,14 @@ export interface StoreNotes {
   dispose(): void;
 }
 
+/** Store qui rend un instantané complet et sait quand il est stable (variantes de #24/#25 : tests, vérification). */
+export interface StoreVerifiable extends StoreNotes {
+  /** Se résout quand plus rien n'est en vol (lots, intérêts, requêtes). */
+  stable(): Promise<void>;
+  version(): number;
+  instantane(): Promise<InstantaneStore>;
+}
+
 /**
  * `useCohort` sur des souscriptions par cellule : une colonne = une cellule
  * par participant. Commun aux variantes.

@@ -41,6 +41,7 @@ export function canalLocal(options: OptionsCanalLocal = {}): Canal & { moteur: M
     },
     fermer() {
       ferme = true;
+      moteur.arreter();
     },
   };
 }
