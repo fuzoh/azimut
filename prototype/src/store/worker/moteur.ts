@@ -18,6 +18,7 @@ import type { Calculateur, FabriqueCalculateur, ResultatNoeud } from "../calcul"
 import { ParticipantDag } from "../dag/participant";
 import { type CellulesEnvoyees, type Changement, type DepuisWorker, type InstantaneGrille, VARIANTES_BASE, type VariantesMoteur, type VersWorker } from "../protocole";
 import { ParticipantSignaux } from "../signaux/participant";
+import { chronoInstanciation, statsInstanciation } from "../../mesure/stats";
 
 export type Poster = (message: DepuisWorker, transfert?: Transferable[]) => void;
 
@@ -151,10 +152,11 @@ export function creerMoteur(poster: Poster): Moteur {
 
   // --- LRU ----------------------------------------------------------------------------
 
-  const creerInstance = (g: number, p: number) => {
-    const s = sourcesDe(g, p);
-    return fabrique(grilles[g].plan, s.cases, s.nonEvaluations, s.jokers);
-  };
+  const creerInstance = (g: number, p: number) =>
+    chronoInstanciation(() => {
+      const s = sourcesDe(g, p);
+      return fabrique(grilles[g].plan, s.cases, s.nonEvaluations, s.jokers);
+    });
 
   const instance = (g: number, p: number): Calculateur => {
     const k = gpDe(g, p);
@@ -166,6 +168,7 @@ export function creerMoteur(poster: Poster): Moteur {
       while (lru.size >= capacite) lru.delete(lru.keys().next().value!);
     }
     lru.set(k, i);
+    statsInstanciation.lruTaille = lru.size;
     return i;
   };
 
@@ -277,7 +280,6 @@ export function creerMoteur(poster: Poster): Moteur {
       if (interetsRemplissage.has(gp)) collecterRemplissage(gp, false, remplissages);
     }
     const fin = horloge();
-    performance.mark("chaine:calcul", { detail: { version } });
     const c = cellules.emballer();
     poster({ type: "resultats", version, cellules: c, remplissages, calcules, calcul: [debut, fin] }, transfert(c));
   };
@@ -324,6 +326,8 @@ export function creerMoteur(poster: Poster): Moteur {
   const lot = (m: Extract<VersWorker, { type: "lot" }>) => {
     const debut = horloge();
     version = m.version;
+    // Marque du worker, relue par le harnais (horloge du worker, ramenée par timeOrigin).
+    performance.mark("chaine:worker:reception", { detail: { version, taille: m.changements.length } });
     /** (g, p) touchés : listes à réécrire dans les signaux. */
     const touches = new Map<number, { cases: number[]; nonEvals: boolean; jokers: boolean; distante: boolean }>();
     const toucher = (g: number, p: number) => {
@@ -455,6 +459,7 @@ export function creerMoteur(poster: Poster): Moteur {
       gr.pre = nouveauPre(gr.plan);
     }
     lru.clear();
+    statsInstanciation.lruTaille = 0;
     const tous = new Set([...interets.keys(), ...interetsRemplissage]);
     pousser(tous, [...tous], debut);
     planifierPrecalcul();

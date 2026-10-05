@@ -43,7 +43,10 @@ export function grillesDuJeu(jeu: Jeu): GrilleDuJeu[] {
     const types = [a01Participants, a03Participants, etatG3("V1-copie"), etatG3("V2-final")] as FichierParticipants[];
     return STRUCTURES_CORPUS.map((structure, i) => ({ structure, participantsTypes: types[i] }));
   }
+  const debut = performance.now();
   const etendue = g3Etendue();
+  // Phase « extension de G3 » du démarrage (mesures).
+  performance.measure("demarrage:extension", { start: debut, end: performance.now() });
   return Array.from({ length: INSTANCES_CHARGE }, (_, i) => ({
     structure: { ...etendue, grille: `${etendue.grille} #${i + 1}` },
   }));

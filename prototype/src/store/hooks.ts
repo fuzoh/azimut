@@ -26,7 +26,7 @@ export function useResult(g: number, p: number, n: number): ResultatCellule {
  * donne deux paires : le passage « en calcul », puis le résultat.
  */
 let commitMarque = false;
-function marquerCommit() {
+export function marquerCommit() {
   if (commitMarque) return;
   commitMarque = true;
   performance.mark("chaine:commit");

@@ -1,0 +1,216 @@
+{
+ "date": "2026-10-05T17:35:41.719Z",
+ "environnement": {
+  "node": "v26.10.0",
+  "cpu": "AMD RYZEN AI MAX+ 395 w/ Radeon 8060S",
+  "coeurs": 32,
+  "ramGo": 60,
+  "os": "Linux 7.2.9-1-cachyos"
+ },
+ "donnees": {
+  "grille": "G3 V2 étendue ×6",
+  "N": 2110,
+  "D": 1465,
+  "participants": 200,
+  "remplissage": "fin",
+  "graine": 1
+ },
+ "resultats": [
+  {
+   "groupe": "compile",
+   "nom": "compile G3 V2",
+   "latence": {
+    "moyenneMs": 0.47475390986717436,
+    "medianeMs": 0.43810550000003445,
+    "p99Ms": 1.0336567000000254,
+    "minMs": 0.4087260000000015,
+    "maxMs": 2.468307999999979,
+    "rme": 1.7943476607086464
+   },
+   "debitParSeconde": 2196.620049515619,
+   "echantillons": 1054
+  },
+  {
+   "groupe": "compile",
+   "nom": "compile G3 étendue (N=2110)",
+   "latence": {
+    "moyenneMs": 3.933784124999989,
+    "medianeMs": 3.534191999999962,
+    "p99Ms": 5.343094039999951,
+    "minMs": 3.391937999999982,
+    "maxMs": 5.4610989999998765,
+    "rme": 2.749850652535265
+   },
+   "debitParSeconde": 259.8515903774815,
+   "echantillons": 128
+  },
+  {
+   "groupe": "evaluate",
+   "nom": "evaluate G3 étendue, un participant",
+   "latence": {
+    "moyenneMs": 0.1760453174938433,
+    "medianeMs": 0.17444399999999405,
+    "p99Ms": 0.2485570000001644,
+    "minMs": 0.17035399999986112,
+    "maxMs": 0.30052999999998065,
+    "rme": 0.21138359094968923
+   },
+   "debitParSeconde": 5693.684218366207,
+   "echantillons": 2841
+  },
+  {
+   "groupe": "evaluate",
+   "nom": "evaluate G3 étendue, qualification entière (200 participants)",
+   "latence": {
+    "moyenneMs": 35.75087996428566,
+    "medianeMs": 35.69570399999975,
+    "p99Ms": 36.247307509999736,
+    "minMs": 35.27930800000013,
+    "maxMs": 36.2654749999997,
+    "rme": 0.31177117629618156
+   },
+   "debitParSeconde": 27.973080923155248,
+   "echantillons": 28
+  },
+  {
+   "groupe": "instanciation",
+   "nom": "instanciation signaux",
+   "latence": {
+    "moyenneMs": 0.049641324171462435,
+    "medianeMs": 0.016409000000294327,
+    "p99Ms": 2.3306226699999675,
+    "minMs": 0.012608999999883963,
+    "maxMs": 3.364528000000064,
+    "rme": 11.094225509920976
+   },
+   "debitParSeconde": 58233.24227920555,
+   "echantillons": 10078
+  },
+  {
+   "groupe": "instanciation",
+   "nom": "instanciation DAG",
+   "latence": {
+    "moyenneMs": 0.00760425130030187,
+    "medianeMs": 0.005040000000008149,
+    "p99Ms": 0.020410000000083528,
+    "minMs": 0.0025500000001557055,
+    "maxMs": 1.2735679999996137,
+    "rme": 1.6064840621199408
+   },
+   "debitParSeconde": 170127.82953576546,
+   "echantillons": 65754
+  },
+  {
+   "groupe": "instanciation",
+   "nom": "instanciation + première lecture complète, signaux",
+   "latence": {
+    "moyenneMs": 0.8637454295532629,
+    "medianeMs": 0.5859605000005104,
+    "p99Ms": 5.904812409999984,
+    "minMs": 0.5471710000001622,
+    "maxMs": 6.177114999999503,
+    "rme": 9.754944433100011
+   },
+   "debitParSeconde": 1571.3009569643248,
+   "echantillons": 582
+  },
+  {
+   "groupe": "instanciation",
+   "nom": "instanciation + première lecture complète, DAG",
+   "latence": {
+    "moyenneMs": 0.2782704841402351,
+    "medianeMs": 0.27476000000024214,
+    "p99Ms": 0.3536415999992096,
+    "minMs": 0.26742099999955826,
+    "maxMs": 1.9144560000004276,
+    "rme": 0.6790642367572693
+   },
+   "debitParSeconde": 3610.274979764272,
+   "echantillons": 1797
+  },
+  {
+   "groupe": "copier",
+   "nom": "copier G3 V1 → V2, 200 participants",
+   "latence": {
+    "moyenneMs": 74.79411885714309,
+    "medianeMs": 84.87975449999976,
+    "p99Ms": 97.22602445999992,
+    "minMs": 48.8587469999984,
+    "maxMs": 97.23537899999974,
+    "rme": 18.451604204838624
+   },
+   "debitParSeconde": 14.85443823205228,
+   "echantillons": 14
+  },
+  {
+   "groupe": "copier",
+   "nom": "copier G3 étendue à l'identique, 200 participants",
+   "latence": {
+    "moyenneMs": 1607.3068965999998,
+    "medianeMs": 1630.9242859999995,
+    "p99Ms": 1639.6192150799993,
+    "minMs": 1506.760832,
+    "maxMs": 1639.8497389999993,
+    "rme": 4.362036151468131
+   },
+   "debitParSeconde": 0.622803355684811,
+   "echantillons": 5
+  },
+  {
+   "groupe": "etendre",
+   "nom": "etendre G3 V2 × 6",
+   "latence": {
+    "moyenneMs": 0.7032411814345221,
+    "medianeMs": 0.6304899999995541,
+    "p99Ms": 1.5500998999996227,
+    "minMs": 0.6113999999979569,
+    "maxMs": 3.189334000002418,
+    "rme": 2.357316399484384
+   },
+   "debitParSeconde": 1491.8902489449868,
+   "echantillons": 711
+  },
+  {
+   "groupe": "generation",
+   "nom": "générer le jeu « charge » (3 × G3 étendue, 200 participants, fin)",
+   "latence": {
+    "moyenneMs": 83.93335091666664,
+    "medianeMs": 82.46195450000232,
+    "p99Ms": 95.45694243000024,
+    "minMs": 79.40907099999822,
+    "maxMs": 96.32701900000029,
+    "rme": 3.748809020696489
+   },
+   "debitParSeconde": 11.94983094783569,
+   "echantillons": 12
+  },
+  {
+   "groupe": "signaux-dag",
+   "nom": "signaux : écrire une case + relire les N nœuds",
+   "latence": {
+    "moyenneMs": 0.021098074686692114,
+    "medianeMs": 0.01863000000230386,
+    "p99Ms": 0.040439200000328135,
+    "minMs": 0.015848999999434454,
+    "maxMs": 1.413023000000976,
+    "rme": 1.9348711220447588
+   },
+   "debitParSeconde": 51404.847363358866,
+   "echantillons": 23699
+  },
+  {
+   "groupe": "signaux-dag",
+   "nom": "DAG : écrire une case + relire les N nœuds",
+   "latence": {
+    "moyenneMs": 0.004576903245006012,
+    "medianeMs": 0.004519999998592539,
+    "p99Ms": 0.005910000001895241,
+    "minMs": 0.004219000002194662,
+    "maxMs": 0.21051299999817275,
+    "rme": 0.19631685752519798
+   },
+   "debitParSeconde": 219775.57512487195,
+   "echantillons": 109245
+  }
+ ]
+}

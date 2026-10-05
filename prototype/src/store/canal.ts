@@ -5,8 +5,16 @@
 import type { Canal, DepuisWorker, VersWorker } from "./protocole";
 import { creerMoteur, type Moteur } from "./worker/moteur";
 
+/** Taux de bridage logiciel du worker, lu dans l'URL (`bridageWorker=4`, harnais de mesure). */
+export function tauxBridageWorker(search: string): number {
+  const v = Number(new URLSearchParams(search).get("bridageWorker"));
+  return Number.isFinite(v) && v > 1 ? v : 1;
+}
+
 export function canalWorker(): Canal {
   const worker = new Worker(new URL("./worker/worker.ts", import.meta.url), { type: "module" });
+  const taux = typeof location === "undefined" ? 1 : tauxBridageWorker(location.search);
+  if (taux > 1) worker.postMessage({ type: "bridage", taux } satisfies VersWorker);
   return {
     envoyer: (m) => worker.postMessage(m),
     ecouter(rappel) {

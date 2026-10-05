@@ -1,10 +1,10 @@
 // Panneau d'explication du nœud choisi dans la table ou le graphe.
 
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import type { Plan } from "../noyau/compile";
 import type { EcartAB } from "../comparaison";
 import { type Explication as ExplicationNoyau, TEXTE_CAUSE } from "../noyau/explain";
-import { useStoreNotes } from "../store/hooks";
+import { marquerCommit, useStoreNotes } from "../store/hooks";
 import { useVersionParticipant } from "./useVersionParticipant";
 
 export function Explication({
@@ -35,6 +35,10 @@ export function Explication({
       actif = false;
     };
   }, [store, g, p, n, version]);
+  // Fin de chaîne (mesures) : le panneau d'explication ouvert compte dans la latence de recalcul.
+  useLayoutEffect(() => {
+    if (e) marquerCommit();
+  }, [e]);
   return (
     <section className="explication" data-testid="explication" data-noeud={e?.id ?? ""}>
       <h3>
