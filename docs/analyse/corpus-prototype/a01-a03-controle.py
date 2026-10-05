@@ -509,6 +509,11 @@ def figer_a03():
                     i: en_nombre(v[i]) for i, n in noeuds.items() if n["type"] == "calcul"
                 },
                 "erreursRemplissage": erreurs(g, cases),
+                "attendusH4Strict": {
+                    "reussite": en_nombre(
+                        evaluer(g, cases, jokers=jok, h4_strict=True)["reussite"]
+                    )
+                },
             }
         )
         if nom == "Basile":  # arrondi propagé : la même grille sans `arrondi`

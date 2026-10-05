@@ -11,7 +11,8 @@ dans la forme des collections du prototype (nœuds désignés par leur id dans
 `g3-v1-structure.json` / `g3-v2-structure.json`, case ordinale en rang du palier),
 résultats attendus de tous les nœuds de calcul (`null` : sans résultat) en V1 à
 la copie, en V2 juste après la copie et en V2 à l'état final, résultats des
-commutateurs F5, et chemins multiples de chaque structure.
+commutateurs F5, 1b et H4 (avec leurs non-évaluations et erreurs de
+remplissage) et de Chloé sans dispense, et chemins multiples de chaque structure.
 """
 
 import json
@@ -76,8 +77,13 @@ def f3(values, strict=False):
     return OK if all(v == OK for v in act) else KO
 
 
-def f4(values, k, seuil=None):
-    """Au moins k (k = None : toutes), seuil optionnel sur les entrées."""
+def f4(values, k, seuil=None, strict=False):
+    """Au moins k (k = None : toutes), seuil optionnel sur les entrées.
+
+    H4 strict : « au moins k = toutes » rend sans résultat dès qu'une entrée l'est.
+    """
+    if strict and k is None and any(v is None for v in values):
+        return None
     act = [v for v in values if v is not None]
     if not act:
         return None
@@ -144,7 +150,7 @@ def calcule(d, version, sw=None):
     r["E2 ≥ 60 %"] = f2(r["E2"], 60)
 
     st = sw["h4_strict"]
-    r["M1"] = f4(sr, None)
+    r["M1"] = f4(sr, None, strict=st)
     r["M2"] = f4(sj, 2)
     r["M3"] = f4([d["ConsE2"], d["ConsE3"]], 1, seuil=3)
     r["M4"] = f2(d["Gest"], 3)
@@ -480,6 +486,16 @@ def figer():
         ("David", {"f5SansPlafond": True}, {"plafond": None}),
         ("David", {"f5Derniere": True}, {"f5_mode": "dernière"}),
     ]
+    # Non-évaluations et H4 (ticket #18). En 1b-B, une dispense sur le
+    # regroupement E3 est sans effet : la variante du doc (« feuilles =
+    # dépendances de calcul de E3 ») se pose donc sur le nœud de calcul E3.
+    chloe, felix = P["Chloé"], P["Félix"]
+    variantes = [
+        ("Chloé", {"feuilles1b": "B"}, [{"noeud": "e3"}],
+         appliquer_dispense_e3(chloe, "dépendances"), {}),
+        ("Chloé", {}, [], chloe, {}),
+        ("Félix", {"h4Strict": True}, [], felix, {"h4_strict": True}),
+    ]
     sortie = {
         "grille": "G3",
         "source": "g3-controle.py --figer",
@@ -492,13 +508,24 @@ def figer():
                 "attendus": attendus(v2, calcule(etat_final(P[nom]), "V2", sw)),
             }
             for nom, ts, sw in commutateurs
+        ]
+        + [
+            {
+                "etat": "V2-final",
+                "nom": nom,
+                "commutateurs": ts,
+                "nonEvaluations": ne,
+                "attendus": attendus(v2, r := calcule(d, "V2", sw)),
+                "erreursRemplissage": [ERREURS.get(e, e.lower()) for e in r["Erreurs"]],
+            }
+            for nom, ts, ne, d, sw in variantes
         ],
         "cheminsMultiples": {g["grille"]: chemins_multiples(g) for g in (v1, v2)},
     }
     (ICI / "g3-participants.json").write_text(
         json.dumps(sortie, ensure_ascii=False, indent=1) + "\n"
     )
-    print("\ng3-participants.json : 3 états × 6 participants, 3 commutateurs")
+    print(f"\ng3-participants.json : 3 états × 6 participants, {len(sortie['commutateurs'])} commutateurs")
     for g, cm in sortie["cheminsMultiples"].items():
         print(f"\n### Chemins multiples, {g}\n")
         for i, ex in cm["plusieursExigences"].items():

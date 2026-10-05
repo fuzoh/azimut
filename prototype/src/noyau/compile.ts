@@ -3,7 +3,7 @@
 // entre entrées de données, absence de cycle, pas d'arrondi), ordre
 // topologique, CSR des entrées, barèmes, pipeline, définitions et tables id ↔ index.
 
-import type { ActionJoker, Bareme, Grille, Noeud, ParametresFonction } from "./format";
+import type { ActionJoker, Bareme, Grille, Noeud, ParametresFonction, Placement } from "./format";
 
 export const TYPE_DONNEES = 0;
 export const TYPE_CALCUL = 1;
@@ -37,12 +37,63 @@ export interface JokerDefCompile {
   libelle: string;
 }
 
-/** Commutateurs du modèle (spec 20, « Réglages ») ; les autres arrivent avec leurs tickets. */
+/** Commutateurs du modèle (spec 20, « Réglages ») ; H5 arrive avec les jokers. */
 export interface Commutateurs {
   /** F5 rang : forcer « dernière » (défaut : selon la structure). */
   f5Derniere?: boolean;
   /** F5 plafond : forcer sans plafond (défaut : selon la structure). */
   f5SansPlafond?: boolean;
+  /** 1a, portée de la dispense : A sur la case (défaut), B sur la contribution. */
+  dispense1a?: "A" | "B";
+  /** 1b, feuilles d'un nœud : A par placement (défaut), B dépendances de calcul, C axe de la dispense. */
+  feuilles1b?: "A" | "B" | "C";
+  /** 1c, minimum par regroupement : actif si la structure le déclare (défaut true). */
+  minimum1c?: boolean;
+  /** H4 : « toutes » / « au moins k = toutes » strict (une entrée sans résultat rend le nœud sans résultat). */
+  h4Strict?: boolean;
+}
+
+/** Commutateurs résolus, défauts compris. */
+export type CommutateursResolus = Required<Commutateurs>;
+
+export function resoudreCommutateurs(c: Commutateurs = {}): CommutateursResolus {
+  return {
+    f5Derniere: c.f5Derniere ?? false,
+    f5SansPlafond: c.f5SansPlafond ?? false,
+    dispense1a: c.dispense1a ?? "A",
+    feuilles1b: c.feuilles1b ?? "A",
+    minimum1c: c.minimum1c ?? true,
+    h4Strict: c.h4Strict ?? false,
+  };
+}
+
+/** Ensemble d'index en CSR : les éléments de i sont `sources[offsets[i]…offsets[i+1]]`. */
+export interface Csr {
+  offsets: Int32Array;
+  sources: Int32Array;
+}
+
+function versCsr(listes: Iterable<number>[]): Csr {
+  const offsets = new Int32Array(listes.length + 1);
+  const tout: number[] = [];
+  listes.forEach((l, i) => {
+    offsets[i] = tout.length;
+    tout.push(...[...l].sort((a, b) => a - b));
+  });
+  offsets[listes.length] = tout.length;
+  return { offsets, sources: Int32Array.from(tout) };
+}
+
+export function elementsCsr(c: Csr, i: number): Int32Array {
+  return c.sources.subarray(c.offsets[i], c.offsets[i + 1]);
+}
+
+/** Minimum de notes actives (1c) : sur un nœud, ou sur la grille entière (n = -1). */
+export interface MinimumCompile {
+  n: number;
+  minActives: number;
+  /** Feuilles comptées (index d), selon 1b. */
+  feuilles: Int32Array;
 }
 
 /** Marques statiques de chemins multiples, bits de `Plan.cheminsMultiples`. */
@@ -95,6 +146,26 @@ export interface Plan {
   influenceMultiple: Map<number, number[]>;
   /** Consommateurs directs de chaque nœud (sans doublon). */
   consommateurs: number[][];
+  commutateurs: CommutateursResolus;
+  /**
+   * Feuilles de dispense par nœud (index d), en CSR, selon 1b : A placement
+   * (union des sous-arbres, tous axes), B dépendances de calcul. En 1b-C, ce
+   * sont celles de l'axe principal ; voir `feuillesParAxe`.
+   */
+  feuillesDispense: Csr;
+  /** Feuilles par placement dans chaque axe (1b-C). */
+  feuillesParAxe: Csr[];
+  /**
+   * Dispense sans effet (spec 20) : 1 si une non-évaluation posée sur le nœud
+   * ne change aucun calcul dans le réglage courant (regroupement en 1a-B ;
+   * aucune feuille selon 1b en 1a-A, dont tout regroupement en 1b-B). En 1b-C,
+   * pour une dispense sans `axe` (axe principal).
+   */
+  dispenseSansEffet: Uint8Array;
+  /** Nœuds de données obligatoires (index d). */
+  obligatoires: Int32Array;
+  /** Minimums de notes actives (vides si 1c inactif). */
+  minimums: MinimumCompile[];
 }
 
 export class ErreurCompilation extends Error {
@@ -143,7 +214,8 @@ function estBinaire(b: BaremeCompile): boolean {
   return b.type === "ordinal" && b.valeurs.length === 2 && b.min === 0 && b.max === 1;
 }
 
-export function compile(grille: Grille, commutateurs: Commutateurs = {}): Plan {
+export function compile(grille: Grille, commutateursBruts: Commutateurs = {}): Plan {
+  const commutateurs = resoudreCommutateurs(commutateursBruts);
   const erreurs: string[] = [];
   const noeuds: Noeud[] = grille.noeuds;
   const N = noeuds.length;
@@ -302,6 +374,15 @@ export function compile(grille: Grille, commutateurs: Commutateurs = {}): Plan {
     for (const e of p.enfants ?? []) verifierPlacement(e, axe);
   };
   for (const a of grille.axes) for (const p of a.arbre) verifierPlacement(p, a.id);
+  const axePrincipal = principaux[0] ?? -1;
+  for (const m of grille.exigences?.minimumParRegroupement ?? []) {
+    const surGrille = axePrincipal >= 0 && m.noeud === grille.axes[axePrincipal].id;
+    if (!surGrille && !index.has(m.noeud)) erreurs.push(`minimum : nœud inconnu ${m.noeud}`);
+    if (!Number.isInteger(m.minActives) || m.minActives < 1) erreurs.push(`minimum ${m.noeud} : minActives doit être un entier ≥ 1`);
+  }
+  for (const noeud of noeuds)
+    if (noeud.type === "donnees" && noeud.obligatoire && noeud.bareme === undefined)
+      erreurs.push(`${noeud.id} : un nœud de commentaire ne peut pas être obligatoire`);
 
   if (erreurs.length > 0) throw new ErreurCompilation(erreurs);
 
@@ -316,6 +397,7 @@ export function compile(grille: Grille, commutateurs: Commutateurs = {}): Plan {
   });
 
   const chemins = cheminsMultiples(N, type, fonction, inOffsets, inSources, Int32Array.from(topo), decisif);
+  const remplissage = feuillesEtExigences(grille, commutateurs, N, index, type, indexDonnee, inOffsets, inSources, topo, axePrincipal);
 
   return {
     grille,
@@ -343,9 +425,89 @@ export function compile(grille: Grille, commutateurs: Commutateurs = {}): Plan {
     indexJoker,
     quotaJokers: grille.jokers?.quota ?? 0,
     decisif,
-    axePrincipal: principaux[0] ?? -1,
+    axePrincipal,
     ...chemins,
+    commutateurs,
+    ...remplissage,
   };
+}
+
+/**
+ * Feuilles de dispense (1b), dispenses sans effet, obligatoires et minimums (1c).
+ * Feuilles par placement : les nœuds de données du sous-arbre de chaque
+ * placement du nœud (une position n'a pas d'identité : union des sous-arbres).
+ * Un nœud de données est toujours sa propre feuille (case « non évalué »).
+ */
+function feuillesEtExigences(
+  grille: Grille,
+  commutateurs: CommutateursResolus,
+  N: number,
+  index: Map<string, number>,
+  type: Uint8Array,
+  indexDonnee: Int32Array,
+  inOffsets: Int32Array,
+  inSources: Int32Array,
+  topo: number[],
+  axePrincipal: number,
+) {
+  const soi = (n: number): number[] => (type[n] === TYPE_DONNEES ? [indexDonnee[n]] : []);
+
+  // Par placement, axe par axe.
+  const parAxe = grille.axes.map(() => Array.from({ length: N }, (_, n) => new Set(soi(n))));
+  grille.axes.forEach((a, ia) => {
+    const visiter = (p: Placement): Set<number> => {
+      const n = index.get(p.noeud)!;
+      const s = new Set(soi(n));
+      for (const e of p.enfants ?? []) for (const d of visiter(e)) s.add(d);
+      for (const d of s) parAxe[ia][n].add(d);
+      return s;
+    };
+    a.arbre.forEach(visiter);
+  });
+  const feuillesParAxe = parAxe.map(versCsr);
+  const placement = Array.from({ length: N }, (_, n) => {
+    const s = new Set<number>();
+    for (const axe of parAxe) for (const d of axe[n]) s.add(d);
+    return s;
+  });
+
+  // Dépendances de calcul : les données en amont, en ordre topologique.
+  const dependances = Array.from({ length: N }, (_, n) => new Set(soi(n)));
+  for (const n of topo)
+    for (let i = inOffsets[n]; i < inOffsets[n + 1]; i++) for (const d of dependances[inSources[i]]) dependances[n].add(d);
+
+  const mode = commutateurs.feuilles1b;
+  const feuillesDispense = mode === "B" ? versCsr(dependances) : mode === "C" ? feuillesParAxe[axePrincipal] : versCsr(placement);
+
+  const dispenseSansEffet = new Uint8Array(N);
+  for (let n = 0; n < N; n++) {
+    const sansCalcul = type[n] === TYPE_REGROUPEMENT || type[n] === TYPE_COMMENTAIRE;
+    dispenseSansEffet[n] =
+      commutateurs.dispense1a === "B" ? (sansCalcul ? 1 : 0) : feuillesDispense.offsets[n + 1] === feuillesDispense.offsets[n] ? 1 : 0;
+  }
+
+  const obligatoires = Int32Array.from(
+    grille.noeuds.flatMap((noeud, n) => (noeud.type === "donnees" && noeud.obligatoire && type[n] === TYPE_DONNEES ? [indexDonnee[n]] : [])),
+  );
+
+  // 1c : feuilles selon 1b ; en 1b-C (pas d'axe de dispense), par placement sur tous les axes.
+  const minimums: MinimumCompile[] = [];
+  if (commutateurs.minimum1c) {
+    for (const m of grille.exigences?.minimumParRegroupement ?? []) {
+      if (axePrincipal >= 0 && m.noeud === grille.axes[axePrincipal].id) {
+        // Minimum de grille, écrit sur la racine de l'axe principal : toutes ses données placées.
+        const s = new Set<number>();
+        for (let n = 0; n < N; n++) for (const d of parAxe[axePrincipal][n]) s.add(d);
+        minimums.push({ n: -1, minActives: m.minActives, feuilles: Int32Array.from([...s].sort((a, b) => a - b)) });
+        continue;
+      }
+      const n = index.get(m.noeud)!;
+      const feuilles = mode === "B" ? dependances[n] : placement[n];
+      minimums.push({ n, minActives: m.minActives, feuilles: Int32Array.from([...feuilles].sort((a, b) => a - b)) });
+    }
+  }
+
+  return { feuillesDispense, feuillesParAxe, dispenseSansEffet, obligatoires, minimums };
 }
 
 /**

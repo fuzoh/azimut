@@ -9,8 +9,8 @@ import type { FichierG3, FichierParticipants } from "./noyau/format";
 import { creerSession } from "./session";
 
 const g3 = g3Figes as unknown as FichierG3;
-// Chloé (dispense) et Emma (joker) en V2 final attendent leurs tickets.
-const g3v2 = { ...g3.etats["V2-final"], source: "", participants: g3.etats["V2-final"].participants.filter((p) => !["Chloé", "Emma"].includes(p.nom)) };
+// Emma (joker) en V2 final attend son ticket.
+const g3v2 = { ...g3.etats["V2-final"], source: "", participants: g3.etats["V2-final"].participants.filter((p) => p.nom !== "Emma") };
 
 describe("session corpus A01 + A03 + G3", () => {
   const session = creerSession();

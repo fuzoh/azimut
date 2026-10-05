@@ -1,18 +1,19 @@
 // Interface du store de notes (spec 20, « Store de notes »), commune aux variantes.
 
+import type { EtatRemplissage } from "../noyau/remplissage";
+
+export type { EtatRemplissage };
+
 export interface ResultatCellule {
   /** Valeur sur le barème de sortie ; NaN = sans résultat. */
   valeur: number;
   /** Cause d'un « sans résultat » (voir `CAUSE`). */
   cause: number;
-  /** Marques : bit 0 « joker appliqué », bit 1 « influencé » (ticket des jokers). */
+  /** Marques : bit 0 « joker appliqué », bit 1 « influencé », bit 2 chemin multiple de 1a-B. */
   marques: number;
+  /** Nœud de données : valeur stockée dans la case (conservée même non évaluée) ; NaN sinon ou vide. */
+  saisie: number;
   enCalcul: boolean;
-}
-
-export interface EtatRemplissage {
-  erreurs: string[];
-  provisoire: boolean;
 }
 
 export interface StoreNotes {

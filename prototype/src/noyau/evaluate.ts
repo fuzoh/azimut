@@ -8,6 +8,7 @@ import {
   TYPE_CALCUL,
   TYPE_DONNEES,
 } from "./compile";
+import { analyse1aB, couverture, type NonEvaluation } from "./dispense";
 
 /** Cause d'un « sans résultat », pour l'explication seulement. */
 export const CAUSE = {
@@ -18,13 +19,21 @@ export const CAUSE = {
   denominateurNul: 4,
   /** Regroupement ou commentaire : pas de résultat par nature. */
   sansCalcul: 5,
+  /** H4 strict : une entrée de « toutes » / « au moins k = toutes » est sans résultat. */
+  entreeSansResultat: 6,
 } as const;
+
+/** Marques dynamiques, bits de `Resultats.marques`. */
+export const MARQUE_JOKER_APPLIQUE = 1;
+export const MARQUE_INFLUENCE_JOKER = 2;
+/** 1a-B : nœud du cône d'un nœud dispensé, consommé hors du cône ; calculé normalement. */
+export const MARQUE_CHEMIN_DISPENSE = 4;
 
 export interface SourcesParticipant {
   /** Valeur de chaque case, index d ; NaN = vide. Ordinal : rang du palier. */
   cases: Float64Array;
-  /** Non-évaluations sur n'importe quel nœud (ticket des non-évaluations). */
-  nonEvaluations: { n: number; axe?: number }[];
+  /** Non-évaluations sur n'importe quel nœud ; `axe` sert à 1b-C. */
+  nonEvaluations: NonEvaluation[];
   /** Jokers posés : index de la définition dans `plan.jokerDefs`, et id de pose. */
   jokers: { id: number; jokerDef: number }[];
 }
@@ -33,6 +42,7 @@ export interface Resultats {
   /** Valeur sur le barème de sortie ; NaN = sans résultat. */
   valeurs: Float64Array;
   causes: Uint8Array;
+  marques: Uint8Array;
 }
 
 export function sourcesVides(plan: Plan): SourcesParticipant {
@@ -79,7 +89,13 @@ export function evaluate(plan: Plan, sources: SourcesParticipant): Resultats {
   const { N } = plan;
   const valeurs = new Float64Array(N).fill(NaN);
   const causes = new Uint8Array(N);
+  const marques = new Uint8Array(N);
   const fait = new Uint8Array(N);
+  const { dispense1a, h4Strict } = plan.commutateurs;
+  // 1a-A : la dispense agit sur la case. 1a-B : sur la contribution, par le cône.
+  const couvert = dispense1a === "A" ? couverture(plan, sources.nonEvaluations) : null;
+  const cone = dispense1a === "B" ? analyse1aB(plan, sources.nonEvaluations) : null;
+  if (cone) for (let n = 0; n < N; n++) if (cone.signales[n]) marques[n] |= MARQUE_CHEMIN_DISPENSE;
 
   // H5b par défaut (« un seul ») : seul le premier joker posé (par id) s'applique.
   const jokerParNoeud = new Map<number, number>();
@@ -93,7 +109,9 @@ export function evaluate(plan: Plan, sources: SourcesParticipant): Resultats {
     fait[n] = 1;
     let r = NaN;
     let cause: number = CAUSE.aucune;
-    if (plan.type[n] === TYPE_DONNEES) {
+    if ((couvert && plan.type[n] === TYPE_DONNEES && couvert[plan.indexDonnee[n]]) || cone?.dispense[n]) {
+      cause = CAUSE.nonEvalue;
+    } else if (plan.type[n] === TYPE_DONNEES) {
       const b = plan.baremes[plan.bareme[n]];
       r = valeurCase(b, sources.cases[plan.indexDonnee[n]]);
       if (Number.isNaN(r)) cause = CAUSE.vide;
@@ -114,11 +132,18 @@ export function evaluate(plan: Plan, sources: SourcesParticipant): Resultats {
     /** Entrées actives ; `rang` = position dans `entrees`, à partir de 1 (F5). */
     const actives: { v: number; w: number; s: number; rang: number }[] = [];
     let poidsNul = false;
+    let sansResultat = false;
+    // 1a-B : calculé sans les feuilles couvertes (toutes ses entrées de données).
+    const sansFeuilles = cone?.sansFeuilles[n] === 1;
     for (let i = debut; i < fin; i++) {
       const s = plan.inSources[i];
+      if (sansFeuilles && plan.type[s] === TYPE_DONNEES) continue;
       const v = val(s);
       const w = plan.inPoids[i];
-      if (Number.isNaN(v)) continue;
+      if (Number.isNaN(v)) {
+        if (w > 0) sansResultat = true;
+        continue;
+      }
       if (w > 0) actives.push({ v, w, s, rang: i - debut + 1 });
       else poidsNul = true;
     }
@@ -128,6 +153,9 @@ export function evaluate(plan: Plan, sources: SourcesParticipant): Resultats {
     if (actives.length === 0 || actives.length < minimum) return [NaN, CAUSE.aucuneContribution];
     const sortie = plan.baremes[plan.bareme[n]];
     const p = plan.params[n] ?? {};
+    // H4 strict : « toutes » et « au moins k = toutes » exigent un résultat de chaque entrée.
+    const toutes = plan.fonction[n] === 3 || (plan.fonction[n] === 4 && p.k === "toutes");
+    if (h4Strict && toutes && sansResultat) return [NaN, CAUSE.entreeSansResultat];
     // Entrées hétérogènes : calcul en normalisé, puis report sur le barème de sortie.
     const versCalcul = (v: number, s: number) => (plan.heterogene[n] ? normaliser(plan.baremes[plan.bareme[s]], v) : v);
     const versSortie = (m: number) => (plan.heterogene[n] ? sortie.min + m * (sortie.max - sortie.min) : m);
@@ -218,5 +246,5 @@ export function evaluate(plan: Plan, sources: SourcesParticipant): Resultats {
   };
 
   for (let n = 0; n < N; n++) val(n);
-  return { valeurs, causes };
+  return { valeurs, causes, marques };
 }

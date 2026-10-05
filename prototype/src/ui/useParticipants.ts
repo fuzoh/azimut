@@ -10,7 +10,7 @@ export function useLiveParticipants(sources: Sources): LigneParticipant[] {
       const s = sources.participants.subscribeChanges(() => {
         caches.delete(sources);
         rappel();
-      });
+      }, { includeInitialState: false });
       return () => s.unsubscribe();
     },
     [sources],

@@ -1,12 +1,17 @@
 import { useState } from "react";
 import { creerSession } from "../session";
 import { StoreContext } from "../store/hooks";
+import { Erreurs } from "./Erreurs";
 import { Table } from "./Table";
+import { useLiveParticipants } from "./useParticipants";
 
 export function App() {
   const [session] = useState(creerSession);
   const [filtre, setFiltre] = useState("");
   const [g, setG] = useState(0);
+  const [selection, setSelection] = useState(0);
+  const participants = useLiveParticipants(session.sources);
+  const choisi = participants.find((pt) => pt.p === selection) ?? participants[0];
   const plan = session.plans[g];
   const [axeChoisi, setAxe] = useState(plan.axePrincipal);
   const axe = axeChoisi < plan.grille.axes.length ? axeChoisi : plan.axePrincipal;
@@ -52,13 +57,28 @@ export function App() {
         </label>
         <span className="legende">
           <span className="cellule-vide">vide</span> <span className="cellule-note">note</span>{" "}
+          <span className="cellule-non-evaluee">non évalué</span>
           <span className="sans-resultat">— sans résultat</span>
+          <span title="clic droit sur une case, un calcul ou un regroupement">clic droit : non évalué / dispense</span>
+          <span title="données provisoires : exigences de remplissage insatisfaites">⚠ provisoire</span>
           <span title="placé ici sans y compter">↗ placé sans compter</span>
           <span title="contribue à plusieurs exigences">◆ plusieurs exigences</span>
           <span title="influence plusieurs fois un même résultat">⇉ influence multiple</span>
         </span>
       </header>
-      <Table key={`${g}-${axe}`} g={g} plan={plan} axe={axe} sources={session.sources} filtre={filtre} />
+      <div className="principal">
+        <Table
+          key={`${g}-${axe}`}
+          g={g}
+          plan={plan}
+          axe={axe}
+          sources={session.sources}
+          filtre={filtre}
+          selection={choisi?.p ?? -1}
+          onSelection={setSelection}
+        />
+        {choisi && <Erreurs g={g} p={choisi.p} nom={choisi.nom} plan={plan} />}
+      </div>
     </StoreContext.Provider>
   );
 }

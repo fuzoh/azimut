@@ -2,7 +2,8 @@ body { font: 13px system-ui, sans-serif; margin: 0; }
 header { padding: 6px 10px; border-bottom: 1px solid #ccc; display: flex; gap: 8px; align-items: center; }
 .legende { margin-left: auto; display: flex; gap: 6px; }
 .legende span { padding: 1px 6px; border: 1px solid #ccc; }
-.defilement { overflow: auto; height: calc(100vh - 40px); }
+.principal { display: flex; height: calc(100vh - 40px); }
+.defilement { overflow: auto; flex: 1; }
 table { border-collapse: collapse; }
 th, td { border: 1px solid #ddd; padding: 2px 4px; white-space: nowrap; text-align: right; }
 thead tr.noeuds th { position: sticky; top: 22px; background: #f4f4f4; font-weight: normal; font-size: 11px; writing-mode: vertical-rl; transform: rotate(180deg); text-align: left; }
@@ -20,3 +21,19 @@ td.sans-calcul { background: #fafafa; }
 thead tr.groupes th { position: sticky; top: 0; height: 22px; box-sizing: border-box; background: #e8e8e8; font-size: 11px; text-align: left; z-index: 1; }
 thead tr.groupes th.coin { z-index: 3; }
 th .marques { color: #b35900; font-weight: bold; margin-top: 2px; }
+.cellule-non-evaluee { background: #fff4d6; }
+.cellule-non-evaluee input { text-decoration: line-through; color: #8a6d00; }
+td.cellule-non-evaluee { padding: 0; }
+td.ne-direct { outline: 1px dashed #b38600; outline-offset: -2px; }
+td.non-evalue { background: #fff4d6 !important; }
+td.regroupement { text-align: center; padding: 0 2px; }
+td.regroupement.dispense { background: #ffe0a3; }
+button.dispense { font-size: 10px; padding: 0 3px; cursor: pointer; }
+th.nom { cursor: pointer; }
+tr.selection th.nom { background: #dbe8ff; }
+.avertissement { color: #c05800; }
+aside.erreurs { width: 320px; overflow: auto; border-left: 1px solid #ccc; padding: 6px 10px; font-size: 12px; }
+aside.erreurs h3 { margin: 4px 0; font-size: 13px; }
+aside.erreurs ul { padding-left: 16px; }
+aside.erreurs .provisoire { background: #fff0d9; border: 1px solid #f0b060; padding: 4px; }
+aside.erreurs .erreur-dispenseSansEffet, aside.erreurs .signalement { color: #6a4fb3; }

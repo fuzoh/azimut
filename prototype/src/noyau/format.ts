@@ -156,6 +156,8 @@ export interface ParticipantType {
   /** Résultat attendu de chaque nœud de calcul ; null = sans résultat. */
   attendus: Record<string, number | null>;
   attendusSansArrondi?: Record<string, number | null>;
+  /** Résultats attendus sous H4 strict (« toutes » sans résultat dès qu'une entrée l'est). */
+  attendusH4Strict?: Record<string, number | null>;
   /** Une case saisie en plus des sources, et les résultats attendus ensuite. */
   apresSaisie?: { case: CaseFigee; attendus: Record<string, number | null> };
   erreursRemplissage: string[];
@@ -176,8 +178,16 @@ export interface FichierG3 {
   commutateurs: {
     etat: "V1-copie" | "V2-copie" | "V2-final";
     nom: string;
-    commutateurs: { f5Derniere?: boolean; f5SansPlafond?: boolean };
+    commutateurs: {
+      f5Derniere?: boolean;
+      f5SansPlafond?: boolean;
+      feuilles1b?: "A" | "B" | "C";
+      h4Strict?: boolean;
+    };
+    /** Présent : remplace les non-évaluations des sources de l'état. */
+    nonEvaluations?: NonEvaluationFigee[];
     attendus: Record<string, number | null>;
+    erreursRemplissage?: string[];
   }[];
   /** Chemins multiples de chaque structure, par id de grille. */
   cheminsMultiples: Record<
