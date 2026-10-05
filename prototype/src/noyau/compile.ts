@@ -37,9 +37,17 @@ export interface JokerDefCompile {
   libelle: string;
 }
 
+/** Commutateurs du modèle (spec 20, « Réglages ») ; les autres arrivent avec leurs tickets. */
 export interface Commutateurs {
-  // Les commutateurs du modèle arrivent avec leurs tickets (18, 19, 22).
+  /** F5 rang : forcer « dernière » (défaut : selon la structure). */
+  f5Derniere?: boolean;
+  /** F5 plafond : forcer sans plafond (défaut : selon la structure). */
+  f5SansPlafond?: boolean;
 }
+
+/** Marques statiques de chemins multiples, bits de `Plan.cheminsMultiples`. */
+export const CHEMIN_PLUSIEURS_EXIGENCES = 1;
+export const CHEMIN_INFLUENCE_MULTIPLE = 2;
 
 export interface Plan {
   grille: Grille;
@@ -62,7 +70,10 @@ export interface Plan {
   /** Barème de la case (données) ou de sortie (calcul) ; -1 sinon. */
   bareme: Int32Array;
   baremes: BaremeCompile[];
-  /** 1 si les entrées viennent de barèmes différents : normalisation. */
+  /**
+   * 1 si le calcul passe par la normalisation : entrées de barèmes différents,
+   * ou entrées binaires vers le `0–100 %` par défaut.
+   */
   heterogene: Uint8Array;
   /** Pipeline référencé par index : -1 = pas de conversion. */
   conversionIndex: Int32Array;
@@ -76,6 +87,14 @@ export interface Plan {
   quotaJokers: number;
   decisif: number;
   axePrincipal: number;
+  /** Chemins multiples, propriété de la structure : bits CHEMIN_* par nœud. */
+  cheminsMultiples: Uint8Array;
+  /** Nœud → les exigences distinctes qu'il atteint (au moins 2). */
+  plusieursExigences: Map<number, number[]>;
+  /** Nœud → les résultats qu'il atteint par au moins 2 de ses consommateurs directs. */
+  influenceMultiple: Map<number, number[]>;
+  /** Consommateurs directs de chaque nœud (sans doublon). */
+  consommateurs: number[][];
 }
 
 export class ErreurCompilation extends Error {
@@ -124,7 +143,7 @@ function estBinaire(b: BaremeCompile): boolean {
   return b.type === "ordinal" && b.valeurs.length === 2 && b.min === 0 && b.max === 1;
 }
 
-export function compile(grille: Grille, _commutateurs: Commutateurs = {}): Plan {
+export function compile(grille: Grille, commutateurs: Commutateurs = {}): Plan {
   const erreurs: string[] = [];
   const noeuds: Noeud[] = grille.noeuds;
   const N = noeuds.length;
@@ -180,6 +199,12 @@ export function compile(grille: Grille, _commutateurs: Commutateurs = {}): Plan 
     if (code <= 0) erreurs.push(`${noeud.id} : fonction inconnue ${noeud.fonction}`);
     fonction[n] = Math.max(code, 0);
     params[n] = noeud.params ?? null;
+    if (noeud.fonction === "F5" && (commutateurs.f5Derniere || commutateurs.f5SansPlafond)) {
+      const p = { ...noeud.params };
+      if (commutateurs.f5Derniere) p.mode = "derniere";
+      if (commutateurs.f5SansPlafond) delete p.plafond;
+      params[n] = p;
+    }
     erreurs.push(...verifierParams(noeud.id, noeud.fonction, noeud.params ?? {}));
     if (noeud.arrondi !== undefined && !PAS_ARRONDI.includes(noeud.arrondi))
       erreurs.push(`${noeud.id} : pas d'arrondi ${noeud.arrondi} hors de 1 ; 0,5 ; 0,1`);
@@ -242,6 +267,9 @@ export function compile(grille: Grille, _commutateurs: Commutateurs = {}): Plan 
         bareme[n] = baremeParId(noeud.bareme_sortie, noeud.id);
       } else {
         bareme[n] = baremeParDefaut(noeud.fonction, [...baremesEntrees], baremes, indexBareme);
+        // Entrées binaires vers le `0–100 %` par défaut : OK = 100 %.
+        if (baremesEntrees.size === 1 && estBinaire(baremes[[...baremesEntrees][0]]) && !estBinaire(baremes[bareme[n]]))
+          heterogene[n] = 1;
       }
       if (noeud.conversion) {
         conversionIndex[n] = conversions.length;
@@ -287,6 +315,8 @@ export function compile(grille: Grille, _commutateurs: Commutateurs = {}): Plan 
     occurrences.set(noeud.definition, liste);
   });
 
+  const chemins = cheminsMultiples(N, type, fonction, inOffsets, inSources, Int32Array.from(topo), decisif);
+
   return {
     grille,
     N,
@@ -314,7 +344,101 @@ export function compile(grille: Grille, _commutateurs: Commutateurs = {}): Plan 
     quotaJokers: grille.jokers?.quota ?? 0,
     decisif,
     axePrincipal: principaux[0] ?? -1,
+    ...chemins,
   };
+}
+
+/**
+ * Chemins multiples (18 §3), règle provisoire du ticket #17 :
+ * - exigence : nœud de calcul à sortie binaire (F2, F3, F4, F7) du cône du
+ *   nœud décisif, lui compris, dont aucune entrée n'est un calcul binaire ;
+ *   un nœud qui atteint au moins 2 exigences « contribue à plusieurs exigences » ;
+ * - un nœud qui atteint un même résultat R par au moins 2 de ses consommateurs
+ *   directs (R compris) a une « influence multiple » sur R.
+ * Atteignabilité par ensembles de bits, en ordre topologique inverse.
+ */
+function cheminsMultiples(
+  N: number,
+  type: Uint8Array,
+  fonction: Uint8Array,
+  inOffsets: Int32Array,
+  inSources: Int32Array,
+  topo: Int32Array,
+  decisif: number,
+) {
+  const consommateurs: number[][] = Array.from({ length: N }, () => []);
+  for (let n = 0; n < N; n++)
+    for (let i = inOffsets[n]; i < inOffsets[n + 1]; i++) {
+      const c = consommateurs[inSources[i]];
+      if (!c.includes(n)) c.push(n);
+    }
+  const W = (N + 31) >>> 5;
+  const bit = (b: Uint32Array, i: number) => (b[i >>> 5] >>> (i & 31)) & 1;
+  /** aval[n] : nœuds atteints depuis n, n exclu. */
+  const aval = Array.from({ length: N }, () => new Uint32Array(W));
+  /** Ensemble {c} ∪ aval[c]. */
+  const avecSoi = (c: number) => {
+    const b = aval[c].slice();
+    b[c >>> 5] |= 1 << (c & 31);
+    return b;
+  };
+  for (let t = N - 1; t >= 0; t--) {
+    const n = topo[t];
+    for (const c of consommateurs[n]) {
+      const a = aval[n];
+      const ac = aval[c];
+      for (let w = 0; w < W; w++) a[w] |= ac[w];
+      a[c >>> 5] |= 1 << (c & 31);
+    }
+  }
+
+  const binaire = (n: number) => type[n] === TYPE_CALCUL && [2, 3, 4, 7].includes(fonction[n]);
+  const exigences: number[] = [];
+  if (decisif >= 0) {
+    const cone = new Uint8Array(N);
+    const pile = [decisif];
+    while (pile.length > 0) {
+      const n = pile.pop()!;
+      if (cone[n]) continue;
+      cone[n] = 1;
+      for (let i = inOffsets[n]; i < inOffsets[n + 1]; i++) pile.push(inSources[i]);
+    }
+    for (let n = 0; n < N; n++) {
+      if (!cone[n] || !binaire(n)) continue;
+      let feuille = true;
+      for (let i = inOffsets[n]; i < inOffsets[n + 1]; i++) if (binaire(inSources[i])) feuille = false;
+      if (feuille) exigences.push(n);
+    }
+  }
+
+  const marques = new Uint8Array(N);
+  const plusieursExigences = new Map<number, number[]>();
+  const influenceMultiple = new Map<number, number[]>();
+  for (let n = 0; n < N; n++) {
+    if (type[n] === TYPE_REGROUPEMENT || type[n] === TYPE_COMMENTAIRE) continue;
+    const atteintes = exigences.filter((e) => e === n || bit(aval[n], e));
+    if (atteintes.length >= 2) {
+      plusieursExigences.set(n, atteintes);
+      marques[n] |= CHEMIN_PLUSIEURS_EXIGENCES;
+    }
+    if (consommateurs[n].length < 2) continue;
+    const vu = new Uint32Array(W);
+    const deuxFois = new Uint32Array(W);
+    for (const c of consommateurs[n]) {
+      const s = avecSoi(c);
+      for (let w = 0; w < W; w++) {
+        deuxFois[w] |= vu[w] & s[w];
+        vu[w] |= s[w];
+      }
+    }
+    const resultats: number[] = [];
+    for (let r = 0; r < N; r++) if (bit(deuxFois, r)) resultats.push(r);
+    if (resultats.length > 0) {
+      influenceMultiple.set(n, resultats);
+      marques[n] |= CHEMIN_INFLUENCE_MULTIPLE;
+    }
+  }
+  return { cheminsMultiples: marques, plusieursExigences, influenceMultiple, consommateurs };
 }
 
 /** Paramètres requis par chaque fonction du catalogue (spec 20, « Catalogue de fonctions »). */

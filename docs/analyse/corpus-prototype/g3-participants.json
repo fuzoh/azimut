@@ -1,0 +1,3410 @@
+{
+ "grille": "G3",
+ "source": "g3-controle.py --figer",
+ "etats": {
+  "V1-copie": {
+   "grille": "G3 V1",
+   "participants": [
+    {
+     "nom": "Alice",
+     "sources": {
+      "cases": [
+       {
+        "noeud": "e1#1/objectifs",
+        "valeur": 3
+       },
+       {
+        "noeud": "e1#1/deroulement",
+        "valeur": 3
+       },
+       {
+        "noeud": "e1#1/materiel/pret",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#1/materiel/adapte",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#1/materiel/plan-b",
+        "valeur": 1
+       },
+       {
+        "noeud": "consignes-e2",
+        "valeur": 3
+       },
+       {
+        "noeud": "gestion",
+        "valeur": 3
+       },
+       {
+        "noeud": "appreciation-e2",
+        "valeur": 3
+       },
+       {
+        "noeud": "sj1",
+        "valeur": 1
+       },
+       {
+        "noeud": "sj2",
+        "valeur": 1
+       },
+       {
+        "noeud": "sj3",
+        "valeur": 1
+       }
+      ],
+      "nonEvaluations": [],
+      "jokers": []
+     },
+     "attendus": {
+      "e1#1/materiel": 100.0,
+      "e1#1": 83.33333333333334,
+      "e1#2/materiel": null,
+      "e1#2": null,
+      "planif-e1": 83.33333333333334,
+      "securite-jeu": 100.0,
+      "e2": 81.25,
+      "seuil:e2": 1.0,
+      "securite-rando": null,
+      "e3": null,
+      "e4/c1": null,
+      "e4/c2": null,
+      "e4/c3": null,
+      "e4/c4": null,
+      "e4/c5": null,
+      "e4/c6": null,
+      "e4/c7": null,
+      "e4/c8": null,
+      "e4/c9": null,
+      "e4/c10": null,
+      "e4": null,
+      "e5/c1": null,
+      "e5/c2": null,
+      "e5/c3": null,
+      "e5/c4": null,
+      "e5/c5": null,
+      "e5/c6": null,
+      "e5/c7": null,
+      "e5/c8": null,
+      "e5/c9": null,
+      "e5/c10": null,
+      "e5": null,
+      "e6/c1": null,
+      "e6/c2": null,
+      "e6/c3": null,
+      "e6/c4": null,
+      "e6/c5": null,
+      "e6/c6": null,
+      "e6/c7": null,
+      "e6/c8": null,
+      "e6/c9": null,
+      "e6/c10": null,
+      "e6": null,
+      "e7/c1": null,
+      "e7/c2": null,
+      "e7/c3": null,
+      "e7/c4": null,
+      "e7/c5": null,
+      "e7/c6": null,
+      "e7/c7": null,
+      "e7/c8": null,
+      "e7/c9": null,
+      "e7/c10": null,
+      "e7": null,
+      "e8/c1": null,
+      "e8/c2": null,
+      "e8/c3": null,
+      "e8/c4": null,
+      "e8/c5": null,
+      "e8/c6": null,
+      "e8/c7": null,
+      "e8/c8": null,
+      "e8/c9": null,
+      "e8/c10": null,
+      "e8": null,
+      "comp:communication": null,
+      "seuil:comp:communication": null,
+      "comp:technique": null,
+      "seuil:comp:technique": null,
+      "comp:reflexion": null,
+      "seuil:comp:reflexion": null,
+      "comp:cooperation": null,
+      "seuil:comp:cooperation": null,
+      "animation": 4.0,
+      "securite": 0.0,
+      "planification": 83.33333333333334,
+      "moyenne-generale": 82.29166666666667,
+      "seuil:animation": 1.0,
+      "seuil:planification": 1.0,
+      "m1": null,
+      "m2": 1.0,
+      "m3": 1.0,
+      "m4": 1.0,
+      "domaine:securite": 1.0,
+      "domaine:animation": 1.0,
+      "domaine:organisation": 1.0,
+      "minimaux": 1.0,
+      "reussite": 0.0
+     },
+     "erreursRemplissage": [
+      "sr1",
+      "sr2",
+      "sr3",
+      "sr4",
+      "m6"
+     ]
+    },
+    {
+     "nom": "Bruno",
+     "sources": {
+      "cases": [
+       {
+        "noeud": "e1#1/objectifs",
+        "valeur": 4
+       },
+       {
+        "noeud": "e1#1/deroulement",
+        "valeur": 3
+       },
+       {
+        "noeud": "e1#1/materiel/pret",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#1/materiel/adapte",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#1/materiel/plan-b",
+        "valeur": 1
+       },
+       {
+        "noeud": "consignes-e2",
+        "valeur": 4
+       },
+       {
+        "noeud": "gestion",
+        "valeur": 3
+       },
+       {
+        "noeud": "appreciation-e2",
+        "valeur": 4
+       },
+       {
+        "noeud": "sj1",
+        "valeur": 1
+       },
+       {
+        "noeud": "sj2",
+        "valeur": 0
+       },
+       {
+        "noeud": "sj3",
+        "valeur": 0
+       }
+      ],
+      "nonEvaluations": [],
+      "jokers": []
+     },
+     "attendus": {
+      "e1#1/materiel": 100.0,
+      "e1#1": 91.66666666666666,
+      "e1#2/materiel": null,
+      "e1#2": null,
+      "planif-e1": 91.66666666666666,
+      "securite-jeu": 33.33333333333333,
+      "e2": 77.08333333333333,
+      "seuil:e2": 1.0,
+      "securite-rando": null,
+      "e3": null,
+      "e4/c1": null,
+      "e4/c2": null,
+      "e4/c3": null,
+      "e4/c4": null,
+      "e4/c5": null,
+      "e4/c6": null,
+      "e4/c7": null,
+      "e4/c8": null,
+      "e4/c9": null,
+      "e4/c10": null,
+      "e4": null,
+      "e5/c1": null,
+      "e5/c2": null,
+      "e5/c3": null,
+      "e5/c4": null,
+      "e5/c5": null,
+      "e5/c6": null,
+      "e5/c7": null,
+      "e5/c8": null,
+      "e5/c9": null,
+      "e5/c10": null,
+      "e5": null,
+      "e6/c1": null,
+      "e6/c2": null,
+      "e6/c3": null,
+      "e6/c4": null,
+      "e6/c5": null,
+      "e6/c6": null,
+      "e6/c7": null,
+      "e6/c8": null,
+      "e6/c9": null,
+      "e6/c10": null,
+      "e6": null,
+      "e7/c1": null,
+      "e7/c2": null,
+      "e7/c3": null,
+      "e7/c4": null,
+      "e7/c5": null,
+      "e7/c6": null,
+      "e7/c7": null,
+      "e7/c8": null,
+      "e7/c9": null,
+      "e7/c10": null,
+      "e7": null,
+      "e8/c1": null,
+      "e8/c2": null,
+      "e8/c3": null,
+      "e8/c4": null,
+      "e8/c5": null,
+      "e8/c6": null,
+      "e8/c7": null,
+      "e8/c8": null,
+      "e8/c9": null,
+      "e8/c10": null,
+      "e8": null,
+      "comp:communication": null,
+      "seuil:comp:communication": null,
+      "comp:technique": null,
+      "seuil:comp:technique": null,
+      "comp:reflexion": null,
+      "seuil:comp:reflexion": null,
+      "comp:cooperation": null,
+      "seuil:comp:cooperation": null,
+      "animation": 4.5,
+      "securite": 0.0,
+      "planification": 91.66666666666666,
+      "moyenne-generale": 84.37499999999999,
+      "seuil:animation": 1.0,
+      "seuil:planification": 1.0,
+      "m1": null,
+      "m2": 0.0,
+      "m3": 1.0,
+      "m4": 1.0,
+      "domaine:securite": 0.0,
+      "domaine:animation": 1.0,
+      "domaine:organisation": 1.0,
+      "minimaux": 0.0,
+      "reussite": 0.0
+     },
+     "erreursRemplissage": [
+      "sr1",
+      "sr2",
+      "sr3",
+      "sr4",
+      "m6"
+     ]
+    },
+    {
+     "nom": "Chloé",
+     "sources": {
+      "cases": [
+       {
+        "noeud": "e1#1/objectifs",
+        "valeur": 3
+       },
+       {
+        "noeud": "e1#1/deroulement",
+        "valeur": 2
+       },
+       {
+        "noeud": "e1#1/materiel/pret",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#1/materiel/adapte",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#1/materiel/plan-b",
+        "valeur": 0
+       },
+       {
+        "noeud": "consignes-e2",
+        "valeur": 3
+       },
+       {
+        "noeud": "gestion",
+        "valeur": 2
+       },
+       {
+        "noeud": "appreciation-e2",
+        "valeur": 3
+       },
+       {
+        "noeud": "sj1",
+        "valeur": 1
+       },
+       {
+        "noeud": "sj2",
+        "valeur": 1
+       },
+       {
+        "noeud": "sj3",
+        "valeur": 1
+       }
+      ],
+      "nonEvaluations": [],
+      "jokers": []
+     },
+     "attendus": {
+      "e1#1/materiel": 66.66666666666666,
+      "e1#1": 63.888888888888886,
+      "e1#2/materiel": null,
+      "e1#2": null,
+      "planif-e1": 63.888888888888886,
+      "securite-jeu": 100.0,
+      "e2": 75.0,
+      "seuil:e2": 1.0,
+      "securite-rando": null,
+      "e3": null,
+      "e4/c1": null,
+      "e4/c2": null,
+      "e4/c3": null,
+      "e4/c4": null,
+      "e4/c5": null,
+      "e4/c6": null,
+      "e4/c7": null,
+      "e4/c8": null,
+      "e4/c9": null,
+      "e4/c10": null,
+      "e4": null,
+      "e5/c1": null,
+      "e5/c2": null,
+      "e5/c3": null,
+      "e5/c4": null,
+      "e5/c5": null,
+      "e5/c6": null,
+      "e5/c7": null,
+      "e5/c8": null,
+      "e5/c9": null,
+      "e5/c10": null,
+      "e5": null,
+      "e6/c1": null,
+      "e6/c2": null,
+      "e6/c3": null,
+      "e6/c4": null,
+      "e6/c5": null,
+      "e6/c6": null,
+      "e6/c7": null,
+      "e6/c8": null,
+      "e6/c9": null,
+      "e6/c10": null,
+      "e6": null,
+      "e7/c1": null,
+      "e7/c2": null,
+      "e7/c3": null,
+      "e7/c4": null,
+      "e7/c5": null,
+      "e7/c6": null,
+      "e7/c7": null,
+      "e7/c8": null,
+      "e7/c9": null,
+      "e7/c10": null,
+      "e7": null,
+      "e8/c1": null,
+      "e8/c2": null,
+      "e8/c3": null,
+      "e8/c4": null,
+      "e8/c5": null,
+      "e8/c6": null,
+      "e8/c7": null,
+      "e8/c8": null,
+      "e8/c9": null,
+      "e8/c10": null,
+      "e8": null,
+      "comp:communication": null,
+      "seuil:comp:communication": null,
+      "comp:technique": null,
+      "seuil:comp:technique": null,
+      "comp:reflexion": null,
+      "seuil:comp:reflexion": null,
+      "comp:cooperation": null,
+      "seuil:comp:cooperation": null,
+      "animation": 3.5,
+      "securite": 0.0,
+      "planification": 63.888888888888886,
+      "moyenne-generale": 69.44444444444444,
+      "seuil:animation": 1.0,
+      "seuil:planification": 1.0,
+      "m1": null,
+      "m2": 1.0,
+      "m3": 1.0,
+      "m4": 1.0,
+      "domaine:securite": 1.0,
+      "domaine:animation": 1.0,
+      "domaine:organisation": 1.0,
+      "minimaux": 1.0,
+      "reussite": 0.0
+     },
+     "erreursRemplissage": [
+      "sr1",
+      "sr2",
+      "sr3",
+      "sr4",
+      "m6"
+     ]
+    },
+    {
+     "nom": "David",
+     "sources": {
+      "cases": [
+       {
+        "noeud": "e1#1/objectifs",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#1/deroulement",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#1/materiel/pret",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#1/materiel/adapte",
+        "valeur": 0
+       },
+       {
+        "noeud": "e1#1/materiel/plan-b",
+        "valeur": 0
+       },
+       {
+        "noeud": "consignes-e2",
+        "valeur": 3
+       },
+       {
+        "noeud": "gestion",
+        "valeur": 3
+       },
+       {
+        "noeud": "appreciation-e2",
+        "valeur": 2
+       },
+       {
+        "noeud": "sj1",
+        "valeur": 1
+       },
+       {
+        "noeud": "sj2",
+        "valeur": 1
+       },
+       {
+        "noeud": "sj3",
+        "valeur": 1
+       }
+      ],
+      "nonEvaluations": [],
+      "jokers": []
+     },
+     "attendus": {
+      "e1#1/materiel": 33.33333333333333,
+      "e1#1": 27.777777777777775,
+      "e1#2/materiel": null,
+      "e1#2": null,
+      "planif-e1": 27.777777777777775,
+      "securite-jeu": 100.0,
+      "e2": 75.0,
+      "seuil:e2": 1.0,
+      "securite-rando": null,
+      "e3": null,
+      "e4/c1": null,
+      "e4/c2": null,
+      "e4/c3": null,
+      "e4/c4": null,
+      "e4/c5": null,
+      "e4/c6": null,
+      "e4/c7": null,
+      "e4/c8": null,
+      "e4/c9": null,
+      "e4/c10": null,
+      "e4": null,
+      "e5/c1": null,
+      "e5/c2": null,
+      "e5/c3": null,
+      "e5/c4": null,
+      "e5/c5": null,
+      "e5/c6": null,
+      "e5/c7": null,
+      "e5/c8": null,
+      "e5/c9": null,
+      "e5/c10": null,
+      "e5": null,
+      "e6/c1": null,
+      "e6/c2": null,
+      "e6/c3": null,
+      "e6/c4": null,
+      "e6/c5": null,
+      "e6/c6": null,
+      "e6/c7": null,
+      "e6/c8": null,
+      "e6/c9": null,
+      "e6/c10": null,
+      "e6": null,
+      "e7/c1": null,
+      "e7/c2": null,
+      "e7/c3": null,
+      "e7/c4": null,
+      "e7/c5": null,
+      "e7/c6": null,
+      "e7/c7": null,
+      "e7/c8": null,
+      "e7/c9": null,
+      "e7/c10": null,
+      "e7": null,
+      "e8/c1": null,
+      "e8/c2": null,
+      "e8/c3": null,
+      "e8/c4": null,
+      "e8/c5": null,
+      "e8/c6": null,
+      "e8/c7": null,
+      "e8/c8": null,
+      "e8/c9": null,
+      "e8/c10": null,
+      "e8": null,
+      "comp:communication": null,
+      "seuil:comp:communication": null,
+      "comp:technique": null,
+      "seuil:comp:technique": null,
+      "comp:reflexion": null,
+      "seuil:comp:reflexion": null,
+      "comp:cooperation": null,
+      "seuil:comp:cooperation": null,
+      "animation": 4.0,
+      "securite": 0.0,
+      "planification": 27.777777777777775,
+      "moyenne-generale": 51.388888888888886,
+      "seuil:animation": 1.0,
+      "seuil:planification": 0.0,
+      "m1": null,
+      "m2": 1.0,
+      "m3": 1.0,
+      "m4": 1.0,
+      "domaine:securite": 1.0,
+      "domaine:animation": 1.0,
+      "domaine:organisation": 0.0,
+      "minimaux": 0.0,
+      "reussite": 0.0
+     },
+     "erreursRemplissage": [
+      "sr1",
+      "sr2",
+      "sr3",
+      "sr4",
+      "m6"
+     ]
+    },
+    {
+     "nom": "Emma",
+     "sources": {
+      "cases": [
+       {
+        "noeud": "e1#1/objectifs",
+        "valeur": 2
+       },
+       {
+        "noeud": "e1#1/deroulement",
+        "valeur": 3
+       },
+       {
+        "noeud": "e1#1/materiel/pret",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#1/materiel/adapte",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#1/materiel/plan-b",
+        "valeur": 1
+       },
+       {
+        "noeud": "consignes-e2",
+        "valeur": 2
+       },
+       {
+        "noeud": "gestion",
+        "valeur": 2
+       },
+       {
+        "noeud": "appreciation-e2",
+        "valeur": 2
+       },
+       {
+        "noeud": "sj1",
+        "valeur": 1
+       },
+       {
+        "noeud": "sj2",
+        "valeur": 1
+       },
+       {
+        "noeud": "sj3",
+        "valeur": 1
+       }
+      ],
+      "nonEvaluations": [],
+      "jokers": []
+     },
+     "attendus": {
+      "e1#1/materiel": 100.0,
+      "e1#1": 75.0,
+      "e1#2/materiel": null,
+      "e1#2": null,
+      "planif-e1": 75.0,
+      "securite-jeu": 100.0,
+      "e2": 62.5,
+      "seuil:e2": 1.0,
+      "securite-rando": null,
+      "e3": null,
+      "e4/c1": null,
+      "e4/c2": null,
+      "e4/c3": null,
+      "e4/c4": null,
+      "e4/c5": null,
+      "e4/c6": null,
+      "e4/c7": null,
+      "e4/c8": null,
+      "e4/c9": null,
+      "e4/c10": null,
+      "e4": null,
+      "e5/c1": null,
+      "e5/c2": null,
+      "e5/c3": null,
+      "e5/c4": null,
+      "e5/c5": null,
+      "e5/c6": null,
+      "e5/c7": null,
+      "e5/c8": null,
+      "e5/c9": null,
+      "e5/c10": null,
+      "e5": null,
+      "e6/c1": null,
+      "e6/c2": null,
+      "e6/c3": null,
+      "e6/c4": null,
+      "e6/c5": null,
+      "e6/c6": null,
+      "e6/c7": null,
+      "e6/c8": null,
+      "e6/c9": null,
+      "e6/c10": null,
+      "e6": null,
+      "e7/c1": null,
+      "e7/c2": null,
+      "e7/c3": null,
+      "e7/c4": null,
+      "e7/c5": null,
+      "e7/c6": null,
+      "e7/c7": null,
+      "e7/c8": null,
+      "e7/c9": null,
+      "e7/c10": null,
+      "e7": null,
+      "e8/c1": null,
+      "e8/c2": null,
+      "e8/c3": null,
+      "e8/c4": null,
+      "e8/c5": null,
+      "e8/c6": null,
+      "e8/c7": null,
+      "e8/c8": null,
+      "e8/c9": null,
+      "e8/c10": null,
+      "e8": null,
+      "comp:communication": null,
+      "seuil:comp:communication": null,
+      "comp:technique": null,
+      "seuil:comp:technique": null,
+      "comp:reflexion": null,
+      "seuil:comp:reflexion": null,
+      "comp:cooperation": null,
+      "seuil:comp:cooperation": null,
+      "animation": 3.0,
+      "securite": 0.0,
+      "planification": 75.0,
+      "moyenne-generale": 68.75,
+      "seuil:animation": 1.0,
+      "seuil:planification": 1.0,
+      "m1": null,
+      "m2": 1.0,
+      "m3": 1.0,
+      "m4": 1.0,
+      "domaine:securite": 1.0,
+      "domaine:animation": 1.0,
+      "domaine:organisation": 1.0,
+      "minimaux": 1.0,
+      "reussite": 0.0
+     },
+     "erreursRemplissage": [
+      "sr1",
+      "sr2",
+      "sr3",
+      "sr4",
+      "m6"
+     ]
+    },
+    {
+     "nom": "Félix",
+     "sources": {
+      "cases": [
+       {
+        "noeud": "e1#1/objectifs",
+        "valeur": 3
+       },
+       {
+        "noeud": "e1#1/deroulement",
+        "valeur": 3
+       },
+       {
+        "noeud": "e1#1/materiel/pret",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#1/materiel/adapte",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#1/materiel/plan-b",
+        "valeur": 1
+       },
+       {
+        "noeud": "consignes-e2",
+        "valeur": 3
+       },
+       {
+        "noeud": "appreciation-e2",
+        "valeur": 3
+       },
+       {
+        "noeud": "sj1",
+        "valeur": 1
+       },
+       {
+        "noeud": "sj2",
+        "valeur": 1
+       },
+       {
+        "noeud": "sj3",
+        "valeur": 1
+       }
+      ],
+      "nonEvaluations": [],
+      "jokers": []
+     },
+     "attendus": {
+      "e1#1/materiel": 100.0,
+      "e1#1": 83.33333333333334,
+      "e1#2/materiel": null,
+      "e1#2": null,
+      "planif-e1": 83.33333333333334,
+      "securite-jeu": 100.0,
+      "e2": 83.33333333333334,
+      "seuil:e2": 1.0,
+      "securite-rando": null,
+      "e3": null,
+      "e4/c1": null,
+      "e4/c2": null,
+      "e4/c3": null,
+      "e4/c4": null,
+      "e4/c5": null,
+      "e4/c6": null,
+      "e4/c7": null,
+      "e4/c8": null,
+      "e4/c9": null,
+      "e4/c10": null,
+      "e4": null,
+      "e5/c1": null,
+      "e5/c2": null,
+      "e5/c3": null,
+      "e5/c4": null,
+      "e5/c5": null,
+      "e5/c6": null,
+      "e5/c7": null,
+      "e5/c8": null,
+      "e5/c9": null,
+      "e5/c10": null,
+      "e5": null,
+      "e6/c1": null,
+      "e6/c2": null,
+      "e6/c3": null,
+      "e6/c4": null,
+      "e6/c5": null,
+      "e6/c6": null,
+      "e6/c7": null,
+      "e6/c8": null,
+      "e6/c9": null,
+      "e6/c10": null,
+      "e6": null,
+      "e7/c1": null,
+      "e7/c2": null,
+      "e7/c3": null,
+      "e7/c4": null,
+      "e7/c5": null,
+      "e7/c6": null,
+      "e7/c7": null,
+      "e7/c8": null,
+      "e7/c9": null,
+      "e7/c10": null,
+      "e7": null,
+      "e8/c1": null,
+      "e8/c2": null,
+      "e8/c3": null,
+      "e8/c4": null,
+      "e8/c5": null,
+      "e8/c6": null,
+      "e8/c7": null,
+      "e8/c8": null,
+      "e8/c9": null,
+      "e8/c10": null,
+      "e8": null,
+      "comp:communication": null,
+      "seuil:comp:communication": null,
+      "comp:technique": null,
+      "seuil:comp:technique": null,
+      "comp:reflexion": null,
+      "seuil:comp:reflexion": null,
+      "comp:cooperation": null,
+      "seuil:comp:cooperation": null,
+      "animation": 4.0,
+      "securite": 0.0,
+      "planification": 83.33333333333334,
+      "moyenne-generale": 83.33333333333334,
+      "seuil:animation": 1.0,
+      "seuil:planification": 1.0,
+      "m1": null,
+      "m2": 1.0,
+      "m3": 1.0,
+      "m4": null,
+      "domaine:securite": 1.0,
+      "domaine:animation": 1.0,
+      "domaine:organisation": 1.0,
+      "minimaux": 1.0,
+      "reussite": 0.0
+     },
+     "erreursRemplissage": [
+      "sr1",
+      "sr2",
+      "sr3",
+      "sr4",
+      "gestion",
+      "m6",
+      "animation"
+     ]
+    }
+   ]
+  },
+  "V2-copie": {
+   "grille": "G3 V2",
+   "participants": [
+    {
+     "nom": "Alice",
+     "sources": {
+      "cases": [
+       {
+        "noeud": "e1#1/objectifs",
+        "valeur": 3
+       },
+       {
+        "noeud": "e1#1/deroulement",
+        "valeur": 3
+       },
+       {
+        "noeud": "e1#1/materiel/pret",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#1/materiel/adapte",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#1/materiel/plan-b",
+        "valeur": 1
+       },
+       {
+        "noeud": "consignes-e2",
+        "valeur": 3
+       },
+       {
+        "noeud": "gestion",
+        "valeur": 3
+       },
+       {
+        "noeud": "sj1",
+        "valeur": 1
+       },
+       {
+        "noeud": "sj2",
+        "valeur": 1
+       },
+       {
+        "noeud": "sj3",
+        "valeur": 1
+       }
+      ],
+      "nonEvaluations": [],
+      "jokers": []
+     },
+     "attendus": {
+      "e1#1/materiel": 100.0,
+      "e1#1": 83.33333333333334,
+      "e1#2/materiel": null,
+      "e1#2": null,
+      "planif-e1": 83.33333333333334,
+      "securite-jeu": 100.0,
+      "e2": 83.33333333333334,
+      "seuil:e2": 1.0,
+      "securite-rando": null,
+      "e3": null,
+      "e4/c1": null,
+      "e4/c2": null,
+      "e4/c3": null,
+      "e4/c4": null,
+      "e4/c5": null,
+      "e4/c6": null,
+      "e4/c7": null,
+      "e4/c8": null,
+      "e4/c9": null,
+      "e4/c10": null,
+      "e4": null,
+      "e5/c1": null,
+      "e5/c2": null,
+      "e5/c3": null,
+      "e5/c4": null,
+      "e5/c5": null,
+      "e5/c6": null,
+      "e5/c7": null,
+      "e5/c8": null,
+      "e5/c9": null,
+      "e5/c10": null,
+      "e5": null,
+      "e6/c1": null,
+      "e6/c2": null,
+      "e6/c3": null,
+      "e6/c4": null,
+      "e6/c5": null,
+      "e6/c6": null,
+      "e6/c7": null,
+      "e6/c8": null,
+      "e6/c9": null,
+      "e6/c10": null,
+      "e6": null,
+      "e7/c1": null,
+      "e7/c2": null,
+      "e7/c3": null,
+      "e7/c4": null,
+      "e7/c5": null,
+      "e7/c6": null,
+      "e7/c7": null,
+      "e7/c8": null,
+      "e7/c9": null,
+      "e7/c10": null,
+      "e7": null,
+      "e8/c1": null,
+      "e8/c2": null,
+      "e8/c3": null,
+      "e8/c4": null,
+      "e8/c5": null,
+      "e8/c6": null,
+      "e8/c7": null,
+      "e8/c8": null,
+      "e8/c9": null,
+      "e8/c10": null,
+      "e8": null,
+      "comp:communication": null,
+      "seuil:comp:communication": null,
+      "comp:technique": null,
+      "seuil:comp:technique": null,
+      "comp:reflexion": null,
+      "seuil:comp:reflexion": null,
+      "comp:cooperation": null,
+      "seuil:comp:cooperation": null,
+      "animation": 4.0,
+      "securite": 0.0,
+      "planification": 83.33333333333334,
+      "moyenne-generale": 83.33333333333334,
+      "seuil:animation": 1.0,
+      "seuil:planification": 1.0,
+      "m1": null,
+      "m2": 1.0,
+      "m3": 1.0,
+      "m4": 1.0,
+      "domaine:securite": 1.0,
+      "domaine:animation": 1.0,
+      "domaine:organisation": 1.0,
+      "minimaux": 1.0,
+      "reussite": 0.0
+     },
+     "erreursRemplissage": [
+      "sr1",
+      "sr2",
+      "sr3",
+      "sr4",
+      "sr5",
+      "m6"
+     ]
+    },
+    {
+     "nom": "Bruno",
+     "sources": {
+      "cases": [
+       {
+        "noeud": "e1#1/objectifs",
+        "valeur": 4
+       },
+       {
+        "noeud": "e1#1/deroulement",
+        "valeur": 3
+       },
+       {
+        "noeud": "e1#1/materiel/pret",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#1/materiel/adapte",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#1/materiel/plan-b",
+        "valeur": 1
+       },
+       {
+        "noeud": "consignes-e2",
+        "valeur": 4
+       },
+       {
+        "noeud": "gestion",
+        "valeur": 3
+       },
+       {
+        "noeud": "sj1",
+        "valeur": 1
+       },
+       {
+        "noeud": "sj2",
+        "valeur": 0
+       },
+       {
+        "noeud": "sj3",
+        "valeur": 0
+       }
+      ],
+      "nonEvaluations": [],
+      "jokers": []
+     },
+     "attendus": {
+      "e1#1/materiel": 100.0,
+      "e1#1": 91.66666666666666,
+      "e1#2/materiel": null,
+      "e1#2": null,
+      "planif-e1": 91.66666666666666,
+      "securite-jeu": 33.33333333333333,
+      "e2": 69.44444444444443,
+      "seuil:e2": 1.0,
+      "securite-rando": null,
+      "e3": null,
+      "e4/c1": null,
+      "e4/c2": null,
+      "e4/c3": null,
+      "e4/c4": null,
+      "e4/c5": null,
+      "e4/c6": null,
+      "e4/c7": null,
+      "e4/c8": null,
+      "e4/c9": null,
+      "e4/c10": null,
+      "e4": null,
+      "e5/c1": null,
+      "e5/c2": null,
+      "e5/c3": null,
+      "e5/c4": null,
+      "e5/c5": null,
+      "e5/c6": null,
+      "e5/c7": null,
+      "e5/c8": null,
+      "e5/c9": null,
+      "e5/c10": null,
+      "e5": null,
+      "e6/c1": null,
+      "e6/c2": null,
+      "e6/c3": null,
+      "e6/c4": null,
+      "e6/c5": null,
+      "e6/c6": null,
+      "e6/c7": null,
+      "e6/c8": null,
+      "e6/c9": null,
+      "e6/c10": null,
+      "e6": null,
+      "e7/c1": null,
+      "e7/c2": null,
+      "e7/c3": null,
+      "e7/c4": null,
+      "e7/c5": null,
+      "e7/c6": null,
+      "e7/c7": null,
+      "e7/c8": null,
+      "e7/c9": null,
+      "e7/c10": null,
+      "e7": null,
+      "e8/c1": null,
+      "e8/c2": null,
+      "e8/c3": null,
+      "e8/c4": null,
+      "e8/c5": null,
+      "e8/c6": null,
+      "e8/c7": null,
+      "e8/c8": null,
+      "e8/c9": null,
+      "e8/c10": null,
+      "e8": null,
+      "comp:communication": null,
+      "seuil:comp:communication": null,
+      "comp:technique": null,
+      "seuil:comp:technique": null,
+      "comp:reflexion": null,
+      "seuil:comp:reflexion": null,
+      "comp:cooperation": null,
+      "seuil:comp:cooperation": null,
+      "animation": 4.333333333333333,
+      "securite": 0.0,
+      "planification": 91.66666666666666,
+      "moyenne-generale": 80.55555555555554,
+      "seuil:animation": 1.0,
+      "seuil:planification": 1.0,
+      "m1": null,
+      "m2": 0.0,
+      "m3": 1.0,
+      "m4": 1.0,
+      "domaine:securite": 0.0,
+      "domaine:animation": 1.0,
+      "domaine:organisation": 1.0,
+      "minimaux": 0.0,
+      "reussite": 0.0
+     },
+     "erreursRemplissage": [
+      "sr1",
+      "sr2",
+      "sr3",
+      "sr4",
+      "sr5",
+      "m6"
+     ]
+    },
+    {
+     "nom": "Chloé",
+     "sources": {
+      "cases": [
+       {
+        "noeud": "e1#1/objectifs",
+        "valeur": 3
+       },
+       {
+        "noeud": "e1#1/deroulement",
+        "valeur": 2
+       },
+       {
+        "noeud": "e1#1/materiel/pret",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#1/materiel/adapte",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#1/materiel/plan-b",
+        "valeur": 0
+       },
+       {
+        "noeud": "consignes-e2",
+        "valeur": 3
+       },
+       {
+        "noeud": "gestion",
+        "valeur": 2
+       },
+       {
+        "noeud": "sj1",
+        "valeur": 1
+       },
+       {
+        "noeud": "sj2",
+        "valeur": 1
+       },
+       {
+        "noeud": "sj3",
+        "valeur": 1
+       }
+      ],
+      "nonEvaluations": [],
+      "jokers": []
+     },
+     "attendus": {
+      "e1#1/materiel": 66.66666666666666,
+      "e1#1": 63.888888888888886,
+      "e1#2/materiel": null,
+      "e1#2": null,
+      "planif-e1": 63.888888888888886,
+      "securite-jeu": 100.0,
+      "e2": 75.0,
+      "seuil:e2": 1.0,
+      "securite-rando": null,
+      "e3": null,
+      "e4/c1": null,
+      "e4/c2": null,
+      "e4/c3": null,
+      "e4/c4": null,
+      "e4/c5": null,
+      "e4/c6": null,
+      "e4/c7": null,
+      "e4/c8": null,
+      "e4/c9": null,
+      "e4/c10": null,
+      "e4": null,
+      "e5/c1": null,
+      "e5/c2": null,
+      "e5/c3": null,
+      "e5/c4": null,
+      "e5/c5": null,
+      "e5/c6": null,
+      "e5/c7": null,
+      "e5/c8": null,
+      "e5/c9": null,
+      "e5/c10": null,
+      "e5": null,
+      "e6/c1": null,
+      "e6/c2": null,
+      "e6/c3": null,
+      "e6/c4": null,
+      "e6/c5": null,
+      "e6/c6": null,
+      "e6/c7": null,
+      "e6/c8": null,
+      "e6/c9": null,
+      "e6/c10": null,
+      "e6": null,
+      "e7/c1": null,
+      "e7/c2": null,
+      "e7/c3": null,
+      "e7/c4": null,
+      "e7/c5": null,
+      "e7/c6": null,
+      "e7/c7": null,
+      "e7/c8": null,
+      "e7/c9": null,
+      "e7/c10": null,
+      "e7": null,
+      "e8/c1": null,
+      "e8/c2": null,
+      "e8/c3": null,
+      "e8/c4": null,
+      "e8/c5": null,
+      "e8/c6": null,
+      "e8/c7": null,
+      "e8/c8": null,
+      "e8/c9": null,
+      "e8/c10": null,
+      "e8": null,
+      "comp:communication": null,
+      "seuil:comp:communication": null,
+      "comp:technique": null,
+      "seuil:comp:technique": null,
+      "comp:reflexion": null,
+      "seuil:comp:reflexion": null,
+      "comp:cooperation": null,
+      "seuil:comp:cooperation": null,
+      "animation": 3.3333333333333335,
+      "securite": 0.0,
+      "planification": 63.888888888888886,
+      "moyenne-generale": 69.44444444444444,
+      "seuil:animation": 1.0,
+      "seuil:planification": 1.0,
+      "m1": null,
+      "m2": 1.0,
+      "m3": 1.0,
+      "m4": 1.0,
+      "domaine:securite": 1.0,
+      "domaine:animation": 1.0,
+      "domaine:organisation": 1.0,
+      "minimaux": 1.0,
+      "reussite": 0.0
+     },
+     "erreursRemplissage": [
+      "sr1",
+      "sr2",
+      "sr3",
+      "sr4",
+      "sr5",
+      "m6"
+     ]
+    },
+    {
+     "nom": "David",
+     "sources": {
+      "cases": [
+       {
+        "noeud": "e1#1/objectifs",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#1/deroulement",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#1/materiel/pret",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#1/materiel/adapte",
+        "valeur": 0
+       },
+       {
+        "noeud": "e1#1/materiel/plan-b",
+        "valeur": 0
+       },
+       {
+        "noeud": "consignes-e2",
+        "valeur": 3
+       },
+       {
+        "noeud": "gestion",
+        "valeur": 3
+       },
+       {
+        "noeud": "sj1",
+        "valeur": 1
+       },
+       {
+        "noeud": "sj2",
+        "valeur": 1
+       },
+       {
+        "noeud": "sj3",
+        "valeur": 1
+       }
+      ],
+      "nonEvaluations": [],
+      "jokers": []
+     },
+     "attendus": {
+      "e1#1/materiel": 33.33333333333333,
+      "e1#1": 27.777777777777775,
+      "e1#2/materiel": null,
+      "e1#2": null,
+      "planif-e1": 27.777777777777775,
+      "securite-jeu": 100.0,
+      "e2": 83.33333333333334,
+      "seuil:e2": 1.0,
+      "securite-rando": null,
+      "e3": null,
+      "e4/c1": null,
+      "e4/c2": null,
+      "e4/c3": null,
+      "e4/c4": null,
+      "e4/c5": null,
+      "e4/c6": null,
+      "e4/c7": null,
+      "e4/c8": null,
+      "e4/c9": null,
+      "e4/c10": null,
+      "e4": null,
+      "e5/c1": null,
+      "e5/c2": null,
+      "e5/c3": null,
+      "e5/c4": null,
+      "e5/c5": null,
+      "e5/c6": null,
+      "e5/c7": null,
+      "e5/c8": null,
+      "e5/c9": null,
+      "e5/c10": null,
+      "e5": null,
+      "e6/c1": null,
+      "e6/c2": null,
+      "e6/c3": null,
+      "e6/c4": null,
+      "e6/c5": null,
+      "e6/c6": null,
+      "e6/c7": null,
+      "e6/c8": null,
+      "e6/c9": null,
+      "e6/c10": null,
+      "e6": null,
+      "e7/c1": null,
+      "e7/c2": null,
+      "e7/c3": null,
+      "e7/c4": null,
+      "e7/c5": null,
+      "e7/c6": null,
+      "e7/c7": null,
+      "e7/c8": null,
+      "e7/c9": null,
+      "e7/c10": null,
+      "e7": null,
+      "e8/c1": null,
+      "e8/c2": null,
+      "e8/c3": null,
+      "e8/c4": null,
+      "e8/c5": null,
+      "e8/c6": null,
+      "e8/c7": null,
+      "e8/c8": null,
+      "e8/c9": null,
+      "e8/c10": null,
+      "e8": null,
+      "comp:communication": null,
+      "seuil:comp:communication": null,
+      "comp:technique": null,
+      "seuil:comp:technique": null,
+      "comp:reflexion": null,
+      "seuil:comp:reflexion": null,
+      "comp:cooperation": null,
+      "seuil:comp:cooperation": null,
+      "animation": 4.0,
+      "securite": 0.0,
+      "planification": 27.777777777777775,
+      "moyenne-generale": 55.55555555555556,
+      "seuil:animation": 1.0,
+      "seuil:planification": 0.0,
+      "m1": null,
+      "m2": 1.0,
+      "m3": 1.0,
+      "m4": 1.0,
+      "domaine:securite": 1.0,
+      "domaine:animation": 1.0,
+      "domaine:organisation": 0.0,
+      "minimaux": 0.0,
+      "reussite": 0.0
+     },
+     "erreursRemplissage": [
+      "sr1",
+      "sr2",
+      "sr3",
+      "sr4",
+      "sr5",
+      "m6"
+     ]
+    },
+    {
+     "nom": "Emma",
+     "sources": {
+      "cases": [
+       {
+        "noeud": "e1#1/objectifs",
+        "valeur": 2
+       },
+       {
+        "noeud": "e1#1/deroulement",
+        "valeur": 3
+       },
+       {
+        "noeud": "e1#1/materiel/pret",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#1/materiel/adapte",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#1/materiel/plan-b",
+        "valeur": 1
+       },
+       {
+        "noeud": "consignes-e2",
+        "valeur": 2
+       },
+       {
+        "noeud": "gestion",
+        "valeur": 2
+       },
+       {
+        "noeud": "sj1",
+        "valeur": 1
+       },
+       {
+        "noeud": "sj2",
+        "valeur": 1
+       },
+       {
+        "noeud": "sj3",
+        "valeur": 1
+       }
+      ],
+      "nonEvaluations": [],
+      "jokers": []
+     },
+     "attendus": {
+      "e1#1/materiel": 100.0,
+      "e1#1": 75.0,
+      "e1#2/materiel": null,
+      "e1#2": null,
+      "planif-e1": 75.0,
+      "securite-jeu": 100.0,
+      "e2": 66.66666666666666,
+      "seuil:e2": 1.0,
+      "securite-rando": null,
+      "e3": null,
+      "e4/c1": null,
+      "e4/c2": null,
+      "e4/c3": null,
+      "e4/c4": null,
+      "e4/c5": null,
+      "e4/c6": null,
+      "e4/c7": null,
+      "e4/c8": null,
+      "e4/c9": null,
+      "e4/c10": null,
+      "e4": null,
+      "e5/c1": null,
+      "e5/c2": null,
+      "e5/c3": null,
+      "e5/c4": null,
+      "e5/c5": null,
+      "e5/c6": null,
+      "e5/c7": null,
+      "e5/c8": null,
+      "e5/c9": null,
+      "e5/c10": null,
+      "e5": null,
+      "e6/c1": null,
+      "e6/c2": null,
+      "e6/c3": null,
+      "e6/c4": null,
+      "e6/c5": null,
+      "e6/c6": null,
+      "e6/c7": null,
+      "e6/c8": null,
+      "e6/c9": null,
+      "e6/c10": null,
+      "e6": null,
+      "e7/c1": null,
+      "e7/c2": null,
+      "e7/c3": null,
+      "e7/c4": null,
+      "e7/c5": null,
+      "e7/c6": null,
+      "e7/c7": null,
+      "e7/c8": null,
+      "e7/c9": null,
+      "e7/c10": null,
+      "e7": null,
+      "e8/c1": null,
+      "e8/c2": null,
+      "e8/c3": null,
+      "e8/c4": null,
+      "e8/c5": null,
+      "e8/c6": null,
+      "e8/c7": null,
+      "e8/c8": null,
+      "e8/c9": null,
+      "e8/c10": null,
+      "e8": null,
+      "comp:communication": null,
+      "seuil:comp:communication": null,
+      "comp:technique": null,
+      "seuil:comp:technique": null,
+      "comp:reflexion": null,
+      "seuil:comp:reflexion": null,
+      "comp:cooperation": null,
+      "seuil:comp:cooperation": null,
+      "animation": 3.0,
+      "securite": 0.0,
+      "planification": 75.0,
+      "moyenne-generale": 70.83333333333333,
+      "seuil:animation": 1.0,
+      "seuil:planification": 1.0,
+      "m1": null,
+      "m2": 1.0,
+      "m3": 1.0,
+      "m4": 1.0,
+      "domaine:securite": 1.0,
+      "domaine:animation": 1.0,
+      "domaine:organisation": 1.0,
+      "minimaux": 1.0,
+      "reussite": 0.0
+     },
+     "erreursRemplissage": [
+      "sr1",
+      "sr2",
+      "sr3",
+      "sr4",
+      "sr5",
+      "m6"
+     ]
+    },
+    {
+     "nom": "Félix",
+     "sources": {
+      "cases": [
+       {
+        "noeud": "e1#1/objectifs",
+        "valeur": 3
+       },
+       {
+        "noeud": "e1#1/deroulement",
+        "valeur": 3
+       },
+       {
+        "noeud": "e1#1/materiel/pret",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#1/materiel/adapte",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#1/materiel/plan-b",
+        "valeur": 1
+       },
+       {
+        "noeud": "consignes-e2",
+        "valeur": 3
+       },
+       {
+        "noeud": "sj1",
+        "valeur": 1
+       },
+       {
+        "noeud": "sj2",
+        "valeur": 1
+       },
+       {
+        "noeud": "sj3",
+        "valeur": 1
+       }
+      ],
+      "nonEvaluations": [],
+      "jokers": []
+     },
+     "attendus": {
+      "e1#1/materiel": 100.0,
+      "e1#1": 83.33333333333334,
+      "e1#2/materiel": null,
+      "e1#2": null,
+      "planif-e1": 83.33333333333334,
+      "securite-jeu": 100.0,
+      "e2": 87.5,
+      "seuil:e2": 1.0,
+      "securite-rando": null,
+      "e3": null,
+      "e4/c1": null,
+      "e4/c2": null,
+      "e4/c3": null,
+      "e4/c4": null,
+      "e4/c5": null,
+      "e4/c6": null,
+      "e4/c7": null,
+      "e4/c8": null,
+      "e4/c9": null,
+      "e4/c10": null,
+      "e4": null,
+      "e5/c1": null,
+      "e5/c2": null,
+      "e5/c3": null,
+      "e5/c4": null,
+      "e5/c5": null,
+      "e5/c6": null,
+      "e5/c7": null,
+      "e5/c8": null,
+      "e5/c9": null,
+      "e5/c10": null,
+      "e5": null,
+      "e6/c1": null,
+      "e6/c2": null,
+      "e6/c3": null,
+      "e6/c4": null,
+      "e6/c5": null,
+      "e6/c6": null,
+      "e6/c7": null,
+      "e6/c8": null,
+      "e6/c9": null,
+      "e6/c10": null,
+      "e6": null,
+      "e7/c1": null,
+      "e7/c2": null,
+      "e7/c3": null,
+      "e7/c4": null,
+      "e7/c5": null,
+      "e7/c6": null,
+      "e7/c7": null,
+      "e7/c8": null,
+      "e7/c9": null,
+      "e7/c10": null,
+      "e7": null,
+      "e8/c1": null,
+      "e8/c2": null,
+      "e8/c3": null,
+      "e8/c4": null,
+      "e8/c5": null,
+      "e8/c6": null,
+      "e8/c7": null,
+      "e8/c8": null,
+      "e8/c9": null,
+      "e8/c10": null,
+      "e8": null,
+      "comp:communication": null,
+      "seuil:comp:communication": null,
+      "comp:technique": null,
+      "seuil:comp:technique": null,
+      "comp:reflexion": null,
+      "seuil:comp:reflexion": null,
+      "comp:cooperation": null,
+      "seuil:comp:cooperation": null,
+      "animation": 4.0,
+      "securite": 0.0,
+      "planification": 83.33333333333334,
+      "moyenne-generale": 85.41666666666667,
+      "seuil:animation": 1.0,
+      "seuil:planification": 1.0,
+      "m1": null,
+      "m2": 1.0,
+      "m3": 1.0,
+      "m4": null,
+      "domaine:securite": 1.0,
+      "domaine:animation": 1.0,
+      "domaine:organisation": 1.0,
+      "minimaux": 1.0,
+      "reussite": 0.0
+     },
+     "erreursRemplissage": [
+      "sr1",
+      "sr2",
+      "sr3",
+      "sr4",
+      "sr5",
+      "gestion",
+      "m6",
+      "animation"
+     ]
+    }
+   ]
+  },
+  "V2-final": {
+   "grille": "G3 V2",
+   "participants": [
+    {
+     "nom": "Alice",
+     "sources": {
+      "cases": [
+       {
+        "noeud": "e1#1/objectifs",
+        "valeur": 3
+       },
+       {
+        "noeud": "e1#1/deroulement",
+        "valeur": 3
+       },
+       {
+        "noeud": "e1#1/materiel/pret",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#1/materiel/adapte",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#1/materiel/plan-b",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#2/objectifs",
+        "valeur": 3
+       },
+       {
+        "noeud": "e1#2/deroulement",
+        "valeur": 4
+       },
+       {
+        "noeud": "e1#2/materiel/pret",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#2/materiel/adapte",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#2/materiel/plan-b",
+        "valeur": 1
+       },
+       {
+        "noeud": "consignes-e2",
+        "valeur": 3
+       },
+       {
+        "noeud": "gestion",
+        "valeur": 3
+       },
+       {
+        "noeud": "sj1",
+        "valeur": 1
+       },
+       {
+        "noeud": "sj2",
+        "valeur": 1
+       },
+       {
+        "noeud": "sj3",
+        "valeur": 1
+       },
+       {
+        "noeud": "consignes-e3",
+        "valeur": 4
+       },
+       {
+        "noeud": "itineraire",
+        "valeur": 3
+       },
+       {
+        "noeud": "sr1",
+        "valeur": 1
+       },
+       {
+        "noeud": "sr2",
+        "valeur": 1
+       },
+       {
+        "noeud": "sr3",
+        "valeur": 1
+       },
+       {
+        "noeud": "sr4",
+        "valeur": 1
+       },
+       {
+        "noeud": "sr5",
+        "valeur": 1
+       },
+       {
+        "noeud": "m6",
+        "valeur": 1
+       }
+      ],
+      "nonEvaluations": [],
+      "jokers": []
+     },
+     "attendus": {
+      "e1#1/materiel": 100.0,
+      "e1#1": 83.33333333333334,
+      "e1#2/materiel": 100.0,
+      "e1#2": 91.66666666666666,
+      "planif-e1": 83.33333333333334,
+      "securite-jeu": 100.0,
+      "e2": 83.33333333333334,
+      "seuil:e2": 1.0,
+      "securite-rando": 100.0,
+      "e3": 100.0,
+      "e4/c1": null,
+      "e4/c2": null,
+      "e4/c3": null,
+      "e4/c4": null,
+      "e4/c5": null,
+      "e4/c6": null,
+      "e4/c7": null,
+      "e4/c8": null,
+      "e4/c9": null,
+      "e4/c10": null,
+      "e4": null,
+      "e5/c1": null,
+      "e5/c2": null,
+      "e5/c3": null,
+      "e5/c4": null,
+      "e5/c5": null,
+      "e5/c6": null,
+      "e5/c7": null,
+      "e5/c8": null,
+      "e5/c9": null,
+      "e5/c10": null,
+      "e5": null,
+      "e6/c1": null,
+      "e6/c2": null,
+      "e6/c3": null,
+      "e6/c4": null,
+      "e6/c5": null,
+      "e6/c6": null,
+      "e6/c7": null,
+      "e6/c8": null,
+      "e6/c9": null,
+      "e6/c10": null,
+      "e6": null,
+      "e7/c1": null,
+      "e7/c2": null,
+      "e7/c3": null,
+      "e7/c4": null,
+      "e7/c5": null,
+      "e7/c6": null,
+      "e7/c7": null,
+      "e7/c8": null,
+      "e7/c9": null,
+      "e7/c10": null,
+      "e7": null,
+      "e8/c1": null,
+      "e8/c2": null,
+      "e8/c3": null,
+      "e8/c4": null,
+      "e8/c5": null,
+      "e8/c6": null,
+      "e8/c7": null,
+      "e8/c8": null,
+      "e8/c9": null,
+      "e8/c10": null,
+      "e8": null,
+      "comp:communication": null,
+      "seuil:comp:communication": null,
+      "comp:technique": null,
+      "seuil:comp:technique": null,
+      "comp:reflexion": null,
+      "seuil:comp:reflexion": null,
+      "comp:cooperation": null,
+      "seuil:comp:cooperation": null,
+      "animation": 4.25,
+      "securite": 1.0,
+      "planification": 79.16666666666667,
+      "moyenne-generale": 87.5,
+      "seuil:animation": 1.0,
+      "seuil:planification": 1.0,
+      "m1": 1.0,
+      "m2": 1.0,
+      "m3": 1.0,
+      "m4": 1.0,
+      "domaine:securite": 1.0,
+      "domaine:animation": 1.0,
+      "domaine:organisation": 1.0,
+      "minimaux": 1.0,
+      "reussite": 1.0
+     },
+     "erreursRemplissage": []
+    },
+    {
+     "nom": "Bruno",
+     "sources": {
+      "cases": [
+       {
+        "noeud": "e1#1/objectifs",
+        "valeur": 4
+       },
+       {
+        "noeud": "e1#1/deroulement",
+        "valeur": 3
+       },
+       {
+        "noeud": "e1#1/materiel/pret",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#1/materiel/adapte",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#1/materiel/plan-b",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#2/objectifs",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#2/deroulement",
+        "valeur": 2
+       },
+       {
+        "noeud": "e1#2/materiel/pret",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#2/materiel/adapte",
+        "valeur": 0
+       },
+       {
+        "noeud": "e1#2/materiel/plan-b",
+        "valeur": 0
+       },
+       {
+        "noeud": "consignes-e2",
+        "valeur": 4
+       },
+       {
+        "noeud": "gestion",
+        "valeur": 3
+       },
+       {
+        "noeud": "sj1",
+        "valeur": 1
+       },
+       {
+        "noeud": "sj2",
+        "valeur": 0
+       },
+       {
+        "noeud": "sj3",
+        "valeur": 0
+       },
+       {
+        "noeud": "consignes-e3",
+        "valeur": 3
+       },
+       {
+        "noeud": "itineraire",
+        "valeur": 3
+       },
+       {
+        "noeud": "sr1",
+        "valeur": 1
+       },
+       {
+        "noeud": "sr2",
+        "valeur": 0
+       },
+       {
+        "noeud": "sr3",
+        "valeur": 1
+       },
+       {
+        "noeud": "sr4",
+        "valeur": 0
+       },
+       {
+        "noeud": "sr5",
+        "valeur": 1
+       },
+       {
+        "noeud": "m6",
+        "valeur": 1
+       }
+      ],
+      "nonEvaluations": [],
+      "jokers": []
+     },
+     "attendus": {
+      "e1#1/materiel": 100.0,
+      "e1#1": 91.66666666666666,
+      "e1#2/materiel": 33.33333333333333,
+      "e1#2": 36.11111111111111,
+      "planif-e1": 91.66666666666666,
+      "securite-jeu": 33.33333333333333,
+      "e2": 69.44444444444443,
+      "seuil:e2": 1.0,
+      "securite-rando": 60.0,
+      "e3": 67.5,
+      "e4/c1": null,
+      "e4/c2": null,
+      "e4/c3": null,
+      "e4/c4": null,
+      "e4/c5": null,
+      "e4/c6": null,
+      "e4/c7": null,
+      "e4/c8": null,
+      "e4/c9": null,
+      "e4/c10": null,
+      "e4": null,
+      "e5/c1": null,
+      "e5/c2": null,
+      "e5/c3": null,
+      "e5/c4": null,
+      "e5/c5": null,
+      "e5/c6": null,
+      "e5/c7": null,
+      "e5/c8": null,
+      "e5/c9": null,
+      "e5/c10": null,
+      "e5": null,
+      "e6/c1": null,
+      "e6/c2": null,
+      "e6/c3": null,
+      "e6/c4": null,
+      "e6/c5": null,
+      "e6/c6": null,
+      "e6/c7": null,
+      "e6/c8": null,
+      "e6/c9": null,
+      "e6/c10": null,
+      "e6": null,
+      "e7/c1": null,
+      "e7/c2": null,
+      "e7/c3": null,
+      "e7/c4": null,
+      "e7/c5": null,
+      "e7/c6": null,
+      "e7/c7": null,
+      "e7/c8": null,
+      "e7/c9": null,
+      "e7/c10": null,
+      "e7": null,
+      "e8/c1": null,
+      "e8/c2": null,
+      "e8/c3": null,
+      "e8/c4": null,
+      "e8/c5": null,
+      "e8/c6": null,
+      "e8/c7": null,
+      "e8/c8": null,
+      "e8/c9": null,
+      "e8/c10": null,
+      "e8": null,
+      "comp:communication": null,
+      "seuil:comp:communication": null,
+      "comp:technique": null,
+      "seuil:comp:technique": null,
+      "comp:reflexion": null,
+      "seuil:comp:reflexion": null,
+      "comp:cooperation": null,
+      "seuil:comp:cooperation": null,
+      "animation": 4.25,
+      "securite": 0.0,
+      "planification": 83.33333333333333,
+      "moyenne-generale": 73.42592592592592,
+      "seuil:animation": 1.0,
+      "seuil:planification": 1.0,
+      "m1": 0.0,
+      "m2": 0.0,
+      "m3": 1.0,
+      "m4": 1.0,
+      "domaine:securite": 0.0,
+      "domaine:animation": 1.0,
+      "domaine:organisation": 1.0,
+      "minimaux": 0.0,
+      "reussite": 0.0
+     },
+     "erreursRemplissage": []
+    },
+    {
+     "nom": "Chloé",
+     "sources": {
+      "cases": [
+       {
+        "noeud": "e1#1/objectifs",
+        "valeur": 3
+       },
+       {
+        "noeud": "e1#1/deroulement",
+        "valeur": 2
+       },
+       {
+        "noeud": "e1#1/materiel/pret",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#1/materiel/adapte",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#1/materiel/plan-b",
+        "valeur": 0
+       },
+       {
+        "noeud": "e1#2/objectifs",
+        "valeur": 3
+       },
+       {
+        "noeud": "e1#2/deroulement",
+        "valeur": 3
+       },
+       {
+        "noeud": "e1#2/materiel/pret",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#2/materiel/adapte",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#2/materiel/plan-b",
+        "valeur": 1
+       },
+       {
+        "noeud": "consignes-e2",
+        "valeur": 3
+       },
+       {
+        "noeud": "gestion",
+        "valeur": 2
+       },
+       {
+        "noeud": "sj1",
+        "valeur": 1
+       },
+       {
+        "noeud": "sj2",
+        "valeur": 1
+       },
+       {
+        "noeud": "sj3",
+        "valeur": 1
+       },
+       {
+        "noeud": "consignes-e3",
+        "valeur": 2
+       },
+       {
+        "noeud": "itineraire",
+        "valeur": 3
+       },
+       {
+        "noeud": "sr1",
+        "valeur": 1
+       },
+       {
+        "noeud": "sr2",
+        "valeur": 1
+       },
+       {
+        "noeud": "sr3",
+        "valeur": 1
+       },
+       {
+        "noeud": "sr4",
+        "valeur": 1
+       },
+       {
+        "noeud": "sr5",
+        "valeur": 1
+       },
+       {
+        "noeud": "m6",
+        "valeur": 1
+       }
+      ],
+      "nonEvaluations": [
+       {
+        "noeud": "reg:e3"
+       }
+      ],
+      "jokers": []
+     },
+     "attendus": {
+      "e1#1/materiel": 66.66666666666666,
+      "e1#1": 63.888888888888886,
+      "e1#2/materiel": 100.0,
+      "e1#2": 83.33333333333334,
+      "planif-e1": 63.888888888888886,
+      "securite-jeu": 100.0,
+      "e2": 75.0,
+      "seuil:e2": 1.0,
+      "securite-rando": null,
+      "e3": null,
+      "e4/c1": null,
+      "e4/c2": null,
+      "e4/c3": null,
+      "e4/c4": null,
+      "e4/c5": null,
+      "e4/c6": null,
+      "e4/c7": null,
+      "e4/c8": null,
+      "e4/c9": null,
+      "e4/c10": null,
+      "e4": null,
+      "e5/c1": null,
+      "e5/c2": null,
+      "e5/c3": null,
+      "e5/c4": null,
+      "e5/c5": null,
+      "e5/c6": null,
+      "e5/c7": null,
+      "e5/c8": null,
+      "e5/c9": null,
+      "e5/c10": null,
+      "e5": null,
+      "e6/c1": null,
+      "e6/c2": null,
+      "e6/c3": null,
+      "e6/c4": null,
+      "e6/c5": null,
+      "e6/c6": null,
+      "e6/c7": null,
+      "e6/c8": null,
+      "e6/c9": null,
+      "e6/c10": null,
+      "e6": null,
+      "e7/c1": null,
+      "e7/c2": null,
+      "e7/c3": null,
+      "e7/c4": null,
+      "e7/c5": null,
+      "e7/c6": null,
+      "e7/c7": null,
+      "e7/c8": null,
+      "e7/c9": null,
+      "e7/c10": null,
+      "e7": null,
+      "e8/c1": null,
+      "e8/c2": null,
+      "e8/c3": null,
+      "e8/c4": null,
+      "e8/c5": null,
+      "e8/c6": null,
+      "e8/c7": null,
+      "e8/c8": null,
+      "e8/c9": null,
+      "e8/c10": null,
+      "e8": null,
+      "comp:communication": null,
+      "seuil:comp:communication": null,
+      "comp:technique": null,
+      "seuil:comp:technique": null,
+      "comp:reflexion": null,
+      "seuil:comp:reflexion": null,
+      "comp:cooperation": null,
+      "seuil:comp:cooperation": null,
+      "animation": 3.3333333333333335,
+      "securite": 0.0,
+      "planification": 63.888888888888886,
+      "moyenne-generale": 69.44444444444444,
+      "seuil:animation": 1.0,
+      "seuil:planification": 1.0,
+      "m1": null,
+      "m2": 1.0,
+      "m3": 1.0,
+      "m4": 1.0,
+      "domaine:securite": 1.0,
+      "domaine:animation": 1.0,
+      "domaine:organisation": 1.0,
+      "minimaux": 1.0,
+      "reussite": 0.0
+     },
+     "erreursRemplissage": [
+      "sr1",
+      "sr2",
+      "sr3",
+      "sr4",
+      "sr5"
+     ]
+    },
+    {
+     "nom": "David",
+     "sources": {
+      "cases": [
+       {
+        "noeud": "e1#1/objectifs",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#1/deroulement",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#1/materiel/pret",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#1/materiel/adapte",
+        "valeur": 0
+       },
+       {
+        "noeud": "e1#1/materiel/plan-b",
+        "valeur": 0
+       },
+       {
+        "noeud": "e1#2/objectifs",
+        "valeur": 4
+       },
+       {
+        "noeud": "e1#2/deroulement",
+        "valeur": 3
+       },
+       {
+        "noeud": "e1#2/materiel/pret",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#2/materiel/adapte",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#2/materiel/plan-b",
+        "valeur": 1
+       },
+       {
+        "noeud": "consignes-e2",
+        "valeur": 3
+       },
+       {
+        "noeud": "gestion",
+        "valeur": 3
+       },
+       {
+        "noeud": "sj1",
+        "valeur": 1
+       },
+       {
+        "noeud": "sj2",
+        "valeur": 1
+       },
+       {
+        "noeud": "sj3",
+        "valeur": 1
+       },
+       {
+        "noeud": "consignes-e3",
+        "valeur": 3
+       },
+       {
+        "noeud": "itineraire",
+        "valeur": 3
+       },
+       {
+        "noeud": "sr1",
+        "valeur": 1
+       },
+       {
+        "noeud": "sr2",
+        "valeur": 1
+       },
+       {
+        "noeud": "sr3",
+        "valeur": 1
+       },
+       {
+        "noeud": "sr4",
+        "valeur": 1
+       },
+       {
+        "noeud": "sr5",
+        "valeur": 1
+       },
+       {
+        "noeud": "m6",
+        "valeur": 1
+       }
+      ],
+      "nonEvaluations": [],
+      "jokers": []
+     },
+     "attendus": {
+      "e1#1/materiel": 33.33333333333333,
+      "e1#1": 27.777777777777775,
+      "e1#2/materiel": 100.0,
+      "e1#2": 91.66666666666666,
+      "planif-e1": 60.0,
+      "securite-jeu": 100.0,
+      "e2": 83.33333333333334,
+      "seuil:e2": 1.0,
+      "securite-rando": 100.0,
+      "e3": 87.5,
+      "e4/c1": null,
+      "e4/c2": null,
+      "e4/c3": null,
+      "e4/c4": null,
+      "e4/c5": null,
+      "e4/c6": null,
+      "e4/c7": null,
+      "e4/c8": null,
+      "e4/c9": null,
+      "e4/c10": null,
+      "e4": null,
+      "e5/c1": null,
+      "e5/c2": null,
+      "e5/c3": null,
+      "e5/c4": null,
+      "e5/c5": null,
+      "e5/c6": null,
+      "e5/c7": null,
+      "e5/c8": null,
+      "e5/c9": null,
+      "e5/c10": null,
+      "e5": null,
+      "e6/c1": null,
+      "e6/c2": null,
+      "e6/c3": null,
+      "e6/c4": null,
+      "e6/c5": null,
+      "e6/c6": null,
+      "e6/c7": null,
+      "e6/c8": null,
+      "e6/c9": null,
+      "e6/c10": null,
+      "e6": null,
+      "e7/c1": null,
+      "e7/c2": null,
+      "e7/c3": null,
+      "e7/c4": null,
+      "e7/c5": null,
+      "e7/c6": null,
+      "e7/c7": null,
+      "e7/c8": null,
+      "e7/c9": null,
+      "e7/c10": null,
+      "e7": null,
+      "e8/c1": null,
+      "e8/c2": null,
+      "e8/c3": null,
+      "e8/c4": null,
+      "e8/c5": null,
+      "e8/c6": null,
+      "e8/c7": null,
+      "e8/c8": null,
+      "e8/c9": null,
+      "e8/c10": null,
+      "e8": null,
+      "comp:communication": null,
+      "seuil:comp:communication": null,
+      "comp:technique": null,
+      "seuil:comp:technique": null,
+      "comp:reflexion": null,
+      "seuil:comp:reflexion": null,
+      "comp:cooperation": null,
+      "seuil:comp:cooperation": null,
+      "animation": 4.0,
+      "securite": 1.0,
+      "planification": 67.5,
+      "moyenne-generale": 79.44444444444446,
+      "seuil:animation": 1.0,
+      "seuil:planification": 1.0,
+      "m1": 1.0,
+      "m2": 1.0,
+      "m3": 1.0,
+      "m4": 1.0,
+      "domaine:securite": 1.0,
+      "domaine:animation": 1.0,
+      "domaine:organisation": 1.0,
+      "minimaux": 1.0,
+      "reussite": 1.0
+     },
+     "erreursRemplissage": []
+    },
+    {
+     "nom": "Emma",
+     "sources": {
+      "cases": [
+       {
+        "noeud": "e1#1/objectifs",
+        "valeur": 2
+       },
+       {
+        "noeud": "e1#1/deroulement",
+        "valeur": 3
+       },
+       {
+        "noeud": "e1#1/materiel/pret",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#1/materiel/adapte",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#1/materiel/plan-b",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#2/objectifs",
+        "valeur": 3
+       },
+       {
+        "noeud": "e1#2/deroulement",
+        "valeur": 3
+       },
+       {
+        "noeud": "e1#2/materiel/pret",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#2/materiel/adapte",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#2/materiel/plan-b",
+        "valeur": 1
+       },
+       {
+        "noeud": "consignes-e2",
+        "valeur": 2
+       },
+       {
+        "noeud": "gestion",
+        "valeur": 2
+       },
+       {
+        "noeud": "sj1",
+        "valeur": 1
+       },
+       {
+        "noeud": "sj2",
+        "valeur": 1
+       },
+       {
+        "noeud": "sj3",
+        "valeur": 1
+       },
+       {
+        "noeud": "consignes-e3",
+        "valeur": 1
+       },
+       {
+        "noeud": "itineraire",
+        "valeur": 2
+       },
+       {
+        "noeud": "sr1",
+        "valeur": 1
+       },
+       {
+        "noeud": "sr2",
+        "valeur": 1
+       },
+       {
+        "noeud": "sr3",
+        "valeur": 1
+       },
+       {
+        "noeud": "sr4",
+        "valeur": 1
+       },
+       {
+        "noeud": "sr5",
+        "valeur": 1
+       },
+       {
+        "noeud": "m6",
+        "valeur": 1
+       }
+      ],
+      "nonEvaluations": [],
+      "jokers": [
+       {
+        "jokerDef": "joker:animation",
+        "justification": "Participant type",
+        "auteur": "corpus",
+        "date": "2026-10-05"
+       }
+      ]
+     },
+     "attendus": {
+      "e1#1/materiel": 100.0,
+      "e1#1": 75.0,
+      "e1#2/materiel": 100.0,
+      "e1#2": 83.33333333333334,
+      "planif-e1": 75.0,
+      "securite-jeu": 100.0,
+      "e2": 66.66666666666666,
+      "seuil:e2": 1.0,
+      "securite-rando": 100.0,
+      "e3": 62.5,
+      "e4/c1": null,
+      "e4/c2": null,
+      "e4/c3": null,
+      "e4/c4": null,
+      "e4/c5": null,
+      "e4/c6": null,
+      "e4/c7": null,
+      "e4/c8": null,
+      "e4/c9": null,
+      "e4/c10": null,
+      "e4": null,
+      "e5/c1": null,
+      "e5/c2": null,
+      "e5/c3": null,
+      "e5/c4": null,
+      "e5/c5": null,
+      "e5/c6": null,
+      "e5/c7": null,
+      "e5/c8": null,
+      "e5/c9": null,
+      "e5/c10": null,
+      "e5": null,
+      "e6/c1": null,
+      "e6/c2": null,
+      "e6/c3": null,
+      "e6/c4": null,
+      "e6/c5": null,
+      "e6/c6": null,
+      "e6/c7": null,
+      "e6/c8": null,
+      "e6/c9": null,
+      "e6/c10": null,
+      "e6": null,
+      "e7/c1": null,
+      "e7/c2": null,
+      "e7/c3": null,
+      "e7/c4": null,
+      "e7/c5": null,
+      "e7/c6": null,
+      "e7/c7": null,
+      "e7/c8": null,
+      "e7/c9": null,
+      "e7/c10": null,
+      "e7": null,
+      "e8/c1": null,
+      "e8/c2": null,
+      "e8/c3": null,
+      "e8/c4": null,
+      "e8/c5": null,
+      "e8/c6": null,
+      "e8/c7": null,
+      "e8/c8": null,
+      "e8/c9": null,
+      "e8/c10": null,
+      "e8": null,
+      "comp:communication": null,
+      "seuil:comp:communication": null,
+      "comp:technique": null,
+      "seuil:comp:technique": null,
+      "comp:reflexion": null,
+      "seuil:comp:reflexion": null,
+      "comp:cooperation": null,
+      "seuil:comp:cooperation": null,
+      "animation": 3.0,
+      "securite": 1.0,
+      "planification": 62.5,
+      "moyenne-generale": 63.888888888888886,
+      "seuil:animation": 1.0,
+      "seuil:planification": 1.0,
+      "m1": 1.0,
+      "m2": 1.0,
+      "m3": 1.0,
+      "m4": 1.0,
+      "domaine:securite": 1.0,
+      "domaine:animation": 1.0,
+      "domaine:organisation": 1.0,
+      "minimaux": 1.0,
+      "reussite": 1.0
+     },
+     "erreursRemplissage": []
+    },
+    {
+     "nom": "Félix",
+     "sources": {
+      "cases": [
+       {
+        "noeud": "e1#1/objectifs",
+        "valeur": 3
+       },
+       {
+        "noeud": "e1#1/deroulement",
+        "valeur": 3
+       },
+       {
+        "noeud": "e1#1/materiel/pret",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#1/materiel/adapte",
+        "valeur": 1
+       },
+       {
+        "noeud": "e1#1/materiel/plan-b",
+        "valeur": 1
+       },
+       {
+        "noeud": "consignes-e2",
+        "valeur": 3
+       },
+       {
+        "noeud": "sj1",
+        "valeur": 1
+       },
+       {
+        "noeud": "sj2",
+        "valeur": 1
+       },
+       {
+        "noeud": "sj3",
+        "valeur": 1
+       },
+       {
+        "noeud": "consignes-e3",
+        "valeur": 3
+       },
+       {
+        "noeud": "itineraire",
+        "valeur": 3
+       },
+       {
+        "noeud": "sr1",
+        "valeur": 1
+       },
+       {
+        "noeud": "sr2",
+        "valeur": 1
+       },
+       {
+        "noeud": "sr3",
+        "valeur": 1
+       },
+       {
+        "noeud": "sr4",
+        "valeur": 1
+       }
+      ],
+      "nonEvaluations": [],
+      "jokers": []
+     },
+     "attendus": {
+      "e1#1/materiel": 100.0,
+      "e1#1": 83.33333333333334,
+      "e1#2/materiel": null,
+      "e1#2": null,
+      "planif-e1": 83.33333333333334,
+      "securite-jeu": 100.0,
+      "e2": 87.5,
+      "seuil:e2": 1.0,
+      "securite-rando": 100.0,
+      "e3": 87.5,
+      "e4/c1": null,
+      "e4/c2": null,
+      "e4/c3": null,
+      "e4/c4": null,
+      "e4/c5": null,
+      "e4/c6": null,
+      "e4/c7": null,
+      "e4/c8": null,
+      "e4/c9": null,
+      "e4/c10": null,
+      "e4": null,
+      "e5/c1": null,
+      "e5/c2": null,
+      "e5/c3": null,
+      "e5/c4": null,
+      "e5/c5": null,
+      "e5/c6": null,
+      "e5/c7": null,
+      "e5/c8": null,
+      "e5/c9": null,
+      "e5/c10": null,
+      "e5": null,
+      "e6/c1": null,
+      "e6/c2": null,
+      "e6/c3": null,
+      "e6/c4": null,
+      "e6/c5": null,
+      "e6/c6": null,
+      "e6/c7": null,
+      "e6/c8": null,
+      "e6/c9": null,
+      "e6/c10": null,
+      "e6": null,
+      "e7/c1": null,
+      "e7/c2": null,
+      "e7/c3": null,
+      "e7/c4": null,
+      "e7/c5": null,
+      "e7/c6": null,
+      "e7/c7": null,
+      "e7/c8": null,
+      "e7/c9": null,
+      "e7/c10": null,
+      "e7": null,
+      "e8/c1": null,
+      "e8/c2": null,
+      "e8/c3": null,
+      "e8/c4": null,
+      "e8/c5": null,
+      "e8/c6": null,
+      "e8/c7": null,
+      "e8/c8": null,
+      "e8/c9": null,
+      "e8/c10": null,
+      "e8": null,
+      "comp:communication": null,
+      "seuil:comp:communication": null,
+      "comp:technique": null,
+      "seuil:comp:technique": null,
+      "comp:reflexion": null,
+      "seuil:comp:reflexion": null,
+      "comp:cooperation": null,
+      "seuil:comp:cooperation": null,
+      "animation": 4.0,
+      "securite": 1.0,
+      "planification": 79.16666666666667,
+      "moyenne-generale": 84.72222222222223,
+      "seuil:animation": 1.0,
+      "seuil:planification": 1.0,
+      "m1": 1.0,
+      "m2": 1.0,
+      "m3": 1.0,
+      "m4": null,
+      "domaine:securite": 1.0,
+      "domaine:animation": 1.0,
+      "domaine:organisation": 1.0,
+      "minimaux": 1.0,
+      "reussite": 1.0
+     },
+     "erreursRemplissage": [
+      "sr5",
+      "gestion",
+      "m6"
+     ]
+    }
+   ]
+  }
+ },
+ "commutateurs": [
+  {
+   "etat": "V2-final",
+   "nom": "Bruno",
+   "commutateurs": {
+    "f5Derniere": true
+   },
+   "attendus": {
+    "e1#1/materiel": 100.0,
+    "e1#1": 91.66666666666666,
+    "e1#2/materiel": 33.33333333333333,
+    "e1#2": 36.11111111111111,
+    "planif-e1": 36.11111111111111,
+    "securite-jeu": 33.33333333333333,
+    "e2": 69.44444444444443,
+    "seuil:e2": 1.0,
+    "securite-rando": 60.0,
+    "e3": 67.5,
+    "e4/c1": null,
+    "e4/c2": null,
+    "e4/c3": null,
+    "e4/c4": null,
+    "e4/c5": null,
+    "e4/c6": null,
+    "e4/c7": null,
+    "e4/c8": null,
+    "e4/c9": null,
+    "e4/c10": null,
+    "e4": null,
+    "e5/c1": null,
+    "e5/c2": null,
+    "e5/c3": null,
+    "e5/c4": null,
+    "e5/c5": null,
+    "e5/c6": null,
+    "e5/c7": null,
+    "e5/c8": null,
+    "e5/c9": null,
+    "e5/c10": null,
+    "e5": null,
+    "e6/c1": null,
+    "e6/c2": null,
+    "e6/c3": null,
+    "e6/c4": null,
+    "e6/c5": null,
+    "e6/c6": null,
+    "e6/c7": null,
+    "e6/c8": null,
+    "e6/c9": null,
+    "e6/c10": null,
+    "e6": null,
+    "e7/c1": null,
+    "e7/c2": null,
+    "e7/c3": null,
+    "e7/c4": null,
+    "e7/c5": null,
+    "e7/c6": null,
+    "e7/c7": null,
+    "e7/c8": null,
+    "e7/c9": null,
+    "e7/c10": null,
+    "e7": null,
+    "e8/c1": null,
+    "e8/c2": null,
+    "e8/c3": null,
+    "e8/c4": null,
+    "e8/c5": null,
+    "e8/c6": null,
+    "e8/c7": null,
+    "e8/c8": null,
+    "e8/c9": null,
+    "e8/c10": null,
+    "e8": null,
+    "comp:communication": null,
+    "seuil:comp:communication": null,
+    "comp:technique": null,
+    "seuil:comp:technique": null,
+    "comp:reflexion": null,
+    "seuil:comp:reflexion": null,
+    "comp:cooperation": null,
+    "seuil:comp:cooperation": null,
+    "animation": 4.25,
+    "securite": 0.0,
+    "planification": 55.55555555555556,
+    "moyenne-generale": 64.16666666666666,
+    "seuil:animation": 1.0,
+    "seuil:planification": 0.0,
+    "m1": 0.0,
+    "m2": 0.0,
+    "m3": 1.0,
+    "m4": 1.0,
+    "domaine:securite": 0.0,
+    "domaine:animation": 1.0,
+    "domaine:organisation": 0.0,
+    "minimaux": 0.0,
+    "reussite": 0.0
+   }
+  },
+  {
+   "etat": "V2-final",
+   "nom": "David",
+   "commutateurs": {
+    "f5SansPlafond": true
+   },
+   "attendus": {
+    "e1#1/materiel": 33.33333333333333,
+    "e1#1": 27.777777777777775,
+    "e1#2/materiel": 100.0,
+    "e1#2": 91.66666666666666,
+    "planif-e1": 91.66666666666666,
+    "securite-jeu": 100.0,
+    "e2": 83.33333333333334,
+    "seuil:e2": 1.0,
+    "securite-rando": 100.0,
+    "e3": 87.5,
+    "e4/c1": null,
+    "e4/c2": null,
+    "e4/c3": null,
+    "e4/c4": null,
+    "e4/c5": null,
+    "e4/c6": null,
+    "e4/c7": null,
+    "e4/c8": null,
+    "e4/c9": null,
+    "e4/c10": null,
+    "e4": null,
+    "e5/c1": null,
+    "e5/c2": null,
+    "e5/c3": null,
+    "e5/c4": null,
+    "e5/c5": null,
+    "e5/c6": null,
+    "e5/c7": null,
+    "e5/c8": null,
+    "e5/c9": null,
+    "e5/c10": null,
+    "e5": null,
+    "e6/c1": null,
+    "e6/c2": null,
+    "e6/c3": null,
+    "e6/c4": null,
+    "e6/c5": null,
+    "e6/c6": null,
+    "e6/c7": null,
+    "e6/c8": null,
+    "e6/c9": null,
+    "e6/c10": null,
+    "e6": null,
+    "e7/c1": null,
+    "e7/c2": null,
+    "e7/c3": null,
+    "e7/c4": null,
+    "e7/c5": null,
+    "e7/c6": null,
+    "e7/c7": null,
+    "e7/c8": null,
+    "e7/c9": null,
+    "e7/c10": null,
+    "e7": null,
+    "e8/c1": null,
+    "e8/c2": null,
+    "e8/c3": null,
+    "e8/c4": null,
+    "e8/c5": null,
+    "e8/c6": null,
+    "e8/c7": null,
+    "e8/c8": null,
+    "e8/c9": null,
+    "e8/c10": null,
+    "e8": null,
+    "comp:communication": null,
+    "seuil:comp:communication": null,
+    "comp:technique": null,
+    "seuil:comp:technique": null,
+    "comp:reflexion": null,
+    "seuil:comp:reflexion": null,
+    "comp:cooperation": null,
+    "seuil:comp:cooperation": null,
+    "animation": 4.0,
+    "securite": 1.0,
+    "planification": 83.33333333333333,
+    "moyenne-generale": 84.72222222222223,
+    "seuil:animation": 1.0,
+    "seuil:planification": 1.0,
+    "m1": 1.0,
+    "m2": 1.0,
+    "m3": 1.0,
+    "m4": 1.0,
+    "domaine:securite": 1.0,
+    "domaine:animation": 1.0,
+    "domaine:organisation": 1.0,
+    "minimaux": 1.0,
+    "reussite": 1.0
+   }
+  },
+  {
+   "etat": "V2-final",
+   "nom": "David",
+   "commutateurs": {
+    "f5Derniere": true
+   },
+   "attendus": {
+    "e1#1/materiel": 33.33333333333333,
+    "e1#1": 27.777777777777775,
+    "e1#2/materiel": 100.0,
+    "e1#2": 91.66666666666666,
+    "planif-e1": 60.0,
+    "securite-jeu": 100.0,
+    "e2": 83.33333333333334,
+    "seuil:e2": 1.0,
+    "securite-rando": 100.0,
+    "e3": 87.5,
+    "e4/c1": null,
+    "e4/c2": null,
+    "e4/c3": null,
+    "e4/c4": null,
+    "e4/c5": null,
+    "e4/c6": null,
+    "e4/c7": null,
+    "e4/c8": null,
+    "e4/c9": null,
+    "e4/c10": null,
+    "e4": null,
+    "e5/c1": null,
+    "e5/c2": null,
+    "e5/c3": null,
+    "e5/c4": null,
+    "e5/c5": null,
+    "e5/c6": null,
+    "e5/c7": null,
+    "e5/c8": null,
+    "e5/c9": null,
+    "e5/c10": null,
+    "e5": null,
+    "e6/c1": null,
+    "e6/c2": null,
+    "e6/c3": null,
+    "e6/c4": null,
+    "e6/c5": null,
+    "e6/c6": null,
+    "e6/c7": null,
+    "e6/c8": null,
+    "e6/c9": null,
+    "e6/c10": null,
+    "e6": null,
+    "e7/c1": null,
+    "e7/c2": null,
+    "e7/c3": null,
+    "e7/c4": null,
+    "e7/c5": null,
+    "e7/c6": null,
+    "e7/c7": null,
+    "e7/c8": null,
+    "e7/c9": null,
+    "e7/c10": null,
+    "e7": null,
+    "e8/c1": null,
+    "e8/c2": null,
+    "e8/c3": null,
+    "e8/c4": null,
+    "e8/c5": null,
+    "e8/c6": null,
+    "e8/c7": null,
+    "e8/c8": null,
+    "e8/c9": null,
+    "e8/c10": null,
+    "e8": null,
+    "comp:communication": null,
+    "seuil:comp:communication": null,
+    "comp:technique": null,
+    "seuil:comp:technique": null,
+    "comp:reflexion": null,
+    "seuil:comp:reflexion": null,
+    "comp:cooperation": null,
+    "seuil:comp:cooperation": null,
+    "animation": 4.0,
+    "securite": 1.0,
+    "planification": 67.5,
+    "moyenne-generale": 79.44444444444446,
+    "seuil:animation": 1.0,
+    "seuil:planification": 1.0,
+    "m1": 1.0,
+    "m2": 1.0,
+    "m3": 1.0,
+    "m4": 1.0,
+    "domaine:securite": 1.0,
+    "domaine:animation": 1.0,
+    "domaine:organisation": 1.0,
+    "minimaux": 1.0,
+    "reussite": 1.0
+   }
+  }
+ ],
+ "cheminsMultiples": {
+  "G3 V1": {
+   "plusieursExigences": {
+    "consignes-e2": [
+     "seuil:e2",
+     "seuil:animation",
+     "m3"
+    ],
+    "gestion": [
+     "seuil:e2",
+     "seuil:animation",
+     "m4"
+    ],
+    "sj1": [
+     "seuil:e2",
+     "securite",
+     "m2"
+    ],
+    "sj2": [
+     "seuil:e2",
+     "securite",
+     "m2"
+    ],
+    "sj3": [
+     "seuil:e2",
+     "securite",
+     "m2"
+    ],
+    "consignes-e3": [
+     "seuil:animation",
+     "m3"
+    ],
+    "sr1": [
+     "securite",
+     "m1"
+    ],
+    "sr2": [
+     "securite",
+     "m1"
+    ],
+    "sr3": [
+     "securite",
+     "m1"
+    ],
+    "sr4": [
+     "securite",
+     "m1"
+    ]
+   },
+   "influenceMultiple": {
+    "consignes-e2": [
+     "reussite"
+    ],
+    "gestion": [
+     "reussite"
+    ],
+    "sj1": [
+     "reussite"
+    ],
+    "sj2": [
+     "reussite"
+    ],
+    "sj3": [
+     "reussite"
+    ],
+    "consignes-e3": [
+     "reussite"
+    ],
+    "sr1": [
+     "reussite"
+    ],
+    "sr2": [
+     "reussite"
+    ],
+    "sr3": [
+     "reussite"
+    ],
+    "sr4": [
+     "reussite"
+    ],
+    "seuil:planification": [
+     "reussite"
+    ]
+   }
+  },
+  "G3 V2": {
+   "plusieursExigences": {
+    "consignes-e2": [
+     "seuil:e2",
+     "seuil:animation",
+     "m3"
+    ],
+    "gestion": [
+     "seuil:e2",
+     "seuil:animation",
+     "m4"
+    ],
+    "sj1": [
+     "seuil:e2",
+     "securite",
+     "m2"
+    ],
+    "sj2": [
+     "seuil:e2",
+     "securite",
+     "m2"
+    ],
+    "sj3": [
+     "seuil:e2",
+     "securite",
+     "m2"
+    ],
+    "consignes-e3": [
+     "seuil:animation",
+     "m3"
+    ],
+    "sr1": [
+     "securite",
+     "m1"
+    ],
+    "sr2": [
+     "securite",
+     "m1"
+    ],
+    "sr3": [
+     "securite",
+     "m1"
+    ],
+    "sr4": [
+     "securite",
+     "m1"
+    ],
+    "sr5": [
+     "securite",
+     "m1"
+    ]
+   },
+   "influenceMultiple": {
+    "consignes-e2": [
+     "reussite"
+    ],
+    "gestion": [
+     "reussite"
+    ],
+    "sj1": [
+     "reussite"
+    ],
+    "sj2": [
+     "reussite"
+    ],
+    "sj3": [
+     "reussite"
+    ],
+    "consignes-e3": [
+     "reussite"
+    ],
+    "sr1": [
+     "reussite"
+    ],
+    "sr2": [
+     "reussite"
+    ],
+    "sr3": [
+     "reussite"
+    ],
+    "sr4": [
+     "reussite"
+    ],
+    "sr5": [
+     "reussite"
+    ],
+    "seuil:planification": [
+     "reussite"
+    ]
+   }
+  }
+ }
+}
