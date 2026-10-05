@@ -1,5 +1,7 @@
 // Interface du store de notes (spec 20, « Store de notes »), commune aux variantes.
 
+import type { Explication } from "../noyau/explain";
+import type { Graphe } from "../noyau/graphe";
 import type { EtatRemplissage } from "../noyau/remplissage";
 
 export type { EtatRemplissage };
@@ -21,5 +23,15 @@ export interface StoreNotes {
   subscribeResult(g: number, p: number, n: number, rappel: () => void): () => void;
   getFillStatus(g: number, p: number): EtatRemplissage;
   subscribeFillStatus(g: number, p: number, rappel: () => void): () => void;
+  /**
+   * Tout changement des sources du participant (cases, non-évaluations,
+   * jokers), même sans effet sur un résultat : l'explication et le graphe se
+   * redemandent alors, sans souscrire à chaque cellule.
+   */
+  subscribeParticipant(g: number, p: number, rappel: () => void): () => void;
+  /** Explication d'un résultat, rejouée à la demande (promesse : elle pourra venir d'un worker). */
+  explain(g: number, p: number, n: number): Promise<Explication>;
+  /** Graphe de propagation d'un participant. */
+  graphe(g: number, p: number): Promise<Graphe>;
   dispose(): void;
 }

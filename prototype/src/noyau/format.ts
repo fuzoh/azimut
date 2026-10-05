@@ -205,4 +205,6 @@ export interface FichierG3 {
     string,
     { plusieursExigences: Record<string, string[]>; influenceMultiple: Record<string, string[]> }
   >;
+  /** Graphe de propagation de V2 final : nœud décisif, nœuds indicatifs, feuilles couvertes par participant. */
+  graphe: { decisif: string; indicatifs: string[]; couvertesParDispense: Record<string, string[]> };
 }

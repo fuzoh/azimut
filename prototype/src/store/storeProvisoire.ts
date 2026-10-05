@@ -4,6 +4,8 @@
 
 import { type Plan, TYPE_DONNEES } from "../noyau/compile";
 import { evaluate, type Resultats, type SourcesParticipant } from "../noyau/evaluate";
+import { explain } from "../noyau/explain";
+import { graphe } from "../noyau/graphe";
 import { remplissage } from "../noyau/remplissage";
 import { cle, decoderCle } from "../sources/cle";
 import type { Sources } from "../sources/collections";
@@ -33,6 +35,8 @@ export function creerStoreProvisoire(sources: Sources, plans: Plan[]): StoreNote
   const remplissages = new Map<number, Remplissage>();
   /** Cellules souscrites ou lues, par clé (g, p, n). */
   const cellules = new Map<number, Cellule>();
+  /** Abonnés à tout changement des sources d'un participant (explication, graphe), par (g, p). */
+  const participants = new Map<number, Set<() => void>>();
   const gp = (g: number, p: number) => cle(g, p, 0);
 
   const lireSources = (g: number, p: number): SourcesParticipant => {
@@ -112,6 +116,7 @@ export function creerStoreProvisoire(sources: Sources, plans: Plan[]): StoreNote
   const invalider = (touches: Set<number>) => {
     for (const k of touches) cache.delete(k);
     const aNotifier: (() => void)[] = [];
+    for (const k of touches) aNotifier.push(...(participants.get(k) ?? []));
     for (const [ck, c] of cellules) {
       const k = ck - (ck % 65536);
       if (!touches.has(k)) continue;
@@ -177,6 +182,18 @@ export function creerStoreProvisoire(sources: Sources, plans: Plan[]): StoreNote
         r.rappels.delete(rappel);
       };
     },
+    subscribeParticipant(g, p, rappel) {
+      const k = gp(g, p);
+      const l = participants.get(k) ?? new Set<() => void>();
+      participants.set(k, l);
+      l.add(rappel);
+      return () => {
+        l.delete(rappel);
+        if (l.size === 0) participants.delete(k);
+      };
+    },
+    explain: async (g, p, n) => explain(plans[g], entree(g, p).sources, n),
+    graphe: async (g, p) => graphe(plans[g], entree(g, p).sources),
     dispose: () => {
       for (const a of abonnements) a.unsubscribe();
     },

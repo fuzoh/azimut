@@ -46,6 +46,25 @@ export interface Resultats {
   marques: Uint8Array;
 }
 
+/** Statut d'une entrée dans le calcul d'un nœud (trace de l'explication). */
+export type StatutEntree = "active" | "sansResultat" | "poidsNul" | "horsCone";
+
+/**
+ * Trace du calcul d'un nœud, pour `explain` : rejoue l'oracle et note, pour le
+ * seul nœud demandé, le statut de chaque entrée et chaque étape du pipeline.
+ */
+export interface TraceNoeud {
+  n: number;
+  /** Une par entrée, dans l'ordre des `entrees` (index CSR). */
+  statuts: StatutEntree[];
+  /** Résultat de la fonction, avant le pipeline ; NaN = sans résultat. */
+  brut: number;
+  apresConversion: number;
+  apresArrondi: number;
+  /** Définitions de joker appliquées (index dans `plan.jokerDefs`). */
+  jokers: number[];
+}
+
 export function sourcesVides(plan: Plan): SourcesParticipant {
   return { cases: new Float64Array(plan.D).fill(NaN), nonEvaluations: [], jokers: [] };
 }
@@ -114,7 +133,7 @@ function appliquerJokers(b: BaremeCompile, valeur: number, defs: JokerDefCompile
   return Math.min(b.max, Math.max(b.min, r));
 }
 
-export function evaluate(plan: Plan, sources: SourcesParticipant): Resultats {
+export function evaluate(plan: Plan, sources: SourcesParticipant, trace?: { n: number; noeud?: TraceNoeud }): Resultats {
   const { N } = plan;
   const valeurs = new Float64Array(N).fill(NaN);
   const causes = new Uint8Array(N);
@@ -153,6 +172,7 @@ export function evaluate(plan: Plan, sources: SourcesParticipant): Resultats {
       if (Number.isNaN(r)) cause = CAUSE.vide;
     } else if (plan.type[n] === TYPE_CALCUL) {
       [r, cause] = calculer(n);
+      if (trace?.n === n && trace.noeud) trace.noeud.brut = r;
       if (!Number.isNaN(r)) {
         // Marques, en continu avec la valeur : seulement sur un nœud avec résultat.
         if (entreeMarquee) marques[n] |= MARQUE_INFLUENCE_JOKER;
@@ -176,18 +196,25 @@ export function evaluate(plan: Plan, sources: SourcesParticipant): Resultats {
     let sansResultat = false;
     // 1a-B : calculé sans les feuilles couvertes (toutes ses entrées de données).
     const sansFeuilles = cone?.sansFeuilles[n] === 1;
+    const statuts: StatutEntree[] | null = trace?.n === n ? [] : null;
     for (let i = debut; i < fin; i++) {
       const s = plan.inSources[i];
-      if (sansFeuilles && plan.type[s] === TYPE_DONNEES) continue;
+      if (sansFeuilles && plan.type[s] === TYPE_DONNEES) {
+        statuts?.push("horsCone");
+        continue;
+      }
       const v = val(s);
       const w = plan.inPoids[i];
       if (Number.isNaN(v)) {
         if (w > 0) sansResultat = true;
+        statuts?.push("sansResultat");
         continue;
       }
       if (w > 0) actives.push({ v, w, s, rang: i - debut + 1 });
       else poidsNul = true;
+      statuts?.push(w > 0 ? "active" : "poidsNul");
     }
+    if (statuts && trace) trace.noeud = { n, statuts, brut: NaN, apresConversion: NaN, apresArrondi: NaN, jokers: [] };
     entreeMarquee = actives.some((a) => (marques[a.s] & (MARQUE_JOKER_APPLIQUE | MARQUE_INFLUENCE_JOKER)) !== 0);
     // Des entrées ont un résultat mais toutes pèsent 0 : dénominateur nul (T3).
     if (actives.length === 0 && poidsNul) return [NaN, CAUSE.denominateurNul];
@@ -274,8 +301,12 @@ export function evaluate(plan: Plan, sources: SourcesParticipant): Resultats {
     let r = brut;
     const c = plan.conversionIndex[n];
     if (c >= 0) r = convertir(plan.conversions[c], r);
+    const t = trace?.n === n ? trace.noeud : undefined;
+    if (t) t.apresConversion = r;
     if (plan.arrondi[n] > 0) r = arrondir(r, plan.arrondi[n]);
+    if (t) t.apresArrondi = r;
     const defs = jokersParNoeud.get(n);
+    if (t && defs) t.jokers = [...defs];
     if (defs !== undefined) r = appliquerJokers(plan.baremes[plan.bareme[n]], r, defs.map((j) => plan.jokerDefs[j]));
     return r;
   };

@@ -45,3 +45,35 @@ aside.erreurs section.jokers .reglage { color: #666; margin: 2px 0; }
 aside.erreurs section.jokers .pose { display: flex; flex-wrap: wrap; gap: 4px; }
 aside.erreurs section.jokers select { max-width: 100%; }
 aside.erreurs .refus, aside.erreurs .erreur-quotaDepasse { color: #b00020; }
+td.choisi, td.choisi input { outline: 2px solid #1a5fd0; outline-offset: -2px; }
+aside.erreurs section.explication { border-bottom: 1px solid #ccc; margin-bottom: 8px; padding-bottom: 6px; }
+aside.erreurs section.explication .phrase { color: #444; font-style: italic; }
+aside.erreurs section.explication table.entrees { font-size: 11px; width: 100%; }
+aside.erreurs section.explication table.entrees td { text-align: left; white-space: normal; }
+aside.erreurs section.explication tr.sansResultat, aside.erreurs section.explication tr.poidsNul, aside.erreurs section.explication tr.horsCone { color: #888; }
+aside.erreurs section.explication ul.etapes { padding-left: 16px; }
+aside.erreurs section.explication .aide { color: #777; }
+.graphe { overflow: auto; flex: 1; }
+.graphe-entete { position: sticky; top: 0; left: 0; background: #fff; padding: 4px 8px; border-bottom: 1px solid #ddd; z-index: 1; }
+.graphe-entete .legende { margin-left: 0; flex-wrap: wrap; margin-top: 4px; }
+.graphe-entete .dispenses { color: #8a6d00; margin: 4px 0; }
+.g-noeud { cursor: pointer; font: 10px system-ui, sans-serif; }
+.g-noeud rect { fill: #eef4ff; stroke: #8aa4d6; }
+.g-noeud.g-donnees rect { fill: #f3fff0; stroke: #9cc79a; }
+.g-noeud.g-sans-resultat rect { fill: #e6e6e6; stroke: #aaa; }
+.g-noeud.g-non-evalue rect { fill: #fff4d6; stroke: #c9a227; }
+.g-noeud.g-joker rect { stroke: #c48a00; stroke-width: 2; }
+.g-noeud.g-decisif rect { stroke: #b00020; stroke-width: 3; }
+.g-noeud.g-indicatif { opacity: 0.55; }
+.g-noeud.g-indicatif rect { stroke-dasharray: 3 2; }
+.g-noeud.g-choisi rect { stroke: #1a5fd0; stroke-width: 3; }
+.g-arete { stroke: #9aa; stroke-width: 0.6; }
+.g-arete.g-inactive { stroke-dasharray: 3 3; stroke: #ccc; }
+.g-arete.g-proche { stroke: #1a5fd0; stroke-width: 1.5; }
+.g-legende { border: 1px solid #aaa; }
+.g-legende.g-donnees { background: #f3fff0; }
+.g-legende.g-calcul { background: #eef4ff; }
+.g-legende.g-sans-resultat { background: #e6e6e6; }
+.g-legende.g-non-evalue { background: #fff4d6; }
+.g-legende.g-decisif { border: 2px solid #b00020; }
+.g-legende.g-indicatif { border-style: dashed; opacity: 0.6; }

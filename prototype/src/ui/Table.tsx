@@ -18,6 +18,7 @@ import { basculerNonEvaluation, ecrireCase, type Sources } from "../sources/coll
 import { useLiveParticipants } from "./useParticipants";
 import { useFillStatus, useResult } from "../store/hooks";
 import { useNonEvaluations } from "./useNonEvaluations";
+import { formater } from "../noyau/affichage";
 
 interface Colonne {
   n: number;
@@ -126,20 +127,6 @@ function filtrer(plan: Plan, cols: Colonne[], filtre: string): Colonne[] {
   );
 }
 
-export function formater(b: BaremeCompile, v: number): string {
-  if (Number.isNaN(v)) return "—";
-  if (b.type === "ordinal") {
-    const rang = b.valeurs.indexOf(v);
-    if (b.valeurs.length === 2 && b.min === 0 && b.max === 1) return v === 1 ? "OK" : "KO";
-    return rang >= 0 ? String(v) : v.toFixed(2);
-  }
-  if (b.pourcentage) return `${(Math.round(v * 1000) / 10).toFixed(1).replace(".", ",")} %`;
-  if (b.id === "(0–100 %)") return `${(Math.floor(v * 10 + 0.5 + 1e-9) / 10).toFixed(1).replace(".", ",")} %`;
-  if (b.id.startsWith("pct") || b.id.includes("%")) return `${(Math.round(v * 100) / 100).toString().replace(".", ",")} %`;
-  // Note 1–5 (A03) et (1–5) dérivé (G3) : arrondi d'affichage 0,01, demi vers le haut.
-  return (Math.floor(v * 100 + 0.5 + 1e-9) / 100).toFixed(2).replace(".", ",");
-}
-
 /** Saisie → valeur stockée (note, ou rang du palier) ; null si invalide ; NaN pour vider. */
 export function lireSaisie(b: BaremeCompile, texte: string): number | null {
   const t = texte.trim().replace(",", ".");
@@ -164,6 +151,8 @@ export function Table({
   filtre,
   selection,
   onSelection,
+  noeud,
+  onChoisir,
 }: {
   g: number;
   plan: Plan;
@@ -172,6 +161,9 @@ export function Table({
   filtre: string;
   selection: number;
   onSelection: (p: number) => void;
+  /** Nœud choisi pour l'explication (participant `selection`), -1 sinon. */
+  noeud: number;
+  onChoisir: (p: number, n: number) => void;
 }) {
   const participants = useLiveParticipants(sources);
   const nonEvaluations = useNonEvaluations(sources);
@@ -235,6 +227,8 @@ export function Table({
                   plan={plan}
                   sources={sources}
                   direct={nonEvaluations.has(cle(g, pt.p, n))}
+                  choisi={pt.p === selection && n === noeud}
+                  onChoisir={onChoisir}
                 />
               ))}
             </tr>
@@ -269,6 +263,10 @@ interface PropsCellule {
   sources: Sources;
   /** Une non-évaluation est posée directement sur ce nœud pour ce participant. */
   direct: boolean;
+  /** Cellule dont l'explication est ouverte. */
+  choisi: boolean;
+  /** Un clic (ou le focus d'une case) ouvre l'explication du nœud. */
+  onChoisir: (p: number, n: number) => void;
 }
 
 /** Clic droit : poser ou retirer une non-évaluation sur le nœud (case, calcul ou regroupement). */
@@ -289,9 +287,10 @@ function CelluleRegroupement(props: PropsCellule) {
   const { p, n, plan, direct } = props;
   return (
     <td
-      className={`sans-calcul regroupement${direct ? " dispense" : ""}`}
+      className={`sans-calcul regroupement${direct ? " dispense" : ""}${props.choisi ? " choisi" : ""}`}
       data-noeud={plan.ids[n]}
       data-participant={p}
+      onClick={() => props.onChoisir(p, n)}
       onContextMenu={(e) => basculer(e, props)}
     >
       <button
@@ -319,6 +318,7 @@ function CelluleResultat(props: PropsCellule) {
   const influence = r.marques & MARQUE_INFLUENCE_JOKER;
   if (applique) classes.push("joker-applique");
   if (influence) classes.push("joker-influence");
+  if (props.choisi) classes.push("choisi");
   const bulles = [
     chemin ? "1a-B : calculé normalement, consommé hors du cône de la dispense (chemin multiple)" : "",
     applique ? "★ joker appliqué" : "",
@@ -332,6 +332,7 @@ function CelluleResultat(props: PropsCellule) {
       data-non-evalue={direct ? "1" : "0"}
       data-joker={(applique ? "applique " : "") + (influence ? "influence" : "")}
       title={bulles.length > 0 ? bulles.join("\n") : undefined}
+      onClick={() => props.onChoisir(p, n)}
       onContextMenu={(e) => basculer(e, props)}
     >
       {direct ? "⊘ " : ""}
@@ -370,7 +371,7 @@ function CelluleCase(props: PropsCellule) {
   const etat = nonEvalue ? "nonEvalue" : Number.isNaN(stockee) ? "vide" : "note";
   return (
     <td
-      className={`${classe}${direct ? " ne-direct" : ""}${invalide ? " invalide" : ""}`}
+      className={`${classe}${direct ? " ne-direct" : ""}${invalide ? " invalide" : ""}${props.choisi ? " choisi" : ""}`}
       data-etat={etat}
       onContextMenu={(e) => basculer(e, props)}
       title={nonEvalue ? (direct ? "Non évalué (clic droit pour retirer)" : "Non évalué, couvert par une dispense") : undefined}
@@ -382,6 +383,7 @@ function CelluleCase(props: PropsCellule) {
         value={brouillon ?? affiche}
         title={b.type === "ordinal" ? b.libelles.map((l, i) => `${b.valeurs[i]} : ${l}`).join("\n") : `${b.min} à ${b.max}`}
         onChange={(e) => setBrouillon(e.target.value)}
+        onFocus={() => props.onChoisir(p, n)}
         onBlur={valider}
         onKeyDown={(e) => {
           if (e.key === "Enter") valider();

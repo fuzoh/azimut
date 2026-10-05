@@ -13,7 +13,9 @@ résultats attendus de tous les nœuds de calcul (`null` : sans résultat) en V1
 la copie, en V2 juste après la copie et en V2 à l'état final, résultats des
 commutateurs F5, 1b et H4 (avec leurs non-évaluations et erreurs de
 remplissage) et de Chloé sans dispense, chemins multiples de chaque structure,
-marques de joker de chaque participant et, pour Emma, résultats sans joker.
+marques de joker de chaque participant et, pour Emma, résultats sans joker ;
+graphe de propagation de V2 final (nœud décisif, nœuds indicatifs, feuilles
+couvertes par une dispense).
 """
 
 import json
@@ -364,6 +366,72 @@ def chemins_multiples(grille):
     return {"plusieursExigences": plusieurs, "influenceMultiple": influences}
 
 
+# --- Graphe de propagation (ticket #20) -------------------------------------------
+#
+# Seconde implémentation, indépendante du prototype :
+# - nœud décisif : `decisif` de la structure ;
+# - nœuds indicatifs : nœuds de données (avec barème) et de calcul hors du cône
+#   de calcul du nœud décisif (18 §3 : « un nœud qui ne contribue pas au résultat
+#   final reste indicatif ») ;
+# - feuilles couvertes par une dispense (1b A, défaut) : nœuds de données placés
+#   sous le nœud dispensé, dans n'importe quel axe.
+
+
+def cone_decisif(grille):
+    entrees = {n["id"]: [e["noeud"] for e in n.get("entrees", [])] for n in grille["noeuds"]}
+    cone, pile = set(), [grille["decisif"]] if grille.get("decisif") else []
+    while pile:
+        i = pile.pop()
+        if i not in cone:
+            cone.add(i)
+            pile += entrees[i]
+    return cone
+
+
+def indicatifs(grille):
+    cone = cone_decisif(grille)
+    return [
+        n["id"] for n in grille["noeuds"]
+        if (n["type"] == "calcul" or (n["type"] == "donnees" and "bareme" in n)) and n["id"] not in cone
+    ]
+
+
+def feuilles_placees(grille, noeud):
+    """Nœuds de données (avec barème) placés sous `noeud`, tous axes confondus."""
+    noeuds = {n["id"]: n for n in grille["noeuds"]}
+    res = set()
+
+    def sous(p):
+        if noeuds[p["noeud"]]["type"] == "donnees" and "bareme" in noeuds[p["noeud"]]:
+            res.add(p["noeud"])
+        for e in p.get("enfants", []):
+            sous(e)
+
+    def chercher(p):
+        if p["noeud"] == noeud:
+            sous(p)
+        for e in p.get("enfants", []):
+            chercher(e)
+
+    for axe in grille["axes"]:
+        for p in axe["arbre"]:
+            chercher(p)
+    return [n["id"] for n in grille["noeuds"] if n["id"] in res]
+
+
+def graphe(grille, participants):
+    return {
+        "decisif": grille.get("decisif"),
+        "indicatifs": indicatifs(grille),
+        "couvertesParDispense": {
+            p["nom"]: sorted({
+                f for ne in p["sources"]["nonEvaluations"] for f in feuilles_placees(grille, ne["noeud"])
+            })
+            for p in participants
+        },
+    }
+
+
 # --- Participants figés ----------------------------------------------------------
 
 IDS = {
@@ -563,6 +631,8 @@ def figer():
             for nom, ts, ne, d, sw in variantes
         ],
         "cheminsMultiples": {g["grille"]: chemins_multiples(g) for g in (v1, v2)},
+        # Graphe de propagation de V2 à l'état final (ticket #20).
+        "graphe": graphe(v2, etats["V2-final"]["participants"]),
     }
     (ICI / "g3-participants.json").write_text(
         json.dumps(sortie, ensure_ascii=False, indent=1) + "\n"
