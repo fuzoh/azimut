@@ -194,6 +194,14 @@ export function creerStoreProvisoire(sources: Sources, plans: Plan[]): StoreNote
     },
     explain: async (g, p, n) => explain(plans[g], entree(g, p).sources, n),
     graphe: async (g, p) => graphe(plans[g], entree(g, p).sources),
+    purger() {
+      cache.clear();
+      const touches = new Set<number>();
+      for (const ck of cellules.keys()) touches.add(ck - (ck % 65536));
+      for (const k of remplissages.keys()) touches.add(k);
+      for (const k of participants.keys()) touches.add(k);
+      invalider(touches);
+    },
     dispose: () => {
       for (const a of abonnements) a.unsubscribe();
     },

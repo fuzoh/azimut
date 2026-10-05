@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import { CAUSE } from "../noyau/evaluate";
 import type { Plan } from "../noyau/compile";
 import type { Graphe as GrapheNoyau, NoeudGraphe } from "../noyau/graphe";
+import type { EcartAB } from "../comparaison";
 import { useStoreNotes } from "../store/hooks";
 import { useVersionParticipant } from "./useVersionParticipant";
 
@@ -62,6 +63,7 @@ export function Graphe({
   plan,
   n,
   onChoisir,
+  ecarts = null,
 }: {
   g: number;
   p: number;
@@ -69,6 +71,8 @@ export function Graphe({
   plan: Plan;
   n: number;
   onChoisir: (n: number) => void;
+  /** Comparaison A → B du participant ; null sans comparaison. */
+  ecarts?: Map<number, EcartAB> | null;
 }) {
   const store = useStoreNotes();
   const version = useVersionParticipant(g, p);
@@ -128,6 +132,7 @@ export function Graphe({
           <span>⇉ influence multiple</span>
           <span>⇶ 1a-B</span>
           <span>— active · - - ignorée</span>
+          {ecarts && <span className="g-legende g-ecart">A → B : {ecarts.size} nœud(s) diffèrent</span>}
         </span>
         {gr.dispenses.length > 0 && (
           <p className="dispenses" data-testid="graphe-dispenses">
@@ -154,11 +159,13 @@ export function Graphe({
         {vue.visibles.map((x) => {
           const { x: px, y: py } = vue.pos.get(x.n)!;
           const m = marques(x);
+          const ecart = ecarts?.get(x.n);
           return (
             <g
               key={x.n}
               transform={`translate(${px},${py})`}
-              className={classes(x, x.n === n)}
+              className={classes(x, x.n === n) + (ecart ? " g-ecart" : "")}
+              data-ecart={ecart?.texte}
               data-noeud={x.id}
               data-marques={m}
               data-decisif={x.decisif ? "1" : "0"}
@@ -166,10 +173,12 @@ export function Graphe({
               data-couverte={x.couverteParDispense ? "1" : "0"}
               onClick={() => onChoisir(x.n)}
             >
-              <title>{`${x.id} — ${x.libelle}\n${x.texte}${x.indicatif ? "\nindicatif (hors du cône du nœud décisif)" : ""}${x.couverteParDispense ? "\ncouverte par une dispense" : ""}`}</title>
-              <rect width={LARGEUR} height={16} rx={3} />
+              <title>{`${x.id} — ${x.libelle}\n${x.texte}${x.indicatif ? "\nindicatif (hors du cône du nœud décisif)" : ""}${x.couverteParDispense ? "\ncouverte par une dispense" : ""}${ecart ? `\nA → B : ${ecart.texte}` : ""}`}</title>
+              <rect width={ecart ? LARGEUR - 4 : LARGEUR} height={16} rx={3} />
               <text x={4} y={12}>
-                {`${x.id.length > 18 ? `${x.id.slice(0, 17)}…` : x.id} ${x.texte} ${m}`}
+                {ecart
+                  ? `${x.id.length > 12 ? `${x.id.slice(0, 11)}…` : x.id} ${ecart.texte}`
+                  : `${x.id.length > 18 ? `${x.id.slice(0, 17)}…` : x.id} ${x.texte} ${m}`}
               </text>
             </g>
           );

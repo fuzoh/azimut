@@ -1,16 +1,25 @@
-import { useCallback, useState } from "react";
-import { creerSession } from "../session";
+import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
+import { creerEssai } from "../essai";
+import { ecrireUrl } from "../reglages";
 import { StoreContext } from "../store/hooks";
 import { Copie } from "./Copie";
 import { Erreurs } from "./Erreurs";
 import { Explication } from "./Explication";
 import { Graphe } from "./Graphe";
 import { Jokers } from "./Jokers";
+import { PastilleVerification, Reglages } from "./Reglages";
 import { Table } from "./Table";
+import { useComparaison } from "./useComparaison";
 import { useLiveParticipants } from "./useParticipants";
 
 export function App() {
-  const [session] = useState(creerSession);
+  // Les paramètres d'URL font foi au chargement ; l'URL est aussitôt réécrite
+  // complète, pour qu'un lien copié reproduise toute la configuration.
+  const [essai] = useState(() => creerEssai(location.search));
+  const etat = useSyncExternalStore(essai.abonner, essai.etat);
+  useEffect(() => history.replaceState(null, "", ecrireUrl(essai.etat().reglages)), [essai]);
+  const session = essai.session;
+  const [reglagesOuverts, setReglagesOuverts] = useState(false);
   const [filtre, setFiltre] = useState("");
   const [g, setG] = useState(0);
   const [selection, setSelection] = useState(0);
@@ -26,6 +35,7 @@ export function App() {
   const plan = session.plans[g];
   const [axeChoisi, setAxe] = useState(plan.axePrincipal);
   const axe = axeChoisi < plan.grille.axes.length ? axeChoisi : plan.axePrincipal;
+  const ecarts = useComparaison(essai, etat, g, choisi?.p ?? -1);
   const decisif = plan.decisif < 0 ? "aucun nœud décisif" : `décisif ${plan.ids[plan.decisif]}`;
   return (
     <StoreContext.Provider value={session.store}>
@@ -66,6 +76,15 @@ export function App() {
         <button type="button" data-action="vue" onClick={() => setVue(vue === "table" ? "graphe" : "table")}>
           {vue === "table" ? "graphe du participant" : "retour à la table"}
         </button>
+        <button type="button" data-action="reglages" onClick={() => setReglagesOuverts(!reglagesOuverts)}>
+          réglages
+        </button>
+        <PastilleVerification etat={etat} />
+        {etat.reglages.comparaison && (
+          <span className="comparaison-active" data-testid="comparaison-active" title="Comparaison avec la configuration B active">
+            A → B{ecarts ? ` : ${ecarts.size} nœud(s) diffèrent` : ""}
+          </span>
+        )}
         <label>
           {" "}
           · colonnes contenant <input value={filtre} onChange={(e) => setFiltre(e.target.value)} placeholder="ex. C/3" />
@@ -83,6 +102,7 @@ export function App() {
           <span className="joker-influence" title="résultat influencé par un joker en amont">☆ influencé</span>
         </span>
       </header>
+      {reglagesOuverts && <Reglages essai={essai} etat={etat} />}
       <div className="principal">
         {vue === "table" || !choisi ? (
           <Table
@@ -96,13 +116,14 @@ export function App() {
             onSelection={setSelection}
             noeud={noeud}
             onChoisir={choisir}
+            ecarts={ecarts}
           />
         ) : (
-          <Graphe g={g} p={choisi.p} nom={choisi.nom} plan={plan} n={noeud} onChoisir={setNoeud} />
+          <Graphe g={g} p={choisi.p} nom={choisi.nom} plan={plan} n={noeud} onChoisir={setNoeud} ecarts={ecarts} />
         )}
         {choisi && (
           <aside className="erreurs">
-            <Explication g={g} p={choisi.p} n={noeud} plan={plan} onGraphe={() => setVue("graphe")} />
+            <Explication g={g} p={choisi.p} n={noeud} plan={plan} onGraphe={() => setVue("graphe")} ecarts={ecarts} />
             <Erreurs g={g} p={choisi.p} nom={choisi.nom} plan={plan} />
             <Jokers key={`${g}-${choisi.p}`} g={g} p={choisi.p} plan={plan} sources={session.sources} />
             <Copie

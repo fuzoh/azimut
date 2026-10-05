@@ -80,3 +80,20 @@ aside.erreurs section.explication .aide { color: #777; }
 aside.erreurs section.copie { border-top: 1px solid #ccc; margin-top: 8px; }
 aside.erreurs section.copie .pose { display: flex; flex-wrap: wrap; gap: 4px; }
 aside.erreurs section.copie select { max-width: 100%; }
+td.ecart-ab, span.ecart-ab, p.ecart-ab { background: #f6e0ff !important; color: #5a1a7a; font-weight: bold; }
+td.ecart-ab { outline: 2px solid #9b3fc7; outline-offset: -2px; }
+span.ecart-ab { font-size: 10px; padding: 0 2px; }
+.g-noeud.g-ecart rect { fill: #f6e0ff; stroke: #9b3fc7; stroke-width: 2; }
+.g-legende.g-ecart { background: #f6e0ff; border-color: #9b3fc7; }
+.comparaison-active { color: #5a1a7a; font-weight: bold; }
+.verif { padding: 1px 6px; border: 1px solid #ccc; }
+.verif.ok { color: #1a7a2a; }
+.verif.ko { color: #fff; background: #b00020; }
+.verif.off { color: #888; }
+section.reglages { padding: 6px 10px; border-bottom: 1px solid #ccc; background: #fafafa; display: flex; flex-wrap: wrap; gap: 8px; font-size: 12px; }
+section.reglages fieldset { border: 1px solid #ccc; }
+section.reglages .grille-reglages { display: grid; grid-template-columns: auto auto; gap: 2px 8px; }
+section.reglages .grille-reglages label { display: contents; }
+section.reglages .aide { color: #777; }
+section.reglages .lien input { width: 40em; }
+section.reglages .avertissements, section.reglages .verification-ecarts { color: #b00020; }

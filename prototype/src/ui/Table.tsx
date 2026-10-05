@@ -19,6 +19,7 @@ import { useLiveParticipants } from "./useParticipants";
 import { useFillStatus, useResult } from "../store/hooks";
 import { useNonEvaluations } from "./useNonEvaluations";
 import { formater } from "../noyau/affichage";
+import type { EcartAB } from "../comparaison";
 
 interface Colonne {
   n: number;
@@ -153,6 +154,7 @@ export function Table({
   onSelection,
   noeud,
   onChoisir,
+  ecarts = null,
 }: {
   g: number;
   plan: Plan;
@@ -164,6 +166,8 @@ export function Table({
   /** Nœud choisi pour l'explication (participant `selection`), -1 sinon. */
   noeud: number;
   onChoisir: (p: number, n: number) => void;
+  /** Comparaison A → B du participant `selection` ; null sans comparaison. */
+  ecarts?: Map<number, EcartAB> | null;
 }) {
   const participants = useLiveParticipants(sources);
   const nonEvaluations = useNonEvaluations(sources);
@@ -229,6 +233,7 @@ export function Table({
                   direct={nonEvaluations.has(cle(g, pt.p, n))}
                   choisi={pt.p === selection && n === noeud}
                   onChoisir={onChoisir}
+                  ecart={pt.p === selection ? ecarts?.get(n) : undefined}
                 />
               ))}
             </tr>
@@ -267,6 +272,8 @@ interface PropsCellule {
   choisi: boolean;
   /** Un clic (ou le focus d'une case) ouvre l'explication du nœud. */
   onChoisir: (p: number, n: number) => void;
+  /** Écart A → B de ce nœud (participant affiché, comparaison active). */
+  ecart?: EcartAB;
 }
 
 /** Clic droit : poser ou retirer une non-évaluation sur le nœud (case, calcul ou regroupement). */
@@ -319,7 +326,10 @@ function CelluleResultat(props: PropsCellule) {
   if (applique) classes.push("joker-applique");
   if (influence) classes.push("joker-influence");
   if (props.choisi) classes.push("choisi");
+  const { ecart } = props;
+  if (ecart) classes.push("ecart-ab");
   const bulles = [
+    ecart ? `A → B : ${ecart.texte}` : "",
     chemin ? "1a-B : calculé normalement, consommé hors du cône de la dispense (chemin multiple)" : "",
     applique ? "★ joker appliqué" : "",
     influence ? "☆ influencé par un joker" : "",
@@ -331,15 +341,22 @@ function CelluleResultat(props: PropsCellule) {
       data-participant={p}
       data-non-evalue={direct ? "1" : "0"}
       data-joker={(applique ? "applique " : "") + (influence ? "influence" : "")}
+      data-ecart={ecart?.texte}
       title={bulles.length > 0 ? bulles.join("\n") : undefined}
       onClick={() => props.onChoisir(p, n)}
       onContextMenu={(e) => basculer(e, props)}
     >
       {direct ? "⊘ " : ""}
-      {formater(plan.baremes[plan.bareme[n]], r.valeur)}
-      {chemin ? " ⇶" : ""}
-      {applique ? " ★" : ""}
-      {influence ? " ☆" : ""}
+      {ecart ? (
+        ecart.texte
+      ) : (
+        <>
+          {formater(plan.baremes[plan.bareme[n]], r.valeur)}
+          {chemin ? " ⇶" : ""}
+          {applique ? " ★" : ""}
+          {influence ? " ☆" : ""}
+        </>
+      )}
     </td>
   );
 }
@@ -371,8 +388,9 @@ function CelluleCase(props: PropsCellule) {
   const etat = nonEvalue ? "nonEvalue" : Number.isNaN(stockee) ? "vide" : "note";
   return (
     <td
-      className={`${classe}${direct ? " ne-direct" : ""}${invalide ? " invalide" : ""}${props.choisi ? " choisi" : ""}`}
+      className={`${classe}${direct ? " ne-direct" : ""}${invalide ? " invalide" : ""}${props.choisi ? " choisi" : ""}${props.ecart ? " ecart-ab" : ""}`}
       data-etat={etat}
+      data-ecart={props.ecart?.texte}
       onContextMenu={(e) => basculer(e, props)}
       title={nonEvalue ? (direct ? "Non évalué (clic droit pour retirer)" : "Non évalué, couvert par une dispense") : undefined}
     >
@@ -390,6 +408,7 @@ function CelluleCase(props: PropsCellule) {
           if (e.key === "Escape") setBrouillon(null);
         }}
       />
+      {props.ecart && <span className="ecart-ab" title={`A → B : ${props.ecart.texte}`}>{props.ecart.texte}</span>}
     </td>
   );
 }
