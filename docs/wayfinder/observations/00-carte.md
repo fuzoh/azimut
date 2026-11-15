@@ -11,6 +11,7 @@ La spec des **observations et du suivi en cours de formation**, dans `docs/analy
   - §11 et `FEATURES.md` « Acteurs et accès » : l'application est réservée aux formateurs, aucun espace apprenant ;
   - `FEATURES.md` : la Posture est faite de nœuds indicatifs.
 - **Qualix** : `docs/analyse/06-benchmark-qualix.md` (modèle, N-QX1 blocs, N-QX2 missions d'observation, N-QX6 observation à plusieurs apprenants, N-QX9 effort d'observation, N-QX12 séparer observer et évaluer). Le positionnement face à Qualix reste ouvert (18 §13) : cette carte le tranche pour la partie observations.
+- **Vocabulaire** (validé le 15 novembre 2026) : une **UA** est un point de cours, une leçon : ce que l'équipe enseigne ; elle n'existe pas dans Azimut. Un **exercice** est quelque chose que font les apprenants, sur quoi on les observe et on les évalue ; il réunit des indicateurs pris dans plusieurs sphères, objectifs et critères, et traverse donc l'arbre au lieu d'en être un étage (second axe de lecture, 18 §3).
 - **Skills** : grilling + domain-modeling pour les tickets de grill ; research pour les tickets de recherche. Tickets et résolutions en français.
 
 ## Decisions so far
