@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Observations : maquette</title>
+<style>
+:root { --bg:#f6f5f1; --card:#fff; --ink:#1d2327; --mute:#687076; --line:#dcdad3; --accent:#2f6f4f; --accent-ink:#fff; --warn:#b4541a; }
+@media (prefers-color-scheme: dark) { :root { --bg:#15181a; --card:#1f2427; --ink:#eceeef; --mute:#9aa3a8; --line:#333a3e; --accent:#5fb98a; --accent-ink:#0d1a13; --warn:#e89a5c; } }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.4 system-ui, sans-serif; }
+main { max-width:520px; margin:0 auto; padding:12px 16px 90px; }
+h1 { font-size:13px; font-weight:600; color:var(--mute); text-transform:uppercase; letter-spacing:.06em; margin:14px 0 6px; }
+button { font:inherit; color:inherit; cursor:pointer; }
+input, textarea { font:inherit; color:inherit; background:var(--card); border:1px solid var(--line); border-radius:10px; padding:10px 12px; width:100%; }
+.ctx { display:flex; gap:8px; align-items:center; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:10px 12px; margin-top:10px; }
+.ctx b { display:block; } .ctx small { color:var(--mute); }
+.ctx .grow { flex:1; min-width:0; }
+.pill { border:1px solid var(--line); background:var(--card); border-radius:999px; padding:6px 12px; font-size:14px; white-space:nowrap; }
+.pill.on { background:var(--accent); color:var(--accent-ink); border-color:var(--accent); }
+.pill.warn { border-color:var(--warn); color:var(--warn); }
+.row { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+.person { display:flex; align-items:center; gap:12px; width:100%; text-align:left; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px; margin-top:8px; min-height:64px; }
+.person.sel { border-color:var(--accent); box-shadow:0 0 0 2px var(--accent) inset; }
+.av { width:42px; height:42px; border-radius:50%; display:grid; place-items:center; font-weight:700; color:#fff; flex:none; }
+.person .grow { flex:1; min-width:0; } .person small { color:var(--mute); display:block; }
+.count { font-variant-numeric:tabular-nums; color:var(--mute); font-size:14px; }
+.count.zero { color:var(--warn); font-weight:600; }
+.mini { border:1px solid var(--line); background:transparent; border-radius:8px; padding:6px 8px; font-size:13px; }
+.results { background:var(--card); border:1px solid var(--line); border-radius:12px; margin-top:6px; overflow:hidden; }
+.results button { display:block; width:100%; text-align:left; background:none; border:0; border-bottom:1px solid var(--line); padding:10px 12px; }
+.results button:last-child { border-bottom:0; } .results small { color:var(--mute); }
+.sheet { position:fixed; inset:0; background:var(--bg); overflow:auto; padding:12px 16px 24px; }
+.sheet > div { max-width:520px; margin:0 auto; }
+.bar { display:flex; align-items:center; gap:8px; margin-bottom:10px; } .bar b { flex:1; }
+textarea { min-height:120px; resize:vertical; }
+.primary { width:100%; background:var(--accent); color:var(--accent-ink); border:0; border-radius:12px; padding:14px; font-weight:600; margin-top:14px; }
+.primary:disabled { opacity:.45; }
+.obs { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:10px 12px; margin-top:8px; }
+.obs small { color:var(--mute); display:block; margin-top:4px; }
+table { border-collapse:collapse; width:100%; background:var(--card); border-radius:12px; overflow:hidden; font-size:14px; }
+th, td { border-bottom:1px solid var(--line); padding:8px 6px; text-align:center; } th:first-child, td:first-child { text-align:left; padding-left:12px; }
+td.zero { color:var(--warn); font-weight:700; }
+.tabs { position:fixed; left:0; right:0; bottom:0; display:flex; background:var(--card); border-top:1px solid var(--line); }
+.tabs button { flex:1; border:0; background:none; padding:14px 4px; font-size:14px; color:var(--mute); }
+.tabs button.on { color:var(--accent); font-weight:600; }
+.toast { position:fixed; left:50%; bottom:70px; transform:translateX(-50%); background:var(--ink); color:var(--bg); padding:8px 14px; border-radius:999px; font-size:14px; }
+.note { color:var(--mute); font-size:13px; margin-top:6px; }
+</style>
+</head>
+<body>
+<main id="app"></main>
+<nav class="tabs" id="tabs"></nav>
+<script>
+// Maquette jetable de docs/analyse/22-spec-observations.md, tranche 1 (texte). Données fictives, en mémoire.
+const EX = [
+  { id:'rando1', nom:'Randonnée 1', ind:['i1','i2','i5','i6'] },
+  { id:'rando2', nom:'Randonnée 2', ind:['i1','i2','i5','i6'] },
+  { id:'bivouac', nom:'Bivouac', ind:['i3','i5','i7'] },
+  { id:'anim', nom:'Animation de veillée', ind:['i4','i7','i8'] },
+];
+const IND = {
+  i1:['Technique','Lit correctement une carte'], i2:['Technique','Choisit un itinéraire adapté'],
+  i3:['Technique','Monte un abri solide'], i4:['Animation','Capte l\'attention du groupe'],
+  i5:['Sécurité','Anticipe la météo'], i6:['Sécurité','Vérifie le matériel avant le départ'],
+  i7:['Posture','Écoute les avis des autres'], i8:['Posture','Reste calme sous pression'],
+};
+const GR = [
+  { id:'A', nom:'Groupe A', m:['p1','p2','p3','p4','p5'] },
+  { id:'B', nom:'Groupe B', m:['p6','p7','p8','p9'] },
+];
+const P = {
+  p1:['Castor','Maëlle R.','Brigade de Sauvabelin'], p2:['Fennec','Luca M.','Groupe du Lac'],
+  p3:['Hermine','Sofia B.','Brigade de Sauvabelin'], p4:['Loutre','Noah D.','Scouts de la Venoge'],
+  p5:['Milan','Inès T.','Groupe du Lac'], p6:['Okapi','Théo G.','Scouts de la Venoge'],
+  p7:['Pika','Jade F.','Groupe du Lac'], p8:['Renard','Arthur V.','Brigade de Sauvabelin'],
+  p9:['Sittelle','Lina K.','Scouts de la Venoge'],
+};
+const COLORS = ['#2f6f4f','#8a4b2a','#3b5b92','#7a3f7d','#a0692b','#2b7a78','#9a3b4b','#566b2e','#5a4fa3'];
+const MOI = 'Vous';
+const now = () => new Date();
+const ago = min => new Date(Date.now() - min * 60000);
+let obs = [
+  { id:1, p:'p1', ex:'rando1', ind:['i1'], txt:'Oriente la carte avant chaque décision.', t:ago(95), par:MOI },
+  { id:2, p:'p2', ex:'rando1', ind:[], txt:'Propose de raccourcir par le pierrier, sans regarder le ciel.', t:ago(80), par:MOI },
+  { id:3, p:'p3', ex:'rando1', ind:['i6'], txt:'A compté les lampes frontales au départ.', t:ago(60), par:'Belette' },
+  { id:4, p:'p6', ex:'bivouac', ind:[], txt:'Laisse Pika choisir l\'emplacement et l\'aide ensuite.', t:ago(40), par:MOI },
+];
+let seq = 5;
+const S = { tab:'saisie', ex:'rando1', gr:'A', q:'', multi:false, sel:[], sheet:null, toast:'' };
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const exo = id => EX.find(e => e.id === id);
+const grp = id => GR.find(g => g.id === id);
+const fmt = d => d.toLocaleString('fr-CH', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' });
+const local = d => new Date(d - d.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
+const av = id => `<span class="av" style="background:${COLORS[(+id.slice(1) - 1) % COLORS.length]}">${esc(P[id][0].slice(0, 2))}</span>`;
+const draftGet = () => { try { return localStorage.getItem('obs-brouillon') || ''; } catch { return ''; } };
+const draftSet = v => { try { v ? localStorage.setItem('obs-brouillon', v) : localStorage.removeItem('obs-brouillon'); } catch {} };
+// Recherche tolérante : sans accents, sous-suite de lettres.
+const norm = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+function fuzzy(q, s) { q = norm(q).replace(/\s+/g, ''); s = norm(s); let i = 0; for (const c of s) if (c === q[i]) i++; return i === q.length; }
+function toast(m) { S.toast = m; render(); setTimeout(() => { S.toast = ''; render(); }, 1800); }
+
+function search() {
+  if (!S.q.trim()) return '';
+  const r = [];
+  EX.forEach(e => fuzzy(S.q, e.nom) && r.push(['ex', e.id, e.nom, 'Exercice']));
+  GR.forEach(g => fuzzy(S.q, g.nom) && r.push(['gr', g.id, g.nom, 'Groupe']));
+  Object.entries(P).forEach(([id, p]) => fuzzy(S.q, p[0] + ' ' + p[1]) && r.push(['p', id, p[0] + ' · ' + p[1], 'Apprenant']));
+  Object.entries(IND).forEach(([id, n]) => fuzzy(S.q, n[1]) && r.push(['ind', id, n[1], 'Indicateur · ' + n[0]]));
+  if (!r.length) return '<p class="note">Aucun résultat.</p>';
+  return '<div class="results">' + r.slice(0, 8).map(x =>
+    `<button data-act="pick" data-kind="${x[0]}" data-id="${x[1]}">${esc(x[2])}<br><small>${esc(x[3])}</small></button>`).join('') + '</div>';
+}
+
+function viewSaisie() {
+  const g = grp(S.gr), aPreciser = obs.filter(o => o.par === MOI && !o.ind.length).length;
+  return `
+  <input id="q" type="search" placeholder="Chercher un exercice, un indicateur, une personne…" value="${esc(S.q)}">
+  ${search()}
+  <div class="ctx"><div class="grow"><small>Je suis sur</small><b>${esc(exo(S.ex).nom)} · ${esc(g.nom)}</b></div>
+    <button class="pill ${aPreciser ? 'warn' : ''}" data-act="apreciser">À préciser ${aPreciser}</button></div>
+  <div class="row" style="margin-top:12px">
+    <button class="pill ${S.multi ? 'on' : ''}" data-act="multi">Plusieurs personnes</button>
+    ${S.multi ? `<button class="pill" data-act="tous">Tout cocher</button>` : ''}
+  </div>
+  ${g.m.map(id => {
+    const n = obs.filter(o => o.p === id && o.ex === S.ex).length;
+    return `<div class="person ${S.sel.includes(id) ? 'sel' : ''}" data-act="person" data-id="${id}" role="button" tabindex="0">
+      ${av(id)}<span class="grow"><b>${esc(P[id][0])}</b><small>${esc(P[id][1])} · ${esc(P[id][2])}</small></span>
+      <span class="count ${n ? '' : 'zero'}">${n} obs.</span>
+      <button class="mini" data-act="fiche" data-id="${id}">Fiche</button></div>`;
+  }).join('')}
+  ${S.multi ? `<button class="primary" data-act="groupe" ${S.sel.length ? '' : 'disabled'}>Observer ${S.sel.length} personne${S.sel.length > 1 ? 's' : ''}</button>` : ''}
+  <p class="note">Un appui ouvre la saisie. L'exercice et le groupe restent d'une observation à la suivante.</p>`;
+}
+
+function viewSuivi() {
+  const g = grp(S.gr);
+  return `<h1>Observations par apprenant · ${esc(g.nom)}</h1>
+  <table><tr><th></th>${EX.map(e => `<th>${esc(e.nom.replace('Randonnée', 'Rando').replace('Animation de veillée', 'Veillée'))}</th>`).join('')}</tr>
+  ${g.m.map(id => `<tr><td>${esc(P[id][0])}</td>${EX.map(e => { const n = obs.filter(o => o.p === id && o.ex === e.id).length; return `<td class="${n ? '' : 'zero'}">${n}</td>`; }).join('')}</tr>`).join('')}
+  </table><p class="note">Le tableau informe. Une observation manquante n'est jamais une erreur.</p>
+  <div class="row" style="margin-top:10px">${GR.map(x => `<button class="pill ${x.id === S.gr ? 'on' : ''}" data-act="gr" data-id="${x.id}">${esc(x.nom)}</button>`).join('')}</div>`;
+}
+
+const obsCard = (o, edit) => `<div class="obs">${esc(o.txt)}
+  <small>${edit ? '' : esc(P[o.p][0]) + ' · '}${fmt(o.t)} · ${esc(exo(o.ex).nom)} · ${o.ind.length ? o.ind.map(i => esc(IND[i][1])).join(', ') : '<i>à préciser</i>'} · ${esc(o.par)}</small>
+  ${edit ? '' : `<div class="row" style="margin-top:8px">${exo(o.ex).ind.map(i => `<button class="pill" data-act="rattache" data-o="${o.id}" data-id="${i}">${esc(IND[i][1])}</button>`).join('')}</div>`}</div>`;
+
+function sheet() {
+  const s = S.sheet; if (!s) return '';
+  let body = '';
+  if (s.kind === 'saisie') {
+    const all = s.large ? Object.keys(IND) : exo(S.ex).ind;
+    body = `<div class="bar"><button class="mini" data-act="close">Annuler</button><b>${s.who.map(id => esc(P[id][0])).join(', ')}</b></div>
+    <textarea id="txt" placeholder="Ce que j'ai vu, sans jugement…">${esc(s.txt)}</textarea>
+    <h1>Moment</h1><input id="quand" type="datetime-local" value="${local(s.t)}">
+    <h1>${esc(exo(S.ex).nom)} · indicateur (facultatif)</h1>
+    <div class="row">${all.map(i => `<button class="pill ${s.ind.includes(i) ? 'on' : ''}" data-act="ind" data-id="${i}">${esc(IND[i][1])}</button>`).join('')}
+      <button class="mini" data-act="large">${s.large ? 'Seulement cet exercice' : 'Toute la grille'}</button></div>
+    <button class="primary" data-act="save" ${s.txt.trim() ? '' : 'disabled'}>Enregistrer${s.who.length > 1 ? ' ' + s.who.length + ' observations' : ''}</button>
+    <p class="note">Le texte en cours est gardé sur l'appareil. Les pièces jointes viennent en seconde tranche.</p>`;
+  } else if (s.kind === 'apreciser') {
+    const l = obs.filter(o => o.par === MOI && !o.ind.length);
+    body = `<div class="bar"><button class="mini" data-act="close">Fermer</button><b>À préciser</b></div>
+    ${l.length ? l.map(o => obsCard(o)).join('') : '<p class="note">Rien à préciser.</p>'}`;
+  } else {
+    const l = obs.filter(o => o.p === s.id).sort((a, b) => a.t - b.t);
+    body = `<div class="bar"><button class="mini" data-act="close">Fermer</button><b>${esc(P[s.id][0])} · ${esc(P[s.id][1])}</b></div>
+    <button class="primary" style="margin-top:0" data-act="qualif">Ouvrir sa qualification</button>
+    <h1>Observations, dans l'ordre du temps</h1>
+    ${l.length ? l.map(o => obsCard(o, true)).join('') : '<p class="note">Aucune observation.</p>'}`;
+  }
+  return `<div class="sheet"><div>${body}</div></div>`;
+}
+
+function render() {
+  const keep = document.activeElement && document.activeElement.id, pos = keep && document.activeElement.selectionStart;
+  $('#app').innerHTML = (S.tab === 'saisie' ? viewSaisie() : viewSuivi()) + sheet() + (S.toast ? `<div class="toast">${esc(S.toast)}</div>` : '');
+  $('#tabs').innerHTML = [['saisie', 'Observer'], ['suivi', 'Suivi']].map(t => `<button class="${S.tab === t[0] ? 'on' : ''}" data-act="tab" data-id="${t[0]}">${t[1]}</button>`).join('');
+  if (keep && $('#' + keep)) { const el = $('#' + keep); el.focus(); if (pos != null && el.setSelectionRange && el.type !== 'datetime-local') el.setSelectionRange(pos, pos); }
+}
+const openSaisie = (who, ind = []) => { S.sheet = { kind:'saisie', who, txt:draftGet(), t:now(), ind, large:false }; S.q = ''; render(); const t = $('#txt'); t && t.focus(); };
+
+document.addEventListener('input', e => {
+  if (e.target.id === 'q') { S.q = e.target.value; render(); }
+  if (e.target.id === 'txt') { const was = !!S.sheet.txt.trim(); S.sheet.txt = e.target.value; draftSet(e.target.value); if (was !== !!e.target.value.trim()) render(); }
+  if (e.target.id === 'quand' && e.target.value) S.sheet.t = new Date(e.target.value);
+});
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-act]'); if (!b) return;
+  const a = b.dataset.act, id = b.dataset.id;
+  if (a === 'tab') S.tab = id;
+  else if (a === 'gr') S.gr = id;
+  else if (a === 'multi') { S.multi = !S.multi; S.sel = []; }
+  else if (a === 'tous') S.sel = [...grp(S.gr).m];
+  else if (a === 'fiche') { S.sheet = { kind:'fiche', id }; }
+  else if (a === 'person') { if (S.multi) S.sel = S.sel.includes(id) ? S.sel.filter(x => x !== id) : [...S.sel, id]; else return openSaisie([id]); }
+  else if (a === 'groupe') return openSaisie(S.sel);
+  else if (a === 'apreciser') S.sheet = { kind:'apreciser' };
+  else if (a === 'close') S.sheet = null;
+  else if (a === 'qualif') return toast('La qualification s\'ouvrirait ici.');
+  else if (a === 'ind') { const s = S.sheet; s.ind = s.ind.includes(id) ? s.ind.filter(x => x !== id) : [...s.ind, id]; }
+  else if (a === 'large') S.sheet.large = !S.sheet.large;
+  else if (a === 'rattache') { obs.find(o => o.id === +b.dataset.o).ind.push(id); }
+  else if (a === 'save') {
+    const s = S.sheet;
+    s.who.forEach(p => obs.push({ id:seq++, p, ex:S.ex, ind:[...s.ind], txt:s.txt.trim(), t:s.t, par:MOI }));
+    draftSet(''); S.sheet = null; S.sel = []; S.multi = false;
+    return toast(s.who.length > 1 ? s.who.length + ' observations créées' : 'Observation enregistrée');
+  }
+  else if (a === 'pick') {
+    const k = b.dataset.kind; S.q = '';
+    if (k === 'ex') S.ex = id;
+    else if (k === 'gr') S.gr = id;
+    else if (k === 'p') { const g = GR.find(g => g.m.includes(id)); if (g) S.gr = g.id; return openSaisie([id]); }
+    else if (k === 'ind') { const e = EX.find(e => e.ind.includes(id)); if (!exo(S.ex).ind.includes(id) && e) S.ex = e.id; return toast('Indicateur trouvé dans ' + exo(S.ex).nom); }
+  }
+  render();
+});
+render();
+</script>
+</body>
+</html>
