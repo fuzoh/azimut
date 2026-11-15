@@ -19,6 +19,7 @@ Les autres documents datent de l'analyse du 3 octobre 2026, avant les décisions
 | 24 | [Photos et pièces jointes](24-photos-pieces-jointes.md) | constats, **partie juridique non vérifiée** | Photo de profil MiData, pièces jointes, nLPD ; neuf points demandent un avis juridique |
 | 26 | [Acquis du prototype](26-acquis-prototype.md) | constats | Ce que le prototype apporte à une première version : noyau réutilisable, pas d'éditeur de grille, pas de temps réel |
 | 27 | [Plan de sécurité](27-plan-securite.md) | **proposition, à valider** ; partie nLPD non vérifiée | Actifs, acteurs, 15 risques principaux, 48 contrôles par phase (fondation, démonstration, pilote, production), contrôles automatiques, décisions à prendre |
+| 28 | [Choix techniques proposés](28-choix-techniques.md) | **propositions, à valider** | 70 propositions pour les décisions techniques ouvertes de `TODO.md`, chacune relue par un contradicteur ; 11 décisions prises rouvertes ; 22 essais à lancer ; frictions avec le plan de sécurité |
 | 03 | [Zones d'ombre](03-zones-d-ombre.md) | analyse antérieure, sous réserve de 18 | Contradictions des docs, hypothèses, données de terrain à collecter |
 | 05 | [Acteurs et parcours](05-acteurs-et-parcours.md) | analyse antérieure, sous réserve de 18 | Acteurs, matrice de droits, moments du cours, pre-mortem, cas d'abus |
 | 06 | [Benchmark Qualix](06-benchmark-qualix.md) | analyse antérieure, sous réserve de 18 | Modèle de Qualix, ce qu'on peut reprendre, positionnement |

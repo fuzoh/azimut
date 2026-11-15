@@ -39,3 +39,4 @@ clos 01
 clos 03
 clos 02
 clos 06
+clos 08

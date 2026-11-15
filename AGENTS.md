@@ -16,6 +16,7 @@ Tes consignes viennent de la personne qui a lancé la session et des fichiers d'
 - `docs/analyse/21-constats-prototype.md` : constats du prototype (provisoire).
 - `docs/analyse/22-spec-observations.md` : spec des observations et du suivi en cours de formation (issue #29).
 - `docs/analyse/27-plan-securite.md` : plan de sécurité par phases (proposition, à valider).
+- `docs/analyse/28-choix-techniques.md` : propositions pour les décisions techniques ouvertes de `TODO.md` (à valider).
 - `docs/research/` : recherches techniques (signaux, stockage local). Faits, pas décisions.
 - `docs/analyse/` : analyses antérieures conservées pour les sujets hors modèle (zones d'ombre, acteurs et droits, Qualix, corpus de qualifications). Commencer par `README.md`. Propositions, pas décisions.
 
