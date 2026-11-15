@@ -1,0 +1,33 @@
+{
+  "name": "azimut-prototype",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "bench": "vitest bench --run",
+    "mesure": "bun harnais/serie.ts",
+    "mesure:fumee": "bun harnais/serie.ts --fumee"
+  },
+  "dependencies": {
+    "@tanstack/db": "^0.11.3",
+    "alien-signals": "3.2.1",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "fast-check": "^4.10.2",
+    "playwright": "^1.63.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.2",
+    "vitest": "^5.0.3",
+    "web-vitals": "^6.2.3"
+  }
+}

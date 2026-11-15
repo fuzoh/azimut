@@ -1,0 +1,5633 @@
+{
+ "grille": "G3 V2",
+ "source": "g3-moniteur-camp.md",
+ "baremes": [
+  {
+   "id": "ok-ko",
+   "type": "ordinal",
+   "libelle": "OK/KO",
+   "prereglage": "binaire"
+  },
+  {
+   "id": "niveau-1-5",
+   "type": "ordinal",
+   "libelle": "Niveau 1–5",
+   "paliers": [
+    {
+     "valeur": 1,
+     "libelle": "Insuffisant"
+    },
+    {
+     "valeur": 2,
+     "libelle": "Fragile"
+    },
+    {
+     "valeur": 3,
+     "libelle": "Suffisant"
+    },
+    {
+     "valeur": 4,
+     "libelle": "Bon"
+    },
+    {
+     "valeur": 5,
+     "libelle": "Très bon"
+    }
+   ]
+  }
+ ],
+ "noeuds": [
+  {
+   "id": "reg:cours",
+   "type": "regroupement",
+   "libelle": "Cours",
+   "origine": "reg:cours"
+  },
+  {
+   "id": "m6",
+   "type": "donnees",
+   "libelle": "M6 A suivi le cours en entier",
+   "bareme": "ok-ko",
+   "obligatoire": true,
+   "origine": "m6"
+  },
+  {
+   "id": "reg:e1",
+   "type": "regroupement",
+   "libelle": "E1 Planification d'activité",
+   "origine": "reg:e1"
+  },
+  {
+   "id": "e1#1/objectifs",
+   "type": "donnees",
+   "libelle": "E1#1 Objectifs",
+   "bareme": "niveau-1-5",
+   "definition": "def:g3-objectifs",
+   "origine": "e1#1/objectifs"
+  },
+  {
+   "id": "e1#1/deroulement",
+   "type": "donnees",
+   "libelle": "E1#1 Déroulement",
+   "bareme": "niveau-1-5",
+   "definition": "def:g3-deroulement",
+   "origine": "e1#1/deroulement"
+  },
+  {
+   "id": "e1#1/materiel/pret",
+   "type": "donnees",
+   "libelle": "E1#1 Matériel prêt",
+   "bareme": "ok-ko",
+   "definition": "def:g3-materiel-pret",
+   "origine": "e1#1/materiel/pret"
+  },
+  {
+   "id": "e1#1/materiel/adapte",
+   "type": "donnees",
+   "libelle": "E1#1 Matériel adapté",
+   "bareme": "ok-ko",
+   "definition": "def:g3-materiel-adapte",
+   "origine": "e1#1/materiel/adapte"
+  },
+  {
+   "id": "e1#1/materiel/plan-b",
+   "type": "donnees",
+   "libelle": "E1#1 Plan B prévu",
+   "bareme": "ok-ko",
+   "definition": "def:g3-materiel-plan-b",
+   "origine": "e1#1/materiel/plan-b"
+  },
+  {
+   "id": "e1#1/materiel",
+   "type": "calcul",
+   "libelle": "E1#1 Matériel",
+   "definition": "def:g3-materiel",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e1#1/materiel/pret",
+     "poids": 1
+    },
+    {
+     "noeud": "e1#1/materiel/adapte",
+     "poids": 1
+    },
+    {
+     "noeud": "e1#1/materiel/plan-b",
+     "poids": 1
+    }
+   ],
+   "origine": "e1#1/materiel"
+  },
+  {
+   "id": "e1#1",
+   "type": "calcul",
+   "libelle": "E1#1 (occurrence 1)",
+   "definition": "def:g3-e1",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e1#1/objectifs",
+     "poids": 1
+    },
+    {
+     "noeud": "e1#1/deroulement",
+     "poids": 1
+    },
+    {
+     "noeud": "e1#1/materiel",
+     "poids": 1
+    }
+   ],
+   "origine": "e1#1"
+  },
+  {
+   "id": "e1#2/objectifs",
+   "type": "donnees",
+   "libelle": "E1#2 Objectifs",
+   "bareme": "niveau-1-5",
+   "definition": "def:g3-objectifs",
+   "origine": "e1#2/objectifs"
+  },
+  {
+   "id": "e1#2/deroulement",
+   "type": "donnees",
+   "libelle": "E1#2 Déroulement",
+   "bareme": "niveau-1-5",
+   "definition": "def:g3-deroulement",
+   "origine": "e1#2/deroulement"
+  },
+  {
+   "id": "e1#2/materiel/pret",
+   "type": "donnees",
+   "libelle": "E1#2 Matériel prêt",
+   "bareme": "ok-ko",
+   "definition": "def:g3-materiel-pret",
+   "origine": "e1#2/materiel/pret"
+  },
+  {
+   "id": "e1#2/materiel/adapte",
+   "type": "donnees",
+   "libelle": "E1#2 Matériel adapté",
+   "bareme": "ok-ko",
+   "definition": "def:g3-materiel-adapte",
+   "origine": "e1#2/materiel/adapte"
+  },
+  {
+   "id": "e1#2/materiel/plan-b",
+   "type": "donnees",
+   "libelle": "E1#2 Plan B prévu",
+   "bareme": "ok-ko",
+   "definition": "def:g3-materiel-plan-b",
+   "origine": "e1#2/materiel/plan-b"
+  },
+  {
+   "id": "e1#2/materiel",
+   "type": "calcul",
+   "libelle": "E1#2 Matériel",
+   "definition": "def:g3-materiel",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e1#2/materiel/pret",
+     "poids": 1
+    },
+    {
+     "noeud": "e1#2/materiel/adapte",
+     "poids": 1
+    },
+    {
+     "noeud": "e1#2/materiel/plan-b",
+     "poids": 1
+    }
+   ],
+   "origine": "e1#2/materiel"
+  },
+  {
+   "id": "e1#2",
+   "type": "calcul",
+   "libelle": "E1#2 (occurrence 2)",
+   "definition": "def:g3-e1",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e1#2/objectifs",
+     "poids": 1
+    },
+    {
+     "noeud": "e1#2/deroulement",
+     "poids": 1
+    },
+    {
+     "noeud": "e1#2/materiel",
+     "poids": 1
+    }
+   ],
+   "origine": "e1#2"
+  },
+  {
+   "id": "planif-e1",
+   "type": "calcul",
+   "libelle": "Planif-E1",
+   "fonction": "F5",
+   "entrees": [
+    {
+     "noeud": "e1#1",
+     "poids": 1
+    },
+    {
+     "noeud": "e1#2",
+     "poids": 1
+    }
+   ],
+   "params": {
+    "mode": "meilleure",
+    "plafond": 60
+   },
+   "origine": "planif-e1"
+  },
+  {
+   "id": "reg:e2",
+   "type": "regroupement",
+   "libelle": "E2 Animation d'un jeu",
+   "origine": "reg:e2"
+  },
+  {
+   "id": "consignes-e2",
+   "type": "donnees",
+   "libelle": "Consignes E2",
+   "bareme": "niveau-1-5",
+   "origine": "consignes-e2"
+  },
+  {
+   "id": "gestion",
+   "type": "donnees",
+   "libelle": "Gestion du groupe",
+   "bareme": "niveau-1-5",
+   "obligatoire": true,
+   "origine": "gestion"
+  },
+  {
+   "id": "sj1",
+   "type": "donnees",
+   "libelle": "SJ1 Terrain vérifié",
+   "bareme": "ok-ko",
+   "obligatoire": true,
+   "origine": "sj1"
+  },
+  {
+   "id": "sj2",
+   "type": "donnees",
+   "libelle": "SJ2 Règles de sécurité annoncées",
+   "bareme": "ok-ko",
+   "obligatoire": true,
+   "origine": "sj2"
+  },
+  {
+   "id": "sj3",
+   "type": "donnees",
+   "libelle": "SJ3 Trousse à portée",
+   "bareme": "ok-ko",
+   "obligatoire": true,
+   "origine": "sj3"
+  },
+  {
+   "id": "securite-jeu",
+   "type": "calcul",
+   "libelle": "Sécurité du jeu",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "sj1",
+     "poids": 1
+    },
+    {
+     "noeud": "sj2",
+     "poids": 1
+    },
+    {
+     "noeud": "sj3",
+     "poids": 1
+    }
+   ],
+   "origine": "securite-jeu"
+  },
+  {
+   "id": "e2",
+   "type": "calcul",
+   "libelle": "E2",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "consignes-e2",
+     "poids": 1
+    },
+    {
+     "noeud": "gestion",
+     "poids": 1
+    },
+    {
+     "noeud": "securite-jeu",
+     "poids": 1
+    }
+   ],
+   "origine": "e2"
+  },
+  {
+   "id": "seuil:e2",
+   "type": "calcul",
+   "libelle": "E2 ≥ 60 %",
+   "fonction": "F2",
+   "entrees": [
+    {
+     "noeud": "e2",
+     "poids": 1
+    }
+   ],
+   "params": {
+    "seuil": 60
+   },
+   "origine": "seuil:e2"
+  },
+  {
+   "id": "reg:e3",
+   "type": "regroupement",
+   "libelle": "E3 Randonnée de nuit",
+   "origine": "reg:e3"
+  },
+  {
+   "id": "consignes-e3",
+   "type": "donnees",
+   "libelle": "Consignes E3",
+   "bareme": "niveau-1-5",
+   "origine": "consignes-e3"
+  },
+  {
+   "id": "itineraire",
+   "type": "donnees",
+   "libelle": "Itinéraire",
+   "bareme": "niveau-1-5",
+   "origine": "itineraire"
+  },
+  {
+   "id": "sr1",
+   "type": "donnees",
+   "libelle": "SR1 Lampes contrôlées",
+   "bareme": "ok-ko",
+   "obligatoire": true,
+   "origine": "sr1"
+  },
+  {
+   "id": "sr2",
+   "type": "donnees",
+   "libelle": "SR2 Effectif compté",
+   "bareme": "ok-ko",
+   "obligatoire": true,
+   "origine": "sr2"
+  },
+  {
+   "id": "sr3",
+   "type": "donnees",
+   "libelle": "SR3 Itinéraire annoncé",
+   "bareme": "ok-ko",
+   "obligatoire": true,
+   "origine": "sr3"
+  },
+  {
+   "id": "sr4",
+   "type": "donnees",
+   "libelle": "SR4 Point de repli",
+   "bareme": "ok-ko",
+   "obligatoire": true,
+   "origine": "sr4"
+  },
+  {
+   "id": "sr5",
+   "type": "donnees",
+   "libelle": "SR5 Numéro d'urgence communiqué",
+   "bareme": "ok-ko",
+   "obligatoire": true
+  },
+  {
+   "id": "securite-rando",
+   "type": "calcul",
+   "libelle": "Sécurité rando",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "sr1",
+     "poids": 1
+    },
+    {
+     "noeud": "sr2",
+     "poids": 1
+    },
+    {
+     "noeud": "sr3",
+     "poids": 1
+    },
+    {
+     "noeud": "sr4",
+     "poids": 1
+    },
+    {
+     "noeud": "sr5",
+     "poids": 1
+    }
+   ],
+   "origine": "securite-rando"
+  },
+  {
+   "id": "e3",
+   "type": "calcul",
+   "libelle": "E3",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "consignes-e3",
+     "poids": 1
+    },
+    {
+     "noeud": "securite-rando",
+     "poids": 1
+    }
+   ],
+   "origine": "e3"
+  },
+  {
+   "id": "e4/c1/1",
+   "type": "donnees",
+   "libelle": "E4 critère 1 indicateur 1",
+   "bareme": "niveau-1-5",
+   "origine": "e4/c1/1"
+  },
+  {
+   "id": "e4/c1/2",
+   "type": "donnees",
+   "libelle": "E4 critère 1 indicateur 2",
+   "bareme": "niveau-1-5",
+   "origine": "e4/c1/2"
+  },
+  {
+   "id": "e4/c1/3",
+   "type": "donnees",
+   "libelle": "E4 critère 1 indicateur 3",
+   "bareme": "niveau-1-5",
+   "origine": "e4/c1/3"
+  },
+  {
+   "id": "e4/c1/4",
+   "type": "donnees",
+   "libelle": "E4 critère 1 indicateur 4",
+   "bareme": "niveau-1-5",
+   "origine": "e4/c1/4"
+  },
+  {
+   "id": "e4/c1",
+   "type": "calcul",
+   "libelle": "E4 critère 1",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e4/c1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c1/4",
+     "poids": 1
+    }
+   ],
+   "origine": "e4/c1"
+  },
+  {
+   "id": "e4/c2/1",
+   "type": "donnees",
+   "libelle": "E4 critère 2 indicateur 1",
+   "bareme": "ok-ko",
+   "origine": "e4/c2/1"
+  },
+  {
+   "id": "e4/c2/2",
+   "type": "donnees",
+   "libelle": "E4 critère 2 indicateur 2",
+   "bareme": "ok-ko",
+   "origine": "e4/c2/2"
+  },
+  {
+   "id": "e4/c2/3",
+   "type": "donnees",
+   "libelle": "E4 critère 2 indicateur 3",
+   "bareme": "ok-ko",
+   "origine": "e4/c2/3"
+  },
+  {
+   "id": "e4/c2/4",
+   "type": "donnees",
+   "libelle": "E4 critère 2 indicateur 4",
+   "bareme": "ok-ko",
+   "origine": "e4/c2/4"
+  },
+  {
+   "id": "e4/c2/5",
+   "type": "donnees",
+   "libelle": "E4 critère 2 indicateur 5",
+   "bareme": "ok-ko",
+   "origine": "e4/c2/5"
+  },
+  {
+   "id": "e4/c2",
+   "type": "calcul",
+   "libelle": "E4 critère 2",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e4/c2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c2/4",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c2/5",
+     "poids": 1
+    }
+   ],
+   "origine": "e4/c2"
+  },
+  {
+   "id": "e4/c3/1",
+   "type": "donnees",
+   "libelle": "E4 critère 3 indicateur 1",
+   "bareme": "niveau-1-5",
+   "origine": "e4/c3/1"
+  },
+  {
+   "id": "e4/c3/2",
+   "type": "donnees",
+   "libelle": "E4 critère 3 indicateur 2",
+   "bareme": "niveau-1-5",
+   "origine": "e4/c3/2"
+  },
+  {
+   "id": "e4/c3/3",
+   "type": "donnees",
+   "libelle": "E4 critère 3 indicateur 3",
+   "bareme": "niveau-1-5",
+   "origine": "e4/c3/3"
+  },
+  {
+   "id": "e4/c3",
+   "type": "calcul",
+   "libelle": "E4 critère 3",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e4/c3/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c3/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c3/3",
+     "poids": 1
+    }
+   ],
+   "origine": "e4/c3"
+  },
+  {
+   "id": "e4/c4/1",
+   "type": "donnees",
+   "libelle": "E4 critère 4 indicateur 1",
+   "bareme": "ok-ko",
+   "origine": "e4/c4/1"
+  },
+  {
+   "id": "e4/c4/2",
+   "type": "donnees",
+   "libelle": "E4 critère 4 indicateur 2",
+   "bareme": "ok-ko",
+   "origine": "e4/c4/2"
+  },
+  {
+   "id": "e4/c4/3",
+   "type": "donnees",
+   "libelle": "E4 critère 4 indicateur 3",
+   "bareme": "ok-ko",
+   "origine": "e4/c4/3"
+  },
+  {
+   "id": "e4/c4/4",
+   "type": "donnees",
+   "libelle": "E4 critère 4 indicateur 4",
+   "bareme": "ok-ko",
+   "origine": "e4/c4/4"
+  },
+  {
+   "id": "e4/c4",
+   "type": "calcul",
+   "libelle": "E4 critère 4",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e4/c4/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c4/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c4/3",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c4/4",
+     "poids": 1
+    }
+   ],
+   "origine": "e4/c4"
+  },
+  {
+   "id": "e4/c5/1",
+   "type": "donnees",
+   "libelle": "E4 critère 5 indicateur 1",
+   "bareme": "niveau-1-5",
+   "origine": "e4/c5/1"
+  },
+  {
+   "id": "e4/c5/2",
+   "type": "donnees",
+   "libelle": "E4 critère 5 indicateur 2",
+   "bareme": "niveau-1-5",
+   "origine": "e4/c5/2"
+  },
+  {
+   "id": "e4/c5/3",
+   "type": "donnees",
+   "libelle": "E4 critère 5 indicateur 3",
+   "bareme": "niveau-1-5",
+   "origine": "e4/c5/3"
+  },
+  {
+   "id": "e4/c5/4",
+   "type": "donnees",
+   "libelle": "E4 critère 5 indicateur 4",
+   "bareme": "niveau-1-5",
+   "origine": "e4/c5/4"
+  },
+  {
+   "id": "e4/c5/5",
+   "type": "donnees",
+   "libelle": "E4 critère 5 indicateur 5",
+   "bareme": "niveau-1-5",
+   "origine": "e4/c5/5"
+  },
+  {
+   "id": "e4/c5",
+   "type": "calcul",
+   "libelle": "E4 critère 5",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e4/c5/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c5/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c5/3",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c5/4",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c5/5",
+     "poids": 1
+    }
+   ],
+   "origine": "e4/c5"
+  },
+  {
+   "id": "e4/c6/1",
+   "type": "donnees",
+   "libelle": "E4 critère 6 indicateur 1",
+   "bareme": "ok-ko",
+   "origine": "e4/c6/1"
+  },
+  {
+   "id": "e4/c6/2",
+   "type": "donnees",
+   "libelle": "E4 critère 6 indicateur 2",
+   "bareme": "ok-ko",
+   "origine": "e4/c6/2"
+  },
+  {
+   "id": "e4/c6/3",
+   "type": "donnees",
+   "libelle": "E4 critère 6 indicateur 3",
+   "bareme": "ok-ko",
+   "origine": "e4/c6/3"
+  },
+  {
+   "id": "e4/c6",
+   "type": "calcul",
+   "libelle": "E4 critère 6",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e4/c6/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c6/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c6/3",
+     "poids": 1
+    }
+   ],
+   "origine": "e4/c6"
+  },
+  {
+   "id": "e4/c7/1",
+   "type": "donnees",
+   "libelle": "E4 critère 7 indicateur 1",
+   "bareme": "niveau-1-5",
+   "origine": "e4/c7/1"
+  },
+  {
+   "id": "e4/c7/2",
+   "type": "donnees",
+   "libelle": "E4 critère 7 indicateur 2",
+   "bareme": "niveau-1-5",
+   "origine": "e4/c7/2"
+  },
+  {
+   "id": "e4/c7/3",
+   "type": "donnees",
+   "libelle": "E4 critère 7 indicateur 3",
+   "bareme": "niveau-1-5",
+   "origine": "e4/c7/3"
+  },
+  {
+   "id": "e4/c7/4",
+   "type": "donnees",
+   "libelle": "E4 critère 7 indicateur 4",
+   "bareme": "niveau-1-5",
+   "origine": "e4/c7/4"
+  },
+  {
+   "id": "e4/c7",
+   "type": "calcul",
+   "libelle": "E4 critère 7",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e4/c7/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c7/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c7/3",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c7/4",
+     "poids": 1
+    }
+   ],
+   "origine": "e4/c7"
+  },
+  {
+   "id": "e4/c8/1",
+   "type": "donnees",
+   "libelle": "E4 critère 8 indicateur 1",
+   "bareme": "ok-ko",
+   "origine": "e4/c8/1"
+  },
+  {
+   "id": "e4/c8/2",
+   "type": "donnees",
+   "libelle": "E4 critère 8 indicateur 2",
+   "bareme": "ok-ko",
+   "origine": "e4/c8/2"
+  },
+  {
+   "id": "e4/c8/3",
+   "type": "donnees",
+   "libelle": "E4 critère 8 indicateur 3",
+   "bareme": "ok-ko",
+   "origine": "e4/c8/3"
+  },
+  {
+   "id": "e4/c8/4",
+   "type": "donnees",
+   "libelle": "E4 critère 8 indicateur 4",
+   "bareme": "ok-ko",
+   "origine": "e4/c8/4"
+  },
+  {
+   "id": "e4/c8/5",
+   "type": "donnees",
+   "libelle": "E4 critère 8 indicateur 5",
+   "bareme": "ok-ko",
+   "origine": "e4/c8/5"
+  },
+  {
+   "id": "e4/c8",
+   "type": "calcul",
+   "libelle": "E4 critère 8",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e4/c8/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c8/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c8/3",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c8/4",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c8/5",
+     "poids": 1
+    }
+   ],
+   "origine": "e4/c8"
+  },
+  {
+   "id": "e4/c9/1",
+   "type": "donnees",
+   "libelle": "E4 critère 9 indicateur 1",
+   "bareme": "niveau-1-5",
+   "origine": "e4/c9/1"
+  },
+  {
+   "id": "e4/c9/2",
+   "type": "donnees",
+   "libelle": "E4 critère 9 indicateur 2",
+   "bareme": "niveau-1-5",
+   "origine": "e4/c9/2"
+  },
+  {
+   "id": "e4/c9/3",
+   "type": "donnees",
+   "libelle": "E4 critère 9 indicateur 3",
+   "bareme": "niveau-1-5",
+   "origine": "e4/c9/3"
+  },
+  {
+   "id": "e4/c9",
+   "type": "calcul",
+   "libelle": "E4 critère 9",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e4/c9/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c9/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c9/3",
+     "poids": 1
+    }
+   ],
+   "origine": "e4/c9"
+  },
+  {
+   "id": "e4/c10/1",
+   "type": "donnees",
+   "libelle": "E4 critère 10 indicateur 1",
+   "bareme": "ok-ko",
+   "origine": "e4/c10/1"
+  },
+  {
+   "id": "e4/c10/2",
+   "type": "donnees",
+   "libelle": "E4 critère 10 indicateur 2",
+   "bareme": "ok-ko",
+   "origine": "e4/c10/2"
+  },
+  {
+   "id": "e4/c10/3",
+   "type": "donnees",
+   "libelle": "E4 critère 10 indicateur 3",
+   "bareme": "ok-ko",
+   "origine": "e4/c10/3"
+  },
+  {
+   "id": "e4/c10/4",
+   "type": "donnees",
+   "libelle": "E4 critère 10 indicateur 4",
+   "bareme": "ok-ko",
+   "origine": "e4/c10/4"
+  },
+  {
+   "id": "e4/c10",
+   "type": "calcul",
+   "libelle": "E4 critère 10",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e4/c10/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c10/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c10/3",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c10/4",
+     "poids": 1
+    }
+   ],
+   "origine": "e4/c10"
+  },
+  {
+   "id": "e4/transverse",
+   "type": "donnees",
+   "libelle": "E4 indicateur transversal",
+   "bareme": "niveau-1-5",
+   "origine": "e4/transverse"
+  },
+  {
+   "id": "e4",
+   "type": "calcul",
+   "libelle": "E4 Nœuds et cordes",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e4/c1",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c2",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c3",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c4",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c5",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c6",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c7",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c8",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c9",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c10",
+     "poids": 1
+    }
+   ],
+   "origine": "e4"
+  },
+  {
+   "id": "reg:e4",
+   "type": "regroupement",
+   "libelle": "E4 Nœuds et cordes",
+   "origine": "reg:e4"
+  },
+  {
+   "id": "reg:e4/remarques",
+   "type": "regroupement",
+   "libelle": "Remarques E4",
+   "origine": "reg:e4/remarques"
+  },
+  {
+   "id": "e4/remarques/1",
+   "type": "donnees",
+   "libelle": "Remarque 1 E4",
+   "origine": "e4/remarques/1"
+  },
+  {
+   "id": "e4/remarques/2",
+   "type": "donnees",
+   "libelle": "Remarque 2 E4",
+   "origine": "e4/remarques/2"
+  },
+  {
+   "id": "e5/c1/1",
+   "type": "donnees",
+   "libelle": "E5 critère 1 indicateur 1",
+   "bareme": "niveau-1-5",
+   "origine": "e5/c1/1"
+  },
+  {
+   "id": "e5/c1/2",
+   "type": "donnees",
+   "libelle": "E5 critère 1 indicateur 2",
+   "bareme": "niveau-1-5",
+   "origine": "e5/c1/2"
+  },
+  {
+   "id": "e5/c1/3",
+   "type": "donnees",
+   "libelle": "E5 critère 1 indicateur 3",
+   "bareme": "niveau-1-5",
+   "origine": "e5/c1/3"
+  },
+  {
+   "id": "e5/c1/4",
+   "type": "donnees",
+   "libelle": "E5 critère 1 indicateur 4",
+   "bareme": "niveau-1-5",
+   "origine": "e5/c1/4"
+  },
+  {
+   "id": "e5/c1/5",
+   "type": "donnees",
+   "libelle": "E5 critère 1 indicateur 5",
+   "bareme": "niveau-1-5",
+   "origine": "e5/c1/5"
+  },
+  {
+   "id": "e5/c1",
+   "type": "calcul",
+   "libelle": "E5 critère 1",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e5/c1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c1/4",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c1/5",
+     "poids": 1
+    }
+   ],
+   "origine": "e5/c1"
+  },
+  {
+   "id": "e5/c2/1",
+   "type": "donnees",
+   "libelle": "E5 critère 2 indicateur 1",
+   "bareme": "ok-ko",
+   "origine": "e5/c2/1"
+  },
+  {
+   "id": "e5/c2/2",
+   "type": "donnees",
+   "libelle": "E5 critère 2 indicateur 2",
+   "bareme": "ok-ko",
+   "origine": "e5/c2/2"
+  },
+  {
+   "id": "e5/c2/3",
+   "type": "donnees",
+   "libelle": "E5 critère 2 indicateur 3",
+   "bareme": "ok-ko",
+   "origine": "e5/c2/3"
+  },
+  {
+   "id": "e5/c2",
+   "type": "calcul",
+   "libelle": "E5 critère 2",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e5/c2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c2/3",
+     "poids": 1
+    }
+   ],
+   "origine": "e5/c2"
+  },
+  {
+   "id": "e5/c3/1",
+   "type": "donnees",
+   "libelle": "E5 critère 3 indicateur 1",
+   "bareme": "niveau-1-5",
+   "origine": "e5/c3/1"
+  },
+  {
+   "id": "e5/c3/2",
+   "type": "donnees",
+   "libelle": "E5 critère 3 indicateur 2",
+   "bareme": "niveau-1-5",
+   "origine": "e5/c3/2"
+  },
+  {
+   "id": "e5/c3/3",
+   "type": "donnees",
+   "libelle": "E5 critère 3 indicateur 3",
+   "bareme": "niveau-1-5",
+   "origine": "e5/c3/3"
+  },
+  {
+   "id": "e5/c3/4",
+   "type": "donnees",
+   "libelle": "E5 critère 3 indicateur 4",
+   "bareme": "niveau-1-5",
+   "origine": "e5/c3/4"
+  },
+  {
+   "id": "e5/c3",
+   "type": "calcul",
+   "libelle": "E5 critère 3",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e5/c3/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c3/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c3/3",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c3/4",
+     "poids": 1
+    }
+   ],
+   "origine": "e5/c3"
+  },
+  {
+   "id": "e5/c4/1",
+   "type": "donnees",
+   "libelle": "E5 critère 4 indicateur 1",
+   "bareme": "ok-ko",
+   "origine": "e5/c4/1"
+  },
+  {
+   "id": "e5/c4/2",
+   "type": "donnees",
+   "libelle": "E5 critère 4 indicateur 2",
+   "bareme": "ok-ko",
+   "origine": "e5/c4/2"
+  },
+  {
+   "id": "e5/c4/3",
+   "type": "donnees",
+   "libelle": "E5 critère 4 indicateur 3",
+   "bareme": "ok-ko",
+   "origine": "e5/c4/3"
+  },
+  {
+   "id": "e5/c4/4",
+   "type": "donnees",
+   "libelle": "E5 critère 4 indicateur 4",
+   "bareme": "ok-ko",
+   "origine": "e5/c4/4"
+  },
+  {
+   "id": "e5/c4/5",
+   "type": "donnees",
+   "libelle": "E5 critère 4 indicateur 5",
+   "bareme": "ok-ko",
+   "origine": "e5/c4/5"
+  },
+  {
+   "id": "e5/c4",
+   "type": "calcul",
+   "libelle": "E5 critère 4",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e5/c4/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c4/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c4/3",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c4/4",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c4/5",
+     "poids": 1
+    }
+   ],
+   "origine": "e5/c4"
+  },
+  {
+   "id": "e5/c5/1",
+   "type": "donnees",
+   "libelle": "E5 critère 5 indicateur 1",
+   "bareme": "niveau-1-5",
+   "origine": "e5/c5/1"
+  },
+  {
+   "id": "e5/c5/2",
+   "type": "donnees",
+   "libelle": "E5 critère 5 indicateur 2",
+   "bareme": "niveau-1-5",
+   "origine": "e5/c5/2"
+  },
+  {
+   "id": "e5/c5/3",
+   "type": "donnees",
+   "libelle": "E5 critère 5 indicateur 3",
+   "bareme": "niveau-1-5",
+   "origine": "e5/c5/3"
+  },
+  {
+   "id": "e5/c5",
+   "type": "calcul",
+   "libelle": "E5 critère 5",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e5/c5/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c5/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c5/3",
+     "poids": 1
+    }
+   ],
+   "origine": "e5/c5"
+  },
+  {
+   "id": "e5/c6/1",
+   "type": "donnees",
+   "libelle": "E5 critère 6 indicateur 1",
+   "bareme": "ok-ko",
+   "origine": "e5/c6/1"
+  },
+  {
+   "id": "e5/c6/2",
+   "type": "donnees",
+   "libelle": "E5 critère 6 indicateur 2",
+   "bareme": "ok-ko",
+   "origine": "e5/c6/2"
+  },
+  {
+   "id": "e5/c6/3",
+   "type": "donnees",
+   "libelle": "E5 critère 6 indicateur 3",
+   "bareme": "ok-ko",
+   "origine": "e5/c6/3"
+  },
+  {
+   "id": "e5/c6/4",
+   "type": "donnees",
+   "libelle": "E5 critère 6 indicateur 4",
+   "bareme": "ok-ko",
+   "origine": "e5/c6/4"
+  },
+  {
+   "id": "e5/c6",
+   "type": "calcul",
+   "libelle": "E5 critère 6",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e5/c6/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c6/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c6/3",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c6/4",
+     "poids": 1
+    }
+   ],
+   "origine": "e5/c6"
+  },
+  {
+   "id": "e5/c7/1",
+   "type": "donnees",
+   "libelle": "E5 critère 7 indicateur 1",
+   "bareme": "niveau-1-5",
+   "origine": "e5/c7/1"
+  },
+  {
+   "id": "e5/c7/2",
+   "type": "donnees",
+   "libelle": "E5 critère 7 indicateur 2",
+   "bareme": "niveau-1-5",
+   "origine": "e5/c7/2"
+  },
+  {
+   "id": "e5/c7/3",
+   "type": "donnees",
+   "libelle": "E5 critère 7 indicateur 3",
+   "bareme": "niveau-1-5",
+   "origine": "e5/c7/3"
+  },
+  {
+   "id": "e5/c7/4",
+   "type": "donnees",
+   "libelle": "E5 critère 7 indicateur 4",
+   "bareme": "niveau-1-5",
+   "origine": "e5/c7/4"
+  },
+  {
+   "id": "e5/c7/5",
+   "type": "donnees",
+   "libelle": "E5 critère 7 indicateur 5",
+   "bareme": "niveau-1-5",
+   "origine": "e5/c7/5"
+  },
+  {
+   "id": "e5/c7",
+   "type": "calcul",
+   "libelle": "E5 critère 7",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e5/c7/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c7/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c7/3",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c7/4",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c7/5",
+     "poids": 1
+    }
+   ],
+   "origine": "e5/c7"
+  },
+  {
+   "id": "e5/c8/1",
+   "type": "donnees",
+   "libelle": "E5 critère 8 indicateur 1",
+   "bareme": "ok-ko",
+   "origine": "e5/c8/1"
+  },
+  {
+   "id": "e5/c8/2",
+   "type": "donnees",
+   "libelle": "E5 critère 8 indicateur 2",
+   "bareme": "ok-ko",
+   "origine": "e5/c8/2"
+  },
+  {
+   "id": "e5/c8/3",
+   "type": "donnees",
+   "libelle": "E5 critère 8 indicateur 3",
+   "bareme": "ok-ko",
+   "origine": "e5/c8/3"
+  },
+  {
+   "id": "e5/c8",
+   "type": "calcul",
+   "libelle": "E5 critère 8",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e5/c8/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c8/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c8/3",
+     "poids": 1
+    }
+   ],
+   "origine": "e5/c8"
+  },
+  {
+   "id": "e5/c9/1",
+   "type": "donnees",
+   "libelle": "E5 critère 9 indicateur 1",
+   "bareme": "niveau-1-5",
+   "origine": "e5/c9/1"
+  },
+  {
+   "id": "e5/c9/2",
+   "type": "donnees",
+   "libelle": "E5 critère 9 indicateur 2",
+   "bareme": "niveau-1-5",
+   "origine": "e5/c9/2"
+  },
+  {
+   "id": "e5/c9/3",
+   "type": "donnees",
+   "libelle": "E5 critère 9 indicateur 3",
+   "bareme": "niveau-1-5",
+   "origine": "e5/c9/3"
+  },
+  {
+   "id": "e5/c9/4",
+   "type": "donnees",
+   "libelle": "E5 critère 9 indicateur 4",
+   "bareme": "niveau-1-5",
+   "origine": "e5/c9/4"
+  },
+  {
+   "id": "e5/c9",
+   "type": "calcul",
+   "libelle": "E5 critère 9",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e5/c9/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c9/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c9/3",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c9/4",
+     "poids": 1
+    }
+   ],
+   "origine": "e5/c9"
+  },
+  {
+   "id": "e5/c10/1",
+   "type": "donnees",
+   "libelle": "E5 critère 10 indicateur 1",
+   "bareme": "ok-ko",
+   "origine": "e5/c10/1"
+  },
+  {
+   "id": "e5/c10/2",
+   "type": "donnees",
+   "libelle": "E5 critère 10 indicateur 2",
+   "bareme": "ok-ko",
+   "origine": "e5/c10/2"
+  },
+  {
+   "id": "e5/c10/3",
+   "type": "donnees",
+   "libelle": "E5 critère 10 indicateur 3",
+   "bareme": "ok-ko",
+   "origine": "e5/c10/3"
+  },
+  {
+   "id": "e5/c10/4",
+   "type": "donnees",
+   "libelle": "E5 critère 10 indicateur 4",
+   "bareme": "ok-ko",
+   "origine": "e5/c10/4"
+  },
+  {
+   "id": "e5/c10/5",
+   "type": "donnees",
+   "libelle": "E5 critère 10 indicateur 5",
+   "bareme": "ok-ko",
+   "origine": "e5/c10/5"
+  },
+  {
+   "id": "e5/c10",
+   "type": "calcul",
+   "libelle": "E5 critère 10",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e5/c10/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c10/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c10/3",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c10/4",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c10/5",
+     "poids": 1
+    }
+   ],
+   "origine": "e5/c10"
+  },
+  {
+   "id": "e5/transverse",
+   "type": "donnees",
+   "libelle": "E5 indicateur transversal",
+   "bareme": "niveau-1-5",
+   "origine": "e5/transverse"
+  },
+  {
+   "id": "e5",
+   "type": "calcul",
+   "libelle": "E5 Montage du bivouac",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e5/c1",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c2",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c3",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c4",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c5",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c6",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c7",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c8",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c9",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c10",
+     "poids": 1
+    }
+   ],
+   "origine": "e5"
+  },
+  {
+   "id": "reg:e5",
+   "type": "regroupement",
+   "libelle": "E5 Montage du bivouac",
+   "origine": "reg:e5"
+  },
+  {
+   "id": "reg:e5/remarques",
+   "type": "regroupement",
+   "libelle": "Remarques E5",
+   "origine": "reg:e5/remarques"
+  },
+  {
+   "id": "e5/remarques/1",
+   "type": "donnees",
+   "libelle": "Remarque 1 E5",
+   "origine": "e5/remarques/1"
+  },
+  {
+   "id": "e5/remarques/2",
+   "type": "donnees",
+   "libelle": "Remarque 2 E5",
+   "origine": "e5/remarques/2"
+  },
+  {
+   "id": "e6/c1/1",
+   "type": "donnees",
+   "libelle": "E6 critère 1 indicateur 1",
+   "bareme": "niveau-1-5",
+   "origine": "e6/c1/1"
+  },
+  {
+   "id": "e6/c1/2",
+   "type": "donnees",
+   "libelle": "E6 critère 1 indicateur 2",
+   "bareme": "niveau-1-5",
+   "origine": "e6/c1/2"
+  },
+  {
+   "id": "e6/c1/3",
+   "type": "donnees",
+   "libelle": "E6 critère 1 indicateur 3",
+   "bareme": "niveau-1-5",
+   "origine": "e6/c1/3"
+  },
+  {
+   "id": "e6/c1",
+   "type": "calcul",
+   "libelle": "E6 critère 1",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e6/c1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c1/3",
+     "poids": 1
+    }
+   ],
+   "origine": "e6/c1"
+  },
+  {
+   "id": "e6/c2/1",
+   "type": "donnees",
+   "libelle": "E6 critère 2 indicateur 1",
+   "bareme": "ok-ko",
+   "origine": "e6/c2/1"
+  },
+  {
+   "id": "e6/c2/2",
+   "type": "donnees",
+   "libelle": "E6 critère 2 indicateur 2",
+   "bareme": "ok-ko",
+   "origine": "e6/c2/2"
+  },
+  {
+   "id": "e6/c2/3",
+   "type": "donnees",
+   "libelle": "E6 critère 2 indicateur 3",
+   "bareme": "ok-ko",
+   "origine": "e6/c2/3"
+  },
+  {
+   "id": "e6/c2/4",
+   "type": "donnees",
+   "libelle": "E6 critère 2 indicateur 4",
+   "bareme": "ok-ko",
+   "origine": "e6/c2/4"
+  },
+  {
+   "id": "e6/c2",
+   "type": "calcul",
+   "libelle": "E6 critère 2",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e6/c2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c2/4",
+     "poids": 1
+    }
+   ],
+   "origine": "e6/c2"
+  },
+  {
+   "id": "e6/c3/1",
+   "type": "donnees",
+   "libelle": "E6 critère 3 indicateur 1",
+   "bareme": "niveau-1-5",
+   "origine": "e6/c3/1"
+  },
+  {
+   "id": "e6/c3/2",
+   "type": "donnees",
+   "libelle": "E6 critère 3 indicateur 2",
+   "bareme": "niveau-1-5",
+   "origine": "e6/c3/2"
+  },
+  {
+   "id": "e6/c3/3",
+   "type": "donnees",
+   "libelle": "E6 critère 3 indicateur 3",
+   "bareme": "niveau-1-5",
+   "origine": "e6/c3/3"
+  },
+  {
+   "id": "e6/c3/4",
+   "type": "donnees",
+   "libelle": "E6 critère 3 indicateur 4",
+   "bareme": "niveau-1-5",
+   "origine": "e6/c3/4"
+  },
+  {
+   "id": "e6/c3/5",
+   "type": "donnees",
+   "libelle": "E6 critère 3 indicateur 5",
+   "bareme": "niveau-1-5",
+   "origine": "e6/c3/5"
+  },
+  {
+   "id": "e6/c3",
+   "type": "calcul",
+   "libelle": "E6 critère 3",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e6/c3/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c3/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c3/3",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c3/4",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c3/5",
+     "poids": 1
+    }
+   ],
+   "origine": "e6/c3"
+  },
+  {
+   "id": "e6/c4/1",
+   "type": "donnees",
+   "libelle": "E6 critère 4 indicateur 1",
+   "bareme": "ok-ko",
+   "origine": "e6/c4/1"
+  },
+  {
+   "id": "e6/c4/2",
+   "type": "donnees",
+   "libelle": "E6 critère 4 indicateur 2",
+   "bareme": "ok-ko",
+   "origine": "e6/c4/2"
+  },
+  {
+   "id": "e6/c4/3",
+   "type": "donnees",
+   "libelle": "E6 critère 4 indicateur 3",
+   "bareme": "ok-ko",
+   "origine": "e6/c4/3"
+  },
+  {
+   "id": "e6/c4",
+   "type": "calcul",
+   "libelle": "E6 critère 4",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e6/c4/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c4/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c4/3",
+     "poids": 1
+    }
+   ],
+   "origine": "e6/c4"
+  },
+  {
+   "id": "e6/c5/1",
+   "type": "donnees",
+   "libelle": "E6 critère 5 indicateur 1",
+   "bareme": "niveau-1-5",
+   "origine": "e6/c5/1"
+  },
+  {
+   "id": "e6/c5/2",
+   "type": "donnees",
+   "libelle": "E6 critère 5 indicateur 2",
+   "bareme": "niveau-1-5",
+   "origine": "e6/c5/2"
+  },
+  {
+   "id": "e6/c5/3",
+   "type": "donnees",
+   "libelle": "E6 critère 5 indicateur 3",
+   "bareme": "niveau-1-5",
+   "origine": "e6/c5/3"
+  },
+  {
+   "id": "e6/c5/4",
+   "type": "donnees",
+   "libelle": "E6 critère 5 indicateur 4",
+   "bareme": "niveau-1-5",
+   "origine": "e6/c5/4"
+  },
+  {
+   "id": "e6/c5",
+   "type": "calcul",
+   "libelle": "E6 critère 5",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e6/c5/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c5/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c5/3",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c5/4",
+     "poids": 1
+    }
+   ],
+   "origine": "e6/c5"
+  },
+  {
+   "id": "e6/c6/1",
+   "type": "donnees",
+   "libelle": "E6 critère 6 indicateur 1",
+   "bareme": "ok-ko",
+   "origine": "e6/c6/1"
+  },
+  {
+   "id": "e6/c6/2",
+   "type": "donnees",
+   "libelle": "E6 critère 6 indicateur 2",
+   "bareme": "ok-ko",
+   "origine": "e6/c6/2"
+  },
+  {
+   "id": "e6/c6/3",
+   "type": "donnees",
+   "libelle": "E6 critère 6 indicateur 3",
+   "bareme": "ok-ko",
+   "origine": "e6/c6/3"
+  },
+  {
+   "id": "e6/c6/4",
+   "type": "donnees",
+   "libelle": "E6 critère 6 indicateur 4",
+   "bareme": "ok-ko",
+   "origine": "e6/c6/4"
+  },
+  {
+   "id": "e6/c6/5",
+   "type": "donnees",
+   "libelle": "E6 critère 6 indicateur 5",
+   "bareme": "ok-ko",
+   "origine": "e6/c6/5"
+  },
+  {
+   "id": "e6/c6",
+   "type": "calcul",
+   "libelle": "E6 critère 6",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e6/c6/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c6/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c6/3",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c6/4",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c6/5",
+     "poids": 1
+    }
+   ],
+   "origine": "e6/c6"
+  },
+  {
+   "id": "e6/c7/1",
+   "type": "donnees",
+   "libelle": "E6 critère 7 indicateur 1",
+   "bareme": "niveau-1-5",
+   "origine": "e6/c7/1"
+  },
+  {
+   "id": "e6/c7/2",
+   "type": "donnees",
+   "libelle": "E6 critère 7 indicateur 2",
+   "bareme": "niveau-1-5",
+   "origine": "e6/c7/2"
+  },
+  {
+   "id": "e6/c7/3",
+   "type": "donnees",
+   "libelle": "E6 critère 7 indicateur 3",
+   "bareme": "niveau-1-5",
+   "origine": "e6/c7/3"
+  },
+  {
+   "id": "e6/c7",
+   "type": "calcul",
+   "libelle": "E6 critère 7",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e6/c7/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c7/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c7/3",
+     "poids": 1
+    }
+   ],
+   "origine": "e6/c7"
+  },
+  {
+   "id": "e6/c8/1",
+   "type": "donnees",
+   "libelle": "E6 critère 8 indicateur 1",
+   "bareme": "ok-ko",
+   "origine": "e6/c8/1"
+  },
+  {
+   "id": "e6/c8/2",
+   "type": "donnees",
+   "libelle": "E6 critère 8 indicateur 2",
+   "bareme": "ok-ko",
+   "origine": "e6/c8/2"
+  },
+  {
+   "id": "e6/c8/3",
+   "type": "donnees",
+   "libelle": "E6 critère 8 indicateur 3",
+   "bareme": "ok-ko",
+   "origine": "e6/c8/3"
+  },
+  {
+   "id": "e6/c8/4",
+   "type": "donnees",
+   "libelle": "E6 critère 8 indicateur 4",
+   "bareme": "ok-ko",
+   "origine": "e6/c8/4"
+  },
+  {
+   "id": "e6/c8",
+   "type": "calcul",
+   "libelle": "E6 critère 8",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e6/c8/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c8/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c8/3",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c8/4",
+     "poids": 1
+    }
+   ],
+   "origine": "e6/c8"
+  },
+  {
+   "id": "e6/c9/1",
+   "type": "donnees",
+   "libelle": "E6 critère 9 indicateur 1",
+   "bareme": "niveau-1-5",
+   "origine": "e6/c9/1"
+  },
+  {
+   "id": "e6/c9/2",
+   "type": "donnees",
+   "libelle": "E6 critère 9 indicateur 2",
+   "bareme": "niveau-1-5",
+   "origine": "e6/c9/2"
+  },
+  {
+   "id": "e6/c9/3",
+   "type": "donnees",
+   "libelle": "E6 critère 9 indicateur 3",
+   "bareme": "niveau-1-5",
+   "origine": "e6/c9/3"
+  },
+  {
+   "id": "e6/c9/4",
+   "type": "donnees",
+   "libelle": "E6 critère 9 indicateur 4",
+   "bareme": "niveau-1-5",
+   "origine": "e6/c9/4"
+  },
+  {
+   "id": "e6/c9/5",
+   "type": "donnees",
+   "libelle": "E6 critère 9 indicateur 5",
+   "bareme": "niveau-1-5",
+   "origine": "e6/c9/5"
+  },
+  {
+   "id": "e6/c9",
+   "type": "calcul",
+   "libelle": "E6 critère 9",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e6/c9/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c9/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c9/3",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c9/4",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c9/5",
+     "poids": 1
+    }
+   ],
+   "origine": "e6/c9"
+  },
+  {
+   "id": "e6/c10/1",
+   "type": "donnees",
+   "libelle": "E6 critère 10 indicateur 1",
+   "bareme": "ok-ko",
+   "origine": "e6/c10/1"
+  },
+  {
+   "id": "e6/c10/2",
+   "type": "donnees",
+   "libelle": "E6 critère 10 indicateur 2",
+   "bareme": "ok-ko",
+   "origine": "e6/c10/2"
+  },
+  {
+   "id": "e6/c10/3",
+   "type": "donnees",
+   "libelle": "E6 critère 10 indicateur 3",
+   "bareme": "ok-ko",
+   "origine": "e6/c10/3"
+  },
+  {
+   "id": "e6/c10",
+   "type": "calcul",
+   "libelle": "E6 critère 10",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e6/c10/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c10/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c10/3",
+     "poids": 1
+    }
+   ],
+   "origine": "e6/c10"
+  },
+  {
+   "id": "e6/transverse",
+   "type": "donnees",
+   "libelle": "E6 indicateur transversal",
+   "bareme": "niveau-1-5",
+   "origine": "e6/transverse"
+  },
+  {
+   "id": "e6",
+   "type": "calcul",
+   "libelle": "E6 Jeu de nuit",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e6/c1",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c2",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c3",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c4",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c5",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c6",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c7",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c8",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c9",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c10",
+     "poids": 1
+    }
+   ],
+   "origine": "e6"
+  },
+  {
+   "id": "reg:e6",
+   "type": "regroupement",
+   "libelle": "E6 Jeu de nuit",
+   "origine": "reg:e6"
+  },
+  {
+   "id": "reg:e6/remarques",
+   "type": "regroupement",
+   "libelle": "Remarques E6",
+   "origine": "reg:e6/remarques"
+  },
+  {
+   "id": "e6/remarques/1",
+   "type": "donnees",
+   "libelle": "Remarque 1 E6",
+   "origine": "e6/remarques/1"
+  },
+  {
+   "id": "e6/remarques/2",
+   "type": "donnees",
+   "libelle": "Remarque 2 E6",
+   "origine": "e6/remarques/2"
+  },
+  {
+   "id": "e7/c1/1",
+   "type": "donnees",
+   "libelle": "E7 critère 1 indicateur 1",
+   "bareme": "niveau-1-5",
+   "origine": "e7/c1/1"
+  },
+  {
+   "id": "e7/c1/2",
+   "type": "donnees",
+   "libelle": "E7 critère 1 indicateur 2",
+   "bareme": "niveau-1-5",
+   "origine": "e7/c1/2"
+  },
+  {
+   "id": "e7/c1/3",
+   "type": "donnees",
+   "libelle": "E7 critère 1 indicateur 3",
+   "bareme": "niveau-1-5",
+   "origine": "e7/c1/3"
+  },
+  {
+   "id": "e7/c1/4",
+   "type": "donnees",
+   "libelle": "E7 critère 1 indicateur 4",
+   "bareme": "niveau-1-5",
+   "origine": "e7/c1/4"
+  },
+  {
+   "id": "e7/c1",
+   "type": "calcul",
+   "libelle": "E7 critère 1",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e7/c1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c1/4",
+     "poids": 1
+    }
+   ],
+   "origine": "e7/c1"
+  },
+  {
+   "id": "e7/c2/1",
+   "type": "donnees",
+   "libelle": "E7 critère 2 indicateur 1",
+   "bareme": "ok-ko",
+   "origine": "e7/c2/1"
+  },
+  {
+   "id": "e7/c2/2",
+   "type": "donnees",
+   "libelle": "E7 critère 2 indicateur 2",
+   "bareme": "ok-ko",
+   "origine": "e7/c2/2"
+  },
+  {
+   "id": "e7/c2/3",
+   "type": "donnees",
+   "libelle": "E7 critère 2 indicateur 3",
+   "bareme": "ok-ko",
+   "origine": "e7/c2/3"
+  },
+  {
+   "id": "e7/c2/4",
+   "type": "donnees",
+   "libelle": "E7 critère 2 indicateur 4",
+   "bareme": "ok-ko",
+   "origine": "e7/c2/4"
+  },
+  {
+   "id": "e7/c2/5",
+   "type": "donnees",
+   "libelle": "E7 critère 2 indicateur 5",
+   "bareme": "ok-ko",
+   "origine": "e7/c2/5"
+  },
+  {
+   "id": "e7/c2",
+   "type": "calcul",
+   "libelle": "E7 critère 2",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e7/c2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c2/3",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c2/4",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c2/5",
+     "poids": 1
+    }
+   ],
+   "origine": "e7/c2"
+  },
+  {
+   "id": "e7/c3/1",
+   "type": "donnees",
+   "libelle": "E7 critère 3 indicateur 1",
+   "bareme": "niveau-1-5",
+   "origine": "e7/c3/1"
+  },
+  {
+   "id": "e7/c3/2",
+   "type": "donnees",
+   "libelle": "E7 critère 3 indicateur 2",
+   "bareme": "niveau-1-5",
+   "origine": "e7/c3/2"
+  },
+  {
+   "id": "e7/c3/3",
+   "type": "donnees",
+   "libelle": "E7 critère 3 indicateur 3",
+   "bareme": "niveau-1-5",
+   "origine": "e7/c3/3"
+  },
+  {
+   "id": "e7/c3",
+   "type": "calcul",
+   "libelle": "E7 critère 3",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e7/c3/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c3/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c3/3",
+     "poids": 1
+    }
+   ],
+   "origine": "e7/c3"
+  },
+  {
+   "id": "e7/c4/1",
+   "type": "donnees",
+   "libelle": "E7 critère 4 indicateur 1",
+   "bareme": "ok-ko",
+   "origine": "e7/c4/1"
+  },
+  {
+   "id": "e7/c4/2",
+   "type": "donnees",
+   "libelle": "E7 critère 4 indicateur 2",
+   "bareme": "ok-ko",
+   "origine": "e7/c4/2"
+  },
+  {
+   "id": "e7/c4/3",
+   "type": "donnees",
+   "libelle": "E7 critère 4 indicateur 3",
+   "bareme": "ok-ko",
+   "origine": "e7/c4/3"
+  },
+  {
+   "id": "e7/c4/4",
+   "type": "donnees",
+   "libelle": "E7 critère 4 indicateur 4",
+   "bareme": "ok-ko",
+   "origine": "e7/c4/4"
+  },
+  {
+   "id": "e7/c4",
+   "type": "calcul",
+   "libelle": "E7 critère 4",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e7/c4/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c4/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c4/3",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c4/4",
+     "poids": 1
+    }
+   ],
+   "origine": "e7/c4"
+  },
+  {
+   "id": "e7/c5/1",
+   "type": "donnees",
+   "libelle": "E7 critère 5 indicateur 1",
+   "bareme": "niveau-1-5",
+   "origine": "e7/c5/1"
+  },
+  {
+   "id": "e7/c5/2",
+   "type": "donnees",
+   "libelle": "E7 critère 5 indicateur 2",
+   "bareme": "niveau-1-5",
+   "origine": "e7/c5/2"
+  },
+  {
+   "id": "e7/c5/3",
+   "type": "donnees",
+   "libelle": "E7 critère 5 indicateur 3",
+   "bareme": "niveau-1-5",
+   "origine": "e7/c5/3"
+  },
+  {
+   "id": "e7/c5/4",
+   "type": "donnees",
+   "libelle": "E7 critère 5 indicateur 4",
+   "bareme": "niveau-1-5",
+   "origine": "e7/c5/4"
+  },
+  {
+   "id": "e7/c5/5",
+   "type": "donnees",
+   "libelle": "E7 critère 5 indicateur 5",
+   "bareme": "niveau-1-5",
+   "origine": "e7/c5/5"
+  },
+  {
+   "id": "e7/c5",
+   "type": "calcul",
+   "libelle": "E7 critère 5",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e7/c5/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c5/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c5/3",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c5/4",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c5/5",
+     "poids": 1
+    }
+   ],
+   "origine": "e7/c5"
+  },
+  {
+   "id": "e7/c6/1",
+   "type": "donnees",
+   "libelle": "E7 critère 6 indicateur 1",
+   "bareme": "ok-ko",
+   "origine": "e7/c6/1"
+  },
+  {
+   "id": "e7/c6/2",
+   "type": "donnees",
+   "libelle": "E7 critère 6 indicateur 2",
+   "bareme": "ok-ko",
+   "origine": "e7/c6/2"
+  },
+  {
+   "id": "e7/c6/3",
+   "type": "donnees",
+   "libelle": "E7 critère 6 indicateur 3",
+   "bareme": "ok-ko",
+   "origine": "e7/c6/3"
+  },
+  {
+   "id": "e7/c6",
+   "type": "calcul",
+   "libelle": "E7 critère 6",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e7/c6/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c6/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c6/3",
+     "poids": 1
+    }
+   ],
+   "origine": "e7/c6"
+  },
+  {
+   "id": "e7/c7/1",
+   "type": "donnees",
+   "libelle": "E7 critère 7 indicateur 1",
+   "bareme": "niveau-1-5",
+   "origine": "e7/c7/1"
+  },
+  {
+   "id": "e7/c7/2",
+   "type": "donnees",
+   "libelle": "E7 critère 7 indicateur 2",
+   "bareme": "niveau-1-5",
+   "origine": "e7/c7/2"
+  },
+  {
+   "id": "e7/c7/3",
+   "type": "donnees",
+   "libelle": "E7 critère 7 indicateur 3",
+   "bareme": "niveau-1-5",
+   "origine": "e7/c7/3"
+  },
+  {
+   "id": "e7/c7/4",
+   "type": "donnees",
+   "libelle": "E7 critère 7 indicateur 4",
+   "bareme": "niveau-1-5",
+   "origine": "e7/c7/4"
+  },
+  {
+   "id": "e7/c7",
+   "type": "calcul",
+   "libelle": "E7 critère 7",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e7/c7/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c7/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c7/3",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c7/4",
+     "poids": 1
+    }
+   ],
+   "origine": "e7/c7"
+  },
+  {
+   "id": "e7/c8/1",
+   "type": "donnees",
+   "libelle": "E7 critère 8 indicateur 1",
+   "bareme": "ok-ko",
+   "origine": "e7/c8/1"
+  },
+  {
+   "id": "e7/c8/2",
+   "type": "donnees",
+   "libelle": "E7 critère 8 indicateur 2",
+   "bareme": "ok-ko",
+   "origine": "e7/c8/2"
+  },
+  {
+   "id": "e7/c8/3",
+   "type": "donnees",
+   "libelle": "E7 critère 8 indicateur 3",
+   "bareme": "ok-ko",
+   "origine": "e7/c8/3"
+  },
+  {
+   "id": "e7/c8/4",
+   "type": "donnees",
+   "libelle": "E7 critère 8 indicateur 4",
+   "bareme": "ok-ko",
+   "origine": "e7/c8/4"
+  },
+  {
+   "id": "e7/c8/5",
+   "type": "donnees",
+   "libelle": "E7 critère 8 indicateur 5",
+   "bareme": "ok-ko",
+   "origine": "e7/c8/5"
+  },
+  {
+   "id": "e7/c8",
+   "type": "calcul",
+   "libelle": "E7 critère 8",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e7/c8/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c8/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c8/3",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c8/4",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c8/5",
+     "poids": 1
+    }
+   ],
+   "origine": "e7/c8"
+  },
+  {
+   "id": "e7/c9/1",
+   "type": "donnees",
+   "libelle": "E7 critère 9 indicateur 1",
+   "bareme": "niveau-1-5",
+   "origine": "e7/c9/1"
+  },
+  {
+   "id": "e7/c9/2",
+   "type": "donnees",
+   "libelle": "E7 critère 9 indicateur 2",
+   "bareme": "niveau-1-5",
+   "origine": "e7/c9/2"
+  },
+  {
+   "id": "e7/c9/3",
+   "type": "donnees",
+   "libelle": "E7 critère 9 indicateur 3",
+   "bareme": "niveau-1-5",
+   "origine": "e7/c9/3"
+  },
+  {
+   "id": "e7/c9",
+   "type": "calcul",
+   "libelle": "E7 critère 9",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e7/c9/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c9/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c9/3",
+     "poids": 1
+    }
+   ],
+   "origine": "e7/c9"
+  },
+  {
+   "id": "e7/c10/1",
+   "type": "donnees",
+   "libelle": "E7 critère 10 indicateur 1",
+   "bareme": "ok-ko",
+   "origine": "e7/c10/1"
+  },
+  {
+   "id": "e7/c10/2",
+   "type": "donnees",
+   "libelle": "E7 critère 10 indicateur 2",
+   "bareme": "ok-ko",
+   "origine": "e7/c10/2"
+  },
+  {
+   "id": "e7/c10/3",
+   "type": "donnees",
+   "libelle": "E7 critère 10 indicateur 3",
+   "bareme": "ok-ko",
+   "origine": "e7/c10/3"
+  },
+  {
+   "id": "e7/c10/4",
+   "type": "donnees",
+   "libelle": "E7 critère 10 indicateur 4",
+   "bareme": "ok-ko",
+   "origine": "e7/c10/4"
+  },
+  {
+   "id": "e7/c10",
+   "type": "calcul",
+   "libelle": "E7 critère 10",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e7/c10/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c10/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c10/3",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c10/4",
+     "poids": 1
+    }
+   ],
+   "origine": "e7/c10"
+  },
+  {
+   "id": "e7/transverse",
+   "type": "donnees",
+   "libelle": "E7 indicateur transversal",
+   "bareme": "niveau-1-5",
+   "origine": "e7/transverse"
+  },
+  {
+   "id": "e7",
+   "type": "calcul",
+   "libelle": "E7 Conduite d'une réunion d'équipe",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e7/c1",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c2",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c3",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c4",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c5",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c6",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c7",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c8",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c9",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c10",
+     "poids": 1
+    }
+   ],
+   "origine": "e7"
+  },
+  {
+   "id": "reg:e7",
+   "type": "regroupement",
+   "libelle": "E7 Conduite d'une réunion d'équipe",
+   "origine": "reg:e7"
+  },
+  {
+   "id": "reg:e7/remarques",
+   "type": "regroupement",
+   "libelle": "Remarques E7",
+   "origine": "reg:e7/remarques"
+  },
+  {
+   "id": "e7/remarques/1",
+   "type": "donnees",
+   "libelle": "Remarque 1 E7",
+   "origine": "e7/remarques/1"
+  },
+  {
+   "id": "e7/remarques/2",
+   "type": "donnees",
+   "libelle": "Remarque 2 E7",
+   "origine": "e7/remarques/2"
+  },
+  {
+   "id": "e8/c1/1",
+   "type": "donnees",
+   "libelle": "E8 critère 1 indicateur 1",
+   "bareme": "niveau-1-5",
+   "origine": "e8/c1/1"
+  },
+  {
+   "id": "e8/c1/2",
+   "type": "donnees",
+   "libelle": "E8 critère 1 indicateur 2",
+   "bareme": "niveau-1-5",
+   "origine": "e8/c1/2"
+  },
+  {
+   "id": "e8/c1/3",
+   "type": "donnees",
+   "libelle": "E8 critère 1 indicateur 3",
+   "bareme": "niveau-1-5",
+   "origine": "e8/c1/3"
+  },
+  {
+   "id": "e8/c1/4",
+   "type": "donnees",
+   "libelle": "E8 critère 1 indicateur 4",
+   "bareme": "niveau-1-5",
+   "origine": "e8/c1/4"
+  },
+  {
+   "id": "e8/c1/5",
+   "type": "donnees",
+   "libelle": "E8 critère 1 indicateur 5",
+   "bareme": "niveau-1-5",
+   "origine": "e8/c1/5"
+  },
+  {
+   "id": "e8/c1",
+   "type": "calcul",
+   "libelle": "E8 critère 1",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e8/c1/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c1/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c1/3",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c1/4",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c1/5",
+     "poids": 1
+    }
+   ],
+   "origine": "e8/c1"
+  },
+  {
+   "id": "e8/c2/1",
+   "type": "donnees",
+   "libelle": "E8 critère 2 indicateur 1",
+   "bareme": "ok-ko",
+   "origine": "e8/c2/1"
+  },
+  {
+   "id": "e8/c2/2",
+   "type": "donnees",
+   "libelle": "E8 critère 2 indicateur 2",
+   "bareme": "ok-ko",
+   "origine": "e8/c2/2"
+  },
+  {
+   "id": "e8/c2/3",
+   "type": "donnees",
+   "libelle": "E8 critère 2 indicateur 3",
+   "bareme": "ok-ko",
+   "origine": "e8/c2/3"
+  },
+  {
+   "id": "e8/c2",
+   "type": "calcul",
+   "libelle": "E8 critère 2",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e8/c2/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c2/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c2/3",
+     "poids": 1
+    }
+   ],
+   "origine": "e8/c2"
+  },
+  {
+   "id": "e8/c3/1",
+   "type": "donnees",
+   "libelle": "E8 critère 3 indicateur 1",
+   "bareme": "niveau-1-5",
+   "origine": "e8/c3/1"
+  },
+  {
+   "id": "e8/c3/2",
+   "type": "donnees",
+   "libelle": "E8 critère 3 indicateur 2",
+   "bareme": "niveau-1-5",
+   "origine": "e8/c3/2"
+  },
+  {
+   "id": "e8/c3/3",
+   "type": "donnees",
+   "libelle": "E8 critère 3 indicateur 3",
+   "bareme": "niveau-1-5",
+   "origine": "e8/c3/3"
+  },
+  {
+   "id": "e8/c3/4",
+   "type": "donnees",
+   "libelle": "E8 critère 3 indicateur 4",
+   "bareme": "niveau-1-5",
+   "origine": "e8/c3/4"
+  },
+  {
+   "id": "e8/c3",
+   "type": "calcul",
+   "libelle": "E8 critère 3",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e8/c3/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c3/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c3/3",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c3/4",
+     "poids": 1
+    }
+   ],
+   "origine": "e8/c3"
+  },
+  {
+   "id": "e8/c4/1",
+   "type": "donnees",
+   "libelle": "E8 critère 4 indicateur 1",
+   "bareme": "ok-ko",
+   "origine": "e8/c4/1"
+  },
+  {
+   "id": "e8/c4/2",
+   "type": "donnees",
+   "libelle": "E8 critère 4 indicateur 2",
+   "bareme": "ok-ko",
+   "origine": "e8/c4/2"
+  },
+  {
+   "id": "e8/c4/3",
+   "type": "donnees",
+   "libelle": "E8 critère 4 indicateur 3",
+   "bareme": "ok-ko",
+   "origine": "e8/c4/3"
+  },
+  {
+   "id": "e8/c4/4",
+   "type": "donnees",
+   "libelle": "E8 critère 4 indicateur 4",
+   "bareme": "ok-ko",
+   "origine": "e8/c4/4"
+  },
+  {
+   "id": "e8/c4/5",
+   "type": "donnees",
+   "libelle": "E8 critère 4 indicateur 5",
+   "bareme": "ok-ko",
+   "origine": "e8/c4/5"
+  },
+  {
+   "id": "e8/c4",
+   "type": "calcul",
+   "libelle": "E8 critère 4",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e8/c4/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c4/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c4/3",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c4/4",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c4/5",
+     "poids": 1
+    }
+   ],
+   "origine": "e8/c4"
+  },
+  {
+   "id": "e8/c5/1",
+   "type": "donnees",
+   "libelle": "E8 critère 5 indicateur 1",
+   "bareme": "niveau-1-5",
+   "origine": "e8/c5/1"
+  },
+  {
+   "id": "e8/c5/2",
+   "type": "donnees",
+   "libelle": "E8 critère 5 indicateur 2",
+   "bareme": "niveau-1-5",
+   "origine": "e8/c5/2"
+  },
+  {
+   "id": "e8/c5/3",
+   "type": "donnees",
+   "libelle": "E8 critère 5 indicateur 3",
+   "bareme": "niveau-1-5",
+   "origine": "e8/c5/3"
+  },
+  {
+   "id": "e8/c5",
+   "type": "calcul",
+   "libelle": "E8 critère 5",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e8/c5/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c5/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c5/3",
+     "poids": 1
+    }
+   ],
+   "origine": "e8/c5"
+  },
+  {
+   "id": "e8/c6/1",
+   "type": "donnees",
+   "libelle": "E8 critère 6 indicateur 1",
+   "bareme": "ok-ko",
+   "origine": "e8/c6/1"
+  },
+  {
+   "id": "e8/c6/2",
+   "type": "donnees",
+   "libelle": "E8 critère 6 indicateur 2",
+   "bareme": "ok-ko",
+   "origine": "e8/c6/2"
+  },
+  {
+   "id": "e8/c6/3",
+   "type": "donnees",
+   "libelle": "E8 critère 6 indicateur 3",
+   "bareme": "ok-ko",
+   "origine": "e8/c6/3"
+  },
+  {
+   "id": "e8/c6/4",
+   "type": "donnees",
+   "libelle": "E8 critère 6 indicateur 4",
+   "bareme": "ok-ko",
+   "origine": "e8/c6/4"
+  },
+  {
+   "id": "e8/c6",
+   "type": "calcul",
+   "libelle": "E8 critère 6",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e8/c6/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c6/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c6/3",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c6/4",
+     "poids": 1
+    }
+   ],
+   "origine": "e8/c6"
+  },
+  {
+   "id": "e8/c7/1",
+   "type": "donnees",
+   "libelle": "E8 critère 7 indicateur 1",
+   "bareme": "niveau-1-5",
+   "origine": "e8/c7/1"
+  },
+  {
+   "id": "e8/c7/2",
+   "type": "donnees",
+   "libelle": "E8 critère 7 indicateur 2",
+   "bareme": "niveau-1-5",
+   "origine": "e8/c7/2"
+  },
+  {
+   "id": "e8/c7/3",
+   "type": "donnees",
+   "libelle": "E8 critère 7 indicateur 3",
+   "bareme": "niveau-1-5",
+   "origine": "e8/c7/3"
+  },
+  {
+   "id": "e8/c7/4",
+   "type": "donnees",
+   "libelle": "E8 critère 7 indicateur 4",
+   "bareme": "niveau-1-5",
+   "origine": "e8/c7/4"
+  },
+  {
+   "id": "e8/c7/5",
+   "type": "donnees",
+   "libelle": "E8 critère 7 indicateur 5",
+   "bareme": "niveau-1-5",
+   "origine": "e8/c7/5"
+  },
+  {
+   "id": "e8/c7",
+   "type": "calcul",
+   "libelle": "E8 critère 7",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e8/c7/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c7/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c7/3",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c7/4",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c7/5",
+     "poids": 1
+    }
+   ],
+   "origine": "e8/c7"
+  },
+  {
+   "id": "e8/c8/1",
+   "type": "donnees",
+   "libelle": "E8 critère 8 indicateur 1",
+   "bareme": "ok-ko",
+   "origine": "e8/c8/1"
+  },
+  {
+   "id": "e8/c8/2",
+   "type": "donnees",
+   "libelle": "E8 critère 8 indicateur 2",
+   "bareme": "ok-ko",
+   "origine": "e8/c8/2"
+  },
+  {
+   "id": "e8/c8/3",
+   "type": "donnees",
+   "libelle": "E8 critère 8 indicateur 3",
+   "bareme": "ok-ko",
+   "origine": "e8/c8/3"
+  },
+  {
+   "id": "e8/c8",
+   "type": "calcul",
+   "libelle": "E8 critère 8",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e8/c8/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c8/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c8/3",
+     "poids": 1
+    }
+   ],
+   "origine": "e8/c8"
+  },
+  {
+   "id": "e8/c9/1",
+   "type": "donnees",
+   "libelle": "E8 critère 9 indicateur 1",
+   "bareme": "niveau-1-5",
+   "origine": "e8/c9/1"
+  },
+  {
+   "id": "e8/c9/2",
+   "type": "donnees",
+   "libelle": "E8 critère 9 indicateur 2",
+   "bareme": "niveau-1-5",
+   "origine": "e8/c9/2"
+  },
+  {
+   "id": "e8/c9/3",
+   "type": "donnees",
+   "libelle": "E8 critère 9 indicateur 3",
+   "bareme": "niveau-1-5",
+   "origine": "e8/c9/3"
+  },
+  {
+   "id": "e8/c9/4",
+   "type": "donnees",
+   "libelle": "E8 critère 9 indicateur 4",
+   "bareme": "niveau-1-5",
+   "origine": "e8/c9/4"
+  },
+  {
+   "id": "e8/c9",
+   "type": "calcul",
+   "libelle": "E8 critère 9",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e8/c9/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c9/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c9/3",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c9/4",
+     "poids": 1
+    }
+   ],
+   "origine": "e8/c9"
+  },
+  {
+   "id": "e8/c10/1",
+   "type": "donnees",
+   "libelle": "E8 critère 10 indicateur 1",
+   "bareme": "ok-ko",
+   "origine": "e8/c10/1"
+  },
+  {
+   "id": "e8/c10/2",
+   "type": "donnees",
+   "libelle": "E8 critère 10 indicateur 2",
+   "bareme": "ok-ko",
+   "origine": "e8/c10/2"
+  },
+  {
+   "id": "e8/c10/3",
+   "type": "donnees",
+   "libelle": "E8 critère 10 indicateur 3",
+   "bareme": "ok-ko",
+   "origine": "e8/c10/3"
+  },
+  {
+   "id": "e8/c10/4",
+   "type": "donnees",
+   "libelle": "E8 critère 10 indicateur 4",
+   "bareme": "ok-ko",
+   "origine": "e8/c10/4"
+  },
+  {
+   "id": "e8/c10/5",
+   "type": "donnees",
+   "libelle": "E8 critère 10 indicateur 5",
+   "bareme": "ok-ko",
+   "origine": "e8/c10/5"
+  },
+  {
+   "id": "e8/c10",
+   "type": "calcul",
+   "libelle": "E8 critère 10",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e8/c10/1",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c10/2",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c10/3",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c10/4",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c10/5",
+     "poids": 1
+    }
+   ],
+   "origine": "e8/c10"
+  },
+  {
+   "id": "e8/transverse",
+   "type": "donnees",
+   "libelle": "E8 indicateur transversal",
+   "bareme": "niveau-1-5",
+   "origine": "e8/transverse"
+  },
+  {
+   "id": "e8",
+   "type": "calcul",
+   "libelle": "E8 Retour sur une journée",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e8/c1",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c2",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c3",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c4",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c5",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c6",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c7",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c8",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c9",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/c10",
+     "poids": 1
+    }
+   ],
+   "origine": "e8"
+  },
+  {
+   "id": "reg:e8",
+   "type": "regroupement",
+   "libelle": "E8 Retour sur une journée",
+   "origine": "reg:e8"
+  },
+  {
+   "id": "reg:e8/remarques",
+   "type": "regroupement",
+   "libelle": "Remarques E8",
+   "origine": "reg:e8/remarques"
+  },
+  {
+   "id": "e8/remarques/1",
+   "type": "donnees",
+   "libelle": "Remarque 1 E8",
+   "origine": "e8/remarques/1"
+  },
+  {
+   "id": "e8/remarques/2",
+   "type": "donnees",
+   "libelle": "Remarque 2 E8",
+   "origine": "e8/remarques/2"
+  },
+  {
+   "id": "comp:communication",
+   "type": "calcul",
+   "libelle": "Communication",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e4/c1",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c5",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/transverse",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c1",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c5",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c1",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c5",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c1",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c5",
+     "poids": 1
+    },
+    {
+     "noeud": "e8/transverse",
+     "poids": 1
+    }
+   ],
+   "origine": "comp:communication"
+  },
+  {
+   "id": "seuil:comp:communication",
+   "type": "calcul",
+   "libelle": "Communication ≥ 60 % (indicatif)",
+   "fonction": "F2",
+   "entrees": [
+    {
+     "noeud": "comp:communication",
+     "poids": 1
+    }
+   ],
+   "params": {
+    "seuil": 60
+   },
+   "origine": "seuil:comp:communication"
+  },
+  {
+   "id": "comp:technique",
+   "type": "calcul",
+   "libelle": "Technique",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e4/c2",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c6",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c2",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c6",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/transverse",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c2",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c6",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c2",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c6",
+     "poids": 1
+    }
+   ],
+   "origine": "comp:technique"
+  },
+  {
+   "id": "seuil:comp:technique",
+   "type": "calcul",
+   "libelle": "Technique ≥ 60 % (indicatif)",
+   "fonction": "F2",
+   "entrees": [
+    {
+     "noeud": "comp:technique",
+     "poids": 1
+    }
+   ],
+   "params": {
+    "seuil": 60
+   },
+   "origine": "seuil:comp:technique"
+  },
+  {
+   "id": "comp:reflexion",
+   "type": "calcul",
+   "libelle": "Réflexion",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e4/c3",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c7",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c3",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c7",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c3",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c7",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/transverse",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c3",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c7",
+     "poids": 1
+    }
+   ],
+   "origine": "comp:reflexion"
+  },
+  {
+   "id": "seuil:comp:reflexion",
+   "type": "calcul",
+   "libelle": "Réflexion ≥ 60 % (indicatif)",
+   "fonction": "F2",
+   "entrees": [
+    {
+     "noeud": "comp:reflexion",
+     "poids": 1
+    }
+   ],
+   "params": {
+    "seuil": 60
+   },
+   "origine": "seuil:comp:reflexion"
+  },
+  {
+   "id": "comp:cooperation",
+   "type": "calcul",
+   "libelle": "Coopération",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e4/c4",
+     "poids": 1
+    },
+    {
+     "noeud": "e4/c8",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c4",
+     "poids": 1
+    },
+    {
+     "noeud": "e5/c8",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c4",
+     "poids": 1
+    },
+    {
+     "noeud": "e6/c8",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c4",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/c8",
+     "poids": 1
+    },
+    {
+     "noeud": "e7/transverse",
+     "poids": 1
+    }
+   ],
+   "origine": "comp:cooperation"
+  },
+  {
+   "id": "seuil:comp:cooperation",
+   "type": "calcul",
+   "libelle": "Coopération ≥ 60 % (indicatif)",
+   "fonction": "F2",
+   "entrees": [
+    {
+     "noeud": "comp:cooperation",
+     "poids": 1
+    }
+   ],
+   "params": {
+    "seuil": 60
+   },
+   "origine": "seuil:comp:cooperation"
+  },
+  {
+   "id": "reg:posture",
+   "type": "regroupement",
+   "libelle": "Posture",
+   "origine": "reg:posture"
+  },
+  {
+   "id": "posture/engagement",
+   "type": "donnees",
+   "libelle": "Engagement",
+   "origine": "posture/engagement"
+  },
+  {
+   "id": "posture/collaboration",
+   "type": "donnees",
+   "libelle": "Collaboration",
+   "origine": "posture/collaboration"
+  },
+  {
+   "id": "posture/remarques",
+   "type": "donnees",
+   "libelle": "Remarques",
+   "origine": "posture/remarques"
+  },
+  {
+   "id": "animation",
+   "type": "calcul",
+   "libelle": "Animation",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "consignes-e2",
+     "poids": 1
+    },
+    {
+     "noeud": "consignes-e3",
+     "poids": 1
+    },
+    {
+     "noeud": "gestion",
+     "poids": 2
+    }
+   ],
+   "origine": "animation"
+  },
+  {
+   "id": "securite",
+   "type": "calcul",
+   "libelle": "Sécurité",
+   "fonction": "F4",
+   "entrees": [
+    {
+     "noeud": "sj1",
+     "poids": 1
+    },
+    {
+     "noeud": "sj2",
+     "poids": 1
+    },
+    {
+     "noeud": "sj3",
+     "poids": 1
+    },
+    {
+     "noeud": "sr1",
+     "poids": 1
+    },
+    {
+     "noeud": "sr2",
+     "poids": 1
+    },
+    {
+     "noeud": "sr3",
+     "poids": 1
+    },
+    {
+     "noeud": "sr4",
+     "poids": 1
+    },
+    {
+     "noeud": "sr5",
+     "poids": 1
+    }
+   ],
+   "params": {
+    "k": 6
+   },
+   "origine": "securite"
+  },
+  {
+   "id": "planification",
+   "type": "calcul",
+   "libelle": "Planification",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "planif-e1",
+     "poids": 1
+    },
+    {
+     "noeud": "itineraire",
+     "poids": 1
+    }
+   ],
+   "origine": "planification"
+  },
+  {
+   "id": "moyenne-generale",
+   "type": "calcul",
+   "libelle": "Moyenne générale (indicative)",
+   "fonction": "F1",
+   "entrees": [
+    {
+     "noeud": "e2",
+     "poids": 1
+    },
+    {
+     "noeud": "e3",
+     "poids": 1
+    },
+    {
+     "noeud": "planification",
+     "poids": 1
+    },
+    {
+     "noeud": "e4",
+     "poids": 1
+    },
+    {
+     "noeud": "e5",
+     "poids": 1
+    },
+    {
+     "noeud": "e6",
+     "poids": 1
+    },
+    {
+     "noeud": "e7",
+     "poids": 1
+    },
+    {
+     "noeud": "e8",
+     "poids": 1
+    }
+   ],
+   "origine": "moyenne-generale"
+  },
+  {
+   "id": "seuil:animation",
+   "type": "calcul",
+   "libelle": "Animation ≥ 3",
+   "fonction": "F2",
+   "entrees": [
+    {
+     "noeud": "animation",
+     "poids": 1
+    }
+   ],
+   "params": {
+    "seuil": 3
+   },
+   "origine": "seuil:animation"
+  },
+  {
+   "id": "seuil:planification",
+   "type": "calcul",
+   "libelle": "Planification ≥ 60 %",
+   "fonction": "F2",
+   "entrees": [
+    {
+     "noeud": "planification",
+     "poids": 1
+    }
+   ],
+   "params": {
+    "seuil": 60
+   },
+   "origine": "seuil:planification"
+  },
+  {
+   "id": "m1",
+   "type": "calcul",
+   "libelle": "M1 Assure la sécurité de ses activités",
+   "fonction": "F4",
+   "entrees": [
+    {
+     "noeud": "sr1",
+     "poids": 1
+    },
+    {
+     "noeud": "sr2",
+     "poids": 1
+    },
+    {
+     "noeud": "sr3",
+     "poids": 1
+    },
+    {
+     "noeud": "sr4",
+     "poids": 1
+    },
+    {
+     "noeud": "sr5",
+     "poids": 1
+    }
+   ],
+   "params": {
+    "k": "toutes"
+   },
+   "origine": "m1"
+  },
+  {
+   "id": "m2",
+   "type": "calcul",
+   "libelle": "M2 Connaît les mesures de base",
+   "fonction": "F4",
+   "entrees": [
+    {
+     "noeud": "sj1",
+     "poids": 1
+    },
+    {
+     "noeud": "sj2",
+     "poids": 1
+    },
+    {
+     "noeud": "sj3",
+     "poids": 1
+    }
+   ],
+   "params": {
+    "k": 2
+   },
+   "origine": "m2"
+  },
+  {
+   "id": "m3",
+   "type": "calcul",
+   "libelle": "M3 Donne des consignes claires",
+   "fonction": "F4",
+   "entrees": [
+    {
+     "noeud": "consignes-e2",
+     "poids": 1
+    },
+    {
+     "noeud": "consignes-e3",
+     "poids": 1
+    }
+   ],
+   "params": {
+    "k": 1,
+    "seuil": 3
+   },
+   "origine": "m3"
+  },
+  {
+   "id": "m4",
+   "type": "calcul",
+   "libelle": "M4 Conduit le groupe",
+   "fonction": "F2",
+   "entrees": [
+    {
+     "noeud": "gestion",
+     "poids": 1
+    }
+   ],
+   "params": {
+    "seuil": 3
+   },
+   "origine": "m4"
+  },
+  {
+   "id": "domaine:securite",
+   "type": "calcul",
+   "libelle": "Domaine Sécurité",
+   "fonction": "F3",
+   "entrees": [
+    {
+     "noeud": "m1",
+     "poids": 1
+    },
+    {
+     "noeud": "m2",
+     "poids": 1
+    }
+   ],
+   "origine": "domaine:securite"
+  },
+  {
+   "id": "domaine:animation",
+   "type": "calcul",
+   "libelle": "Domaine Animation",
+   "fonction": "F3",
+   "entrees": [
+    {
+     "noeud": "m3",
+     "poids": 1
+    },
+    {
+     "noeud": "m4",
+     "poids": 1
+    }
+   ],
+   "origine": "domaine:animation"
+  },
+  {
+   "id": "domaine:organisation",
+   "type": "calcul",
+   "libelle": "Domaine Organisation",
+   "fonction": "F3",
+   "entrees": [
+    {
+     "noeud": "seuil:planification",
+     "poids": 1
+    },
+    {
+     "noeud": "m6",
+     "poids": 1
+    }
+   ],
+   "origine": "domaine:organisation"
+  },
+  {
+   "id": "minimaux",
+   "type": "calcul",
+   "libelle": "Minimaux remplis",
+   "fonction": "F3",
+   "entrees": [
+    {
+     "noeud": "domaine:securite",
+     "poids": 1
+    },
+    {
+     "noeud": "domaine:animation",
+     "poids": 1
+    },
+    {
+     "noeud": "domaine:organisation",
+     "poids": 1
+    }
+   ],
+   "origine": "minimaux"
+  },
+  {
+   "id": "reussite",
+   "type": "calcul",
+   "libelle": "Réussite",
+   "fonction": "F3",
+   "entrees": [
+    {
+     "noeud": "seuil:animation",
+     "poids": 1
+    },
+    {
+     "noeud": "securite",
+     "poids": 1
+    },
+    {
+     "noeud": "seuil:planification",
+     "poids": 1
+    },
+    {
+     "noeud": "seuil:e2",
+     "poids": 1
+    },
+    {
+     "noeud": "minimaux",
+     "poids": 1
+    }
+   ],
+   "origine": "reussite"
+  }
+ ],
+ "axes": [
+  {
+   "id": "exercices",
+   "libelle": "Exercices",
+   "principal": true,
+   "arbre": [
+    {
+     "noeud": "reg:cours",
+     "enfants": [
+      {
+       "noeud": "m6"
+      }
+     ]
+    },
+    {
+     "noeud": "reg:e1",
+     "enfants": [
+      {
+       "noeud": "planif-e1"
+      },
+      {
+       "noeud": "e1#1",
+       "enfants": [
+        {
+         "noeud": "e1#1/objectifs"
+        },
+        {
+         "noeud": "e1#1/deroulement"
+        },
+        {
+         "noeud": "e1#1/materiel",
+         "enfants": [
+          {
+           "noeud": "e1#1/materiel/pret"
+          },
+          {
+           "noeud": "e1#1/materiel/adapte"
+          },
+          {
+           "noeud": "e1#1/materiel/plan-b"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "noeud": "e1#2",
+       "enfants": [
+        {
+         "noeud": "e1#2/objectifs"
+        },
+        {
+         "noeud": "e1#2/deroulement"
+        },
+        {
+         "noeud": "e1#2/materiel",
+         "enfants": [
+          {
+           "noeud": "e1#2/materiel/pret"
+          },
+          {
+           "noeud": "e1#2/materiel/adapte"
+          },
+          {
+           "noeud": "e1#2/materiel/plan-b"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "noeud": "reg:e2",
+     "enfants": [
+      {
+       "noeud": "e2"
+      },
+      {
+       "noeud": "seuil:e2"
+      },
+      {
+       "noeud": "consignes-e2"
+      },
+      {
+       "noeud": "gestion"
+      },
+      {
+       "noeud": "securite-jeu",
+       "enfants": [
+        {
+         "noeud": "sj1"
+        },
+        {
+         "noeud": "sj2"
+        },
+        {
+         "noeud": "sj3"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "noeud": "reg:e3",
+     "enfants": [
+      {
+       "noeud": "e3"
+      },
+      {
+       "noeud": "consignes-e3"
+      },
+      {
+       "noeud": "itineraire"
+      },
+      {
+       "noeud": "securite-rando",
+       "enfants": [
+        {
+         "noeud": "sr1"
+        },
+        {
+         "noeud": "sr2"
+        },
+        {
+         "noeud": "sr3"
+        },
+        {
+         "noeud": "sr4"
+        },
+        {
+         "noeud": "sr5"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "noeud": "reg:e4",
+     "enfants": [
+      {
+       "noeud": "e4"
+      },
+      {
+       "noeud": "e4/c1",
+       "enfants": [
+        {
+         "noeud": "e4/c1/1"
+        },
+        {
+         "noeud": "e4/c1/2"
+        },
+        {
+         "noeud": "e4/c1/3"
+        },
+        {
+         "noeud": "e4/c1/4"
+        }
+       ]
+      },
+      {
+       "noeud": "e4/c2",
+       "enfants": [
+        {
+         "noeud": "e4/c2/1"
+        },
+        {
+         "noeud": "e4/c2/2"
+        },
+        {
+         "noeud": "e4/c2/3"
+        },
+        {
+         "noeud": "e4/c2/4"
+        },
+        {
+         "noeud": "e4/c2/5"
+        }
+       ]
+      },
+      {
+       "noeud": "e4/c3",
+       "enfants": [
+        {
+         "noeud": "e4/c3/1"
+        },
+        {
+         "noeud": "e4/c3/2"
+        },
+        {
+         "noeud": "e4/c3/3"
+        }
+       ]
+      },
+      {
+       "noeud": "e4/c4",
+       "enfants": [
+        {
+         "noeud": "e4/c4/1"
+        },
+        {
+         "noeud": "e4/c4/2"
+        },
+        {
+         "noeud": "e4/c4/3"
+        },
+        {
+         "noeud": "e4/c4/4"
+        }
+       ]
+      },
+      {
+       "noeud": "e4/c5",
+       "enfants": [
+        {
+         "noeud": "e4/c5/1"
+        },
+        {
+         "noeud": "e4/c5/2"
+        },
+        {
+         "noeud": "e4/c5/3"
+        },
+        {
+         "noeud": "e4/c5/4"
+        },
+        {
+         "noeud": "e4/c5/5"
+        }
+       ]
+      },
+      {
+       "noeud": "e4/c6",
+       "enfants": [
+        {
+         "noeud": "e4/c6/1"
+        },
+        {
+         "noeud": "e4/c6/2"
+        },
+        {
+         "noeud": "e4/c6/3"
+        }
+       ]
+      },
+      {
+       "noeud": "e4/c7",
+       "enfants": [
+        {
+         "noeud": "e4/c7/1"
+        },
+        {
+         "noeud": "e4/c7/2"
+        },
+        {
+         "noeud": "e4/c7/3"
+        },
+        {
+         "noeud": "e4/c7/4"
+        }
+       ]
+      },
+      {
+       "noeud": "e4/c8",
+       "enfants": [
+        {
+         "noeud": "e4/c8/1"
+        },
+        {
+         "noeud": "e4/c8/2"
+        },
+        {
+         "noeud": "e4/c8/3"
+        },
+        {
+         "noeud": "e4/c8/4"
+        },
+        {
+         "noeud": "e4/c8/5"
+        }
+       ]
+      },
+      {
+       "noeud": "e4/c9",
+       "enfants": [
+        {
+         "noeud": "e4/c9/1"
+        },
+        {
+         "noeud": "e4/c9/2"
+        },
+        {
+         "noeud": "e4/c9/3"
+        }
+       ]
+      },
+      {
+       "noeud": "e4/c10",
+       "enfants": [
+        {
+         "noeud": "e4/c10/1"
+        },
+        {
+         "noeud": "e4/c10/2"
+        },
+        {
+         "noeud": "e4/c10/3"
+        },
+        {
+         "noeud": "e4/c10/4"
+        }
+       ]
+      },
+      {
+       "noeud": "e4/transverse"
+      }
+     ]
+    },
+    {
+     "noeud": "reg:e4/remarques",
+     "enfants": [
+      {
+       "noeud": "e4/remarques/1"
+      },
+      {
+       "noeud": "e4/remarques/2"
+      }
+     ]
+    },
+    {
+     "noeud": "reg:e5",
+     "enfants": [
+      {
+       "noeud": "e5"
+      },
+      {
+       "noeud": "e5/c1",
+       "enfants": [
+        {
+         "noeud": "e5/c1/1"
+        },
+        {
+         "noeud": "e5/c1/2"
+        },
+        {
+         "noeud": "e5/c1/3"
+        },
+        {
+         "noeud": "e5/c1/4"
+        },
+        {
+         "noeud": "e5/c1/5"
+        }
+       ]
+      },
+      {
+       "noeud": "e5/c2",
+       "enfants": [
+        {
+         "noeud": "e5/c2/1"
+        },
+        {
+         "noeud": "e5/c2/2"
+        },
+        {
+         "noeud": "e5/c2/3"
+        }
+       ]
+      },
+      {
+       "noeud": "e5/c3",
+       "enfants": [
+        {
+         "noeud": "e5/c3/1"
+        },
+        {
+         "noeud": "e5/c3/2"
+        },
+        {
+         "noeud": "e5/c3/3"
+        },
+        {
+         "noeud": "e5/c3/4"
+        }
+       ]
+      },
+      {
+       "noeud": "e5/c4",
+       "enfants": [
+        {
+         "noeud": "e5/c4/1"
+        },
+        {
+         "noeud": "e5/c4/2"
+        },
+        {
+         "noeud": "e5/c4/3"
+        },
+        {
+         "noeud": "e5/c4/4"
+        },
+        {
+         "noeud": "e5/c4/5"
+        }
+       ]
+      },
+      {
+       "noeud": "e5/c5",
+       "enfants": [
+        {
+         "noeud": "e5/c5/1"
+        },
+        {
+         "noeud": "e5/c5/2"
+        },
+        {
+         "noeud": "e5/c5/3"
+        }
+       ]
+      },
+      {
+       "noeud": "e5/c6",
+       "enfants": [
+        {
+         "noeud": "e5/c6/1"
+        },
+        {
+         "noeud": "e5/c6/2"
+        },
+        {
+         "noeud": "e5/c6/3"
+        },
+        {
+         "noeud": "e5/c6/4"
+        }
+       ]
+      },
+      {
+       "noeud": "e5/c7",
+       "enfants": [
+        {
+         "noeud": "e5/c7/1"
+        },
+        {
+         "noeud": "e5/c7/2"
+        },
+        {
+         "noeud": "e5/c7/3"
+        },
+        {
+         "noeud": "e5/c7/4"
+        },
+        {
+         "noeud": "e5/c7/5"
+        }
+       ]
+      },
+      {
+       "noeud": "e5/c8",
+       "enfants": [
+        {
+         "noeud": "e5/c8/1"
+        },
+        {
+         "noeud": "e5/c8/2"
+        },
+        {
+         "noeud": "e5/c8/3"
+        }
+       ]
+      },
+      {
+       "noeud": "e5/c9",
+       "enfants": [
+        {
+         "noeud": "e5/c9/1"
+        },
+        {
+         "noeud": "e5/c9/2"
+        },
+        {
+         "noeud": "e5/c9/3"
+        },
+        {
+         "noeud": "e5/c9/4"
+        }
+       ]
+      },
+      {
+       "noeud": "e5/c10",
+       "enfants": [
+        {
+         "noeud": "e5/c10/1"
+        },
+        {
+         "noeud": "e5/c10/2"
+        },
+        {
+         "noeud": "e5/c10/3"
+        },
+        {
+         "noeud": "e5/c10/4"
+        },
+        {
+         "noeud": "e5/c10/5"
+        }
+       ]
+      },
+      {
+       "noeud": "e5/transverse"
+      }
+     ]
+    },
+    {
+     "noeud": "reg:e5/remarques",
+     "enfants": [
+      {
+       "noeud": "e5/remarques/1"
+      },
+      {
+       "noeud": "e5/remarques/2"
+      }
+     ]
+    },
+    {
+     "noeud": "reg:e6",
+     "enfants": [
+      {
+       "noeud": "e6"
+      },
+      {
+       "noeud": "e6/c1",
+       "enfants": [
+        {
+         "noeud": "e6/c1/1"
+        },
+        {
+         "noeud": "e6/c1/2"
+        },
+        {
+         "noeud": "e6/c1/3"
+        }
+       ]
+      },
+      {
+       "noeud": "e6/c2",
+       "enfants": [
+        {
+         "noeud": "e6/c2/1"
+        },
+        {
+         "noeud": "e6/c2/2"
+        },
+        {
+         "noeud": "e6/c2/3"
+        },
+        {
+         "noeud": "e6/c2/4"
+        }
+       ]
+      },
+      {
+       "noeud": "e6/c3",
+       "enfants": [
+        {
+         "noeud": "e6/c3/1"
+        },
+        {
+         "noeud": "e6/c3/2"
+        },
+        {
+         "noeud": "e6/c3/3"
+        },
+        {
+         "noeud": "e6/c3/4"
+        },
+        {
+         "noeud": "e6/c3/5"
+        }
+       ]
+      },
+      {
+       "noeud": "e6/c4",
+       "enfants": [
+        {
+         "noeud": "e6/c4/1"
+        },
+        {
+         "noeud": "e6/c4/2"
+        },
+        {
+         "noeud": "e6/c4/3"
+        }
+       ]
+      },
+      {
+       "noeud": "e6/c5",
+       "enfants": [
+        {
+         "noeud": "e6/c5/1"
+        },
+        {
+         "noeud": "e6/c5/2"
+        },
+        {
+         "noeud": "e6/c5/3"
+        },
+        {
+         "noeud": "e6/c5/4"
+        }
+       ]
+      },
+      {
+       "noeud": "e6/c6",
+       "enfants": [
+        {
+         "noeud": "e6/c6/1"
+        },
+        {
+         "noeud": "e6/c6/2"
+        },
+        {
+         "noeud": "e6/c6/3"
+        },
+        {
+         "noeud": "e6/c6/4"
+        },
+        {
+         "noeud": "e6/c6/5"
+        }
+       ]
+      },
+      {
+       "noeud": "e6/c7",
+       "enfants": [
+        {
+         "noeud": "e6/c7/1"
+        },
+        {
+         "noeud": "e6/c7/2"
+        },
+        {
+         "noeud": "e6/c7/3"
+        }
+       ]
+      },
+      {
+       "noeud": "e6/c8",
+       "enfants": [
+        {
+         "noeud": "e6/c8/1"
+        },
+        {
+         "noeud": "e6/c8/2"
+        },
+        {
+         "noeud": "e6/c8/3"
+        },
+        {
+         "noeud": "e6/c8/4"
+        }
+       ]
+      },
+      {
+       "noeud": "e6/c9",
+       "enfants": [
+        {
+         "noeud": "e6/c9/1"
+        },
+        {
+         "noeud": "e6/c9/2"
+        },
+        {
+         "noeud": "e6/c9/3"
+        },
+        {
+         "noeud": "e6/c9/4"
+        },
+        {
+         "noeud": "e6/c9/5"
+        }
+       ]
+      },
+      {
+       "noeud": "e6/c10",
+       "enfants": [
+        {
+         "noeud": "e6/c10/1"
+        },
+        {
+         "noeud": "e6/c10/2"
+        },
+        {
+         "noeud": "e6/c10/3"
+        }
+       ]
+      },
+      {
+       "noeud": "e6/transverse"
+      }
+     ]
+    },
+    {
+     "noeud": "reg:e6/remarques",
+     "enfants": [
+      {
+       "noeud": "e6/remarques/1"
+      },
+      {
+       "noeud": "e6/remarques/2"
+      }
+     ]
+    },
+    {
+     "noeud": "reg:e7",
+     "enfants": [
+      {
+       "noeud": "e7"
+      },
+      {
+       "noeud": "e7/c1",
+       "enfants": [
+        {
+         "noeud": "e7/c1/1"
+        },
+        {
+         "noeud": "e7/c1/2"
+        },
+        {
+         "noeud": "e7/c1/3"
+        },
+        {
+         "noeud": "e7/c1/4"
+        }
+       ]
+      },
+      {
+       "noeud": "e7/c2",
+       "enfants": [
+        {
+         "noeud": "e7/c2/1"
+        },
+        {
+         "noeud": "e7/c2/2"
+        },
+        {
+         "noeud": "e7/c2/3"
+        },
+        {
+         "noeud": "e7/c2/4"
+        },
+        {
+         "noeud": "e7/c2/5"
+        }
+       ]
+      },
+      {
+       "noeud": "e7/c3",
+       "enfants": [
+        {
+         "noeud": "e7/c3/1"
+        },
+        {
+         "noeud": "e7/c3/2"
+        },
+        {
+         "noeud": "e7/c3/3"
+        }
+       ]
+      },
+      {
+       "noeud": "e7/c4",
+       "enfants": [
+        {
+         "noeud": "e7/c4/1"
+        },
+        {
+         "noeud": "e7/c4/2"
+        },
+        {
+         "noeud": "e7/c4/3"
+        },
+        {
+         "noeud": "e7/c4/4"
+        }
+       ]
+      },
+      {
+       "noeud": "e7/c5",
+       "enfants": [
+        {
+         "noeud": "e7/c5/1"
+        },
+        {
+         "noeud": "e7/c5/2"
+        },
+        {
+         "noeud": "e7/c5/3"
+        },
+        {
+         "noeud": "e7/c5/4"
+        },
+        {
+         "noeud": "e7/c5/5"
+        }
+       ]
+      },
+      {
+       "noeud": "e7/c6",
+       "enfants": [
+        {
+         "noeud": "e7/c6/1"
+        },
+        {
+         "noeud": "e7/c6/2"
+        },
+        {
+         "noeud": "e7/c6/3"
+        }
+       ]
+      },
+      {
+       "noeud": "e7/c7",
+       "enfants": [
+        {
+         "noeud": "e7/c7/1"
+        },
+        {
+         "noeud": "e7/c7/2"
+        },
+        {
+         "noeud": "e7/c7/3"
+        },
+        {
+         "noeud": "e7/c7/4"
+        }
+       ]
+      },
+      {
+       "noeud": "e7/c8",
+       "enfants": [
+        {
+         "noeud": "e7/c8/1"
+        },
+        {
+         "noeud": "e7/c8/2"
+        },
+        {
+         "noeud": "e7/c8/3"
+        },
+        {
+         "noeud": "e7/c8/4"
+        },
+        {
+         "noeud": "e7/c8/5"
+        }
+       ]
+      },
+      {
+       "noeud": "e7/c9",
+       "enfants": [
+        {
+         "noeud": "e7/c9/1"
+        },
+        {
+         "noeud": "e7/c9/2"
+        },
+        {
+         "noeud": "e7/c9/3"
+        }
+       ]
+      },
+      {
+       "noeud": "e7/c10",
+       "enfants": [
+        {
+         "noeud": "e7/c10/1"
+        },
+        {
+         "noeud": "e7/c10/2"
+        },
+        {
+         "noeud": "e7/c10/3"
+        },
+        {
+         "noeud": "e7/c10/4"
+        }
+       ]
+      },
+      {
+       "noeud": "e7/transverse"
+      }
+     ]
+    },
+    {
+     "noeud": "reg:e7/remarques",
+     "enfants": [
+      {
+       "noeud": "e7/remarques/1"
+      },
+      {
+       "noeud": "e7/remarques/2"
+      }
+     ]
+    },
+    {
+     "noeud": "reg:e8",
+     "enfants": [
+      {
+       "noeud": "e8"
+      },
+      {
+       "noeud": "e8/c1",
+       "enfants": [
+        {
+         "noeud": "e8/c1/1"
+        },
+        {
+         "noeud": "e8/c1/2"
+        },
+        {
+         "noeud": "e8/c1/3"
+        },
+        {
+         "noeud": "e8/c1/4"
+        },
+        {
+         "noeud": "e8/c1/5"
+        }
+       ]
+      },
+      {
+       "noeud": "e8/c2",
+       "enfants": [
+        {
+         "noeud": "e8/c2/1"
+        },
+        {
+         "noeud": "e8/c2/2"
+        },
+        {
+         "noeud": "e8/c2/3"
+        }
+       ]
+      },
+      {
+       "noeud": "e8/c3",
+       "enfants": [
+        {
+         "noeud": "e8/c3/1"
+        },
+        {
+         "noeud": "e8/c3/2"
+        },
+        {
+         "noeud": "e8/c3/3"
+        },
+        {
+         "noeud": "e8/c3/4"
+        }
+       ]
+      },
+      {
+       "noeud": "e8/c4",
+       "enfants": [
+        {
+         "noeud": "e8/c4/1"
+        },
+        {
+         "noeud": "e8/c4/2"
+        },
+        {
+         "noeud": "e8/c4/3"
+        },
+        {
+         "noeud": "e8/c4/4"
+        },
+        {
+         "noeud": "e8/c4/5"
+        }
+       ]
+      },
+      {
+       "noeud": "e8/c5",
+       "enfants": [
+        {
+         "noeud": "e8/c5/1"
+        },
+        {
+         "noeud": "e8/c5/2"
+        },
+        {
+         "noeud": "e8/c5/3"
+        }
+       ]
+      },
+      {
+       "noeud": "e8/c6",
+       "enfants": [
+        {
+         "noeud": "e8/c6/1"
+        },
+        {
+         "noeud": "e8/c6/2"
+        },
+        {
+         "noeud": "e8/c6/3"
+        },
+        {
+         "noeud": "e8/c6/4"
+        }
+       ]
+      },
+      {
+       "noeud": "e8/c7",
+       "enfants": [
+        {
+         "noeud": "e8/c7/1"
+        },
+        {
+         "noeud": "e8/c7/2"
+        },
+        {
+         "noeud": "e8/c7/3"
+        },
+        {
+         "noeud": "e8/c7/4"
+        },
+        {
+         "noeud": "e8/c7/5"
+        }
+       ]
+      },
+      {
+       "noeud": "e8/c8",
+       "enfants": [
+        {
+         "noeud": "e8/c8/1"
+        },
+        {
+         "noeud": "e8/c8/2"
+        },
+        {
+         "noeud": "e8/c8/3"
+        }
+       ]
+      },
+      {
+       "noeud": "e8/c9",
+       "enfants": [
+        {
+         "noeud": "e8/c9/1"
+        },
+        {
+         "noeud": "e8/c9/2"
+        },
+        {
+         "noeud": "e8/c9/3"
+        },
+        {
+         "noeud": "e8/c9/4"
+        }
+       ]
+      },
+      {
+       "noeud": "e8/c10",
+       "enfants": [
+        {
+         "noeud": "e8/c10/1"
+        },
+        {
+         "noeud": "e8/c10/2"
+        },
+        {
+         "noeud": "e8/c10/3"
+        },
+        {
+         "noeud": "e8/c10/4"
+        },
+        {
+         "noeud": "e8/c10/5"
+        }
+       ]
+      },
+      {
+       "noeud": "e8/transverse"
+      }
+     ]
+    },
+    {
+     "noeud": "reg:e8/remarques",
+     "enfants": [
+      {
+       "noeud": "e8/remarques/1"
+      },
+      {
+       "noeud": "e8/remarques/2"
+      }
+     ]
+    },
+    {
+     "noeud": "reg:posture",
+     "enfants": [
+      {
+       "noeud": "posture/engagement"
+      },
+      {
+       "noeud": "posture/collaboration"
+      },
+      {
+       "noeud": "posture/remarques"
+      }
+     ]
+    },
+    {
+     "noeud": "reussite"
+    }
+   ],
+   "origine": "exercices"
+  },
+  {
+   "id": "competences",
+   "libelle": "Compétences",
+   "arbre": [
+    {
+     "noeud": "animation",
+     "enfants": [
+      {
+       "noeud": "seuil:animation"
+      },
+      {
+       "noeud": "consignes-e2"
+      },
+      {
+       "noeud": "consignes-e3"
+      },
+      {
+       "noeud": "gestion"
+      }
+     ]
+    },
+    {
+     "noeud": "securite",
+     "enfants": [
+      {
+       "noeud": "sj1"
+      },
+      {
+       "noeud": "sj2"
+      },
+      {
+       "noeud": "sj3"
+      },
+      {
+       "noeud": "sr1"
+      },
+      {
+       "noeud": "sr2"
+      },
+      {
+       "noeud": "sr3"
+      },
+      {
+       "noeud": "sr4"
+      },
+      {
+       "noeud": "sr5"
+      }
+     ]
+    },
+    {
+     "noeud": "planification",
+     "enfants": [
+      {
+       "noeud": "seuil:planification"
+      },
+      {
+       "noeud": "planif-e1"
+      },
+      {
+       "noeud": "itineraire"
+      }
+     ]
+    },
+    {
+     "noeud": "moyenne-generale",
+     "enfants": [
+      {
+       "noeud": "e2"
+      },
+      {
+       "noeud": "e3"
+      },
+      {
+       "noeud": "planification"
+      },
+      {
+       "noeud": "e4"
+      },
+      {
+       "noeud": "e5"
+      },
+      {
+       "noeud": "e6"
+      },
+      {
+       "noeud": "e7"
+      },
+      {
+       "noeud": "e8"
+      }
+     ]
+    },
+    {
+     "noeud": "reussite"
+    }
+   ],
+   "origine": "competences"
+  },
+  {
+   "id": "minimaux",
+   "libelle": "Minimaux J+S",
+   "arbre": [
+    {
+     "noeud": "minimaux",
+     "enfants": [
+      {
+       "noeud": "domaine:securite",
+       "enfants": [
+        {
+         "noeud": "m1",
+         "enfants": [
+          {
+           "noeud": "sr1"
+          },
+          {
+           "noeud": "sr2"
+          },
+          {
+           "noeud": "sr3"
+          },
+          {
+           "noeud": "sr4"
+          },
+          {
+           "noeud": "sr5"
+          }
+         ]
+        },
+        {
+         "noeud": "m2",
+         "enfants": [
+          {
+           "noeud": "sj1"
+          },
+          {
+           "noeud": "sj2"
+          },
+          {
+           "noeud": "sj3"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "noeud": "domaine:animation",
+       "enfants": [
+        {
+         "noeud": "m3",
+         "enfants": [
+          {
+           "noeud": "consignes-e2"
+          },
+          {
+           "noeud": "consignes-e3"
+          }
+         ]
+        },
+        {
+         "noeud": "m4",
+         "enfants": [
+          {
+           "noeud": "gestion"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "noeud": "domaine:organisation",
+       "enfants": [
+        {
+         "noeud": "seuil:planification"
+        },
+        {
+         "noeud": "m6"
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "origine": "minimaux"
+  },
+  {
+   "id": "competences-volume",
+   "libelle": "Compétences du volume",
+   "arbre": [
+    {
+     "noeud": "comp:communication",
+     "enfants": [
+      {
+       "noeud": "seuil:comp:communication"
+      },
+      {
+       "noeud": "e4/c1"
+      },
+      {
+       "noeud": "e4/c5"
+      },
+      {
+       "noeud": "e4/transverse"
+      },
+      {
+       "noeud": "e5/c1"
+      },
+      {
+       "noeud": "e5/c5"
+      },
+      {
+       "noeud": "e6/c1"
+      },
+      {
+       "noeud": "e6/c5"
+      },
+      {
+       "noeud": "e7/c1"
+      },
+      {
+       "noeud": "e7/c5"
+      },
+      {
+       "noeud": "e8/transverse"
+      }
+     ]
+    },
+    {
+     "noeud": "comp:technique",
+     "enfants": [
+      {
+       "noeud": "seuil:comp:technique"
+      },
+      {
+       "noeud": "e4/c2"
+      },
+      {
+       "noeud": "e4/c6"
+      },
+      {
+       "noeud": "e5/c2"
+      },
+      {
+       "noeud": "e5/c6"
+      },
+      {
+       "noeud": "e5/transverse"
+      },
+      {
+       "noeud": "e6/c2"
+      },
+      {
+       "noeud": "e6/c6"
+      },
+      {
+       "noeud": "e7/c2"
+      },
+      {
+       "noeud": "e7/c6"
+      }
+     ]
+    },
+    {
+     "noeud": "comp:reflexion",
+     "enfants": [
+      {
+       "noeud": "seuil:comp:reflexion"
+      },
+      {
+       "noeud": "e4/c3"
+      },
+      {
+       "noeud": "e4/c7"
+      },
+      {
+       "noeud": "e5/c3"
+      },
+      {
+       "noeud": "e5/c7"
+      },
+      {
+       "noeud": "e6/c3"
+      },
+      {
+       "noeud": "e6/c7"
+      },
+      {
+       "noeud": "e6/transverse"
+      },
+      {
+       "noeud": "e7/c3"
+      },
+      {
+       "noeud": "e7/c7"
+      }
+     ]
+    },
+    {
+     "noeud": "comp:cooperation",
+     "enfants": [
+      {
+       "noeud": "seuil:comp:cooperation"
+      },
+      {
+       "noeud": "e4/c4"
+      },
+      {
+       "noeud": "e4/c8"
+      },
+      {
+       "noeud": "e5/c4"
+      },
+      {
+       "noeud": "e5/c8"
+      },
+      {
+       "noeud": "e6/c4"
+      },
+      {
+       "noeud": "e6/c8"
+      },
+      {
+       "noeud": "e7/c4"
+      },
+      {
+       "noeud": "e7/c8"
+      },
+      {
+       "noeud": "e7/transverse"
+      }
+     ]
+    }
+   ],
+   "origine": "competences-volume"
+  }
+ ],
+ "decisif": "reussite",
+ "exigences": {
+  "minimumParRegroupement": [
+   {
+    "noeud": "animation",
+    "minActives": 2
+   }
+  ]
+ },
+ "jokers": {
+  "quota": 1,
+  "autorises": [
+   {
+    "id": "joker:animation",
+    "noeud": "animation",
+    "action": {
+     "type": "seuil",
+     "noeudSeuil": "seuil:animation"
+    },
+    "libelle": "Remonter au seuil",
+    "origine": "joker:animation"
+   },
+   {
+    "id": "joker:e2",
+    "noeud": "e2",
+    "action": {
+     "type": "ajout",
+     "valeur": 10
+    },
+    "libelle": "+10 %",
+    "origine": "joker:e2"
+   }
+  ]
+ },
+ "provenance": {
+  "grille": "G3 V1"
+ }
+}

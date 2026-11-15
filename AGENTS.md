@@ -8,6 +8,10 @@
 - `docs/SKILLS.md` : sélection des skills d'agent et workflow de définition des tâches (proposition).
 - `docs/TODO.md` : décisions prises et points à explorer.
 - `docs/analyse/18-decisions-definitives.md` : décisions définitives du modèle de qualification. Fait foi sur toute autre analyse.
+- `docs/analyse/20-spec-prototype.md` : spec du prototype jetable (`prototype/`).
+- `docs/analyse/21-constats-prototype.md` : constats du prototype (provisoire).
+- `docs/analyse/22-spec-observations.md` : spec des observations et du suivi en cours de formation (issue #29).
+- `docs/research/` : recherches techniques (signaux, stockage local). Faits, pas décisions.
 - `docs/analyse/` : analyses antérieures conservées pour les sujets hors modèle (zones d'ombre, acteurs et droits, Qualix, corpus de qualifications). Commencer par `README.md`. Propositions, pas décisions.
 
 ## Agent skills

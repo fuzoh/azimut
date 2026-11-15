@@ -12,7 +12,7 @@ Un cours Azimut peut réunir plusieurs événements MiData, et plusieurs grilles
 
 ## Vocabulaire (provisoire)
 
-Le vocabulaire produit définitif reste ouvert (18 §13, point 9). Les termes ci-dessous sont ceux de 18. Le glossaire complet est dans [`GLOSSARY.md`](../GLOSSARY.md).
+Le vocabulaire produit définitif reste ouvert (18 §13, point 9). Les termes ci-dessous sont ceux de 18. Les termes arrêtés sont dans [`GLOSSARY.md`](../GLOSSARY.md), qui fait référence.
 
 | Terme | Sens |
 | --- | --- |
