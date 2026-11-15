@@ -28,9 +28,12 @@ La spec des **observations et du suivi en cours de formation**, dans `docs/analy
 - Suivi de l'effort d'observation et missions (`08-grilling-suivi-effort-observation.md`) : un tableau apprenants × exercices avec le nombre d'observations, sans décompte par formateur ; pas de missions d'observation ; une observation manquante n'est jamais signalée comme une erreur.
 - De l'observation à la note et au retour (`09-grilling-observation-vers-note.md`) : relecture dans un panneau à côté de la case (observations de l'indicateur, puis celles de l'exercice sans indicateur, rattachables d'un geste) et dans la fiche de l'apprenant ; reprise dans le commentaire par copie, sans lien ; les observations « à préciser » ne gênent pas la finalisation.
 
+- Photos des apprenants : source et garde-fous (`10-grilling-photos-apprenants.md`) : pas de photos des apprenants dans cette spec (nom de scout, groupe d'origine, initiales), import MiData en extension ; pièces jointes en seconde tranche, après avis juridique ; fichier joint partagé à la copie de grille.
+- Rédaction de la spec (`11-task-redaction-spec.md`) : spec dans `docs/analyse/22-spec-observations.md`, sans décision nouvelle, en deux tranches et une extension.
+
 ## Not yet specified
 
-- **Rédaction de la spec** : dernier ticket, quand le reste est clos.
+_Rien : la destination est atteinte._ Restent hors carte la relecture de la spec, son découpage en tickets et l'avis juridique.
 
 ## Out of scope
 
