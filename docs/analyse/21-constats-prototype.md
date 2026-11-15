@@ -18,7 +18,7 @@ La spec du prototype est dans [20](20-spec-prototype.md). Ce document est celui 
 
 ## Campagne du 7 octobre 2026
 
-Rapport : [`prototype/mesures/2026-10-07T14-29-50-serie/rapport.md`](../../prototype/mesures/2026-10-07T14-29-50-serie/rapport.md) ; données agrégées dans `serie.json`, même répertoire. Commit mesuré : `e5ca4d8`.
+Rapport : [`prototype/mesures/2026-10-07T14-29-50-serie/rapport.md`](../../prototype/mesures/2026-10-07T14-29-50-serie/rapport.md) ; données agrégées dans `serie.json`, même répertoire. Commit mesuré : `6974ab6` (`e5ca4d8` avant le rebase de la fusion dans `main` ; le code du prototype est identique).
 
 ### Conditions et lecture
 

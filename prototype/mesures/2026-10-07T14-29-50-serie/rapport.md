@@ -5,7 +5,7 @@
 - Date : 2026-10-07T14:29:50.388Z
 - Mode : fenêtre visible
 - Options : `{"bridage":4,"runs":5,"chauffe":1,"configs":["base","dag","principal","precalcul","immediat"],"scenarios":["saisie-rapide","saisies-distantes","changement-participant","changement-axe-vue","defilement","ouverture-graphe","mesures"],"court":false,"viewport":{"width":1600,"height":1000},"jeu":"charge","remplissage":"fin","graine":1}`
-- Commit : e5ca4d8
+- Commit : 6974ab6 (mesuré sous l'identifiant e5ca4d8, avant le rebase de la fusion dans `main` ; code du prototype identique)
 
 ## Machine
 

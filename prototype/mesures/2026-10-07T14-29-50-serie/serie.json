@@ -41,7 +41,7 @@
   "mode": "fenêtre visible",
   "secteur": true,
   "node": "bun 1.4.2, Playwright 1.63.0",
-  "commit": "e5ca4d8"
+  "commit": "6974ab6"
  },
  "calibration": {
   "ratioPage": 4.1293859653866845,
