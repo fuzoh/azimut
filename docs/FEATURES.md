@@ -12,7 +12,7 @@ Un cours Azimut peut réunir plusieurs événements MiData, et plusieurs grilles
 
 ## Vocabulaire (provisoire)
 
-Le vocabulaire produit définitif reste ouvert (18 §13, point 9). Les termes ci-dessous sont ceux de 18.
+Le vocabulaire produit définitif reste ouvert (18 §13, point 9). Les termes ci-dessous sont ceux de 18. Le glossaire complet est dans [`GLOSSARY.md`](../GLOSSARY.md).
 
 | Terme | Sens |
 | --- | --- |
@@ -25,6 +25,7 @@ Le vocabulaire produit définitif reste ouvert (18 §13, point 9). Les termes ci
 | **Case** | Un apprenant × une occurrence évaluée. Elle porte une note courante et un commentaire. |
 | **Nœud de données, nœud de calcul** | Le nœud de données porte les évaluations saisies. Le nœud de calcul combine les résultats d'autres nœuds selon une règle du catalogue. |
 | **Sphère, objectif, critère, indicateur, exercice** | Les mots des cours pour nommer les nœuds. Ils n'imposent ni types ni nombre de niveaux. Un exercice est un nœud. |
+| **Exercice** | Quelque chose que font les apprenants, sur quoi on les observe et on les évalue. Il réunit des indicateurs pris dans plusieurs sphères, objectifs et critères : il traverse l'arbre au lieu d'en être un étage. À ne pas confondre avec une **UA**, un point de cours que l'équipe enseigne et qu'Azimut ne connaît pas. |
 | **Axe** | Une lecture du graphe : exercices, compétences, thèmes… Chaque grille a un **axe principal**, qui sert à la conception, à la navigation et aux vues standard. |
 | **Occurrence** | Une utilisation d'une définition de critère à un endroit de la grille, par exemple le même critère dans deux exercices. Chaque occurrence a ses propres cases. |
 | **Résultat final** | Le nœud de calcul désigné comme résultat de la grille et marqué décisif. Ce qui n'y contribue pas est indicatif. Une grille peut ne pas en avoir. |
@@ -37,6 +38,7 @@ Le vocabulaire produit définitif reste ouvert (18 §13, point 9). Les termes ci
 | **Critère éliminatoire** | Un motif binaire (OUI/NON) qui peut faire échouer le cours, quels que soient les résultats : plagiat, absences, mise en danger… Il exige une justification. ⚠️ Non traité par 18. |
 | **Posture** | Une grille d'observation du comportement, notée et commentée, qui n'entre pas dans le résultat. Dans le modèle de 18, ce sont des nœuds indicatifs. |
 | **Verrou** | La réservation temporaire d'une cellule par le formateur qui est en train de la modifier. |
+| **Observation** | Un fait noté par un formateur sur un apprenant : un texte ou une pièce jointe, un auteur, un moment. Elle ne juge pas, n'entre jamais dans le calcul et reste interne à l'équipe. Elle est **générale** par défaut ; la rattacher à un nœud est facultatif. Voir 22. |
 
 ## Modèle de qualification
 
@@ -50,6 +52,7 @@ Résumé de 18. Le détail et les points encore ouverts sont dans 18.
 - **Joker (§8).** Action prévue avant le cours, quota configurable par apprenant, justification obligatoire. Une action numérique change la valeur effective utilisée en aval. Le signalement « joker appliqué » ou « influencé par un joker » se propage jusqu'à la synthèse.
 - **Gabarits et copies (§9).** Changer le calcul pendant le cours exige une copie complète de la grille avec les données. Originale et copie restent indépendantes. L'équipe peut publier une structure sans données dans une bibliothèque publique.
 - **Cycle de vie (§10).** Brouillon, saisie, finalisation par apprenant, réouverture possible avant archivage, archivage automatique après un délai configurable (30 jours par défaut) ou manuel. Tout résultat se recalcule depuis les données sources, sur le client comme sur le serveur ; un cache reste possible.
+- **Observations ([22](analyse/22-spec-observations.md)).** À côté des cases, les formateurs notent des faits datés et attribués sur les apprenants, depuis une page d'accès rapide pensée pour le téléphone. Une observation est générale par défaut et peut être rattachée à une sphère, un objectif, un indicateur, la Posture ou un exercice. On la relit dans la fiche de l'apprenant et à côté de la case qu'on note ; son texte peut être copié dans le commentaire. Elle ne figure dans aucune restitution et disparaît à l'anonymisation. Le programme de cours n'entre pas dans Azimut.
 - **Vues et exports (§11).** Vues standard tirées de l'axe principal, vues avancées partagées par l'équipe et adaptables pendant le cours sans toucher au calcul. Tables, listes, graphe de propagation, matrices libres et graphiques. Toute vue s'exporte ; l'attestation est une vue exportée.
 
 ### Projections attendues
@@ -72,6 +75,8 @@ Cas d'usage qui ont guidé le modèle. Dans 18, chacun est une vue sur des nœud
 - le nombre d'indicateurs pas encore remplis ;
 - le nombre d'indicateurs sans commentaire ;
 - des statistiques par apprenant : écart type des notes, évolution au fil du cours, etc.
+
+Pour les observations, 22 fixe un tableau de suivi par apprenant (nombre d'observations, date de la dernière). Il informe seulement : une observation manquante n'est jamais une erreur.
 
 ## Acteurs et accès
 
@@ -129,7 +134,7 @@ Trois modèles Excel vierges, nommés qualif1, qualif2 et qualif3, ont été ana
 5. **L'échelle et la conversion sont portées par le critère.** Une même sphère mélange o/k et 1 à 5, et les seuils de conversion changent d'un critère à l'autre. Il y a aussi des conversions non linéaires (1 à 5 → %). → 18 §7 ; conversions encore ouvertes.
 6. **Les paramètres d'agrégation sont posés sur chaque nœud** : les poids (sur les indicateurs, les critères et les objectifs selon le modèle), l'arrondi ou non, ignorer les vides, l'arrondi intermédiaire ou final, des bonus codés en dur (+1 ou +1,5 dans qualif2). → 18 §7 : méthode et paramètres par nœud, catalogue fermé, pas de formule libre.
 7. **Des ensembles sont hors du calcul.** La Posture est une grille d'observation notée 1 à 5 avec commentaire et une colonne « Quand », mais elle n'entre pas dans le résultat. Les critères éliminatoires agissent comme un veto booléen avec justification. Le joker ajuste le résultat. → 18 §3 (nœuds indicatifs) et §8 (joker) ; les éliminatoires ne sont pas traités.
-8. **Les observations sont contextualisées.** La colonne « Quand » de la Posture, et une note de relecture qui dit qu'un indicateur sans commentaire est ambigu (rien à dire, ou oubli ?), suggèrent un besoin d'observations datées, avec un auteur, éventuellement plusieurs par item. → 18 §5 : une note courante par case et un historique, pas d'observations multiples ; la temporalité passe par les occurrences (§4) ; vide et non évalué se distinguent (§6).
+8. **Les observations sont contextualisées.** La colonne « Quand » de la Posture, et une note de relecture qui dit qu'un indicateur sans commentaire est ambigu (rien à dire, ou oubli ?), suggèrent un besoin d'observations datées, avec un auteur, éventuellement plusieurs par item. → 18 §5 : une note courante par case et un historique, pas d'évaluations multiples ; la temporalité passe par les occurrences (§4) ; vide et non évalué se distinguent (§6). Les observations datées et attribuées existent à côté des cases, sans être des évaluations (22).
 9. **Des commentaires existent à tous les niveaux** : indicateur, objectif, sphère ou exercice, item de Posture, éliminatoire, plus un commentaire général, 3 points positifs et 3 points à améliorer. → 18 §5.
 10. **Le suivi existe déjà, en bricolage.** qualif2 calcule un taux de remplissage par objectif. qualif3 compte les indicateurs vides et garde la moyenne brute et l'écart dû à l'arrondi, dans des colonnes techniques « à ne pas imprimer ». → 18 §6 (exigences de remplissage) et « Suivi et statistiques » plus haut.
 11. **Une structure par cours.** Le modèle est recopié pour chaque cours et chaque session, avec des dates et des textes en dur. La structure ne varie pas d'un apprenant à l'autre ; elle n'est modifiée qu'en éditant le fichier, sans versioning. Les concepteurs se laissent des notes de relecture dans le fichier. → 18 §9 (gabarits et copies).
@@ -232,4 +237,5 @@ Hors modèle :
 - La consultation de l'historique et la restauration d'une partie de grille.
 - La durée de conservation, la purge et l'anonymisation des données.
 - Faut-il reporter les qualifications dans MiData ?
-- Le positionnement face à [Qualix](https://github.com/gloggi/qualix), une app existante pour les qualifications de cours scouts suisses, connectée à MiData. Qu'est-ce qu'Azimut fait de différent, et que peut-on reprendre de son modèle ?
+- Le positionnement face à [Qualix](https://github.com/gloggi/qualix), une app existante pour les qualifications de cours scouts suisses, connectée à MiData. Qu'est-ce qu'Azimut fait de différent, et que peut-on reprendre de son modèle ? Tranché pour les observations par 22 ; le reste (rétroaction en document, répartition des retours, import de fichiers) reste ouvert.
+- Les pièces jointes des observations et les photos des apprenants : elles attendent un avis juridique (22 §10, `analyse/24-photos-pieces-jointes.md`).

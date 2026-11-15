@@ -2,7 +2,7 @@
 
 ## Source et portée
 
-**Statut : référence définitive des décisions du modèle, validées avec le porteur du projet le 4 octobre 2026, complétées par la relecture du 5 octobre 2026 ([`relecture-18-2026-10-05.md`](relecture-18-2026-10-05.md)).**
+**Statut : référence définitive des décisions du modèle, validées avec le porteur du projet le 4 octobre 2026, complétées par la relecture du 5 octobre 2026 ([`relecture-18-2026-10-05.md`](relecture-18-2026-10-05.md)) et précisées le 15 novembre 2026 pour les observations (sections 4 et 5, [22 — Spec des observations](22-spec-observations.md)).**
 
 Ce document remplace les documents 16 (Décisions consolidées) et 17 (Combinaison des analyses), ainsi que leurs sources 14 et 15bis, retirés du dépôt. Il reprend leurs décisions communes et fixe les huit arbitrages issus de leur dernière comparaison. En cas de contradiction avec une analyse antérieure, ce document fait foi.
 
@@ -101,6 +101,8 @@ Deux critères proches, visant la même compétence avec des formulations diffé
 
 La temporalité est portée par les exercices ou occurrences prévus dans la grille. Aucune dimension supplémentaire « contexte » ou « tentative » n'est requise sur la case pour exprimer ces situations ; leur représentation technique reste ouverte.
 
+Le moment d'une observation (voir section 5) est une donnée de l'observation. Il n'ajoute pas de dimension à la case, et la grille ne porte ni horaire ni programme de cours.
+
 | Situation | Comportement retenu |
 | --- | --- |
 | Même évaluation affichée plusieurs fois | Une seule donnée, plusieurs affichages. |
@@ -133,6 +135,8 @@ Les comparaisons côte à côte entre occurrences ou entre participants sont des
 Une case porte une seule note courante, partagée par les formateurs, et peut recevoir un commentaire. Plusieurs formateurs s'accordent sur l'évaluation ; leurs avis séparés ne sont pas enregistrés puis agrégés comme dans un jury.
 
 Les modifications restent dans un historique permettant de savoir qui a changé quoi et quand. Cet historique sert à retrouver et comprendre les changements ; il ne constitue pas une collection d'évaluations concurrentes.
+
+**Précision du 15 novembre 2026 : les observations ne sont pas des évaluations.** Une observation est un fait noté par un formateur sur un apprenant, avec un auteur et un moment. Elle ne porte ni note ni avis, n'entre dans aucun calcul, vit à côté des cases et reste interne à l'équipe. Il peut y en avoir plusieurs par apprenant et par nœud sans contredire la règle de la note courante unique. Le détail est dans [22 — Spec des observations](22-spec-observations.md).
 
 ### Commentaires sur tous les nœuds
 
@@ -388,7 +392,7 @@ Calendrier fixé à la relecture du 5 octobre 2026 : le point 1 fera l'objet d'u
 6. **Gabarits et publication** : cycle des brouillons et publications, forme de l'autocomplétion des objectifs officiels ; comparaison de grilles éventuelle.
 7. **Exports et conservation** : formats, mise en page, assemblage des vues et mise en œuvre de la rejouabilité, sans exiger la conservation des anciens exports.
 8. **Architecture** : schéma de stockage, représentation des liens et identités, historique, moteur de calcul, cache éventuel et organisation du client, dans le respect des garanties fixées. À fixer après un premier prototype.
-9. **Sujets hors entretien** : vocabulaire produit définitif, droits, correspondance des rôles MiData, protection des données, suppression ou anonymisation et positionnement face à Qualix.
+9. **Sujets hors entretien** : vocabulaire produit définitif, droits, correspondance des rôles MiData, protection des données, suppression ou anonymisation et positionnement face à Qualix. Pour les observations, ce positionnement est fixé par [22](22-spec-observations.md) : Azimut les intègre comme des faits internes à l'équipe, sans programme de cours ni missions d'observation.
 
 ## 14. Arbitrages finaux validés
 
