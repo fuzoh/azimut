@@ -32,5 +32,6 @@ ticket 05 grilling "Le « quand » d'une observation et la suggestion d'exercice
 
 clos 01
 clos 02
+clos 03
 
 echo "Carte #$map ; tickets : ${n[01]} ${n[02]} ${n[03]} ${n[04]} ${n[05]}"

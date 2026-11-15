@@ -19,6 +19,7 @@ La spec des **observations et du suivi en cours de formation**, dans `docs/analy
 
 - Nature de l'observation et rapport au modèle de 18 (`01-grilling-nature-observation.md`) : objet distinct des cases, sans note ni tendance, jamais dans le calcul ; texte ou pièce jointe (tout fichier), auteur, moment ; un seul apprenant, zéro à plusieurs nœuds (« à classer » sinon) ; modifiable par toute l'équipe avec historique ; interne à l'équipe, le commentaire de case reste la synthèse restituée ; dupliquée à la copie de grille ; supprimée à l'anonymisation. 18 §5 n'est pas rouvert, seulement précisé.
 - Programme de cours dans Azimut : périmètre (`02-grilling-programme-de-cours.md`) : le programme n'entre pas dans Azimut (il reste dans un Excel SharePoint), ni plages ni UA ; le « quand » d'une observation est son heure de saisie, sans date sur les exercices ; l'évaluation des UA et la validation de cours sortent du périmètre.
+- Saisie d'observations dans Qualix (`03-research-saisie-qualix.md`, constats dans `docs/analyse/23-saisie-qualix.md`) : un formulaire prérempli par la page d'origine, qui reste ouvert après l'enregistrement avec le même contexte et le texte vidé ; aucun bloc courant présélectionné ni mémoire du dernier bloc ; le Spick (photos des apprenants à observer, compteur) est le chemin le plus court ; rien pour le hors-ligne. Issues GitHub et comportement à l'écran non vérifiés.
 
 ## Not yet specified
 
