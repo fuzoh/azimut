@@ -12,4 +12,6 @@ D'où peuvent venir les **photos des apprenants**, et à quelles conditions Azim
 - **ce que fait Qualix** : origine, stockage et suppression des photos de participants ;
 - **l'alternative sans photo** : nom de scout, groupe d'origine, couleur ou initiales, et ce qu'on y perd.
 
+- **pièces jointes d'une observation** (décidé au ticket sur la nature de l'observation : tout type de fichier, supprimées à l'anonymisation) : stockage, taille et types à borner, photos montrant plusieurs personnes, suppression effective.
+
 Résultat attendu : une recommandation (source, conservation, garde-fous) et les points qui demandent un avis juridique.

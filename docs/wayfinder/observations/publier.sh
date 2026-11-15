@@ -29,7 +29,7 @@ bloque() { # ticket bloqué, bloqueur
 ticket 01 grilling "Nature de l'observation et rapport au modèle de 18" 01-grilling-nature-observation.md
 ticket 02 grilling "Programme de cours dans Azimut : périmètre" 02-grilling-programme-de-cours.md
 ticket 03 research "Saisie d'observations dans Qualix et programme eCamp v3" 03-research-saisie-qualix-ecamp.md
-ticket 04 research "Photos des apprenants : sources et contraintes nLPD" 04-research-photos-apprenants.md
+ticket 04 research "Photos des apprenants et pièces jointes : sources et contraintes nLPD" 04-research-photos-apprenants.md
 ticket 05 grilling "Le « quand » d'une observation et la plage d'exercice" 05-grilling-quand-plage-exercice.md
 ticket 06 grilling "Évaluation des UA par les apprenants et les formateurs" 06-grilling-evaluation-ua.md
 

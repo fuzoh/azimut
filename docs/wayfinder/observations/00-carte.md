@@ -17,9 +17,11 @@ La spec des **observations et du suivi en cours de formation**, dans `docs/analy
 
 <!-- one line per closed ticket -->
 
+- Nature de l'observation et rapport au modèle de 18 (`01-grilling-nature-observation.md`) : objet distinct des cases, sans note ni tendance, jamais dans le calcul ; texte ou pièce jointe (tout fichier), auteur, moment ; un seul apprenant, zéro à plusieurs nœuds (« à classer » sinon) ; modifiable par toute l'équipe avec historique ; interne à l'équipe, le commentaire de case reste la synthèse restituée ; dupliquée à la copie de grille ; supprimée à l'anonymisation. 18 §5 n'est pas rouvert, seulement précisé.
+
 ## Not yet specified
 
-- **Saisie rapide** : page d'accès rapide, raccourcis, recherche floue, enchaînement d'observations pour un groupe. À préciser une fois l'observation et la plage définies, et la saisie de Qualix relue.
+- **Saisie rapide** : page d'accès rapide, raccourcis, recherche floue, raccourci de groupe (une observation indépendante par membre), liste « à classer ». À préciser une fois l'observation et la plage définies, et la saisie de Qualix relue.
 - **Suivi de l'effort d'observation** : qui a observé qui, missions d'observation (N-QX2, N-QX9). Dépend de la nature de l'observation.
 - **Validation de cours** : vérifier que les observations prévues tiennent dans le programme et tombent à un moment réaliste. N'existe que si le programme entre dans l'app.
 - **Passage de l'observation à la note** : comment des observations nourrissent une case, un commentaire ou un retour à l'apprenant (N-QX3).
