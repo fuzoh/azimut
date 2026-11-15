@@ -40,5 +40,6 @@ clos 03
 clos 04
 clos 05
 clos 07
+clos 08
 
 echo "Carte #$map ; tickets : ${n[01]} ${n[02]} ${n[03]} ${n[04]} ${n[05]} ${n[07]} ${n[08]} ${n[09]} ${n[10]}"
