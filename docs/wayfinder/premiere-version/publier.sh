@@ -38,3 +38,4 @@ clos() { gh issue close -R "$repo" "${n[$1]}" >/dev/null; } # résolution déjà
 clos 01
 clos 03
 clos 02
+clos 06
