@@ -4,13 +4,14 @@ Cette spec décrit les **observations** d'Azimut : des faits notés par les form
 
 > **Statut : spec prête à découper (15 novembre 2026).** Elle ne contient aucune décision nouvelle : chaque règle renvoie au ticket qui l'a tranchée. Le modèle de qualification reste fixé par [18 — Décisions définitives](18-decisions-definitives.md), qui fait foi. La construction est un effort séparé.
 
-Sources : tickets 01 à 10 de `docs/wayfinder/observations/`, [23 — Saisie dans Qualix](23-saisie-qualix.md), [24 — Photos et pièces jointes](24-photos-pieces-jointes.md), [06 — Benchmark Qualix](06-benchmark-qualix.md).
+Sources : tickets 01 à 12 de `docs/wayfinder/observations/`, [23 — Saisie dans Qualix](23-saisie-qualix.md), [24 — Photos et pièces jointes](24-photos-pieces-jointes.md), [06 — Benchmark Qualix](06-benchmark-qualix.md).
 
 ## 1. En bref
 
 - Une **observation** est un fait sur un apprenant : un texte ou une pièce jointe, un auteur, un moment. Elle ne porte aucun jugement et n'entre jamais dans le calcul.
 - Elle vit **à côté de la grille**. La case garde sa note courante unique et son commentaire de synthèse (18 §5).
-- On la saisit **vite, sur téléphone**, depuis une page d'accès rapide qui garde l'exercice et le groupe en cours.
+- Elle est **générale par défaut**. La rattacher à un élément de la grille est un affinage facultatif.
+- On la saisit **vite, sur téléphone**, depuis une page d'accès rapide qui garde le groupe en cours.
 - On la **relit au moment de noter**, à côté de la case, et dans la fiche de l'apprenant.
 - Elle reste **interne à l'équipe** et disparaît à l'anonymisation.
 - Le **programme de cours n'entre pas dans Azimut** : ni plages horaires, ni UA.
@@ -21,9 +22,8 @@ Sources : tickets 01 à 10 de `docs/wayfinder/observations/`, [23 — Saisie dan
 | --- | --- |
 | **Observation** | Un fait noté par un formateur sur un apprenant. |
 | **Moment** | Quand le fait a été observé : date et heure, à la minute. |
-| **Rattachement** | Le lien entre une observation et les nœuds qu'elle concerne. Il peut n'y en avoir aucun. |
-| **À préciser** | L'état d'une observation sans indicateur rattaché. Elle peut déjà porter un exercice. |
-| **À classer** | L'état d'une observation rattachée à aucun nœud. |
+| **Observation générale** | Une observation sans rattachement. C'est l'état par défaut, pas un travail en retard. |
+| **Rattachement** | Le lien facultatif entre une observation et les nœuds qu'elle concerne : une sphère, un objectif, un indicateur, la Posture, un exercice. |
 | **Exercice** | Quelque chose que font les apprenants, sur quoi on les observe et on les évalue. Il réunit des indicateurs pris dans plusieurs sphères, objectifs et critères : il traverse l'arbre, c'est un second axe de lecture (18 §3). |
 | **UA** | Un point de cours, une leçon : ce que l'équipe enseigne. Absente d'Azimut. |
 | **Commentaire de case** | La synthèse écrite par l'équipe, restituée à l'apprenant (18 §5). |
@@ -39,7 +39,7 @@ Sources : tickets 01 à 10 de `docs/wayfinder/observations/`, [23 — Saisie dan
 | Apprenant | Un seul. | 01 |
 | Auteur | Le formateur qui la saisit. | 01 |
 | Moment | Prérempli avec l'heure de saisie, modifiable. L'heure réelle de saisie reste dans l'historique. | 05 |
-| Rattachement | Zéro, un ou plusieurs nœuds, de n'importe quel type. | 01 |
+| Rattachement | Aucun par défaut. Ensuite zéro, un ou plusieurs nœuds, de n'importe quel type. | 01, 12 |
 | Jugement | Aucun : ni note, ni tendance. | 01 |
 
 ### Ce qu'elle n'est pas
@@ -49,12 +49,12 @@ Sources : tickets 01 à 10 de `docs/wayfinder/observations/`, [23 — Saisie dan
 - Elle **n'est jamais obligatoire** : aucune exigence de remplissage de 18 §6 ne porte sur elle, et une observation manquante n'est ni une erreur ni un avertissement (08).
 - Elle **ne rouvre pas 18 §5**. Ce paragraphe écarte les évaluations concurrentes d'un jury ; une observation n'évalue pas. C'est une précision de §5.
 
-### Rattachement et exercice
+### Rattachement
 
-- L'exercice **n'est pas un champ à part** : c'est un des nœuds rattachés (05).
-- Quand un exercice a plusieurs **occurrences** (18 §4), on rattache à l'occurrence (05).
-- Choisir un exercice **réduit la liste proposée** aux indicateurs qu'il évalue, toutes sphères confondues. C'est une aide, pas une règle : on peut élargir à toute la grille (05).
-- La Posture est le cas de référence, sans exclusivité (01).
+- Une observation est **générale par défaut** : rien n'est rattaché d'office, et rien n'est proposé (12).
+- On peut la rattacher, à la saisie ou plus tard, à **n'importe quel niveau** : une sphère, un objectif, un indicateur, la Posture (12).
+- L'**exercice** est un rattachement facultatif comme les autres, pas un champ à part. Quand un exercice a plusieurs occurrences (18 §4), on rattache à l'occurrence (05, 12).
+- Une observation générale **n'appelle aucun rappel** : il n'y a ni liste « à classer », ni compteur « à préciser » (12).
 
 ### Droits et visibilité
 
@@ -67,10 +67,9 @@ Sources : tickets 01 à 10 de `docs/wayfinder/observations/`, [23 — Saisie dan
 
 Une seule page, pensée d'abord pour le **téléphone sur le terrain** (07).
 
-- **Premier écran** : l'exercice et le groupe en cours du formateur, avec les membres du groupe en gros boutons.
-- **Depuis un apprenant** : ouvrir la saisie d'une observation, ou sa qualification. L'appui simple ouvre la saisie ; la qualification passe par un second geste (déduit, non contredit).
-- **Recherche** : un seul champ, en haut, qui trouve exercices, nœuds et apprenants, avec tolérance aux fautes de frappe. Il sert à changer de contexte.
-- **Compteur « à préciser »** : il ouvre les observations du formateur restées sans indicateur. Chacun vide sa liste ; il n'y a pas de liste d'équipe.
+- **Premier écran** : le groupe en cours du formateur, avec ses membres en gros boutons. La page ne garde aucun exercice (12).
+- **Depuis un apprenant** : ouvrir la saisie d'une observation, ou sa fiche et sa qualification. L'appui simple ouvre la saisie ; le reste passe par un second geste (déduit, non contredit).
+- **Recherche** : un seul champ, en haut, qui trouve apprenants, groupes et éléments de la grille, avec tolérance aux fautes de frappe (07).
 
 ### Enregistrer une observation
 
@@ -78,12 +77,11 @@ Une seule page, pensée d'abord pour le **téléphone sur le terrain** (07).
 2. Taper un texte ou joindre un fichier. Le bouton photo ouvre l'appareil photo (hypothèse).
 3. Enregistrer.
 
-L'exercice en cours est rattaché d'office. Préciser un indicateur est facultatif et peut se faire plus tard (07).
+L'écran propose un bouton **« Rattacher »**, replié par défaut. Celui qui sait déjà où va son observation l'ouvre ; sinon elle reste générale (12).
 
 ### D'une observation à la suivante
 
-- **L'exercice et le groupe restent** ; l'apprenant se choisit à chaque fois parmi les membres du groupe (05).
-- L'exercice proposé est **le dernier utilisé par ce formateur**, sans limite de durée. Pour un exercice à occurrences, la dernière occurrence utilisée. Aucune suggestion par l'heure (05).
+**Le groupe reste** ; l'apprenant se choisit à chaque fois parmi ses membres. Aucun rattachement n'est repris de l'observation précédente (05, 12).
 
 ### Groupe
 
@@ -99,16 +97,18 @@ Les mêmes parcours. Un seul raccourci clavier, qui ouvre la recherche (hypothè
 
 ## 5. Relecture et usage
 
+### Fiche de l'apprenant
+
+Le **lieu principal de relecture** : toutes ses observations, générales ou rattachées, dans l'ordre du temps. C'est aussi là qu'on rattache une observation après coup (09, 12).
+
 ### Au moment de noter
 
 Un **panneau à côté de la case** montre, pour l'apprenant et l'indicateur :
 
 1. les observations rattachées à cet indicateur ;
-2. puis celles du même exercice restées sans indicateur, d'où on les rattache d'un geste (09).
+2. puis celles rattachées plus haut, à son objectif ou à sa sphère (proposé à la révision 12, non contredit).
 
-### Fiche de l'apprenant
-
-Toutes ses observations, dans l'ordre du temps (09).
+Les observations générales n'y figurent pas : elles se lisent dans la fiche.
 
 ### Reprise dans le commentaire
 
@@ -116,18 +116,18 @@ Un geste **copie** le texte d'une observation dans le commentaire de synthèse, 
 
 ### Finalisation
 
-Les observations « à préciser » ne gênent pas la finalisation : ni blocage, ni rappel (09).
+Les observations ne gênent jamais la finalisation : ni blocage, ni rappel (09).
 
 ### Suivi
 
-Un tableau **apprenants × exercices** avec le nombre d'observations, pour repérer celui dont on n'a rien noté. Pas de décompte par formateur, pas de missions d'observation (08).
+Un tableau par apprenant : **nombre d'observations et date de la dernière**, pour repérer celui dont on n'a rien noté. Pas de décompte par formateur, pas de missions d'observation (08 ; forme proposée à la révision 12, non contredite).
 
 ## 6. Cycle de vie
 
 | Événement | Effet sur les observations | Ticket |
 | --- | --- | --- |
-| Copie de grille (18 §9) | Dupliquées dans la copie, rattachées aux lignes correspondantes, y compris celles « à classer ». Une observation appartient donc à une grille. | 01 |
-| Ligne disparue dans la copie | L'observation perd ce rattachement ; sans autre nœud, elle redevient « à classer ». | 01 |
+| Copie de grille (18 §9) | Dupliquées dans la copie, rattachées aux lignes correspondantes, observations générales comprises. Une observation appartient donc à une grille. | 01 |
+| Ligne disparue dans la copie | L'observation perd ce rattachement ; sans autre nœud, elle redevient générale. | 01 |
 | Fichier joint lors d'une copie | Partagé entre les deux observations, supprimé quand plus aucune ne s'y réfère. | 10 |
 | Anonymisation | Texte et pièces jointes supprimés ; la grille reste. | 01 |
 
@@ -140,7 +140,7 @@ Un tableau **apprenants × exercices** avec le nombre d'observations, pour repé
 
 | Tranche | Contenu | Condition |
 | --- | --- | --- |
-| **1. Observations en texte** | Page d'accès rapide, saisie, groupe, « à préciser », brouillon sur l'appareil, panneau à côté de la case, fiche de l'apprenant, copie dans le commentaire, tableau de suivi, copie de grille, suppression à l'anonymisation. | Aucune. À essayer sur un vrai exercice, puis à corriger : il n'y a pas de prototype préalable (07). |
+| **1. Observations en texte** | Page d'accès rapide, saisie, groupe, rattachement facultatif, brouillon sur l'appareil, fiche de l'apprenant, panneau à côté de la case, copie dans le commentaire, tableau de suivi, copie de grille, suppression à l'anonymisation. | Aucune. Une maquette jetable existe dans `prototype/observations/` ; à essayer ensuite sur un vrai exercice. |
 | **2. Pièces jointes** | Fichiers joints, photo depuis le téléphone, partage à la copie de grille, suppression effective. | **Avis juridique obtenu** (10). |
 | **Extension** | Photo de profil importée de MiData. | Mesure du taux de profils avec photo, et avis juridique (10). |
 
@@ -166,4 +166,4 @@ Un tableau **apprenants × exercices** avec le nombre d'observations, pour repé
 
 - 18 §5 : préciser que les observations ne sont pas des évaluations concurrentes.
 - `FEATURES.md` : constat 8 (« pas d'observations multiples »), la définition de l'exercice, et l'entrée « Observation » du glossaire.
-- Les hypothèses marquées dans cette spec (second geste vers la qualification, bouton photo, raccourci clavier, taille et quota) sont à confirmer au découpage.
+- Les hypothèses marquées dans cette spec (second geste vers la fiche, bouton photo, raccourci clavier, taille et quota) et les deux formes proposées à la révision 12 (contenu du panneau, tableau de suivi) sont à confirmer au découpage.

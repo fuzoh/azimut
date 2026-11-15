@@ -34,6 +34,7 @@ ticket 08 grilling "Suivi de l'effort d'observation et missions" 08-grilling-sui
 ticket 09 grilling "De l'observation à la note et au retour" 09-grilling-observation-vers-note.md
 ticket 10 grilling "Photos des apprenants : source et garde-fous" 10-grilling-photos-apprenants.md
 ticket 11 task "Rédaction de la spec des observations" 11-task-redaction-spec.md
+ticket 12 grilling "Révision : observation générale par défaut" 12-grilling-observation-generale.md
 
 clos 01
 clos 02
@@ -45,6 +46,7 @@ clos 08
 clos 09
 clos 10
 clos 11
+clos 12
 
-echo "Carte #$map ; tickets : ${n[01]} ${n[02]} ${n[03]} ${n[04]} ${n[05]} ${n[07]} ${n[08]} ${n[09]} ${n[10]} ${n[11]}"
+echo "Carte #$map ; tickets : ${n[01]} ${n[02]} ${n[03]} ${n[04]} ${n[05]} ${n[07]} ${n[08]} ${n[09]} ${n[10]} ${n[11]} ${n[12]}"
 echo "Tous les tickets sont clos : fermer la carte #$map après relecture de la spec."

@@ -30,6 +30,7 @@ La spec des **observations et du suivi en cours de formation**, dans `docs/analy
 
 - Photos des apprenants : source et garde-fous (`10-grilling-photos-apprenants.md`) : pas de photos des apprenants dans cette spec (nom de scout, groupe d'origine, initiales), import MiData en extension ; pièces jointes en seconde tranche, après avis juridique ; fichier joint partagé à la copie de grille.
 - Rédaction de la spec (`11-task-redaction-spec.md`) : spec dans `docs/analyse/22-spec-observations.md`, sans décision nouvelle, en deux tranches et une extension.
+- Révision : observation générale par défaut (`12-grilling-observation-generale.md`) : une observation est générale par défaut ; le rattachement (sphère, objectif, indicateur, Posture, exercice) est facultatif, à la saisie ou après ; la page d'accès rapide ne garde que le groupe. **Remplace** l'exercice rattaché d'office et gardé (05, 07), le compteur « à préciser » (07), l'état « à classer » (01, 09) et le tableau par exercice (08). Spec et maquette mises à jour.
 
 ## Not yet specified
 
