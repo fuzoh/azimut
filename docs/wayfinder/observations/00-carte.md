@@ -22,12 +22,11 @@ La spec des **observations et du suivi en cours de formation**, dans `docs/analy
 - Programme de cours dans Azimut : périmètre (`02-grilling-programme-de-cours.md`) : le programme n'entre pas dans Azimut (il reste dans un Excel SharePoint), ni plages ni UA ; le « quand » d'une observation est son heure de saisie, sans date sur les exercices ; l'évaluation des UA et la validation de cours sortent du périmètre.
 - Saisie d'observations dans Qualix (`03-research-saisie-qualix.md`, constats dans `docs/analyse/23-saisie-qualix.md`) : un formulaire prérempli par la page d'origine, qui reste ouvert après l'enregistrement avec le même contexte et le texte vidé ; aucun bloc courant présélectionné ni mémoire du dernier bloc ; le Spick (photos des apprenants à observer, compteur) est le chemin le plus court ; rien pour le hors-ligne. Issues GitHub et comportement à l'écran non vérifiés.
 
+- Le « quand » d'une observation et la suggestion d'exercice (`05-grilling-quand-exercice.md`) : moment à la minute, prérempli avec l'heure de saisie et modifiable ; l'exercice est un nœud rattaché, pas un champ ; l'application propose le dernier exercice (ou la dernière occurrence) utilisé par le formateur, et le garde ; le filtre par exercice est une aide, pas une règle ; d'une observation à la suivante, l'exercice et le groupe restent, l'apprenant se rechoisit.
+
 ## Not yet specified
 
-- **Saisie rapide** : page d'accès rapide, raccourcis, recherche floue, raccourci de groupe (une observation indépendante par membre), liste « à classer ». À préciser une fois l'observation et la plage définies, et la saisie de Qualix relue.
-- **Suivi de l'effort d'observation** : qui a observé qui, missions d'observation (N-QX2, N-QX9). Dépend de la nature de l'observation.
-- **Passage de l'observation à la note** : comment des observations nourrissent une case, un commentaire ou un retour à l'apprenant (N-QX3).
-- **Prototype de la saisie** : une maquette jetable peut être nécessaire pour trancher l'ergonomie. À décider après les grills.
+- **Prototype de la saisie** : une maquette jetable peut être nécessaire pour trancher l'ergonomie. À décider après le grill sur la saisie rapide.
 - **Rédaction de la spec** : dernier ticket, quand le reste est clos.
 
 ## Out of scope

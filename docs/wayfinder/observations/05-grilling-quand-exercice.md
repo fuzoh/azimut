@@ -11,3 +11,14 @@ Quel est le **« quand »** d'une observation, et comment la plage d'exercice es
 - **la saisie différée** : on note le soir ce qu'on a vu l'après-midi, ou on recopie du papier (N-QX10) ;
 - **le lien avec les nœuds** : choisir un exercice restreint-il les nœuds proposés, et l'inverse ;
 - **les observations par groupes d'exercice** : enchaîner les apprenants d'un groupe sur un même exercice.
+
+## Résolution (15 novembre 2026)
+
+Grill clos.
+
+- **Moment** : date et heure, à la minute. Prérempli avec l'heure de saisie, modifiable par le formateur (saisie différée, recopie du papier). L'heure réelle de saisie reste dans l'historique.
+- **Exercice proposé** : le dernier que le formateur a utilisé, propre à chaque formateur, sans limite de durée. Il reste sélectionné jusqu'à ce que le formateur en change. Aucune suggestion par l'heure.
+- **Pas de champ « exercice » à part** : l'exercice est un des nœuds rattachés. Le choisir réduit la liste proposée aux indicateurs que cet exercice évalue, toutes sphères confondues.
+- **Le filtre est une aide, pas une règle** : on peut élargir à toute la grille et rattacher un indicateur que l'exercice n'évalue pas.
+- **Occurrences** (18 §4) : on rattache à l'occurrence, pas à l'exercice en général. L'application propose la dernière occurrence utilisée par le formateur.
+- **Enchaînement** : d'une observation à la suivante, l'exercice et le groupe restent ; l'apprenant se choisit à chaque fois parmi les membres du groupe.
