@@ -166,3 +166,4 @@ Hors modèle, voir « Questions ouvertes » dans `FEATURES.md`. Points à traite
 - les verrous (durée, inactivité) et le moment de la sauvegarde ;
 - la consultation de l'historique et la restauration ;
 - les idées notées dans « Idées à explorer » de `FEATURES.md` : accès aux grilles archivées, anonymisation à 3 mois, accueil personnalisé, statistiques par cours, entre cours et dans le temps, envoi par mail.
+- l'évaluation des UA par les apprenants et les formateurs, et la validation de cours : écartées de la carte « observations et suivi » (#29) le 2026-11-15, car le programme de cours n'entre pas dans Azimut (`wayfinder/observations/02-grilling-programme-de-cours.md`). Idées gardées pour plus tard.
