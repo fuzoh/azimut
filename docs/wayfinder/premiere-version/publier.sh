@@ -35,3 +35,4 @@ echo "Carte #$map ; tickets : ${n[01]} ${n[02]} ${n[03]} ${n[04]} ${n[05]} ${n[0
 
 clos() { gh issue close -R "$repo" "${n[$1]}" >/dev/null; } # résolution déjà dans le corps
 clos 01
+clos 03

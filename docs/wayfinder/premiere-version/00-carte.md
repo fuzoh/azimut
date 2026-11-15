@@ -20,6 +20,7 @@ Le **périmètre d'une première version de démonstration** d'Azimut et son **o
 <!-- one line per closed ticket -->
 
 - Scénario de la démonstration (`01-grilling-scenario-demonstration.md`) : 30 à 45 minutes devant d'autres équipes ; argument central, la simplicité et la continuité avec les habitudes ; grille construite de zéro sous la forme courante (sphères, objectifs, critères, indicateurs de 1 à 5, moyenne et seuil par sphère, réussite si toutes), sans axe par exercice ; cours d'une douzaine d'apprenants ; saisie à deux écrans par le porteur ; bascule sur la même grille déjà remplie pour les résultats.
+- Acquis du prototype du modèle de calcul (`03-research-acquis-prototype.md`, constats dans `docs/analyse/26-acquis-prototype.md`) : le code est sur `main` dans `prototype/` ; noyau pur et testé, réutilisable ; aucun éditeur de grille ; format JSON typé à cacher derrière l'éditeur ; F1 à F3 suffisent pour une grille simple ; `compile` valide partiellement ; aucune variante de moteur retenue, mais un recalcul complet par participant suffit à l'échelle de la démonstration ; aucun acquis pour le temps réel.
 
 ## Not yet specified
 
