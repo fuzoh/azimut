@@ -32,3 +32,6 @@ ticket 06 grilling "Socle minimal : comptes et cours de démonstration" 06-grill
 ticket 07 grilling "Résultat d'un apprenant et son explication" 07-grilling-resultat-et-explication.md 01 03
 
 echo "Carte #$map ; tickets : ${n[01]} ${n[02]} ${n[03]} ${n[04]} ${n[05]} ${n[06]} ${n[07]}"
+
+clos() { gh issue close -R "$repo" "${n[$1]}" >/dev/null; } # résolution déjà dans le corps
+clos 01
