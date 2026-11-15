@@ -13,6 +13,7 @@ Le **périmètre d'une première version de démonstration** d'Azimut et son **o
   - **Éditeur de grille** : dans la première version, par choix du porteur. C'est la partie la moins définie du projet (18 §1 : la facilité réelle reste à éprouver) ; la carte la traite en premier.
 - **Domaine** : `docs/analyse/18-decisions-definitives.md` fait foi. Vocabulaire : `GLOSSARY.md`. Ne pas rouvrir 18 sans le signaler.
 - **Acquis** : spec et prototype du modèle de calcul (issue #14, branche `spec/prototype`), dont la campagne de mesures (#27) n'est pas faite ; spec des observations (22) ; décisions techniques dans `TODO.md` et `PRACTICES.md`.
+- **Sécurité** : `docs/analyse/27-plan-securite.md` (proposition) range ses contrôles dans les mêmes phases que cette carte : fondation, démonstration, pilote, production. Il renvoie trois questions au ticket sur la saisie en temps réel : dernier gagnant, verrous, qui fige la structure d'une grille.
 - **Skills** : grilling + domain-modeling pour les tickets de grill ; research pour les tickets de recherche. Tickets et résolutions en français.
 
 ## Decisions so far
