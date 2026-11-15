@@ -23,10 +23,10 @@ La spec des **observations et du suivi en cours de formation**, dans `docs/analy
 - Saisie d'observations dans Qualix (`03-research-saisie-qualix.md`, constats dans `docs/analyse/23-saisie-qualix.md`) : un formulaire prérempli par la page d'origine, qui reste ouvert après l'enregistrement avec le même contexte et le texte vidé ; aucun bloc courant présélectionné ni mémoire du dernier bloc ; le Spick (photos des apprenants à observer, compteur) est le chemin le plus court ; rien pour le hors-ligne. Issues GitHub et comportement à l'écran non vérifiés.
 
 - Le « quand » d'une observation et la suggestion d'exercice (`05-grilling-quand-exercice.md`) : moment à la minute, prérempli avec l'heure de saisie et modifiable ; l'exercice est un nœud rattaché, pas un champ ; l'application propose le dernier exercice (ou la dernière occurrence) utilisé par le formateur, et le garde ; le filtre par exercice est une aide, pas une règle ; d'une observation à la suivante, l'exercice et le groupe restent, l'apprenant se rechoisit.
+- Saisie rapide des observations (`07-grilling-saisie-rapide.md`) : une page d'accès rapide, téléphone d'abord, qui montre l'exercice et le groupe en cours avec leurs membres ; un champ de recherche tolérant sur exercices, nœuds et apprenants ; un apprenant et un contenu suffisent, l'exercice est rattaché d'office ; sélection multiple pour un groupe ; compteur personnel « à préciser » ; brouillon gardé sur l'appareil sans réseau ; pas de prototype dans la carte.
 
 ## Not yet specified
 
-- **Prototype de la saisie** : une maquette jetable peut être nécessaire pour trancher l'ergonomie. À décider après le grill sur la saisie rapide.
 - **Rédaction de la spec** : dernier ticket, quand le reste est clos.
 
 ## Out of scope
