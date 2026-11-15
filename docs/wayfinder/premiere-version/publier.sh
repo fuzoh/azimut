@@ -30,9 +30,11 @@ ticket 04 grilling "Éditeur de grille minimal" 04-grilling-editeur-de-grille.md
 ticket 05 grilling "Saisie à deux en temps réel : périmètre minimal" 05-grilling-saisie-temps-reel.md 01
 ticket 06 grilling "Socle minimal : comptes et cours de démonstration" 06-grilling-socle-minimal.md
 ticket 07 grilling "Résultat d'un apprenant et son explication" 07-grilling-resultat-et-explication.md 01 03
+ticket 08 task "Propositions pour les décisions techniques ouvertes" 08-task-decisions-techniques-ouvertes.md
 
-echo "Carte #$map ; tickets : ${n[01]} ${n[02]} ${n[03]} ${n[04]} ${n[05]} ${n[06]} ${n[07]}"
+echo "Carte #$map ; tickets : ${n[01]} ${n[02]} ${n[03]} ${n[04]} ${n[05]} ${n[06]} ${n[07]} ${n[08]}"
 
 clos() { gh issue close -R "$repo" "${n[$1]}" >/dev/null; } # résolution déjà dans le corps
 clos 01
 clos 03
+clos 02
