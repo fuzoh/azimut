@@ -24,6 +24,7 @@ La spec des **observations et du suivi en cours de formation**, dans `docs/analy
 
 - Le « quand » d'une observation et la suggestion d'exercice (`05-grilling-quand-exercice.md`) : moment à la minute, prérempli avec l'heure de saisie et modifiable ; l'exercice est un nœud rattaché, pas un champ ; l'application propose le dernier exercice (ou la dernière occurrence) utilisé par le formateur, et le garde ; le filtre par exercice est une aide, pas une règle ; d'une observation à la suivante, l'exercice et le groupe restent, l'apprenant se rechoisit.
 - Saisie rapide des observations (`07-grilling-saisie-rapide.md`) : une page d'accès rapide, téléphone d'abord, qui montre l'exercice et le groupe en cours avec leurs membres ; un champ de recherche tolérant sur exercices, nœuds et apprenants ; un apprenant et un contenu suffisent, l'exercice est rattaché d'office ; sélection multiple pour un groupe ; compteur personnel « à préciser » ; brouillon gardé sur l'appareil sans réseau ; pas de prototype dans la carte.
+- Photos des apprenants et pièces jointes (`04-research-photos-apprenants.md`, constats dans `docs/analyse/24-photos-pieces-jointes.md`) : MiData expose la photo de profil par son API, part de profils avec photo inconnue ; les pièces jointes se sécurisent au stockage et à la restitution, pas par une liste de types ; partie nLPD non vérifiée sur les textes officiels (hôtes injoignables), neuf points demandent un avis juridique.
 
 ## Not yet specified
 

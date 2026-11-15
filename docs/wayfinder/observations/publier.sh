@@ -32,11 +32,13 @@ ticket 05 grilling "Le « quand » d'une observation et la suggestion d'exercice
 ticket 07 grilling "Saisie rapide des observations" 07-grilling-saisie-rapide.md
 ticket 08 grilling "Suivi de l'effort d'observation et missions" 08-grilling-suivi-effort-observation.md
 ticket 09 grilling "De l'observation à la note et au retour" 09-grilling-observation-vers-note.md
+ticket 10 grilling "Photos des apprenants : source et garde-fous" 10-grilling-photos-apprenants.md
 
 clos 01
 clos 02
 clos 03
+clos 04
 clos 05
 clos 07
 
-echo "Carte #$map ; tickets : ${n[01]} ${n[02]} ${n[03]} ${n[04]} ${n[05]} ${n[07]} ${n[08]} ${n[09]}"
+echo "Carte #$map ; tickets : ${n[01]} ${n[02]} ${n[03]} ${n[04]} ${n[05]} ${n[07]} ${n[08]} ${n[09]} ${n[10]}"
