@@ -12,8 +12,10 @@ Domaine et comportement : voir `FEATURES.md`. Modèle de qualification : voir `a
 - **Hébergement :** en Suisse, avec Docker Compose. Une seule instance suffit vu les volumes (environ 50 formateurs simultanés au total).
 - **Auth :**
   - Better Auth.
-  - Comptes locaux en dev et en test **uniquement**. Ils doivent être désactivés en production, et c'est la validation de l'env qui l'impose.
-  - SSO MiData (db.scout.ch) en production, via le plugin `genericOAuth` avec PKCE.
+  - Trois régimes, distingués par la validation de l'env au démarrage (décision du 2026-11-15, `wayfinder/premiere-version/06-grilling-socle-minimal.md`) :
+    - développement et test : comptes locaux ;
+    - démonstration : comptes locaux de démonstration, sans MiData, avec des données fictives seulement ;
+    - production : SSO MiData (db.scout.ch), via le plugin `genericOAuth` avec PKCE. Les comptes locaux y sont **interdits**, et c'est la validation de l'env qui l'impose.
 - **Autorisation :** RBAC avec un scope par cours. Les cours et les rôles d'un formateur viennent de l'API JSON:API de MiData.
 - **Effect :** dernière version, soit 4.x. Uniquement le cœur, pas de modules `unstable/*`.
 - **i18n :** l'architecture est multilingue dès le départ, avec seulement le français au début. Le serveur renvoie des codes d'erreur et le client les traduit.

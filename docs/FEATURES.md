@@ -89,6 +89,7 @@ Pour les observations, 22 fixe un tableau de suivi par apprenant (nombre d'obser
 
 - **Production :** SSO avec la base de données scoute suisse (MiData, [db.scout.ch](https://db.scout.ch)). C'est aussi d'elle que viennent les cours auxquels un formateur participe, avec son rôle dans chaque cours.
 - **Développement et tests :** des comptes locaux.
+- **Démonstration :** des comptes locaux de démonstration et un cours d'exemple à données fictives, sans lien avec MiData, dans un environnement à part. Les comptes locaux restent interdits en production (`wayfinder/premiere-version/06-grilling-socle-minimal.md`).
 - **Rôles de cours qui existent dans MiData :** Kursleiter·in (qui a le droit de qualifier), Klassenlehrer·in, Referent·in, Kurshelfer·in, Küche, Participant et LKB. Il reste à décider comment ils correspondent aux droits dans Azimut.
 - **Participants (18 §2) :** MiData est la seule source. La liste réunit les participants des événements rattachés au cours et reste synchronisée ; aucun ajout manuel. L'équipe peut **écarter** un participant (absent, parti) : il disparaît de toutes les grilles du cours, sans changer son inscription MiData.
 
