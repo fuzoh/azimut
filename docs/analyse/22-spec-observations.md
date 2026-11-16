@@ -164,6 +164,5 @@ Un tableau par apprenant : **nombre d'observations et date de la dernière**, po
 
 **À reporter dans les autres documents.**
 
-- 18 §5 : préciser que les observations ne sont pas des évaluations concurrentes.
-- `FEATURES.md` : constat 8 (« pas d'observations multiples »), la définition de l'exercice, et l'entrée « Observation » du glossaire.
+- Proposés le 16 novembre 2026 dans #29, comme le demande `CONTRIBUTING.md` : 18 §4, §5 et §13 (une observation n'est pas une évaluation), et dans `FEATURES.md` le constat 8 (« pas d'observations multiples »), les entrées « Observation » et « Exercice » et le résumé du modèle. 18 et `FEATURES.md` ne sont modifiés qu'une fois l'écart discuté et accepté.
 - Les hypothèses marquées dans cette spec (second geste vers la fiche, bouton photo, raccourci clavier, taille et quota) et les deux formes proposées à la révision 12 (contenu du panneau, tableau de suivi) sont à confirmer au découpage.
