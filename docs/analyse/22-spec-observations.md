@@ -24,7 +24,7 @@ Sources : tickets 01 à 12 de `docs/wayfinder/observations/`, [23 — Saisie dan
 | **Moment** | Quand le fait a été observé : date et heure, à la minute. |
 | **Observation générale** | Une observation sans rattachement. C'est l'état par défaut, pas un travail en retard. |
 | **Rattachement** | Le lien facultatif entre une observation et les nœuds qu'elle concerne : une sphère, un objectif, un indicateur, la Posture, un exercice. |
-| **Exercice** | Quelque chose que font les apprenants, sur quoi on les observe et on les évalue. Il réunit des indicateurs pris dans plusieurs sphères, objectifs et critères : il traverse l'arbre, c'est un second axe de lecture (18 §3). |
+| **Exercice** | Quelque chose que font les apprenants, sur quoi on les observe et on les évalue. Selon la grille, c'est un niveau de l'arbre (dans qualif1, il remplace la sphère ; dans qualif2, il se confond avec l'objectif) ou une lecture transversale qui réunit des indicateurs pris dans plusieurs sphères (`FEATURES.md`, constat 3). Dans le modèle, c'est un nœud (18 §3). |
 | **UA** | Un point de cours, une leçon : ce que l'équipe enseigne. Absente d'Azimut. |
 | **Commentaire de case** | La synthèse écrite par l'équipe, restituée à l'apprenant (18 §5). |
 

@@ -47,7 +47,7 @@ Nœud de données qui reprend une définition à un endroit précis de la grille
 _Avoid_ : instance, tentative
 
 **Exercice** :
-Quelque chose que font les participants, sur quoi on les observe et on les évalue. Il réunit des indicateurs pris dans plusieurs sphères, objectifs et critères : il traverse l'arbre au lieu d'en être un étage.
+Quelque chose que font les participants, sur quoi on les observe et on les évalue. Selon la grille, c'est un niveau de l'arbre (dans qualif1, il remplace la sphère ; dans qualif2, il se confond avec l'objectif) ou une lecture transversale qui réunit des indicateurs pris dans plusieurs sphères (`docs/FEATURES.md`, constat 3). Dans le modèle, c'est un nœud (18 §3).
 _Avoid_ : UA, leçon, plage, bloc
 
 **Nœud de commentaire** :
