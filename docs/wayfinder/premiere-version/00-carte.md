@@ -1,3 +1,5 @@
+> Publié dans l'issue [#38](https://github.com/fuzoh/azimut/issues/38) le 16 novembre 2026. L'issue fait foi ; ce fichier n'est plus tenu à jour.
+
 ## Destination
 
 Le **périmètre d'une première version de démonstration** d'Azimut et son **ordre de construction**, dans `docs/analyse/25-perimetre-v1.md`. La carte s'arrête quand on sait ce que contient cette version, ce qui en est exclu et par quoi on commence ; le découpage en tickets et la construction sont des efforts séparés.

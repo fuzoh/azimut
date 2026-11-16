@@ -1,3 +1,5 @@
+> Publié dans l'issue [#67](https://github.com/fuzoh/azimut/issues/67) le 16 novembre 2026. L'issue fait foi ; ce fichier n'est plus tenu à jour.
+
 ## Ce qu'il faut construire
 
 **Voir qui a été peu observé** (spec §5 « Suivi »).

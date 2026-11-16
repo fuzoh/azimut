@@ -1,3 +1,5 @@
+> Publié dans l'issue [#48](https://github.com/fuzoh/azimut/issues/48) le 16 novembre 2026. L'issue fait foi ; ce fichier n'est plus tenu à jour.
+
 ## Question
 
 Quel **socle minimal** porte la démonstration ?

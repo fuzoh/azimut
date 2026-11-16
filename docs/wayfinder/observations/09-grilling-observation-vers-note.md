@@ -1,3 +1,5 @@
+> Publié dans l'issue [#55](https://github.com/fuzoh/azimut/issues/55) le 16 novembre 2026. L'issue fait foi ; ce fichier n'est plus tenu à jour.
+
 ## Question
 
 Comment les observations servent-elles **au moment de noter** et de rédiger le retour ?

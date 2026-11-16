@@ -1,3 +1,5 @@
+> Publié dans l'issue [#57](https://github.com/fuzoh/azimut/issues/57) le 16 novembre 2026. L'issue fait foi ; ce fichier n'est plus tenu à jour.
+
 ## Tâche
 
 Rédiger la spec des observations et du suivi dans `docs/analyse/22-spec-observations.md`, à partir des résolutions des tickets 01 à 10, sans décision nouvelle.

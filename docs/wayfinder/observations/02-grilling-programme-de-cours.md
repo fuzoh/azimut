@@ -1,3 +1,5 @@
+> Publié dans l'issue [#45](https://github.com/fuzoh/azimut/issues/45) le 16 novembre 2026. L'issue fait foi ; ce fichier n'est plus tenu à jour.
+
 ## Question
 
 Le **programme de cours** entre-t-il dans Azimut, et jusqu'où ?

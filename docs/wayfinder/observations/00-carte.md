@@ -1,3 +1,5 @@
+> Publié dans l'issue [#41](https://github.com/fuzoh/azimut/issues/41) le 16 novembre 2026. L'issue fait foi ; ce fichier n'est plus tenu à jour.
+
 ## Destination
 
 La spec des **observations et du suivi en cours de formation**, dans `docs/analyse/22-spec-observations.md` : périmètre, décisions de domaine, parcours de saisie et hors-périmètre, prête à être découpée en tickets. Elle part des idées de #29 (inspiration Qualix). La carte s'arrête quand on sait quoi construire ; la construction est un effort séparé.

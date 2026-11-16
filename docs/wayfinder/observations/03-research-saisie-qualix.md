@@ -1,3 +1,5 @@
+> Publié dans l'issue [#47](https://github.com/fuzoh/azimut/issues/47) le 16 novembre 2026. L'issue fait foi ; ce fichier n'est plus tenu à jour.
+
 ## Question
 
 Comment Qualix fait-il saisir une observation ?

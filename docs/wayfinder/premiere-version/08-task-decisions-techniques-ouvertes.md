@@ -1,3 +1,5 @@
+> Publié dans l'issue [#51](https://github.com/fuzoh/azimut/issues/51) le 16 novembre 2026. L'issue fait foi ; ce fichier n'est plus tenu à jour.
+
 ## Tâche
 
 Proposer une réponse argumentée à chaque **décision technique ouverte** de `docs/TODO.md` (« Technique : décisions ouvertes » et « À explorer / confirmer »), pour que le propriétaire du dépôt valide ou corrige.

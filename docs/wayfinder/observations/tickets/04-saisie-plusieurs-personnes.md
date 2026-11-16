@@ -1,3 +1,5 @@
+> Publié dans l'issue [#63](https://github.com/fuzoh/azimut/issues/63) le 16 novembre 2026. L'issue fait foi ; ce fichier n'est plus tenu à jour.
+
 ## Ce qu'il faut construire
 
 **Noter le même fait pour plusieurs apprenants** (spec §4 « Groupe »).

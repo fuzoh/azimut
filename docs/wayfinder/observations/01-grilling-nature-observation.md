@@ -1,3 +1,5 @@
+> Publié dans l'issue [#43](https://github.com/fuzoh/azimut/issues/43) le 16 novembre 2026. L'issue fait foi ; ce fichier n'est plus tenu à jour.
+
 ## Question
 
 Qu'est-ce qu'une **observation** dans Azimut, et comment se place-t-elle par rapport au modèle de 18 ?

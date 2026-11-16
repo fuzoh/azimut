@@ -1,3 +1,5 @@
+> Publié dans l'issue [#56](https://github.com/fuzoh/azimut/issues/56) le 16 novembre 2026. L'issue fait foi ; ce fichier n'est plus tenu à jour.
+
 ## Question
 
 Azimut affiche-t-il des **photos des apprenants**, et d'où viennent-elles ?

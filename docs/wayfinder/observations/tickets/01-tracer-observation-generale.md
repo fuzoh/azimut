@@ -1,3 +1,5 @@
+> Publié dans l'issue [#60](https://github.com/fuzoh/azimut/issues/60) le 16 novembre 2026. L'issue fait foi ; ce fichier n'est plus tenu à jour.
+
 ## Ce qu'il faut construire
 
 Le chemin complet le plus court : **saisir une observation générale sur téléphone et la relire dans la fiche de l'apprenant** (spec §3, §4, §5).

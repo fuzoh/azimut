@@ -1,3 +1,5 @@
+> Publié dans l'issue [#52](https://github.com/fuzoh/azimut/issues/52) le 16 novembre 2026. L'issue fait foi ; ce fichier n'est plus tenu à jour.
+
 ## Question
 
 Quel est le **« quand »** d'une observation, et comment la plage d'exercice est-elle proposée ?

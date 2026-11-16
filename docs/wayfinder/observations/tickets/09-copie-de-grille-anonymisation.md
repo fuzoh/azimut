@@ -1,3 +1,5 @@
+> Publié dans l'issue [#68](https://github.com/fuzoh/azimut/issues/68) le 16 novembre 2026. L'issue fait foi ; ce fichier n'est plus tenu à jour.
+
 ## Ce qu'il faut construire
 
 **Le cycle de vie des observations** (spec §6).

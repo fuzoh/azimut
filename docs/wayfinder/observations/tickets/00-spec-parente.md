@@ -1,3 +1,5 @@
+> Publié dans l'issue [#59](https://github.com/fuzoh/azimut/issues/59) le 16 novembre 2026. L'issue fait foi ; ce fichier n'est plus tenu à jour.
+
 ## Spec
 
 `docs/analyse/22-spec-observations.md` : observations et suivi en cours de formation. Origine : #29. Décisions : `docs/wayfinder/observations/`. Maquette jetable : `prototype/observations/`.

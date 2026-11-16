@@ -1,3 +1,5 @@
+> Publié dans l'issue [#42](https://github.com/fuzoh/azimut/issues/42) le 16 novembre 2026. L'issue fait foi ; ce fichier n'est plus tenu à jour.
+
 ## Question
 
 Que nous apporte le **prototype du modèle de calcul** pour la première version ?

@@ -1,3 +1,5 @@
+> Publié dans l'issue [#58](https://github.com/fuzoh/azimut/issues/58) le 16 novembre 2026. L'issue fait foi ; ce fichier n'est plus tenu à jour.
+
 ## Question
 
 Révision demandée par le porteur après lecture de la spec et de la maquette : une observation peut être très générale, sans lien avec un exercice.

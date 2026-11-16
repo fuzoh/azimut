@@ -1,3 +1,5 @@
+> Publié dans l'issue [#53](https://github.com/fuzoh/azimut/issues/53) le 16 novembre 2026. L'issue fait foi ; ce fichier n'est plus tenu à jour.
+
 ## Question
 
 Comment saisit-on une observation **vite**, sur le terrain ?

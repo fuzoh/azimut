@@ -1,3 +1,5 @@
+> Publié dans l'issue [#65](https://github.com/fuzoh/azimut/issues/65) le 16 novembre 2026. L'issue fait foi ; ce fichier n'est plus tenu à jour.
+
 ## Ce qu'il faut construire
 
 **Ne jamais perdre l'observation en cours** quand le réseau manque (spec §4 « Sans réseau »).

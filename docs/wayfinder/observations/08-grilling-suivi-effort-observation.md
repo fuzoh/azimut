@@ -1,3 +1,5 @@
+> Publié dans l'issue [#54](https://github.com/fuzoh/azimut/issues/54) le 16 novembre 2026. L'issue fait foi ; ce fichier n'est plus tenu à jour.
+
 ## Question
 
 Azimut montre-t-il **qui a observé qui**, et répartit-il le travail d'observation ?

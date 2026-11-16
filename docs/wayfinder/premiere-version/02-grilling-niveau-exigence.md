@@ -1,3 +1,5 @@
+> Publié dans l'issue [#40](https://github.com/fuzoh/azimut/issues/40) le 16 novembre 2026. L'issue fait foi ; ce fichier n'est plus tenu à jour.
+
 ## Question
 
 La première version est-elle une **fondation** de la vraie application, ou une **démonstration jetable** ?

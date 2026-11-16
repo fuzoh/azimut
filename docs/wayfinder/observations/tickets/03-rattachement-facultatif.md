@@ -1,3 +1,5 @@
+> Publié dans l'issue [#62](https://github.com/fuzoh/azimut/issues/62) le 16 novembre 2026. L'issue fait foi ; ce fichier n'est plus tenu à jour.
+
 ## Ce qu'il faut construire
 
 **Rattacher une observation à la grille**, à la saisie ou après (spec §3 « Rattachement », révision 12).

@@ -1,3 +1,5 @@
+> Publié dans l'issue [#64](https://github.com/fuzoh/azimut/issues/64) le 16 novembre 2026. L'issue fait foi ; ce fichier n'est plus tenu à jour.
+
 ## Ce qu'il faut construire
 
 **Un seul champ de recherche** en haut de la page d'accès rapide (spec §4).

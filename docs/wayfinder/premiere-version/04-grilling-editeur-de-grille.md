@@ -1,3 +1,5 @@
+> Publié dans l'issue [#44](https://github.com/fuzoh/azimut/issues/44) le 16 novembre 2026. L'issue fait foi ; ce fichier n'est plus tenu à jour.
+
 Blocked by: {{01}}, {{03}}
 
 ## Question

@@ -1,3 +1,5 @@
+> Publié dans l'issue [#61](https://github.com/fuzoh/azimut/issues/61) le 16 novembre 2026. L'issue fait foi ; ce fichier n'est plus tenu à jour.
+
 ## Ce qu'il faut construire
 
 **Corriger une observation** : son moment, son texte, ou la supprimer (spec §3, ticket 05 de la carte).
