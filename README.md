@@ -45,7 +45,7 @@ bun run bench      # micro-benchmarks du noyau
 bun run mesure:fumee   # série de mesures courte, pour vérifier le harnais
 ```
 
-Les rapports de mesure sont dans [`prototype/mesures/`](prototype/mesures/). Le prototype est jetable : il n'applique pas les règles de qualité prévues pour l'application.
+Les options du harnais, ses recettes et ses limites sont décrites dans [`prototype/harnais/README.md`](prototype/harnais/README.md). Les rapports de mesure sont dans [`prototype/mesures/`](prototype/mesures/). Le prototype est jetable : il n'applique pas les règles de qualité prévues pour l'application.
 
 ## Contribuer
 
