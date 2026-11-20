@@ -39,7 +39,8 @@ export function App() {
   const session = essai.session;
   const [reglagesOuverts, setReglagesOuverts] = useState(false);
   const [filtre, setFiltre] = useState("");
-  const [g, setG] = useState(0);
+  // Grille affichée au chargement : paramètre `grille` (harnais de mesure, lien copié).
+  const [g, setG] = useState(() => Math.min(essai.etat().reglages.generateur.grille, essai.session.plans.length - 1));
   const [selection, setSelection] = useState(0);
   /** Nœud expliqué (index n de la grille g), -1 = aucun. */
   const [noeud, setNoeud] = useState(-1);
@@ -99,6 +100,7 @@ export function App() {
         </button>
         <span className="jeu" data-testid="jeu" data-somme={session.sommeControle} title={`Somme de contrôle des sources au chargement : ${session.sommeControle}`}>
           jeu {session.jeu}
+          {session.jeu === "perf" ? ` (${session.generation.structures?.join("+")}, ${session.generation.participants} participants)` : ""}
         </span>
         <button type="button" data-action="reglages" onClick={() => setReglagesOuverts(!reglagesOuverts)}>
           réglages

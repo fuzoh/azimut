@@ -199,7 +199,16 @@ export function Table({
   }
   const espaceur = <td className="espaceur" />;
   return (
-    <div className="defilement" ref={conteneur} data-testid="table" data-lignes={participants.length} data-colonnes={visibles.length}>
+    <div
+      className="defilement"
+      ref={conteneur}
+      data-testid="table"
+      data-grille={g}
+      data-lignes={participants.length}
+      data-colonnes={visibles.length}
+      data-lignes-rendues={lignes.length}
+      data-colonnes-rendues={rendues.length}
+    >
       <table className="virtuelle" style={{ width: LARGEUR_NOM + visibles.length * LARGEUR_COLONNE }}>
         <colgroup>
           <col style={{ width: LARGEUR_NOM }} />

@@ -1,10 +1,11 @@
 // Lignes initiales d'une session (spec 20, « Worker », chargement initial) :
 // participants types et participants générés. Fonction pure, exécutée des deux
 // côtés avec la même graine : le thread principal en remplit TanStack DB, le
-// worker ses tableaux compacts.
+// worker ses tableaux compacts. Le message `init` du worker porte toute la
+// `GenerationSession` (structures du jeu « perf » comprises).
 
 import { generer, type ProfilRemplissage, type SourcesGenerees, sourcesVidesGenerees } from "../generateur/generer";
-import type { GrilleDuJeu, Jeu } from "../generateur/jeux";
+import type { GrilleDuJeu, IdStructure, Jeu } from "../generateur/jeux";
 import type { Plan } from "../noyau/compile";
 import type { FichierParticipants } from "../noyau/format";
 import { cle, MAX_PARTICIPANTS } from "./cle";
@@ -13,8 +14,13 @@ export interface GenerationSession {
   jeu: Jeu;
   remplissage: ProfilRemplissage;
   graine: number;
-  /** Participants générés (en plus des participants types du corpus). */
+  /**
+   * Participants générés : en plus des participants types (« corpus ») ;
+   * effectif total exact sinon (« charge », « perf »).
+   */
   participants: number;
+  /** Structures choisies du jeu « perf » (ignoré par les autres jeux). */
+  structures?: IdStructure[];
 }
 
 export const GENERATION_PAR_DEFAUT: GenerationSession = { jeu: "corpus", remplissage: "milieu", graine: 1, participants: 0 };
@@ -67,6 +73,13 @@ export function lignesParticipantsTypes(entrees: { g: number; plan: Plan; fichie
 /** Toutes les lignes initiales du jeu : participants types (corpus), puis participants générés. */
 export function lignesInitiales(grilles: GrilleDuJeu[], plans: Plan[], generation: GenerationSession): SourcesGenerees {
   if (generation.jeu === "charge") return generer(plans, generation.graine, { remplissage: generation.remplissage, participants: generation.participants });
+  // « perf » : exactement P participants générés, sans participants types.
+  if (generation.jeu === "perf")
+    return generer(plans, generation.graine, {
+      remplissage: generation.remplissage,
+      participants: generation.participants,
+      flux: grilles.map((x, g) => x.flux ?? g),
+    });
   const types = lignesParticipantsTypes(
     grilles.flatMap(({ participantsTypes }, g) => (participantsTypes ? [{ g, plan: plans[g], fichier: participantsTypes }] : [])),
   );

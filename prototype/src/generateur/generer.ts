@@ -38,6 +38,12 @@ export interface ReglagesGeneration {
   participants: number;
   /** Index p du premier participant généré (après les participants types). Défaut 0. */
   premierP?: number;
+  /**
+   * Identifiant des flux de la grille g (défaut : g). Le jeu « perf » y met le
+   * rang de la structure dans le catalogue : une structure reçoit les mêmes
+   * sources seule ou dans une session composite (seules les clés suivent g).
+   */
+  flux?: readonly number[];
 }
 
 export interface SourcesGenerees {
@@ -56,6 +62,8 @@ const sigmoide = (x: number) => 1 / (1 + Math.exp(-x));
 interface Preparation {
   plan: Plan;
   g: number;
+  /** Identifiant des flux de la grille (g par défaut). */
+  idFlux: number;
   /** d → index de l'exercice (placement de 1er niveau de l'axe principal), ou d'une unité propre. */
   exercice: Int32Array;
   nbExercices: number;
@@ -68,7 +76,7 @@ interface Preparation {
   regroupements: number[];
 }
 
-function preparer(plan: Plan, g: number, graine: number): Preparation {
+function preparer(plan: Plan, g: number, graine: number, idFlux = g): Preparation {
   const exercice = new Int32Array(plan.D).fill(-1);
   const regroupements = new Set<number>();
   const axe = plan.axePrincipal >= 0 ? plan.grille.axes[plan.axePrincipal] : undefined;
@@ -86,7 +94,7 @@ function preparer(plan: Plan, g: number, graine: number): Preparation {
   let nbExercices = axe?.arbre.length ?? 0;
   for (let d = 0; d < plan.D; d++) if (exercice[d] < 0) exercice[d] = nbExercices++;
 
-  const f = flux(graine, "difficulte", g);
+  const f = flux(graine, "difficulte", idFlux);
   const difficulte = new Float64Array(plan.D);
   for (let d = 0; d < plan.D; d++) difficulte[d] = 0.6 * f.normale();
 
@@ -103,7 +111,7 @@ function preparer(plan: Plan, g: number, graine: number): Preparation {
       pas[d] = b.pas > 0 ? Math.round((b.max - b.min) / b.pas) : 100;
     }
   }
-  return { plan, g, exercice, nbExercices, difficulte, pas, rangs, regroupements: [...regroupements].sort((a, b) => a - b) };
+  return { plan, g, idFlux, exercice, nbExercices, difficulte, pas, rangs, regroupements: [...regroupements].sort((a, b) => a - b) };
 }
 
 function niveau(graine: number, p: number): number {
@@ -123,7 +131,7 @@ function tirerValeur(prep: Preparation, d: number, z: number, f: Flux): number {
 
 function genererGrille(prep: Preparation, p: number, graine: number, reglages: ReglagesGeneration, nv: number, sortie: SourcesGenerees) {
   const { plan, g } = prep;
-  const f = flux(graine, "participant", g, p);
+  const f = flux(graine, "participant", prep.idFlux, p);
   const q = Math.min(1, TAUX_REMPLISSAGE[reglages.remplissage] / CASES_REMPLIES_PAR_EXERCICE);
   const fait = new Uint8Array(prep.nbExercices);
   for (let i = 0; i < prep.nbExercices; i++) fait[i] = f.uniforme() < q ? 1 : 0;
@@ -178,7 +186,7 @@ export function generer(plans: Plan[], graine: number, reglages: ReglagesGenerat
   const premier = reglages.premierP ?? 0;
   if (premier + reglages.participants > MAX_PARTICIPANTS)
     throw new Error(`au plus ${MAX_PARTICIPANTS} participants (clés des sources) : ${premier + reglages.participants} demandés`);
-  const preps = plans.map((plan, g) => preparer(plan, g, graine));
+  const preps = plans.map((plan, g) => preparer(plan, g, graine, reglages.flux?.[g]));
   const sortie = sourcesVidesGenerees();
   for (let p = premier; p < premier + reglages.participants; p++) genererAvec(preps, graine, reglages, p, sortie);
   return sortie;
@@ -186,7 +194,7 @@ export function generer(plans: Plan[], graine: number, reglages: ReglagesGenerat
 
 /** Sources d'un seul participant p, générées sans les autres. */
 export function genererParticipant(plans: Plan[], graine: number, reglages: ReglagesGeneration, p: number): SourcesGenerees {
-  const preps = plans.map((plan, g) => preparer(plan, g, graine));
+  const preps = plans.map((plan, g) => preparer(plan, g, graine, reglages.flux?.[g]));
   const sortie = sourcesVidesGenerees();
   genererAvec(preps, graine, reglages, p, sortie);
   return sortie;

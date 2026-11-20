@@ -3,6 +3,7 @@
 // foi au chargement ; `ecrireUrl` écrit toujours la configuration complète,
 // pour qu'un lien copié la reproduise même si un défaut change.
 
+import { IDS_STRUCTURES, type IdStructure, nombreGrilles, normaliserStructures } from "./generateur/jeux";
 import { type CommutateursResolus, resoudreCommutateurs } from "./noyau/compile";
 import { MAX_PARTICIPANTS } from "./sources/cle";
 
@@ -16,11 +17,18 @@ export interface ReglagesStore {
 }
 
 export interface ReglagesGenerateur {
-  jeu: "corpus" | "charge";
+  jeu: "corpus" | "charge" | "perf";
   remplissage: "debut" | "milieu" | "fin";
   graine: number;
-  /** Nombre de participants générés (corpus : 0 par défaut ; charge : 200). */
+  /**
+   * Participants générés. Corpus : en plus des participants types (0 par défaut) ;
+   * charge : effectif total (200) ; perf : effectif total exact (20 par défaut).
+   */
   participants: number;
+  /** Structures du jeu « perf », ordre canonique ; vide pour les autres jeux. */
+  structures: IdStructure[];
+  /** Index de la grille affichée au chargement. */
+  grille: number;
 }
 
 export interface ReglagesSession {
@@ -39,13 +47,17 @@ export interface Reglages {
 
 export type ClasseReglage = "modele" | "store" | "generateur" | "session" | "comparaison";
 
-export const PARTICIPANTS_PAR_DEFAUT: Record<ReglagesGenerateur["jeu"], number> = { corpus: 0, charge: 200 };
+export const PARTICIPANTS_PAR_DEFAUT: Record<ReglagesGenerateur["jeu"], number> = { corpus: 0, charge: 200, perf: 20 };
+/** Structures du jeu « perf » sans paramètre `structures`. */
+export const STRUCTURES_PAR_DEFAUT: IdStructure[] = ["a03"];
+/** Structures par défaut d'un jeu (vide hors « perf »). */
+export const structuresParDefaut = (jeu: ReglagesGenerateur["jeu"]): IdStructure[] => (jeu === "perf" ? [...STRUCTURES_PAR_DEFAUT] : []);
 
 export function reglagesParDefaut(): Reglages {
   return {
     modele: resoudreCommutateurs(),
     store: { calcul: "signaux", lieu: "worker", cohorte: "paresseux", distante: "perimee", lru: 50 },
-    generateur: { jeu: "corpus", remplissage: "milieu", graine: 1, participants: PARTICIPANTS_PAR_DEFAUT.corpus },
+    generateur: { jeu: "corpus", remplissage: "milieu", graine: 1, participants: PARTICIPANTS_PAR_DEFAUT.corpus, structures: [], grille: 0 },
     session: { verification: true, simulateur: false },
     comparaison: null,
   };
@@ -144,7 +156,8 @@ export const CHOIX_STORE = {
 } as const;
 
 export const CHOIX_GENERATEUR = {
-  jeu: ["corpus", "charge"],
+  jeu: ["corpus", "charge", "perf"],
+  structures: IDS_STRUCTURES,
   remplissage: ["debut", "milieu", "fin"],
 } as const;
 
@@ -213,11 +226,27 @@ const PARAMS_CONNUS = new Set([
   "remplissage",
   "graine",
   "participants",
+  "structures",
+  "grille",
   "verif",
   "simu",
   // Harnais de mesure : bridage logiciel du worker (lu par `canalWorker`, hors réglages).
   "bridageWorker",
 ]);
+
+/** Structures du jeu « perf » (`structures=a01,a03`) ; ailleurs, le paramètre est refusé. */
+function lireStructures(q: URLSearchParams, jeu: ReglagesGenerateur["jeu"], avertir: (m: string) => void): IdStructure[] {
+  const brut = q.get("structures");
+  if (jeu !== "perf") {
+    if (brut !== null) avertir(`structures=${brut} ignoré : réservé au jeu « perf »`);
+    return [];
+  }
+  if (brut === null) return structuresParDefaut(jeu);
+  const { structures, erreurs } = normaliserStructures(brut === "" ? [] : brut.split(","));
+  if (erreurs.length === 0) return structures;
+  avertir(`structures=${brut} invalide (${erreurs.join(" ; ")})`);
+  return structuresParDefaut(jeu);
+}
 
 /** Les paramètres d'URL font foi ; un paramètre absent prend son défaut. */
 export function lireUrl(search: string): LectureUrl {
@@ -227,6 +256,7 @@ export function lireUrl(search: string): LectureUrl {
   for (const k of q.keys()) if (!PARAMS_CONNUS.has(k)) avertir(`paramètre inconnu : ${k}`);
   const d = reglagesParDefaut();
   const jeu = lireChoix(q, "jeu", CHOIX_GENERATEUR.jeu, d.generateur.jeu, avertir);
+  const structures = lireStructures(q, jeu, avertir);
   const comparer = lireBool(q, "cmp", false, avertir);
   return {
     reglages: {
@@ -242,7 +272,10 @@ export function lireUrl(search: string): LectureUrl {
         jeu,
         remplissage: lireChoix(q, "remplissage", CHOIX_GENERATEUR.remplissage, d.generateur.remplissage, avertir),
         graine: lireEntier(q, "graine", d.generateur.graine, 0, avertir),
-        participants: lireEntier(q, "participants", PARTICIPANTS_PAR_DEFAUT[jeu], 0, avertir, MAX_PARTICIPANTS),
+        // « perf » : effectif total, au moins un participant.
+        participants: lireEntier(q, "participants", PARTICIPANTS_PAR_DEFAUT[jeu], jeu === "perf" ? 1 : 0, avertir, MAX_PARTICIPANTS),
+        structures,
+        grille: lireEntier(q, "grille", 0, 0, avertir, nombreGrilles(jeu, structures) - 1),
       },
       session: {
         verification: lireBool(q, "verif", d.session.verification, avertir),
@@ -273,6 +306,8 @@ export function ecrireUrl(r: Reglages): string {
   q.set("remplissage", r.generateur.remplissage);
   q.set("graine", String(r.generateur.graine));
   q.set("participants", String(r.generateur.participants));
+  if (r.generateur.jeu === "perf") q.set("structures", r.generateur.structures.join(","));
+  q.set("grille", String(r.generateur.grille));
   q.set("verif", r.session.verification ? "1" : "0");
   q.set("simu", r.session.simulateur ? "1" : "0");
   return `?${q.toString()}`;
