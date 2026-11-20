@@ -152,7 +152,7 @@ Le grill technique a commencé le 2026-10-03 (décisions dans « Technique de ba
 Le modèle de qualification est fixé par `analyse/18-decisions-definitives.md`. Ses points ouverts sont dans sa section 13 : catalogue de calcul, conversions et normalisation ; catalogue des jokers ; rendu du remplissage ; navigation et vues ; cycle de vie et archivage ; gabarits et publication ; exports ; schéma de stockage et moteur de calcul.
 
 Calendrier fixé à la relecture du 2026-10-05 (`analyse/relecture-18-2026-10-05.md`) :
-- [ ] **Grill barèmes et calcul (18 §13.1) :** session dédiée sur les barèmes, colorations et fonctions de calcul, pour arriver aux bonnes généralisations et à la liste de ce qu'on propose. Y traiter aussi plusieurs barèmes dans une grille et les hypothèses H1 à H3 de `analyse/19-constats-maquette.md`.
+- [ ] **Grill barèmes et calcul (18 §13.1) :** session dédiée sur les barèmes, colorations et fonctions de calcul, pour arriver aux bonnes généralisations et à la liste de ce qu'on propose. Y traiter aussi plusieurs barèmes dans une grille et les hypothèses H1 à H3 de `analyse/19-constats-maquette.md`. Y traiter aussi l'indicateur en texte à trous (#78).
 - Après un premier prototype : remplissage (§13.3), navigation et vues (§13.4), architecture (§13.8).
 - Plus tard : gabarits et publication (§13.6), exports et conservation (§13.7).
 - Archivage : 30 jours par défaut (fixé). Restent le périmètre de l'archivage et le sort des dossiers non finalisés (§13.5).
