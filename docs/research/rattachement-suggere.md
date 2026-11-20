@@ -136,7 +136,7 @@ En top 3, l'union trigrammes ∪ BM25 donne 26/30 ; avec e5-base, MiniLM ou bge-
 
 ### Lecture factuelle
 
-- Toutes les approches échouent complètement (rang 53) sur l'observation 22 (« Travaille bien avec Sacha, partage les tâches ») en lexical : aucune racine commune avec « Collaboration » ; les cinq modèles d'embeddings la placent entre le rang 1 et le rang 7 (rangs 2, 7, 1, 1 et 4 pour MiniLM, e5-small, e5-base, bge-m3 et Qwen3).
+- Les approches lexicales échouent complètement (rang 53) sur l'observation 22 (« Travaille bien avec Sacha, partage les tâches ») : aucune racine commune avec « Collaboration » ; les cinq modèles d'embeddings la placent entre le rang 1 et le rang 7 (rangs 2, 7, 1, 1 et 4 pour MiniLM, e5-small, e5-base, bge-m3 et Qwen3).
 - Les modèles de plus de 500 M de paramètres ne dominent pas : e5-base (278 M) fait aussi bien en première position que bge-m3 et Qwen3. e5-small et MiniLM, les moins coûteux, sont en dessous du lexical en première position (11/30 et 9/30 contre 16 à 18/30).
 - Le temps de calcul lexical est négligeable à cette taille (Python : 0,12 ms par requête pour BM25, 0,76 ms pour la similarité par trigrammes, 12 ms pour l'approximation de `word_similarity`), de 7 à 75 ms pour un embedding de requête en CPU 4 threads. Les durées d'exécution de `pg_bench.py` incluent un `docker exec` par requête et ne mesurent pas la latence de PostgreSQL ; elles ne sont pas citées.
 
@@ -146,7 +146,7 @@ En top 3, l'union trigrammes ∪ BM25 donne 26/30 ; avec e5-base, MiniLM ou bge-
 - Un écart de 1 à 3 observations n'est pas significatif (±18 points environ à 95 %).
 - **Libellés de G3 V2 seulement**, et la grille est fictive : ses libellés sont courts (« E1#1 Matériel prêt »). Les vraies grilles ont des textes d'indicateurs plus longs (non disponibles dans le dépôt public). Aucun essai sur les niveaux sphère, objectif, critère de vraies qualifications.
 - **Un seul nœud attendu par observation**, alors que la spec autorise plusieurs rattachements et qu'un même contenu a plusieurs nœuds défendables. Le taux « bon nœud » est donc un plancher.
-- Libellé seul, sans chemin hiérarchique, sans sinonymes, sans réglage : aucun réglage des seuils, des préfixes ou du BM25 n'a été essayé. L'idf du BM25 est calculé sur 53 courts libellés, donc peu informatif.
+- Libellé seul, sans chemin hiérarchique, sans synonymes, sans réglage : aucun réglage des seuils, des préfixes ou du BM25 n'a été essayé. L'idf du BM25 est calculé sur 53 courts libellés, donc peu informatif.
 - Pas de réglage fin (fine-tuning), pas de modèle de reclassement (cross-encoder), pas de fusion RRF, pas de recherche hybride réelle.
 - Latences : poste de bureau, 4 threads, requête isolée, aucune charge concurrente ; pas de mesure dans le navigateur, pas de mémoire par modèle, pas de pgvector installé.
 - Embeddings en poids d'origine ; les versions quantifiées pour le navigateur peuvent donner d'autres rangs.
