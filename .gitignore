@@ -1,3 +1,19 @@
 .scratch
 .claude/worktrees/
-.claude/worktrees/
+
+# Python : fichiers compilés des scripts de contrôle du corpus
+__pycache__/
+*.pyc
+
+# Environnements et secrets : seul un exemple à valeurs factices est versionné
+.env
+.env.*
+!.env.example
+
+# Copies de base de données : jamais dans le dépôt.
+# Les migrations SQL générées par drizzle-kit, elles, sont versionnées : ne pas ignorer *.sql.
+*.dump
+*.pgdump
+*.sql.gz
+/dumps/
+/backups/

@@ -14,6 +14,12 @@ Les autres documents datent de l'analyse du 3 octobre 2026, avant les décisions
 | 19 | [Constats de la maquette](19-constats-maquette.md) | **points à trancher** | Dispense sur un regroupement, dispense et obligatoires, hypothèses de la maquette |
 | 20 | [Spec du prototype](20-spec-prototype.md) | **spec en cours de réalisation** | Prototype jetable du modèle : noyau de calcul, variantes du store, harnais de mesure. Corpus dans `corpus-prototype/` |
 | 21 | [Constats du prototype](21-constats-prototype.md) | **provisoire** | Campagne de mesures du 7 octobre ; essais 1a à H5, couverture et algorithmes à garder restent à consigner |
+| 22 | [Spec des observations](22-spec-observations.md) | **spec prête à découper** | Observations notées par les formateurs : générales par défaut, rattachement facultatif, saisie sur téléphone, relecture au moment de noter. Carte et tickets dans `../wayfinder/observations/` |
+| 23 | [Saisie dans Qualix](23-saisie-qualix.md) | constats | Parcours de saisie d'une observation dans Qualix, lus dans le code |
+| 24 | [Photos et pièces jointes](24-photos-pieces-jointes.md) | constats, **partie juridique non vérifiée** | Photo de profil MiData, pièces jointes, nLPD ; neuf points demandent un avis juridique |
+| 26 | [Acquis du prototype](26-acquis-prototype.md) | constats | Ce que le prototype apporte à une première version : noyau réutilisable, pas d'éditeur de grille, pas de temps réel |
+| 27 | [Plan de sécurité](27-plan-securite.md) | **proposition, à valider** ; partie nLPD non vérifiée | Actifs, acteurs, 15 risques principaux, 48 contrôles par phase (fondation, démonstration, pilote, production), contrôles automatiques, décisions à prendre |
+| 28 | [Choix techniques proposés](28-choix-techniques.md) | **propositions, à valider** | 70 propositions pour les décisions techniques ouvertes de `TODO.md`, chacune relue par un contradicteur ; 11 décisions prises rouvertes ; 22 essais à lancer ; frictions avec le plan de sécurité |
 | 03 | [Zones d'ombre](03-zones-d-ombre.md) | analyse antérieure, sous réserve de 18 | Contradictions des docs, hypothèses, données de terrain à collecter |
 | 05 | [Acteurs et parcours](05-acteurs-et-parcours.md) | analyse antérieure, sous réserve de 18 | Acteurs, matrice de droits, moments du cours, pre-mortem, cas d'abus |
 | 06 | [Benchmark Qualix](06-benchmark-qualix.md) | analyse antérieure, sous réserve de 18 | Modèle de Qualix, ce qu'on peut reprendre, positionnement |

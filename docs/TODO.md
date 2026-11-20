@@ -12,8 +12,9 @@ Domaine et comportement : voir `FEATURES.md`. Modèle de qualification : voir `a
 - **Hébergement :** en Suisse, avec Docker Compose. Une seule instance suffit vu les volumes (environ 50 formateurs simultanés au total).
 - **Auth :**
   - Better Auth.
-  - Comptes locaux en dev et en test **uniquement**. Ils doivent être désactivés en production, et c'est la validation de l'env qui l'impose.
-  - SSO MiData (db.scout.ch) en production, via le plugin `genericOAuth` avec PKCE.
+  - Deux régimes, distingués par la validation de l'env au démarrage :
+    - développement, test, démonstration et staging : comptes locaux (avec données fictives uniquement en démonstration) ;
+    - production : SSO MiData (db.scout.ch), via le plugin `genericOAuth` avec PKCE. Les comptes locaux y sont **interdits**, et c'est la validation de l'env qui l'impose.
 - **Autorisation :** RBAC avec un scope par cours. Les cours et les rôles d'un formateur viennent de l'API JSON:API de MiData.
 - **Effect :** dernière version, soit 4.x. Uniquement le cœur, pas de modules `unstable/*`.
 - **i18n :** l'architecture est multilingue dès le départ, avec seulement le français au début. Le serveur renvoie des codes d'erreur et le client les traduit.
@@ -166,3 +167,5 @@ Hors modèle, voir « Questions ouvertes » dans `FEATURES.md`. Points à traite
 - les verrous (durée, inactivité) et le moment de la sauvegarde ;
 - la consultation de l'historique et la restauration ;
 - les idées notées dans « Idées à explorer » de `FEATURES.md` : accès aux grilles archivées, anonymisation à 3 mois, accueil personnalisé, statistiques par cours, entre cours et dans le temps, envoi par mail.
+- l'évaluation des UA par les apprenants et les formateurs, et la validation de cours : écartées de la carte « observations et suivi » (#29, #45), car le programme de cours n'entre pas dans Azimut. Idées gardées pour plus tard (des créneaux légers par sphère/objectif sont envisagés dans #81).
+- vue en lecture seule pour les apprenants et liens de partage public avec accès fins (#83).

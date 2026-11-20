@@ -46,6 +46,10 @@ _Avoid_ : critère (pour l'énoncé), modèle d'indicateur
 Nœud de données qui reprend une définition à un endroit précis de la grille, par exemple un exercice. Chaque occurrence porte ses propres cases.
 _Avoid_ : instance, tentative
 
+**Exercice** :
+Activité réalisée par un apprenant, sur laquelle on l'observe et on l'évalue. Selon la grille, il s'agit d'un niveau de l'arbre ou d'un regroupement transversal ; dans le modèle, c'est un nœud.
+_Avoid_ : UA, leçon, plage, bloc
+
 **Nœud de commentaire** :
 Nœud de données sans barème. Ses cases ne portent qu'un commentaire, et il ne contribue à aucun calcul.
 _Avoid_ : nœud texte, nœud libre
@@ -63,3 +67,27 @@ _Avoid_ : non applicable, absent
 **Dispense** :
 Non-évaluation posée sur un regroupement, qui s'hérite par ses feuilles.
 _Avoid_ : exemption, dispensé (comme état de case)
+
+## Observations
+
+**Observation** :
+Fait noté par un formateur sur un participant : un texte ou une pièce jointe, un auteur, une date et une heure. Elle ne porte ni note ni avis, n'entre dans aucun calcul et reste interne à l'équipe du cours.
+_Avoid_ : évaluation, note, commentaire (le commentaire est la synthèse restituée au participant)
+
+**Observation générale** :
+Observation sans rattachement. C'est l'état par défaut, pas un travail en retard.
+_Avoid_ : à classer, à préciser, non classée
+
+**Rattachement** :
+Lien facultatif entre une observation et un nœud de la grille : une sphère, un objectif, un indicateur, un exercice. Une observation peut en avoir plusieurs.
+_Avoid_ : classement, catégorie
+
+## Hors d'Azimut
+
+**UA** :
+Unité d'apprentissage : un point de cours, une leçon, ce que l'équipe enseigne. Azimut ne la connaît pas. Un exercice évalue une UA ou plusieurs, sans correspondance stricte.
+_Avoid_ : exercice
+
+**Programme de cours** :
+Horaire du cours, tenu par l'équipe dans son propre outil. Azimut n'en porte ni les plages ni les UA.
+_Avoid_ : planning (comme donnée d'Azimut)

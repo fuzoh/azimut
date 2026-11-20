@@ -134,6 +134,8 @@ Une case porte une seule note courante, partagée par les formateurs, et peut re
 
 Les modifications restent dans un historique permettant de savoir qui a changé quoi et quand. Cet historique sert à retrouver et comprendre les changements ; il ne constitue pas une collection d'évaluations concurrentes.
 
+Cette unicité porte sur les évaluations (note courante et commentaire de synthèse de la case). Elle n'interdit pas d'enregistrer plusieurs **observations** factuelles (datées, attribuées, internes à l'équipe, sans note et hors calcul) à côté des cases (précision validée sur #29, voir [22 — Spec des observations](22-spec-observations.md)).
+
 ### Commentaires sur tous les nœuds
 
 Les nœuds de données et de calcul peuvent recevoir un commentaire propre à chaque apprenant. Le commentaire est facultatif et peut exister sans note.
