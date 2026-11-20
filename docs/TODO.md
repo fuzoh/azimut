@@ -12,9 +12,8 @@ Domaine et comportement : voir `FEATURES.md`. Modèle de qualification : voir `a
 - **Hébergement :** en Suisse, avec Docker Compose. Une seule instance suffit vu les volumes (environ 50 formateurs simultanés au total).
 - **Auth :**
   - Better Auth.
-  - Trois régimes, distingués par la validation de l'env au démarrage (décision du 2026-11-15, `wayfinder/premiere-version/06-grilling-socle-minimal.md`) :
-    - développement et test : comptes locaux ;
-    - démonstration : comptes locaux de démonstration, sans MiData, avec des données fictives seulement ;
+  - Deux régimes, distingués par la validation de l'env au démarrage :
+    - développement, test, démonstration et staging : comptes locaux (avec données fictives uniquement en démonstration) ;
     - production : SSO MiData (db.scout.ch), via le plugin `genericOAuth` avec PKCE. Les comptes locaux y sont **interdits**, et c'est la validation de l'env qui l'impose.
 - **Autorisation :** RBAC avec un scope par cours. Les cours et les rôles d'un formateur viennent de l'API JSON:API de MiData.
 - **Effect :** dernière version, soit 4.x. Uniquement le cœur, pas de modules `unstable/*`.
@@ -168,4 +167,5 @@ Hors modèle, voir « Questions ouvertes » dans `FEATURES.md`. Points à traite
 - les verrous (durée, inactivité) et le moment de la sauvegarde ;
 - la consultation de l'historique et la restauration ;
 - les idées notées dans « Idées à explorer » de `FEATURES.md` : accès aux grilles archivées, anonymisation à 3 mois, accueil personnalisé, statistiques par cours, entre cours et dans le temps, envoi par mail.
-- l'évaluation des UA par les apprenants et les formateurs, et la validation de cours : écartées de la carte « observations et suivi » (#29) le 2026-11-15, car le programme de cours n'entre pas dans Azimut (`wayfinder/observations/02-grilling-programme-de-cours.md`). Idées gardées pour plus tard.
+- l'évaluation des UA par les apprenants et les formateurs, et la validation de cours : écartées de la carte « observations et suivi » (#29, #45), car le programme de cours n'entre pas dans Azimut. Idées gardées pour plus tard (des créneaux légers par sphère/objectif sont envisagés dans #81).
+- vue en lecture seule pour les apprenants et liens de partage public avec accès fins (#83).

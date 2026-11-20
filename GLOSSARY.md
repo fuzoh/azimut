@@ -47,7 +47,7 @@ Nœud de données qui reprend une définition à un endroit précis de la grille
 _Avoid_ : instance, tentative
 
 **Exercice** :
-Quelque chose que font les participants, sur quoi on les observe et on les évalue. Selon la grille, c'est un niveau de l'arbre (dans qualif1, il remplace la sphère ; dans qualif2, il se confond avec l'objectif) ou une lecture transversale qui réunit des indicateurs pris dans plusieurs sphères (`docs/FEATURES.md`, constat 3). Dans le modèle, c'est un nœud (18 §3).
+Activité réalisée par un apprenant, sur laquelle on l'observe et on l'évalue. Selon la grille, il s'agit d'un niveau de l'arbre ou d'un regroupement transversal ; dans le modèle, c'est un nœud.
 _Avoid_ : UA, leçon, plage, bloc
 
 **Nœud de commentaire** :
@@ -71,7 +71,7 @@ _Avoid_ : exemption, dispensé (comme état de case)
 ## Observations
 
 **Observation** :
-Fait noté par un formateur sur un participant : un texte ou une pièce jointe, un auteur, un moment. Elle ne porte ni note ni avis, n'entre dans aucun calcul et reste interne à l'équipe du cours.
+Fait noté par un formateur sur un participant : un texte ou une pièce jointe, un auteur, une date et une heure. Elle ne porte ni note ni avis, n'entre dans aucun calcul et reste interne à l'équipe du cours.
 _Avoid_ : évaluation, note, commentaire (le commentaire est la synthèse restituée au participant)
 
 **Observation générale** :
@@ -79,12 +79,8 @@ Observation sans rattachement. C'est l'état par défaut, pas un travail en reta
 _Avoid_ : à classer, à préciser, non classée
 
 **Rattachement** :
-Lien facultatif entre une observation et un nœud de la grille : une sphère, un objectif, un indicateur, la Posture, un exercice. Une observation peut en avoir plusieurs.
+Lien facultatif entre une observation et un nœud de la grille : une sphère, un objectif, un indicateur, un exercice. Une observation peut en avoir plusieurs.
 _Avoid_ : classement, catégorie
-
-**Moment** :
-Date et heure, à la minute, où le fait a été observé. Prérempli avec l'heure de saisie et modifiable.
-_Avoid_ : plage, bloc, horaire
 
 ## Hors d'Azimut
 
