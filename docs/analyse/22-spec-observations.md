@@ -51,7 +51,7 @@ Sources : tickets 01 à 12 de `docs/wayfinder/observations/`, [23 — Saisie dan
 
 ### Rattachement
 
-- Une observation est **générale par défaut** : rien n'est rattaché d'office, et rien n'est proposé (12).
+- Une observation est **générale par défaut** : rien n'est rattaché d'office ; pas de suggestion automatique en tranche 1 (une piste de suggestion automatique est ouverte dans #79).
 - On peut la rattacher, à la saisie ou plus tard, à **n'importe quel niveau** : une sphère, un objectif, un indicateur, la Posture (12).
 - L'**exercice** est un rattachement facultatif comme les autres, pas un champ à part. Quand un exercice a plusieurs occurrences (18 §4), on rattache à l'occurrence (05, 12).
 - Une observation générale **n'appelle aucun rappel** : il n'y a ni liste « à classer », ni compteur « à préciser » (12).
@@ -134,15 +134,14 @@ Un tableau par apprenant : **nombre d'observations et date de la dernière**, po
 ## 7. Pièces jointes et photos
 
 - **Pièces jointes** : tout type de fichier. L'application fixe une taille maximale par fichier et un quota par cours ; les valeurs se décident à la construction (hypothèse). Les garde-fous de stockage et de restitution proposés sont dans 24 : fichiers hors de la base, noms générés, images réencodées sans géolocalisation, lecture limitée à l'équipe du cours.
-- **Photos des apprenants** : **pas dans cette spec**. On reconnaît un apprenant à son nom de scout, son groupe d'origine et une pastille d'initiales. L'import depuis MiData reste une extension, conditionnée à une mesure sur un cours réel et à un avis juridique (10).
+- **Photos des apprenants** : **pas d'import depuis MiData** (écarté à la relecture de la PR #69). En tranche 1, on reconnaît un apprenant à son nom de scout, son groupe d'origine et une pastille d'initiales. La possibilité pour l'équipe d'ajouter manuellement des photos de participants est suivie dans #82 (conditionnée à un avis juridique).
 
 ## 8. Tranches de construction
 
 | Tranche | Contenu | Condition |
 | --- | --- | --- |
-| **1. Observations en texte** | Page d'accès rapide, saisie, groupe, rattachement facultatif, brouillon sur l'appareil, fiche de l'apprenant, panneau à côté de la case, copie dans le commentaire, tableau de suivi, copie de grille, suppression à l'anonymisation. | Aucune. Une maquette jetable existe dans `prototype/observations/` ; à essayer ensuite sur un vrai exercice. |
-| **2. Pièces jointes** | Fichiers joints, photo depuis le téléphone, partage à la copie de grille, suppression effective. | **Avis juridique obtenu** (10). |
-| **Extension** | Photo de profil importée de MiData. | Mesure du taux de profils avec photo, et avis juridique (10). |
+| **1. Observations en texte** | Page d'accès rapide, saisie, groupe, rattachement facultatif, brouillon sur l'appareil, fiche de l'apprenant, panneau à côté de la case, copie dans le commentaire, tableau de suivi, copie de grille, suppression à l'anonymisation. | Aucune (détails UX à arbitrer dans #84). Une maquette jetable existe dans `prototype/observations/` ; à essayer ensuite sur un vrai exercice. |
+| **2. Pièces jointes et photos** | Fichiers joints, photo depuis le téléphone, photos de participants ajoutées par l'équipe (#82), partage à la copie de grille, suppression effective. | **Avis juridique obtenu** (10, #82). |
 
 ## 9. Hors périmètre
 
@@ -162,7 +161,7 @@ Un tableau par apprenant : **nombre d'observations et date de la dernière**, po
 - Les demandes d'utilisateurs de Qualix depuis le 3 octobre 2026 (issues non relues) et son comportement réel à l'écran (23).
 - Les droits de lecture des participants et de leur photo par un appel réel à db.scout.ch (24).
 
-**À reporter dans les autres documents.**
+**Suivi ouvert à la relecture de la PR #69.**
 
-- Proposés le 16 novembre 2026 dans #29, comme le demande `CONTRIBUTING.md` : 18 §4, §5 et §13 (une observation n'est pas une évaluation), et dans `FEATURES.md` le constat 8 (« pas d'observations multiples »), les entrées « Observation » et « Exercice » et le résumé du modèle. 18 et `FEATURES.md` ne sont modifiés qu'une fois l'écart discuté et accepté.
-- Les hypothèses marquées dans cette spec (second geste vers la fiche, bouton photo, raccourci clavier, taille et quota) et les deux formes proposées à la révision 12 (contenu du panneau, tableau de suivi) sont à confirmer au découpage.
+- La précision sur les observations multiples a été reportée dans 18 §5 et `FEATURES.md` (constat 8).
+- Les pistes d'évolution et points restant à arbitrer sont suivis dans : #79 (suggestion automatique de rattachement), #81 (observations de groupe, affichage au survol, créneaux légers par sphère/objectif), #82 (photos des participants ajoutées par l'équipe, sans import MiData) et #84 (arbitrage des détails UX de la tranche 1 listés dans #59).
