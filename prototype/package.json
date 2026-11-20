@@ -10,7 +10,8 @@
     "typecheck": "tsc --noEmit",
     "bench": "vitest bench --run",
     "mesure": "bun harnais/serie.ts",
-    "mesure:fumee": "bun harnais/serie.ts --fumee"
+    "mesure:fumee": "bun harnais/serie.ts --fumee",
+    "mesure:historique": "bun harnais/serie.ts --jeu charge --participants 200 --remplissage fin --graine 1 --bridage 4"
   },
   "dependencies": {
     "@tanstack/db": "^0.11.3",

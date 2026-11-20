@@ -202,10 +202,22 @@ export function resumerRun(m: MesuresRun): ResumeRun {
   };
 }
 
+/**
+ * Statut d'une cellule. « incomplet » : au moins un run invalide, aucun run
+ * valide en échec ; « non applicable » : le scénario n'a rien pu exercer
+ * (défilement sans débordement) ; « non mesurée » : aucun run valide.
+ */
+export type StatutCellule = "réussite" | "échec" | "incomplet" | "non applicable" | "non mesurée";
+
 export interface Cellule {
   config: string;
   scenario: string;
+  /** Runs valides, seuls agrégés. */
   runs: number;
+  /** Runs invalides, exclus des agrégats. */
+  invalides: number;
+  statut: StatutCellule;
+  /** statut === « réussite ». */
   reussite: boolean;
   p95: { mediane: number | null; pire: number | null };
   inp: { mediane: number | null; pire: number | null };
@@ -220,25 +232,174 @@ const stat = (xs: (number | null)[]) => {
   return { mediane: mediane(v), pire: v.length > 0 ? Math.max(...v) : null };
 };
 
-/** Une cellule configuration × scénario : réussite si le pire run passe, médiane et pire run. */
-export function agreger(runs: { config: string; scenario: string; resume: ResumeRun }[]): Cellule[] {
-  const groupes = new Map<string, typeof runs>();
+export interface RunAgrege {
+  config: string;
+  scenario: string;
+  /** null : run sans résumé (erreur avant la fin du scénario). */
+  resume: ResumeRun | null;
+  /** Défaut true. Un run invalide est compté, jamais agrégé. */
+  valide?: boolean;
+  /** Le scénario n'a rien exercé (défilement sans débordement). */
+  nonApplicable?: boolean;
+}
+
+/**
+ * Une cellule configuration × scénario, sur les runs valides seulement :
+ * réussite si tous les runs prévus sont valides et passent (jugé sur le pire
+ * run), médiane et pire run. Un run invalide ne donne jamais de durée agrégée.
+ */
+export function agreger(runs: RunAgrege[]): Cellule[] {
+  const groupes = new Map<string, RunAgrege[]>();
   for (const r of runs) {
     const k = `${r.config}\u0000${r.scenario}`;
     groupes.set(k, [...(groupes.get(k) ?? []), r]);
   }
-  return [...groupes.values()].map((g) => ({
-    config: g[0].config,
-    scenario: g[0].scenario,
-    runs: g.length,
-    reussite: g.every((r) => r.resume.reussite),
-    p95: stat(g.map((r) => r.resume.p95Ms)),
-    inp: stat(g.map((r) => r.resume.inpMs)),
-    longtasks: stat(g.map((r) => r.resume.longtasks)),
-    loaf: stat(g.map((r) => r.resume.loaf)),
-    saisiesIncompletes: stat(g.map((r) => r.resume.saisiesIncompletes)),
-    motifs: [...new Set(g.flatMap((r) => r.resume.motifs))],
+  return [...groupes.values()].map((g) => {
+    const valides = g.filter((r): r is RunAgrege & { resume: ResumeRun } => r.valide !== false && r.resume !== null);
+    const invalides = g.length - valides.length;
+    let statut: StatutCellule;
+    if (valides.length === 0) statut = "non mesurée";
+    else if (valides.every((r) => r.nonApplicable)) statut = "non applicable";
+    else if (valides.some((r) => !r.nonApplicable && !r.resume.reussite)) statut = "échec";
+    else if (invalides > 0) statut = "incomplet";
+    else statut = "réussite";
+    const motifs = [...new Set(valides.flatMap((r) => r.resume.motifs))];
+    if (invalides > 0) motifs.push(`${invalides} run(s) invalide(s), exclu(s)`);
+    return {
+      config: g[0].config,
+      scenario: g[0].scenario,
+      runs: valides.length,
+      invalides,
+      statut,
+      reussite: statut === "réussite",
+      p95: stat(valides.map((r) => r.resume.p95Ms)),
+      inp: stat(valides.map((r) => r.resume.inpMs)),
+      longtasks: stat(valides.map((r) => r.resume.longtasks)),
+      loaf: stat(valides.map((r) => r.resume.loaf)),
+      saisiesIncompletes: stat(valides.map((r) => r.resume.saisiesIncompletes)),
+      motifs,
+    };
+  });
+}
+
+// --- Validité d'un run (ticket #28) ----------------------------------------------------
+
+/** Opérations prévues et exécutées par un scénario, pour rendre visible un pilote ralenti ou interrompu. */
+export interface Operations {
+  prevues: number;
+  executees: number;
+  dureeMs: number;
+  /** Cadence visée et obtenue (saisie rapide : une validation toutes les 200 ms). */
+  cadence?: { intervalleViseMs: number; intervalleMoyenMs: number; enRetard: number; retardMaxMs: number };
+  details?: Record<string, number>;
+}
+
+/** Défilement d'un axe : débordement possible et déplacement effectivement obtenu (px). */
+export interface AxeDefilement {
+  axe: "vertical" | "horizontal";
+  /** scrollHeight − clientHeight (ou largeur) ; ≤ 0 : rien à faire défiler. */
+  debordement: number;
+  debut: number;
+  fin: number;
+  /** Plus grand écart à la position de départ observé pendant le défilement. */
+  deplacement: number;
+  evenements: number;
+}
+
+export type StatutDefilement = "mesuré" | "non applicable" | "sans déplacement";
+
+/** Un axe sans débordement est « non applicable », jamais un défilement réussi ; un débordement sans déplacement est un échec du pilote. */
+export function jugerDefilement(axes: AxeDefilement[]): { statut: StatutDefilement; parAxe: { axe: string; statut: StatutDefilement }[] } {
+  const parAxe = axes.map((a) => ({
+    axe: a.axe,
+    statut: (a.debordement <= 0 ? "non applicable" : a.deplacement > 0 ? "mesuré" : "sans déplacement") as StatutDefilement,
   }));
+  let statut: StatutDefilement = "mesuré";
+  if (parAxe.some((a) => a.statut === "sans déplacement")) statut = "sans déplacement";
+  else if (parAxe.every((a) => a.statut === "non applicable")) statut = "non applicable";
+  return { statut, parAxe };
+}
+
+export interface EtatRun {
+  scenario: string;
+  erreur?: string;
+  /** Erreurs non rattrapées de la page (`pageerror`). */
+  erreursPage: string[];
+  /** Dépassements du délai de stabilité pendant le run. */
+  delaisDepasses: number;
+  operations: Operations | null;
+  /** Statut du worker en fin de run (« aucun » sans worker). */
+  statutWorker: string | null;
+  /** Somme de contrôle des sources du run, et celle du profil (null : non vérifiée). */
+  somme: string | null;
+  sommeProfil: string | null;
+  /** Saisies décomposées (scénarios jugés sur la latence). */
+  saisies: number;
+  defilement?: AxeDefilement[];
+}
+
+/**
+ * Motifs d'invalidité : une erreur, une erreur de page, un délai de stabilité
+ * dépassé, un scénario incomplet, une mesure manquante, un worker en erreur ou
+ * des sources différentes du profil. Vide : run valide.
+ */
+export function motifsInvalidite(r: EtatRun): string[] {
+  const motifs: string[] = [];
+  if (r.erreur) motifs.push(`erreur : ${r.erreur}`);
+  if (r.erreursPage.length > 0) motifs.push(`${r.erreursPage.length} erreur(s) de page`);
+  if (r.delaisDepasses > 0) motifs.push(`${r.delaisDepasses} délai(s) de stabilité dépassé(s)`);
+  if (!r.erreur && r.operations === null) motifs.push("opérations du scénario non rapportées");
+  if (r.operations && r.operations.executees < r.operations.prevues)
+    motifs.push(`scénario incomplet : ${r.operations.executees}/${r.operations.prevues} opérations`);
+  if (r.statutWorker === "erreur" || r.statutWorker === "desaccord") motifs.push(`worker : ${r.statutWorker}`);
+  if (r.sommeProfil !== null && r.somme !== r.sommeProfil) motifs.push("sources différentes de celles du profil");
+  const validations = r.operations?.details?.validations;
+  if (AVEC_LATENCE.has(r.scenario) && validations !== undefined && r.saisies !== validations)
+    motifs.push(`mesure manquante : ${r.saisies} validation(s) observée(s) pour ${validations} exécutée(s)`);
+  if (r.defilement && jugerDefilement(r.defilement).statut === "sans déplacement") motifs.push("défilement sans déplacement malgré un débordement");
+  return motifs;
+}
+
+// --- Navigation avec et sans instanciation --------------------------------------------
+
+export interface StatNavigation {
+  n: number;
+  mediane: number;
+  pire: number;
+}
+
+export interface Navigation {
+  sansInstanciation: StatNavigation | null;
+  avecInstanciation: StatNavigation | null;
+}
+
+/**
+ * Actions de navigation (participant, graphe) séparées selon qu'elles ont
+ * instancié un participant ou non. Une catégorie sans action est null :
+ * « non mesurée », jamais une réussite implicite.
+ */
+export function resumerNavigation(actions: { type: string; latence: number; dansLru?: boolean }[]): Record<string, Navigation> {
+  const resumer = (xs: number[]): StatNavigation | null => (xs.length === 0 ? null : { n: xs.length, mediane: mediane(xs)!, pire: Math.max(...xs) });
+  const res: Record<string, Navigation> = {};
+  for (const type of new Set(actions.filter((a) => a.dansLru !== undefined).map((a) => a.type))) {
+    const du = actions.filter((a) => a.type === type);
+    res[type] = {
+      sansInstanciation: resumer(du.filter((a) => a.dansLru === true).map((a) => a.latence)),
+      avecInstanciation: resumer(du.filter((a) => a.dansLru === false).map((a) => a.latence)),
+    };
+  }
+  return res;
+}
+
+// --- Calibration ----------------------------------------------------------------------
+
+/**
+ * Ratio de ralentissement acceptable pour un bridage ×taux : entre 0,75 et
+ * 1,25 × taux (×4 : de 3 à 5, le critère d'origine). À ×1, aucun
+ * ralentissement n'est attendu : il n'y a rien à calibrer.
+ */
+export function ratioAcceptable(ratio: number | null, taux: number): boolean {
+  return ratio !== null && ratio >= 0.75 * taux && ratio <= 1.25 * taux;
 }
 
 /** Configurations alternées run par run : pour chaque répétition, chaque scénario, toutes les configurations. */
