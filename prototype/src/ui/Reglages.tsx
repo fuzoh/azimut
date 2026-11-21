@@ -13,7 +13,9 @@ import {
   PARAMS_MODELE,
   PARTICIPANTS_PAR_DEFAUT,
   type Reglages as ReglagesEssai,
+  structuresParDefaut,
 } from "../reglages";
+import { IDS_STRUCTURES, type IdStructure } from "../generateur/jeux";
 
 /** Applique des réglages : à chaud, ou rechargement de la page avec la nouvelle URL. */
 export function appliquerReglages(essai: Essai, r: ReglagesEssai): void {
@@ -176,9 +178,34 @@ export function Reglages({ essai, etat }: { essai: Essai; etat: EtatEssai }) {
             valeur={brouillon.generateur.jeu}
             choix={CHOIX_GENERATEUR.jeu}
             onChange={(jeu) =>
-              setBrouillon({ ...brouillon, generateur: { ...brouillon.generateur, jeu, participants: PARTICIPANTS_PAR_DEFAUT[jeu] } })
+              setBrouillon({
+                ...brouillon,
+                generateur: { ...brouillon.generateur, jeu, participants: PARTICIPANTS_PAR_DEFAUT[jeu], structures: structuresParDefaut(jeu), grille: 0 },
+              })
             }
           />
+          {brouillon.generateur.jeu === "perf" && (
+            <fieldset className="structures" data-reglage="structures">
+              <legend>structures (non étendues ; plusieurs = session composite synthétique)</legend>
+              {IDS_STRUCTURES.map((id) => {
+                const choisies = brouillon.generateur.structures;
+                const coche = choisies.includes(id);
+                const suivantes: IdStructure[] = IDS_STRUCTURES.filter((x) => (x === id ? !coche : choisies.includes(x)));
+                return (
+                  <label key={id}>
+                    <input
+                      type="checkbox"
+                      checked={coche}
+                      // Au moins une structure : la dernière ne se décoche pas.
+                      disabled={coche && choisies.length === 1}
+                      onChange={() => setBrouillon({ ...brouillon, generateur: { ...brouillon.generateur, structures: suivantes, grille: 0 } })}
+                    />{" "}
+                    {id}
+                  </label>
+                );
+              })}
+            </fieldset>
+          )}
           <Choix
             nom="remplissage"
             valeur={brouillon.generateur.remplissage}
@@ -193,7 +220,7 @@ export function Reglages({ essai, etat }: { essai: Essai; etat: EtatEssai }) {
           />
           <Entier
             nom="participants"
-            min={0}
+            min={brouillon.generateur.jeu === "perf" ? 1 : 0}
             valeur={brouillon.generateur.participants}
             onChange={(participants) => setBrouillon({ ...brouillon, generateur: { ...brouillon.generateur, participants } })}
           />

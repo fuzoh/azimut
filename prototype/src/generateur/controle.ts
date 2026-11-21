@@ -54,3 +54,14 @@ export function sommeControle(s: SourcesAControler): string {
   for (const l of s.jokers) jokers.ajouter(hacher(3, l.id, l.g, l.p, l.jokerDef));
   return `cases ${cases.texte()} / nonEvaluations ${ne.texte()} / jokers ${jokers.texte()}`;
 }
+
+/** Empreinte d'une structure (FNV-1a 32 bits de son JSON) : deux runs ont chargé la même structure. */
+export function empreinteStructure(structure: unknown): string {
+  const texte = JSON.stringify(structure);
+  let h = 0x811c9dc5;
+  for (let i = 0; i < texte.length; i++) {
+    h ^= texte.charCodeAt(i);
+    h = Math.imul(h, 0x01000193) >>> 0;
+  }
+  return h.toString(16).padStart(8, "0");
+}

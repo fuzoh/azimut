@@ -30,7 +30,7 @@ Pour le versant technique :
 - [`docs/GOALS.md`](docs/GOALS.md) : objectifs, stack visée, règles de dev.
 - [`docs/TODO.md`](docs/TODO.md) : décisions prises et points à explorer.
 - [`docs/PRACTICES.md`](docs/PRACTICES.md) : faits techniques vérifiés.
-- [`docs/research/`](docs/research/) : recherches qui fondent les choix du prototype (signaux, stockage local, rattachement suggéré).
+- [`docs/research/`](docs/research/) : recherches techniques : choix du prototype (signaux, stockage local), état de MCP et WebMCP, rattachement suggéré d'une observation.
 
 ## Lancer le prototype
 
@@ -45,7 +45,7 @@ bun run bench      # micro-benchmarks du noyau
 bun run mesure:fumee   # série de mesures courte, pour vérifier le harnais
 ```
 
-Les rapports de mesure sont dans [`prototype/mesures/`](prototype/mesures/). Le prototype est jetable : il n'applique pas les règles de qualité prévues pour l'application.
+Les options du harnais, ses recettes et ses limites sont décrites dans [`prototype/harnais/README.md`](prototype/harnais/README.md). Les rapports de mesure sont dans [`prototype/mesures/`](prototype/mesures/). Le prototype est jetable : il n'applique pas les règles de qualité prévues pour l'application.
 
 ## Contribuer
 

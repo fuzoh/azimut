@@ -1,8 +1,23 @@
 // Analyse du harnais : horloge commune des deux threads, décomposition de la
 // latence, critères jugés sur le pire run. Chronologies écrites à la main.
 
-import { describe, expect, it } from "vitest";
-import { agreger, decomposerSaisies, ETAPES, type Marque, percentile, planifier, ramener, type ResumeRun, resumerRun } from "./analyse";
+import { describe, expect, it, test } from "vitest";
+import {
+  agreger,
+  decomposerSaisies,
+  ETAPES,
+  type EtatRun,
+  jugerDefilement,
+  type Marque,
+  motifsInvalidite,
+  percentile,
+  planifier,
+  ramener,
+  ratioAcceptable,
+  type ResumeRun,
+  resumerNavigation,
+  resumerRun,
+} from "./analyse";
 
 const m = (nom: string, t: number, version?: number, taille?: number): Marque => ({ nom, t, detail: version === undefined ? null : { version, ...(taille === undefined ? {} : { taille }) } });
 
@@ -158,6 +173,121 @@ describe("agreger", () => {
   it("juge sur le pire run, rapporte médiane et pire run", () => {
     const [c] = agreger([40, 60, 50, 45, 130].map((p, i) => ({ config: "base", scenario: "saisie-rapide", resume: resume(p, i !== 4) })));
     expect(c).toMatchObject({ runs: 5, reussite: false, p95: { mediane: 50, pire: 130 }, motifs: ["p95 130 ms"] });
+  });
+});
+
+describe("agreger : runs invalides exclus (ticket #28)", () => {
+  const resume = (p95Ms: number, reussite = p95Ms < 100): ResumeRun => ({
+    longtasks: 0,
+    longtaskMaxMs: 0,
+    loaf: 0,
+    inpMs: 30,
+    p95Ms,
+    saisies: 100,
+    saisiesIncompletes: 0,
+    reussite,
+    motifs: reussite ? [] : [`p95 ${p95Ms} ms`],
+  });
+  const run = (p95: number, valide = true) => ({ config: "base", scenario: "saisie-rapide", resume: resume(p95), valide });
+
+  test("un run invalide ne compte ni dans la médiane ni dans le pire run ; la cellule est « incomplet », pas une réussite", () => {
+    const [c] = agreger([run(40), run(50), run(60), run(45), run(9000, false)]);
+    expect(c).toMatchObject({ runs: 4, invalides: 1, statut: "incomplet", reussite: false, p95: { mediane: 45, pire: 60 } });
+    expect(c.motifs).toEqual(["1 run(s) invalide(s), exclu(s)"]);
+  });
+
+  test("un run invalide sans résumé (erreur en cours de scénario) est compté comme invalide", () => {
+    const [c] = agreger([run(40), { config: "base", scenario: "saisie-rapide", resume: null, valide: false }]);
+    expect(c).toMatchObject({ runs: 1, invalides: 1, statut: "incomplet" });
+  });
+
+  test("un échec d'un run valide reste un échec malgré les runs invalides", () => {
+    expect(agreger([run(140), run(40, false)])[0]).toMatchObject({ statut: "échec", runs: 1, invalides: 1 });
+  });
+
+  test("aucun run valide : « non mesurée », sans durée", () => {
+    expect(agreger([run(40, false), run(50, false)])[0]).toMatchObject({ statut: "non mesurée", runs: 0, p95: { mediane: null, pire: null } });
+  });
+
+  test("défilement sans débordement : « non applicable », pas une réussite", () => {
+    const [c] = agreger([{ config: "base", scenario: "defilement", resume: resume(0, true), nonApplicable: true }]);
+    expect(c).toMatchObject({ statut: "non applicable", reussite: false });
+  });
+});
+
+describe("motifsInvalidite", () => {
+  const sain: EtatRun = {
+    scenario: "saisie-rapide",
+    erreursPage: [],
+    delaisDepasses: 0,
+    operations: { prevues: 100, executees: 100, dureeMs: 20_000, details: { validations: 100 } },
+    statutWorker: "pret",
+    somme: "s",
+    sommeProfil: "s",
+    saisies: 100,
+  };
+
+  test("un run complet, sans erreur, aux sources du profil est valide", () => {
+    expect(motifsInvalidite(sain)).toEqual([]);
+    expect(motifsInvalidite({ ...sain, statutWorker: "aucun" })).toEqual([]);
+  });
+
+  test.each([
+    [{ erreur: "délai de stabilité dépassé (60000 ms)", operations: null }, /erreur/],
+    [{ erreursPage: ["TypeError: x"] }, /erreur\(s\) de page/],
+    [{ delaisDepasses: 1 }, /délai/],
+    [{ operations: { prevues: 100, executees: 37, dureeMs: 1, details: { validations: 37 } }, saisies: 37 }, /scénario incomplet : 37\/100/],
+    [{ statutWorker: "desaccord" }, /worker : desaccord/],
+    [{ statutWorker: "erreur" }, /worker : erreur/],
+    [{ somme: "autre" }, /sources différentes/],
+    [{ saisies: 99 }, /mesure manquante/],
+    [{ operations: null }, /non rapportées/],
+  ] as [Partial<EtatRun>, RegExp][])("%j", (ecart, attendu) => {
+    expect(motifsInvalidite({ ...sain, ...ecart }).join(" ; ")).toMatch(attendu);
+  });
+
+  test("défilement : un débordement sans déplacement invalide le run ; sans débordement, il reste valide (non applicable)", () => {
+    const axe = (debordement: number, deplacement: number) => ({ axe: "vertical" as const, debordement, debut: 0, fin: deplacement, deplacement, evenements: 300 });
+    const defilement = { ...sain, scenario: "defilement", operations: { prevues: 2, executees: 2, dureeMs: 1 }, saisies: 0 };
+    expect(motifsInvalidite({ ...defilement, defilement: [axe(800, 0)] })).toEqual(["défilement sans déplacement malgré un débordement"]);
+    expect(motifsInvalidite({ ...defilement, defilement: [axe(0, 0)] })).toEqual([]);
+  });
+});
+
+describe("jugerDefilement", () => {
+  const axe = (a: "vertical" | "horizontal", debordement: number, deplacement: number) => ({ axe: a, debordement, debut: 0, fin: deplacement, deplacement, evenements: 300 });
+
+  test("axe sans débordement : non applicable ; les deux : non applicable ; un seul mesuré suffit", () => {
+    expect(jugerDefilement([axe("vertical", 0, 0), axe("horizontal", -2, 0)]).statut).toBe("non applicable");
+    expect(jugerDefilement([axe("vertical", 0, 0), axe("horizontal", 9000, 4500)])).toEqual({
+      statut: "mesuré",
+      parAxe: [
+        { axe: "vertical", statut: "non applicable" },
+        { axe: "horizontal", statut: "mesuré" },
+      ],
+    });
+    expect(jugerDefilement([axe("vertical", 400, 0), axe("horizontal", 9000, 4500)]).statut).toBe("sans déplacement");
+  });
+});
+
+describe("resumerNavigation", () => {
+  test("avec et sans instanciation séparées ; une catégorie non observée est null (non mesurée)", () => {
+    const actions = [
+      { type: "participant", latence: 40, dansLru: true },
+      { type: "participant", latence: 60, dansLru: true },
+      { type: "participant", latence: 50, dansLru: true },
+      { type: "axe", latence: 10 },
+    ];
+    expect(resumerNavigation(actions)).toEqual({ participant: { sansInstanciation: { n: 3, mediane: 50, pire: 60 }, avecInstanciation: null } });
+    expect(resumerNavigation([{ type: "graphe", latence: 300, dansLru: false }]).graphe).toEqual({ sansInstanciation: null, avecInstanciation: { n: 1, mediane: 300, pire: 300 } });
+  });
+});
+
+describe("ratioAcceptable", () => {
+  test("×4 : de 3 à 5 (critère d'origine) ; proportionnel au taux", () => {
+    expect([2.99, 3, 4.13, 5, 5.01].map((r) => ratioAcceptable(r, 4))).toEqual([false, true, true, true, false]);
+    expect([1.4, 1.6, 2.4, 2.6].map((r) => ratioAcceptable(r, 2))).toEqual([false, true, true, false]);
+    expect(ratioAcceptable(null, 4)).toBe(false);
   });
 });
 

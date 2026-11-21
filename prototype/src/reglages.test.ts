@@ -4,7 +4,8 @@
 import fc from "fast-check";
 import { describe, expect, test } from "vitest";
 import { creerEssai } from "./essai";
-import { CHOIX_GENERATEUR, CHOIX_STORE, demandeRechargement, ecrireUrl, lireUrl, PARAMS_MODELE, type Reglages, reglagesParDefaut } from "./reglages";
+import { IDS_STRUCTURES, type IdStructure, nombreGrilles } from "./generateur/jeux";
+import { CHOIX_GENERATEUR, CHOIX_STORE, demandeRechargement, ecrireUrl, lireUrl, PARAMS_MODELE, type Reglages, type ReglagesGenerateur, reglagesParDefaut } from "./reglages";
 import type { CommutateursResolus } from "./noyau/compile";
 
 const commutateursArb: fc.Arbitrary<CommutateursResolus> = fc.record({
@@ -18,6 +19,22 @@ const commutateursArb: fc.Arbitrary<CommutateursResolus> = fc.record({
   f5SansPlafond: fc.boolean(),
 });
 
+/** Générateur cohérent : structures (non vides) seulement pour « perf », grille active existante. */
+function generateurArb(): fc.Arbitrary<ReglagesGenerateur> {
+  return fc
+    .constantFrom(...CHOIX_GENERATEUR.jeu)
+    .chain((jeu) =>
+      fc.record({
+        jeu: fc.constant(jeu),
+        remplissage: fc.constantFrom(...CHOIX_GENERATEUR.remplissage),
+        graine: fc.nat(),
+        participants: fc.integer({ min: jeu === "perf" ? 1 : 0, max: 1000 }),
+        structures: jeu === "perf" ? fc.subarray([...IDS_STRUCTURES], { minLength: 1 }) : fc.constant<IdStructure[]>([]),
+      }),
+    )
+    .chain((g) => fc.integer({ min: 0, max: nombreGrilles(g.jeu, g.structures) - 1 }).map((grille) => ({ ...g, grille })));
+}
+
 const reglagesArb: fc.Arbitrary<Reglages> = fc.record({
   modele: commutateursArb,
   store: fc.record({
@@ -27,12 +44,7 @@ const reglagesArb: fc.Arbitrary<Reglages> = fc.record({
     distante: fc.constantFrom(...CHOIX_STORE.distante),
     lru: fc.integer({ min: 1, max: 500 }),
   }),
-  generateur: fc.record({
-    jeu: fc.constantFrom(...CHOIX_GENERATEUR.jeu),
-    remplissage: fc.constantFrom(...CHOIX_GENERATEUR.remplissage),
-    graine: fc.nat(),
-    participants: fc.integer({ min: 0, max: 1000 }),
-  }),
+  generateur: generateurArb(),
   session: fc.record({ verification: fc.boolean(), simulateur: fc.boolean() }),
   comparaison: fc.option(commutateursArb, { nil: null }),
 });
@@ -84,6 +96,7 @@ describe("URL des réglages", () => {
       "remplissage",
       "graine",
       "participants",
+      "grille",
       "verif",
       "simu",
     ]);
@@ -113,6 +126,28 @@ describe("URL des réglages", () => {
 
   test("le jeu « charge » prend 200 participants générés par défaut", () => {
     expect(lireUrl("?jeu=charge").reglages.generateur.participants).toBe(200);
+  });
+
+  test("jeu « perf » : A03 et 20 participants par défaut, structures dans l'ordre canonique, grille active", () => {
+    const defaut = lireUrl("?jeu=perf");
+    expect(defaut.avertissements).toEqual([]);
+    expect(defaut.reglages.generateur).toMatchObject({ jeu: "perf", participants: 20, structures: ["a03"], grille: 0 });
+    const choisi = lireUrl("?jeu=perf&structures=g3v2,a01&participants=12&grille=1");
+    expect(choisi.avertissements).toEqual([]);
+    expect(choisi.reglages.generateur).toMatchObject({ structures: ["a01", "g3v2"], participants: 12, grille: 1 });
+    expect(new URLSearchParams(ecrireUrl(choisi.reglages)).get("structures")).toBe("a01,g3v2");
+  });
+
+  test("jeu « perf » : structures inconnues, en double ou absentes, effectif nul et grille hors sélection refusés", () => {
+    for (const q of ["structures=a02", "structures=a03,a03", "structures=", "participants=0", "grille=1"]) {
+      const { reglages, avertissements } = lireUrl(`?jeu=perf&${q}`);
+      expect(avertissements, q).toHaveLength(1);
+      expect(reglages.generateur, q).toMatchObject({ structures: ["a03"], participants: 20, grille: 0 });
+    }
+    // Hors « perf », le paramètre `structures` est signalé et sans effet.
+    const corpus = lireUrl("?structures=a03");
+    expect(corpus.avertissements).toHaveLength(1);
+    expect(corpus.reglages.generateur.structures).toEqual([]);
   });
 
   test("store et générateur : au rechargement ; modèle, session et comparaison : à chaud", () => {
