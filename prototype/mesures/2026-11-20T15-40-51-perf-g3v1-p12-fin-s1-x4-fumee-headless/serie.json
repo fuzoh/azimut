@@ -1,0 +1,1779 @@
+{
+ "nom": "2026-11-20T15-40-51-perf-g3v1-p12-fin-s1-x4-fumee-headless",
+ "date": "2026-11-20T15:40:51.982Z",
+ "fumee": true,
+ "instrumentation": "mesure",
+ "commande": "bun harnais/serie.ts --headless --fumee --court --jeu perf --structures g3v1 --participants 12 --configs base,principal --bridage 4 --lru-balayage 5,50 --scenarios changement-participant,defilement,ouverture-graphe",
+ "profil": {
+  "id": "perf-g3v1-p12-fin-s1",
+  "categorie": "taille réelle",
+  "demande": {
+   "jeu": "perf",
+   "structures": [
+    "g3v1"
+   ],
+   "composite": false,
+   "participants": 12,
+   "remplissage": "fin",
+   "graine": 1,
+   "grille": 0
+  },
+  "url": "http://localhost:4173/?jeu=perf&remplissage=fin&graine=1&participants=12&structures=g3v1&verif=0&simu=0&calcul=signaux&lieu=worker&cohorte=paresseux&distante=perimee&lru=50",
+  "session": {
+   "jeu": "perf",
+   "structures": [
+    "g3v1"
+   ],
+   "participants": 12,
+   "remplissage": "fin",
+   "graine": 1,
+   "sommeControle": "cases 2403:a01329e0499992a2 / nonEvaluations 10:65e4d1c3d352aaef / jokers 1:1e57ea331e57ea33",
+   "grilles": [
+    {
+     "g": 0,
+     "nom": "G3 V1",
+     "structure": "g3v1",
+     "empreinte": "a1299ca1",
+     "donnees": 229,
+     "calculs": 88,
+     "regroupements": 15,
+     "noeuds": 345,
+     "axes": 4,
+     "casesPossibles": 2748,
+     "casesStockees": 2403,
+     "nonEvaluations": 10,
+     "dispenses": 0,
+     "jokers": 1,
+     "remplissageObserve": 0.8744541484716157
+    }
+   ]
+  },
+  "dimensions": {
+   "grille": 0,
+   "lignes": 12,
+   "colonnes": 323,
+   "lignesRendues": 12,
+   "colonnesRendues": 24,
+   "largeur": 1259,
+   "hauteur": 960,
+   "debordementVertical": 0,
+   "debordementHorizontal": 19564
+  }
+ },
+ "options": {
+  "bridage": 4,
+  "runs": 1,
+  "chauffe": 0,
+  "configs": [
+   "base",
+   "principal"
+  ],
+  "scenarios": [
+   "changement-participant",
+   "defilement",
+   "ouverture-graphe",
+   "mesures"
+  ],
+  "court": true,
+  "viewport": {
+   "width": 1600,
+   "height": 1000
+  },
+  "lru": 50,
+  "lruBalayage": [
+   5,
+   50
+  ],
+  "jeu": "perf",
+  "structures": [
+   "g3v1"
+  ],
+  "participants": 12,
+  "remplissage": "fin",
+  "graine": 1,
+  "grille": 0
+ },
+ "machine": {
+  "cpu": "AMD RYZEN AI MAX+ 395 w/ Radeon 8060S",
+  "coeurs": 32,
+  "ramGo": 60,
+  "os": "Linux 7.3.4-1-cachyos",
+  "chrome": "157.0.8103.78",
+  "executable": "/usr/bin/chromium",
+  "mode": "nouveau headless",
+  "secteur": null,
+  "node": "bun 1.4.5, Playwright 1.63.0",
+  "versions": {
+   "react": "19.3.0",
+   "@tanstack/db": "0.11.3",
+   "alien-signals": "3.2.1",
+   "vite": "8.3.2"
+  },
+  "commit": "29876a7 (modifications locales)"
+ },
+ "calibration": {
+  "taux": 4,
+  "ratioPage": 3.9803493442024336,
+  "ratioWorkerNatif": 0.9956236313462793,
+  "bridageWorker": "logiciel",
+  "ratioWorkerLogiciel": 4.043763672190356,
+  "eventTiming": true,
+  "inpRapporte": true,
+  "reussite": true,
+  "motifs": [
+   "worker non bridé par la page (ratio 1.00), bridage logiciel appliqué"
+  ],
+  "comparaisonModes": null,
+  "dureesMs": {
+   "page ×1": 45.80000001192093,
+   "worker ×1": 45.700000047683716,
+   "page ×4": 182.30000001192093,
+   "worker ×4 (page bridée)": 45.5,
+   "worker ×4 (bridage logiciel)": 184.80000001192093
+  }
+ },
+ "runs": [
+  {
+   "index": 1,
+   "fichier": "001-base-lru50-changement-participant.json",
+   "config": "base",
+   "scenario": "changement-participant",
+   "lru": 50,
+   "chauffe": false,
+   "balayage": false,
+   "url": "http://localhost:4173/?jeu=perf&remplissage=fin&graine=1&participants=12&structures=g3v1&verif=0&simu=0&calcul=signaux&lieu=worker&cohorte=paresseux&distante=perimee&lru=50&bridageWorker=4",
+   "tauxBridageLogiciel": 4,
+   "valide": true,
+   "invalidite": [],
+   "erreursPage": [],
+   "delaisDepasses": 0,
+   "somme": "cases 2403:a01329e0499992a2 / nonEvaluations 10:65e4d1c3d352aaef / jokers 1:1e57ea331e57ea33",
+   "statutWorker": "pret",
+   "dimensions": {
+    "grille": 0,
+    "lignes": 12,
+    "colonnes": 323,
+    "lignesRendues": 12,
+    "colonnesRendues": 24,
+    "largeur": 1259,
+    "hauteur": 960,
+    "debordementVertical": 0,
+    "debordementHorizontal": 19564
+   },
+   "operations": {
+    "prevues": 6,
+    "executees": 6,
+    "dureeMs": 2291
+   },
+   "nonApplicable": [],
+   "resume": {
+    "longtasks": 0,
+    "longtaskMaxMs": 0,
+    "loaf": 0,
+    "inpMs": 40,
+    "p95Ms": null,
+    "saisies": 0,
+    "saisiesIncompletes": 0,
+    "reussite": true,
+    "motifs": []
+   },
+   "saisies": [],
+   "actions": [
+    {
+     "type": "participant",
+     "debut": 522.5,
+     "fin": 611.7999999523163,
+     "latence": 89.29999995231628,
+     "dansLru": true,
+     "instanciations": 0
+    },
+    {
+     "type": "participant",
+     "debut": 931.0999999642372,
+     "fin": 978.5999999642372,
+     "latence": 47.5,
+     "dansLru": true,
+     "instanciations": 0
+    },
+    {
+     "type": "participant",
+     "debut": 1283.5,
+     "fin": 1345.5,
+     "latence": 62,
+     "dansLru": true,
+     "instanciations": 0
+    },
+    {
+     "type": "participant",
+     "debut": 1681.3999999761581,
+     "fin": 1728.5999999642372,
+     "latence": 47.19999998807907,
+     "dansLru": true,
+     "instanciations": 0
+    },
+    {
+     "type": "participant",
+     "debut": 2035.699999988079,
+     "fin": 2112,
+     "latence": 76.30000001192093,
+     "dansLru": true,
+     "instanciations": 0
+    },
+    {
+     "type": "participant",
+     "debut": 2430.599999964237,
+     "fin": 2478.5,
+     "latence": 47.90000003576279,
+     "dansLru": true,
+     "instanciations": 0
+    }
+   ],
+   "mesures": [],
+   "memoire": {
+    "chargement": {
+     "page": {
+      "usedSize": 5819640,
+      "totalSize": 6352896,
+      "backingStorageSize": 891812
+     },
+     "worker": {
+      "usedSize": 1837680,
+      "totalSize": 2621440,
+      "backingStorageSize": 505078
+     }
+    },
+    "fin": {
+     "page": {
+      "usedSize": 7092424,
+      "totalSize": 7462912,
+      "backingStorageSize": 892193
+     },
+     "worker": {
+      "usedSize": 1944564,
+      "totalSize": 2621440,
+      "backingStorageSize": 505078
+     }
+    }
+   },
+   "demarrage": {
+    "structures": 0.10000002384185791,
+    "compile": 13.099999964237213,
+    "generation": 7.300000011920929,
+    "insertion": 19.19999998807907,
+    "somme": 3.300000011920929,
+    "worker-pret": 367.5999999642372,
+    "table-peinte": 422.5999999642372
+   },
+   "constats": []
+  },
+  {
+   "index": 2,
+   "fichier": "002-principal-lru50-changement-participant.json",
+   "config": "principal",
+   "scenario": "changement-participant",
+   "lru": 50,
+   "chauffe": false,
+   "balayage": false,
+   "url": "http://localhost:4173/?jeu=perf&remplissage=fin&graine=1&participants=12&structures=g3v1&verif=0&simu=0&calcul=signaux&lieu=principal&cohorte=paresseux&distante=perimee&lru=50",
+   "tauxBridageLogiciel": 1,
+   "valide": true,
+   "invalidite": [],
+   "erreursPage": [],
+   "delaisDepasses": 0,
+   "somme": "cases 2403:a01329e0499992a2 / nonEvaluations 10:65e4d1c3d352aaef / jokers 1:1e57ea331e57ea33",
+   "statutWorker": "aucun",
+   "dimensions": {
+    "grille": 0,
+    "lignes": 12,
+    "colonnes": 323,
+    "lignesRendues": 12,
+    "colonnesRendues": 24,
+    "largeur": 1259,
+    "hauteur": 960,
+    "debordementVertical": 0,
+    "debordementHorizontal": 19564
+   },
+   "operations": {
+    "prevues": 6,
+    "executees": 6,
+    "dureeMs": 2181
+   },
+   "nonApplicable": [],
+   "resume": {
+    "longtasks": 0,
+    "longtaskMaxMs": 0,
+    "loaf": 0,
+    "inpMs": 40,
+    "p95Ms": null,
+    "saisies": 0,
+    "saisiesIncompletes": 0,
+    "reussite": true,
+    "motifs": []
+   },
+   "saisies": [],
+   "actions": [
+    {
+     "type": "participant",
+     "debut": 449,
+     "fin": 513.5,
+     "latence": 64.5,
+     "dansLru": true,
+     "instanciations": 0
+    },
+    {
+     "type": "participant",
+     "debut": 849.5,
+     "fin": 881.6999999880791,
+     "latence": 32.19999998807907,
+     "dansLru": true,
+     "instanciations": 0
+    },
+    {
+     "type": "participant",
+     "debut": 1187.3999999761581,
+     "fin": 1229.8999999761581,
+     "latence": 42.5,
+     "dansLru": true,
+     "instanciations": 0
+    },
+    {
+     "type": "participant",
+     "debut": 1548,
+     "fin": 1580.300000011921,
+     "latence": 32.30000001192093,
+     "dansLru": true,
+     "instanciations": 0
+    },
+    {
+     "type": "participant",
+     "debut": 1889.3999999761581,
+     "fin": 1946.3999999761581,
+     "latence": 57,
+     "dansLru": true,
+     "instanciations": 0
+    },
+    {
+     "type": "participant",
+     "debut": 2265.599999964237,
+     "fin": 2297.399999976158,
+     "latence": 31.80000001192093,
+     "dansLru": true,
+     "instanciations": 0
+    }
+   ],
+   "mesures": [],
+   "memoire": {
+    "chargement": {
+     "page": {
+      "usedSize": 5825116,
+      "totalSize": 6615040,
+      "backingStorageSize": 894455
+     },
+     "worker": null
+    },
+    "fin": {
+     "page": {
+      "usedSize": 7154412,
+      "totalSize": 7725056,
+      "backingStorageSize": 894839
+     },
+     "worker": null
+    }
+   },
+   "demarrage": {
+    "structures": 0.19999998807907104,
+    "compile": 15.100000023841858,
+    "generation": 7.299999952316284,
+    "insertion": 19.600000023841858,
+    "somme": 3.5,
+    "table-peinte": 372.39999997615814
+   },
+   "constats": []
+  },
+  {
+   "index": 3,
+   "fichier": "003-base-lru50-defilement.json",
+   "config": "base",
+   "scenario": "defilement",
+   "lru": 50,
+   "chauffe": false,
+   "balayage": false,
+   "url": "http://localhost:4173/?jeu=perf&remplissage=fin&graine=1&participants=12&structures=g3v1&verif=0&simu=0&calcul=signaux&lieu=worker&cohorte=paresseux&distante=perimee&lru=50&bridageWorker=4",
+   "tauxBridageLogiciel": 4,
+   "valide": true,
+   "invalidite": [],
+   "erreursPage": [],
+   "delaisDepasses": 0,
+   "somme": "cases 2403:a01329e0499992a2 / nonEvaluations 10:65e4d1c3d352aaef / jokers 1:1e57ea331e57ea33",
+   "statutWorker": "pret",
+   "dimensions": {
+    "grille": 0,
+    "lignes": 12,
+    "colonnes": 323,
+    "lignesRendues": 12,
+    "colonnesRendues": 24,
+    "largeur": 1259,
+    "hauteur": 960,
+    "debordementVertical": 0,
+    "debordementHorizontal": 19564
+   },
+   "operations": {
+    "prevues": 2,
+    "executees": 2,
+    "dureeMs": 3149
+   },
+   "nonApplicable": [
+    "défilement vertical : pas de débordement"
+   ],
+   "resume": {
+    "longtasks": 0,
+    "longtaskMaxMs": 0,
+    "loaf": 0,
+    "inpMs": null,
+    "p95Ms": null,
+    "saisies": 0,
+    "saisiesIncompletes": 0,
+    "reussite": true,
+    "motifs": []
+   },
+   "saisies": [],
+   "actions": [],
+   "mesures": [],
+   "memoire": {
+    "chargement": {
+     "page": {
+      "usedSize": 5819688,
+      "totalSize": 6352896,
+      "backingStorageSize": 891812
+     },
+     "worker": {
+      "usedSize": 1837032,
+      "totalSize": 2359296,
+      "backingStorageSize": 505078
+     }
+    },
+    "fin": {
+     "page": {
+      "usedSize": 7474112,
+      "totalSize": 8511488,
+      "backingStorageSize": 892107
+     },
+     "worker": {
+      "usedSize": 2230788,
+      "totalSize": 3145728,
+      "backingStorageSize": 505078
+     }
+    }
+   },
+   "demarrage": {
+    "structures": 0.30000001192092896,
+    "compile": 13.800000011920929,
+    "generation": 8.099999964237213,
+    "insertion": 22.5,
+    "somme": 3.700000047683716,
+    "worker-pret": 397.80000001192093,
+    "table-peinte": 462.30000001192093
+   },
+   "constats": [],
+   "defilement": [
+    {
+     "axe": "vertical",
+     "debordement": 0,
+     "debut": 0,
+     "fin": 0,
+     "deplacement": 0,
+     "evenements": 62
+    },
+    {
+     "axe": "horizontal",
+     "debordement": 19564,
+     "debut": 0,
+     "fin": 2800,
+     "deplacement": 2800,
+     "evenements": 28
+    }
+   ]
+  },
+  {
+   "index": 4,
+   "fichier": "004-principal-lru50-defilement.json",
+   "config": "principal",
+   "scenario": "defilement",
+   "lru": 50,
+   "chauffe": false,
+   "balayage": false,
+   "url": "http://localhost:4173/?jeu=perf&remplissage=fin&graine=1&participants=12&structures=g3v1&verif=0&simu=0&calcul=signaux&lieu=principal&cohorte=paresseux&distante=perimee&lru=50",
+   "tauxBridageLogiciel": 1,
+   "valide": true,
+   "invalidite": [],
+   "erreursPage": [],
+   "delaisDepasses": 0,
+   "somme": "cases 2403:a01329e0499992a2 / nonEvaluations 10:65e4d1c3d352aaef / jokers 1:1e57ea331e57ea33",
+   "statutWorker": "aucun",
+   "dimensions": {
+    "grille": 0,
+    "lignes": 12,
+    "colonnes": 323,
+    "lignesRendues": 12,
+    "colonnesRendues": 24,
+    "largeur": 1259,
+    "hauteur": 960,
+    "debordementVertical": 0,
+    "debordementHorizontal": 19564
+   },
+   "operations": {
+    "prevues": 2,
+    "executees": 2,
+    "dureeMs": 3086
+   },
+   "nonApplicable": [
+    "défilement vertical : pas de débordement"
+   ],
+   "resume": {
+    "longtasks": 0,
+    "longtaskMaxMs": 0,
+    "loaf": 0,
+    "inpMs": null,
+    "p95Ms": null,
+    "saisies": 0,
+    "saisiesIncompletes": 0,
+    "reussite": true,
+    "motifs": []
+   },
+   "saisies": [],
+   "actions": [],
+   "mesures": [],
+   "memoire": {
+    "chargement": {
+     "page": {
+      "usedSize": 5827432,
+      "totalSize": 6615040,
+      "backingStorageSize": 894456
+     },
+     "worker": null
+    },
+    "fin": {
+     "page": {
+      "usedSize": 8325112,
+      "totalSize": 8773632,
+      "backingStorageSize": 894758
+     },
+     "worker": null
+    }
+   },
+   "demarrage": {
+    "structures": 0.5999999642372131,
+    "compile": 14.099999964237213,
+    "generation": 7.400000035762787,
+    "insertion": 20.5,
+    "somme": 3.5,
+    "table-peinte": 385.10000002384186
+   },
+   "constats": [],
+   "defilement": [
+    {
+     "axe": "vertical",
+     "debordement": 0,
+     "debut": 0,
+     "fin": 0,
+     "deplacement": 0,
+     "evenements": 60
+    },
+    {
+     "axe": "horizontal",
+     "debordement": 19564,
+     "debut": 0,
+     "fin": 2900,
+     "deplacement": 2900,
+     "evenements": 29
+    }
+   ]
+  },
+  {
+   "index": 5,
+   "fichier": "005-base-lru50-ouverture-graphe.json",
+   "config": "base",
+   "scenario": "ouverture-graphe",
+   "lru": 50,
+   "chauffe": false,
+   "balayage": false,
+   "url": "http://localhost:4173/?jeu=perf&remplissage=fin&graine=1&participants=12&structures=g3v1&verif=0&simu=0&calcul=signaux&lieu=worker&cohorte=paresseux&distante=perimee&lru=50&bridageWorker=4",
+   "tauxBridageLogiciel": 4,
+   "valide": true,
+   "invalidite": [],
+   "erreursPage": [],
+   "delaisDepasses": 0,
+   "somme": "cases 2403:a01329e0499992a2 / nonEvaluations 10:65e4d1c3d352aaef / jokers 1:1e57ea331e57ea33",
+   "statutWorker": "pret",
+   "dimensions": {
+    "grille": 0,
+    "lignes": 12,
+    "colonnes": 323,
+    "lignesRendues": 12,
+    "colonnesRendues": 24,
+    "largeur": 1259,
+    "hauteur": 960,
+    "debordementVertical": 0,
+    "debordementHorizontal": 19564
+   },
+   "operations": {
+    "prevues": 2,
+    "executees": 2,
+    "dureeMs": 1313
+   },
+   "nonApplicable": [],
+   "resume": {
+    "longtasks": 2,
+    "longtaskMaxMs": 58,
+    "loaf": 3,
+    "inpMs": 80,
+    "p95Ms": null,
+    "saisies": 0,
+    "saisiesIncompletes": 0,
+    "reussite": false,
+    "motifs": [
+     "2 longtask(s)"
+    ]
+   },
+   "saisies": [],
+   "actions": [
+    {
+     "type": "graphe",
+     "debut": 648.3000000119209,
+     "fin": 744.1999999880791,
+     "latence": 95.89999997615814,
+     "dansLru": true,
+     "instanciations": 0
+    },
+    {
+     "type": "graphe",
+     "debut": 1296.5,
+     "fin": 1378.1000000238419,
+     "latence": 81.60000002384186,
+     "dansLru": true,
+     "instanciations": 0
+    }
+   ],
+   "mesures": [],
+   "memoire": {
+    "chargement": {
+     "page": {
+      "usedSize": 5818508,
+      "totalSize": 6352896,
+      "backingStorageSize": 891813
+     },
+     "worker": {
+      "usedSize": 1837032,
+      "totalSize": 2097152,
+      "backingStorageSize": 505078
+     }
+    },
+    "fin": {
+     "page": {
+      "usedSize": 8250548,
+      "totalSize": 9035776,
+      "backingStorageSize": 892667
+     },
+     "worker": {
+      "usedSize": 1999972,
+      "totalSize": 2621440,
+      "backingStorageSize": 505078
+     }
+    }
+   },
+   "demarrage": {
+    "structures": 0.19999998807907104,
+    "compile": 14.800000011920929,
+    "generation": 7.899999976158142,
+    "insertion": 21.600000023841858,
+    "somme": 2.899999976158142,
+    "worker-pret": 404.9000000357628,
+    "table-peinte": 464
+   },
+   "constats": []
+  },
+  {
+   "index": 6,
+   "fichier": "006-principal-lru50-ouverture-graphe.json",
+   "config": "principal",
+   "scenario": "ouverture-graphe",
+   "lru": 50,
+   "chauffe": false,
+   "balayage": false,
+   "url": "http://localhost:4173/?jeu=perf&remplissage=fin&graine=1&participants=12&structures=g3v1&verif=0&simu=0&calcul=signaux&lieu=principal&cohorte=paresseux&distante=perimee&lru=50",
+   "tauxBridageLogiciel": 1,
+   "valide": true,
+   "invalidite": [],
+   "erreursPage": [],
+   "delaisDepasses": 0,
+   "somme": "cases 2403:a01329e0499992a2 / nonEvaluations 10:65e4d1c3d352aaef / jokers 1:1e57ea331e57ea33",
+   "statutWorker": "aucun",
+   "dimensions": {
+    "grille": 0,
+    "lignes": 12,
+    "colonnes": 323,
+    "lignesRendues": 12,
+    "colonnesRendues": 24,
+    "largeur": 1259,
+    "hauteur": 960,
+    "debordementVertical": 0,
+    "debordementHorizontal": 19564
+   },
+   "operations": {
+    "prevues": 2,
+    "executees": 2,
+    "dureeMs": 1246
+   },
+   "nonApplicable": [],
+   "resume": {
+    "longtasks": 4,
+    "longtaskMaxMs": 66,
+    "loaf": 4,
+    "inpMs": 88,
+    "p95Ms": null,
+    "saisies": 0,
+    "saisiesIncompletes": 0,
+    "reussite": false,
+    "motifs": [
+     "4 longtask(s)"
+    ]
+   },
+   "saisies": [],
+   "actions": [
+    {
+     "type": "graphe",
+     "debut": 571.5,
+     "fin": 659.8000000119209,
+     "latence": 88.30000001192093,
+     "dansLru": true,
+     "instanciations": 0
+    },
+    {
+     "type": "graphe",
+     "debut": 1170.8999999761581,
+     "fin": 1251.5,
+     "latence": 80.60000002384186,
+     "dansLru": true,
+     "instanciations": 0
+    }
+   ],
+   "mesures": [],
+   "memoire": {
+    "chargement": {
+     "page": {
+      "usedSize": 5827388,
+      "totalSize": 6615040,
+      "backingStorageSize": 894456
+     },
+     "worker": null
+    },
+    "fin": {
+     "page": {
+      "usedSize": 8346332,
+      "totalSize": 8773632,
+      "backingStorageSize": 897411
+     },
+     "worker": null
+    }
+   },
+   "demarrage": {
+    "structures": 0.7000000476837158,
+    "compile": 14.099999964237213,
+    "generation": 7.699999988079071,
+    "insertion": 21.80000001192093,
+    "somme": 3.099999964237213,
+    "table-peinte": 379.19999998807907
+   },
+   "constats": []
+  },
+  {
+   "index": 7,
+   "fichier": "007-base-lru50-mesures.json",
+   "config": "base",
+   "scenario": "mesures",
+   "lru": 50,
+   "chauffe": false,
+   "balayage": false,
+   "url": "http://localhost:4173/?jeu=perf&remplissage=fin&graine=1&participants=12&structures=g3v1&verif=0&simu=0&calcul=signaux&lieu=worker&cohorte=paresseux&distante=perimee&lru=50&bridageWorker=4",
+   "tauxBridageLogiciel": 4,
+   "valide": true,
+   "invalidite": [],
+   "erreursPage": [],
+   "delaisDepasses": 0,
+   "somme": "cases 2403:a01329e0499992a2 / nonEvaluations 10:65e4d1c3d352aaef / jokers 1:1e57ea331e57ea33",
+   "statutWorker": "pret",
+   "dimensions": {
+    "grille": 0,
+    "lignes": 12,
+    "colonnes": 323,
+    "lignesRendues": 12,
+    "colonnesRendues": 24,
+    "largeur": 1259,
+    "hauteur": 960,
+    "debordementVertical": 0,
+    "debordementHorizontal": 19564
+   },
+   "operations": {
+    "prevues": 5,
+    "executees": 5,
+    "dureeMs": 807
+   },
+   "nonApplicable": [],
+   "resume": null,
+   "saisies": [],
+   "actions": [],
+   "mesures": [
+    {
+     "nom": "remplissage-lru",
+     "fenetre": {
+      "debut": 559.0999999642372,
+      "fin": 573
+     },
+     "valeurs": {
+      "lignes": 12,
+      "lruDebut": 12,
+      "lruFin": 12,
+      "instanciations": 0,
+      "instanciationMs": 0,
+      "instanciationMsParParticipant": null
+     }
+    },
+    {
+     "nom": "ecritures-en-serie",
+     "fenetre": {
+      "debut": 598.7999999523163,
+      "fin": 1098.199999988079
+     },
+     "valeurs": {
+      "grille": 0,
+      "nombre": 100,
+      "totalMs": 496.4000000357628,
+      "medianeMs": 0.09999996423721313,
+      "p95Ms": 0.800000011920929,
+      "maxMs": 3.400000035762787
+     },
+     "exceptionGardeFou": false
+    },
+    {
+     "nom": "copie-grille",
+     "fenetre": {
+      "debut": 1098.7999999523163,
+      "fin": 1194.0999999642372
+     },
+     "valeurs": {
+      "grille": 1,
+      "cible": "copie à l'identique",
+      "cases": 2414,
+      "principalMs": 66.60000002384186,
+      "totalMs": 88.5
+     },
+     "exceptionGardeFou": false
+    },
+    {
+     "nom": "copie-grille-provenance",
+     "fenetre": {
+      "debut": 1194.7999999523163,
+      "fin": 1271.0999999642372
+     },
+     "valeurs": {
+      "grille": 2,
+      "cible": "G3 V2",
+      "cases": 2402,
+      "principalMs": 51.60000002384186,
+      "totalMs": 69.69999998807907
+     },
+     "exceptionGardeFou": false
+    },
+    {
+     "nom": "bascule-modele",
+     "fenetre": {
+      "debut": 1271.5999999642372,
+      "fin": 1329.5
+     },
+     "valeurs": {
+      "principalMs": 15.300000011920929,
+      "totalMs": 55.40000003576279
+     },
+     "exceptionGardeFou": true
+    }
+   ],
+   "memoire": {
+    "chargement": {
+     "page": {
+      "usedSize": 5819700,
+      "totalSize": 6352896,
+      "backingStorageSize": 891813
+     },
+     "worker": {
+      "usedSize": 1836996,
+      "totalSize": 2359296,
+      "backingStorageSize": 505078
+     }
+    },
+    "lru-plein": {
+     "page": {
+      "usedSize": 6530732,
+      "totalSize": 7200768,
+      "backingStorageSize": 891890
+     },
+     "worker": {
+      "usedSize": 1887468,
+      "totalSize": 2621440,
+      "backingStorageSize": 505078
+     }
+    },
+    "fin": {
+     "page": {
+      "usedSize": 8811836,
+      "totalSize": 10346496,
+      "backingStorageSize": 988680
+     },
+     "worker": {
+      "usedSize": 2390708,
+      "totalSize": 3145728,
+      "backingStorageSize": 621823
+     }
+    }
+   },
+   "demarrage": {
+    "structures": 0.10000002384185791,
+    "compile": 15.800000011920929,
+    "generation": 8.599999964237213,
+    "insertion": 23.5,
+    "somme": 4.900000035762787,
+    "worker-pret": 400.0999999642372,
+    "table-peinte": 460
+   },
+   "constats": [
+    "copie-grille : 1 tâche(s) > 50 ms, max 74 ms — constat bloquant",
+    "copie-grille-provenance : 1 tâche(s) > 50 ms, max 59 ms — constat bloquant"
+   ]
+  },
+  {
+   "index": 8,
+   "fichier": "008-principal-lru50-mesures.json",
+   "config": "principal",
+   "scenario": "mesures",
+   "lru": 50,
+   "chauffe": false,
+   "balayage": false,
+   "url": "http://localhost:4173/?jeu=perf&remplissage=fin&graine=1&participants=12&structures=g3v1&verif=0&simu=0&calcul=signaux&lieu=principal&cohorte=paresseux&distante=perimee&lru=50",
+   "tauxBridageLogiciel": 1,
+   "valide": true,
+   "invalidite": [],
+   "erreursPage": [],
+   "delaisDepasses": 0,
+   "somme": "cases 2403:a01329e0499992a2 / nonEvaluations 10:65e4d1c3d352aaef / jokers 1:1e57ea331e57ea33",
+   "statutWorker": "aucun",
+   "dimensions": {
+    "grille": 0,
+    "lignes": 12,
+    "colonnes": 323,
+    "lignesRendues": 12,
+    "colonnesRendues": 24,
+    "largeur": 1259,
+    "hauteur": 960,
+    "debordementVertical": 0,
+    "debordementHorizontal": 19564
+   },
+   "operations": {
+    "prevues": 5,
+    "executees": 5,
+    "dureeMs": 740
+   },
+   "nonApplicable": [],
+   "resume": null,
+   "saisies": [],
+   "actions": [],
+   "mesures": [
+    {
+     "nom": "remplissage-lru",
+     "fenetre": {
+      "debut": 451.60000002384186,
+      "fin": 465
+     },
+     "valeurs": {
+      "lignes": 12,
+      "lruDebut": 12,
+      "lruFin": 12,
+      "instanciations": 0,
+      "instanciationMs": 0,
+      "instanciationMsParParticipant": null
+     }
+    },
+    {
+     "nom": "ecritures-en-serie",
+     "fenetre": {
+      "debut": 491.69999998807907,
+      "fin": 960.5
+     },
+     "valeurs": {
+      "grille": 0,
+      "nombre": 100,
+      "totalMs": 465.5,
+      "medianeMs": 0.10000002384185791,
+      "p95Ms": 0.9000000357627869,
+      "maxMs": 4.600000023841858
+     },
+     "exceptionGardeFou": false
+    },
+    {
+     "nom": "copie-grille",
+     "fenetre": {
+      "debut": 961,
+      "fin": 1040.5
+     },
+     "valeurs": {
+      "grille": 1,
+      "cible": "copie à l'identique",
+      "cases": 2414,
+      "principalMs": 64,
+      "totalMs": 71.70000004768372
+     },
+     "exceptionGardeFou": false
+    },
+    {
+     "nom": "copie-grille-provenance",
+     "fenetre": {
+      "debut": 1041.6000000238419,
+      "fin": 1103.800000011921
+     },
+     "valeurs": {
+      "grille": 2,
+      "cible": "G3 V2",
+      "cases": 2402,
+      "principalMs": 51.30000001192093,
+      "totalMs": 56
+     },
+     "exceptionGardeFou": false
+    },
+    {
+     "nom": "bascule-modele",
+     "fenetre": {
+      "debut": 1104.699999988079,
+      "fin": 1156.3999999761581
+     },
+     "valeurs": {
+      "principalMs": 15.399999976158142,
+      "totalMs": 49.59999996423721
+     },
+     "exceptionGardeFou": true
+    }
+   ],
+   "memoire": {
+    "chargement": {
+     "page": {
+      "usedSize": 5824948,
+      "totalSize": 6352896,
+      "backingStorageSize": 894456
+     },
+     "worker": null
+    },
+    "lru-plein": {
+     "page": {
+      "usedSize": 6536244,
+      "totalSize": 7200768,
+      "backingStorageSize": 894533
+     },
+     "worker": null
+    },
+    "fin": {
+     "page": {
+      "usedSize": 9127476,
+      "totalSize": 10608640,
+      "backingStorageSize": 991347
+     },
+     "worker": null
+    }
+   },
+   "demarrage": {
+    "structures": 0.09999996423721313,
+    "compile": 15,
+    "generation": 8.200000047683716,
+    "insertion": 24.19999998807907,
+    "somme": 3.599999964237213,
+    "table-peinte": 367
+   },
+   "constats": [
+    "copie-grille : 1 tâche(s) > 50 ms, max 73 ms — constat bloquant",
+    "copie-grille-provenance : 1 tâche(s) > 50 ms, max 58 ms — constat bloquant"
+   ]
+  },
+  {
+   "index": 9,
+   "fichier": "009-base-lru5-changement-participant.json",
+   "config": "base",
+   "scenario": "changement-participant",
+   "lru": 5,
+   "chauffe": false,
+   "balayage": true,
+   "url": "http://localhost:4173/?jeu=perf&remplissage=fin&graine=1&participants=12&structures=g3v1&verif=0&simu=0&calcul=signaux&lieu=worker&cohorte=paresseux&distante=perimee&lru=5&bridageWorker=4",
+   "tauxBridageLogiciel": 4,
+   "valide": true,
+   "invalidite": [],
+   "erreursPage": [],
+   "delaisDepasses": 0,
+   "somme": "cases 2403:a01329e0499992a2 / nonEvaluations 10:65e4d1c3d352aaef / jokers 1:1e57ea331e57ea33",
+   "statutWorker": "pret",
+   "dimensions": {
+    "grille": 0,
+    "lignes": 12,
+    "colonnes": 323,
+    "lignesRendues": 12,
+    "colonnesRendues": 24,
+    "largeur": 1259,
+    "hauteur": 960,
+    "debordementVertical": 0,
+    "debordementHorizontal": 19564
+   },
+   "operations": {
+    "prevues": 6,
+    "executees": 6,
+    "dureeMs": 2256
+   },
+   "nonApplicable": [],
+   "resume": {
+    "longtasks": 0,
+    "longtaskMaxMs": 0,
+    "loaf": 0,
+    "inpMs": 40,
+    "p95Ms": null,
+    "saisies": 0,
+    "saisiesIncompletes": 0,
+    "reussite": true,
+    "motifs": []
+   },
+   "saisies": [],
+   "actions": [
+    {
+     "type": "participant",
+     "debut": 565.6999999880791,
+     "fin": 642.3000000119209,
+     "latence": 76.60000002384186,
+     "dansLru": true,
+     "instanciations": 0
+    },
+    {
+     "type": "participant",
+     "debut": 973.1000000238419,
+     "fin": 1019.6999999880791,
+     "latence": 46.59999996423721,
+     "dansLru": false,
+     "instanciations": 1
+    },
+    {
+     "type": "participant",
+     "debut": 1324.699999988079,
+     "fin": 1386.4000000357628,
+     "latence": 61.700000047683716,
+     "dansLru": false,
+     "instanciations": 1
+    },
+    {
+     "type": "participant",
+     "debut": 1705.199999988079,
+     "fin": 1753,
+     "latence": 47.80000001192093,
+     "dansLru": false,
+     "instanciations": 1
+    },
+    {
+     "type": "participant",
+     "debut": 2058.5,
+     "fin": 2108.5,
+     "latence": 50,
+     "dansLru": true,
+     "instanciations": 0
+    },
+    {
+     "type": "participant",
+     "debut": 2439.5,
+     "fin": 2486.400000035763,
+     "latence": 46.90000003576279,
+     "dansLru": true,
+     "instanciations": 0
+    }
+   ],
+   "mesures": [],
+   "memoire": {
+    "chargement": {
+     "page": {
+      "usedSize": 5819808,
+      "totalSize": 6352896,
+      "backingStorageSize": 891812
+     },
+     "worker": {
+      "usedSize": 1620972,
+      "totalSize": 2097152,
+      "backingStorageSize": 503475
+     }
+    },
+    "fin": {
+     "page": {
+      "usedSize": 7103480,
+      "totalSize": 7462912,
+      "backingStorageSize": 892193
+     },
+     "worker": {
+      "usedSize": 1706720,
+      "totalSize": 2359296,
+      "backingStorageSize": 503475
+     }
+    }
+   },
+   "demarrage": {
+    "structures": 0.7000000476837158,
+    "compile": 14.599999964237213,
+    "generation": 7.199999988079071,
+    "insertion": 23.100000023841858,
+    "somme": 3.899999976158142,
+    "worker-pret": 416,
+    "table-peinte": 476.5
+   },
+   "constats": []
+  },
+  {
+   "index": 10,
+   "fichier": "010-base-lru50-changement-participant.json",
+   "config": "base",
+   "scenario": "changement-participant",
+   "lru": 50,
+   "chauffe": false,
+   "balayage": true,
+   "url": "http://localhost:4173/?jeu=perf&remplissage=fin&graine=1&participants=12&structures=g3v1&verif=0&simu=0&calcul=signaux&lieu=worker&cohorte=paresseux&distante=perimee&lru=50&bridageWorker=4",
+   "tauxBridageLogiciel": 4,
+   "valide": true,
+   "invalidite": [],
+   "erreursPage": [],
+   "delaisDepasses": 0,
+   "somme": "cases 2403:a01329e0499992a2 / nonEvaluations 10:65e4d1c3d352aaef / jokers 1:1e57ea331e57ea33",
+   "statutWorker": "pret",
+   "dimensions": {
+    "grille": 0,
+    "lignes": 12,
+    "colonnes": 323,
+    "lignesRendues": 12,
+    "colonnesRendues": 24,
+    "largeur": 1259,
+    "hauteur": 960,
+    "debordementVertical": 0,
+    "debordementHorizontal": 19564
+   },
+   "operations": {
+    "prevues": 6,
+    "executees": 6,
+    "dureeMs": 2271
+   },
+   "nonApplicable": [],
+   "resume": {
+    "longtasks": 0,
+    "longtaskMaxMs": 0,
+    "loaf": 0,
+    "inpMs": 40,
+    "p95Ms": null,
+    "saisies": 0,
+    "saisiesIncompletes": 0,
+    "reussite": true,
+    "motifs": []
+   },
+   "saisies": [],
+   "actions": [
+    {
+     "type": "participant",
+     "debut": 545.8999999761581,
+     "fin": 622.1999999880791,
+     "latence": 76.30000001192093,
+     "dansLru": true,
+     "instanciations": 0
+    },
+    {
+     "type": "participant",
+     "debut": 952.6999999880791,
+     "fin": 999.3999999761581,
+     "latence": 46.69999998807907,
+     "dansLru": true,
+     "instanciations": 0
+    },
+    {
+     "type": "participant",
+     "debut": 1304.3999999761581,
+     "fin": 1366,
+     "latence": 61.60000002384186,
+     "dansLru": true,
+     "instanciations": 0
+    },
+    {
+     "type": "participant",
+     "debut": 1684.8999999761581,
+     "fin": 1733,
+     "latence": 48.10000002384186,
+     "dansLru": true,
+     "instanciations": 0
+    },
+    {
+     "type": "participant",
+     "debut": 2041.6000000238419,
+     "fin": 2116.199999988079,
+     "latence": 74.59999996423721,
+     "dansLru": true,
+     "instanciations": 0
+    },
+    {
+     "type": "participant",
+     "debut": 2435.899999976158,
+     "fin": 2482.899999976158,
+     "latence": 47,
+     "dansLru": true,
+     "instanciations": 0
+    }
+   ],
+   "mesures": [],
+   "memoire": {
+    "chargement": {
+     "page": {
+      "usedSize": 5822352,
+      "totalSize": 6615040,
+      "backingStorageSize": 891813
+     },
+     "worker": {
+      "usedSize": 1836916,
+      "totalSize": 2359296,
+      "backingStorageSize": 505078
+     }
+    },
+    "fin": {
+     "page": {
+      "usedSize": 7103644,
+      "totalSize": 7725056,
+      "backingStorageSize": 892194
+     },
+     "worker": {
+      "usedSize": 1943932,
+      "totalSize": 2621440,
+      "backingStorageSize": 505078
+     }
+    }
+   },
+   "demarrage": {
+    "structures": 0.5,
+    "compile": 14.5,
+    "generation": 8,
+    "insertion": 21.900000035762787,
+    "somme": 3.399999976158142,
+    "worker-pret": 394.19999998807907,
+    "table-peinte": 454.30000001192093
+   },
+   "constats": []
+  },
+  {
+   "index": 11,
+   "fichier": "011-base-lru5-mesures-lru.json",
+   "config": "base",
+   "scenario": "mesures-lru",
+   "lru": 5,
+   "chauffe": false,
+   "balayage": true,
+   "url": "http://localhost:4173/?jeu=perf&remplissage=fin&graine=1&participants=12&structures=g3v1&verif=0&simu=0&calcul=signaux&lieu=worker&cohorte=paresseux&distante=perimee&lru=5&bridageWorker=4",
+   "tauxBridageLogiciel": 4,
+   "valide": true,
+   "invalidite": [],
+   "erreursPage": [],
+   "delaisDepasses": 0,
+   "somme": "cases 2403:a01329e0499992a2 / nonEvaluations 10:65e4d1c3d352aaef / jokers 1:1e57ea331e57ea33",
+   "statutWorker": "pret",
+   "dimensions": {
+    "grille": 0,
+    "lignes": 12,
+    "colonnes": 323,
+    "lignesRendues": 12,
+    "colonnesRendues": 24,
+    "largeur": 1259,
+    "hauteur": 960,
+    "debordementVertical": 0,
+    "debordementHorizontal": 19564
+   },
+   "operations": {
+    "prevues": 1,
+    "executees": 1,
+    "dureeMs": 68
+   },
+   "nonApplicable": [],
+   "resume": null,
+   "saisies": [],
+   "actions": [],
+   "mesures": [
+    {
+     "nom": "remplissage-lru",
+     "fenetre": {
+      "debut": 512.8000000119209,
+      "fin": 554.3999999761581
+     },
+     "valeurs": {
+      "lignes": 12,
+      "lruDebut": 5,
+      "lruFin": 5,
+      "instanciations": 0,
+      "instanciationMs": 0,
+      "instanciationMsParParticipant": null
+     }
+    }
+   ],
+   "memoire": {
+    "chargement": {
+     "page": {
+      "usedSize": 5819660,
+      "totalSize": 6615040,
+      "backingStorageSize": 891811
+     },
+     "worker": {
+      "usedSize": 1621088,
+      "totalSize": 2359296,
+      "backingStorageSize": 503475
+     }
+    },
+    "lru-plein": {
+     "page": {
+      "usedSize": 6519476,
+      "totalSize": 7200768,
+      "backingStorageSize": 891888
+     },
+     "worker": {
+      "usedSize": 1671560,
+      "totalSize": 2359296,
+      "backingStorageSize": 503475
+     }
+    },
+    "fin": {
+     "page": {
+      "usedSize": 6519444,
+      "totalSize": 7200768,
+      "backingStorageSize": 891888
+     },
+     "worker": {
+      "usedSize": 1671560,
+      "totalSize": 2359296,
+      "backingStorageSize": 503475
+     }
+    }
+   },
+   "demarrage": {
+    "structures": 0.699999988079071,
+    "compile": 14.700000047683716,
+    "generation": 7.599999964237213,
+    "insertion": 21.100000023841858,
+    "somme": 4.199999988079071,
+    "worker-pret": 391.5,
+    "table-peinte": 454.19999998807907
+   },
+   "constats": []
+  },
+  {
+   "index": 12,
+   "fichier": "012-base-lru50-mesures-lru.json",
+   "config": "base",
+   "scenario": "mesures-lru",
+   "lru": 50,
+   "chauffe": false,
+   "balayage": true,
+   "url": "http://localhost:4173/?jeu=perf&remplissage=fin&graine=1&participants=12&structures=g3v1&verif=0&simu=0&calcul=signaux&lieu=worker&cohorte=paresseux&distante=perimee&lru=50&bridageWorker=4",
+   "tauxBridageLogiciel": 4,
+   "valide": true,
+   "invalidite": [],
+   "erreursPage": [],
+   "delaisDepasses": 0,
+   "somme": "cases 2403:a01329e0499992a2 / nonEvaluations 10:65e4d1c3d352aaef / jokers 1:1e57ea331e57ea33",
+   "statutWorker": "pret",
+   "dimensions": {
+    "grille": 0,
+    "lignes": 12,
+    "colonnes": 323,
+    "lignesRendues": 12,
+    "colonnesRendues": 24,
+    "largeur": 1259,
+    "hauteur": 960,
+    "debordementVertical": 0,
+    "debordementHorizontal": 19564
+   },
+   "operations": {
+    "prevues": 1,
+    "executees": 1,
+    "dureeMs": 67
+   },
+   "nonApplicable": [],
+   "resume": null,
+   "saisies": [],
+   "actions": [],
+   "mesures": [
+    {
+     "nom": "remplissage-lru",
+     "fenetre": {
+      "debut": 515.3000000119209,
+      "fin": 555.5999999642372
+     },
+     "valeurs": {
+      "lignes": 12,
+      "lruDebut": 12,
+      "lruFin": 12,
+      "instanciations": 0,
+      "instanciationMs": 0,
+      "instanciationMsParParticipant": null
+     }
+    }
+   ],
+   "memoire": {
+    "chargement": {
+     "page": {
+      "usedSize": 5819552,
+      "totalSize": 6352896,
+      "backingStorageSize": 891812
+     },
+     "worker": {
+      "usedSize": 1836996,
+      "totalSize": 2097152,
+      "backingStorageSize": 505078
+     }
+    },
+    "lru-plein": {
+     "page": {
+      "usedSize": 6519368,
+      "totalSize": 7200768,
+      "backingStorageSize": 891889
+     },
+     "worker": {
+      "usedSize": 1887468,
+      "totalSize": 2621440,
+      "backingStorageSize": 505078
+     }
+    },
+    "fin": {
+     "page": {
+      "usedSize": 6519336,
+      "totalSize": 7200768,
+      "backingStorageSize": 891889
+     },
+     "worker": {
+      "usedSize": 1887468,
+      "totalSize": 2621440,
+      "backingStorageSize": 505078
+     }
+    }
+   },
+   "demarrage": {
+    "structures": 1.100000023841858,
+    "compile": 13.099999964237213,
+    "generation": 7.5,
+    "insertion": 20.30000001192093,
+    "somme": 3.800000011920929,
+    "worker-pret": 395.19999998807907,
+    "table-peinte": 455.5999999642372
+   },
+   "constats": []
+  }
+ ],
+ "cellules": [
+  {
+   "config": "base",
+   "scenario": "changement-participant",
+   "runs": 1,
+   "invalides": 0,
+   "statut": "réussite",
+   "reussite": true,
+   "p95": {
+    "mediane": null,
+    "pire": null
+   },
+   "inp": {
+    "mediane": 40,
+    "pire": 40
+   },
+   "longtasks": {
+    "mediane": 0,
+    "pire": 0
+   },
+   "loaf": {
+    "mediane": 0,
+    "pire": 0
+   },
+   "saisiesIncompletes": {
+    "mediane": 0,
+    "pire": 0
+   },
+   "motifs": []
+  },
+  {
+   "config": "principal",
+   "scenario": "changement-participant",
+   "runs": 1,
+   "invalides": 0,
+   "statut": "réussite",
+   "reussite": true,
+   "p95": {
+    "mediane": null,
+    "pire": null
+   },
+   "inp": {
+    "mediane": 40,
+    "pire": 40
+   },
+   "longtasks": {
+    "mediane": 0,
+    "pire": 0
+   },
+   "loaf": {
+    "mediane": 0,
+    "pire": 0
+   },
+   "saisiesIncompletes": {
+    "mediane": 0,
+    "pire": 0
+   },
+   "motifs": []
+  },
+  {
+   "config": "base",
+   "scenario": "defilement",
+   "runs": 1,
+   "invalides": 0,
+   "statut": "réussite",
+   "reussite": true,
+   "p95": {
+    "mediane": null,
+    "pire": null
+   },
+   "inp": {
+    "mediane": null,
+    "pire": null
+   },
+   "longtasks": {
+    "mediane": 0,
+    "pire": 0
+   },
+   "loaf": {
+    "mediane": 0,
+    "pire": 0
+   },
+   "saisiesIncompletes": {
+    "mediane": 0,
+    "pire": 0
+   },
+   "motifs": []
+  },
+  {
+   "config": "principal",
+   "scenario": "defilement",
+   "runs": 1,
+   "invalides": 0,
+   "statut": "réussite",
+   "reussite": true,
+   "p95": {
+    "mediane": null,
+    "pire": null
+   },
+   "inp": {
+    "mediane": null,
+    "pire": null
+   },
+   "longtasks": {
+    "mediane": 0,
+    "pire": 0
+   },
+   "loaf": {
+    "mediane": 0,
+    "pire": 0
+   },
+   "saisiesIncompletes": {
+    "mediane": 0,
+    "pire": 0
+   },
+   "motifs": []
+  },
+  {
+   "config": "base",
+   "scenario": "ouverture-graphe",
+   "runs": 1,
+   "invalides": 0,
+   "statut": "échec",
+   "reussite": false,
+   "p95": {
+    "mediane": null,
+    "pire": null
+   },
+   "inp": {
+    "mediane": 80,
+    "pire": 80
+   },
+   "longtasks": {
+    "mediane": 2,
+    "pire": 2
+   },
+   "loaf": {
+    "mediane": 3,
+    "pire": 3
+   },
+   "saisiesIncompletes": {
+    "mediane": 0,
+    "pire": 0
+   },
+   "motifs": [
+    "2 longtask(s)"
+   ]
+  },
+  {
+   "config": "principal",
+   "scenario": "ouverture-graphe",
+   "runs": 1,
+   "invalides": 0,
+   "statut": "échec",
+   "reussite": false,
+   "p95": {
+    "mediane": null,
+    "pire": null
+   },
+   "inp": {
+    "mediane": 88,
+    "pire": 88
+   },
+   "longtasks": {
+    "mediane": 4,
+    "pire": 4
+   },
+   "loaf": {
+    "mediane": 4,
+    "pire": 4
+   },
+   "saisiesIncompletes": {
+    "mediane": 0,
+    "pire": 0
+   },
+   "motifs": [
+    "4 longtask(s)"
+   ]
+  }
+ ],
+ "balayageLru": [
+  {
+   "lru": 5,
+   "statut": "réussite",
+   "runsInvalides": 0,
+   "actionsHorsLru": 3,
+   "actionsDansLru": 3,
+   "cohorteDansLeCache": false,
+   "latenceHorsLruMs": 47.80000001192093,
+   "memoireWorkerParParticipantKo": null,
+   "memoireWorkerLruPleinMo": 2.074275016784668,
+   "instanciationMsParParticipant": null
+  },
+  {
+   "lru": 50,
+   "statut": "réussite",
+   "runsInvalides": 0,
+   "actionsHorsLru": 0,
+   "actionsDansLru": 6,
+   "cohorteDansLeCache": true,
+   "latenceHorsLruMs": null,
+   "memoireWorkerParParticipantKo": null,
+   "memoireWorkerLruPleinMo": 2.281709671020508,
+   "instanciationMsParParticipant": null
+  }
+ ]
+}

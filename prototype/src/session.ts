@@ -2,6 +2,7 @@
 // Jeu « corpus » : A01, A03, G3 V1 (état à la copie) et G3 V2 (état final),
 // avec leurs participants types, plus des participants générés (0 par défaut).
 // Jeu « charge » : 3 × G3 étendue, participants générés seulement.
+// Jeu « perf » : structures du corpus choisies, non étendues, P participants générés.
 
 import { sommeControle } from "./generateur/controle";
 import { grillesDuJeu, type Jeu, STRUCTURES_CORPUS } from "./generateur/jeux";
@@ -22,6 +23,8 @@ export interface Session {
   store: StoreNotes;
   commutateurs: Commutateurs;
   jeu: Jeu;
+  /** Réglages de génération du chargement (jeu, structures, effectif, remplissage, graine). */
+  generation: GenerationSession;
   /** Somme de contrôle des sources au chargement (participants types et générés). */
   sommeControle: string;
 }
@@ -53,7 +56,7 @@ export function creerSession(
   generation: GenerationSession = GENERATION_PAR_DEFAUT,
   fabrique: FabriqueStore = storeProvisoire,
 ): Session {
-  const grilles = phase("structures", () => grillesDuJeu(generation.jeu));
+  const grilles = phase("structures", () => grillesDuJeu(generation.jeu, generation.structures));
   const plans = phase("compile", () => grilles.map(({ structure }) => compile(structure, commutateurs)));
   const lignes = phase("generation", () => lignesInitiales(grilles, plans, generation));
   const sources = phase("insertion", () => creerSources(lignes));
@@ -67,6 +70,7 @@ export function creerSession(
     store: fabrique({ sources, plans, commutateurs: resolus, generation, sommeControle: somme }),
     commutateurs,
     jeu: generation.jeu,
+    generation,
     sommeControle: somme,
   };
 }

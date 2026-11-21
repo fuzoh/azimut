@@ -292,7 +292,7 @@ export function creerMoteur(poster: Poster): Moteur {
     variantes = m.variantes ?? VARIANTES_BASE;
     fabrique = FABRIQUES[variantes.calcul];
     enLot = variantes.calcul === "signaux" ? ParticipantSignaux.lot : (f) => f();
-    const jeu = grillesDuJeu(m.generation.jeu);
+    const jeu = grillesDuJeu(m.generation.jeu, m.generation.structures);
     const plans = jeu.map(({ structure }) => compile(structure, m.commutateurs));
     const lignes = lignesInitiales(jeu, plans, m.generation);
     P = lignes.participants.length;

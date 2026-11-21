@@ -1,0 +1,3829 @@
+{
+ "nom": "2026-11-20T15-41-36-charge-p200-fin-s1-x4-fumee-headless",
+ "date": "2026-11-20T15:41:36.426Z",
+ "fumee": true,
+ "instrumentation": "mesure",
+ "commande": "bun harnais/serie.ts --headless --fumee --court --sans-build --jeu charge --participants 200 --remplissage fin --graine 1 --bridage 4 --configs base,principal --sans-lru",
+ "profil": {
+  "id": "charge-p200-fin-s1",
+  "categorie": "charge historique",
+  "demande": {
+   "jeu": "charge",
+   "structures": [],
+   "composite": false,
+   "participants": 200,
+   "remplissage": "fin",
+   "graine": 1,
+   "grille": 0
+  },
+  "url": "http://localhost:4173/?jeu=charge&remplissage=fin&graine=1&participants=200&verif=0&simu=0&calcul=signaux&lieu=worker&cohorte=paresseux&distante=perimee&lru=50",
+  "session": {
+   "jeu": "charge",
+   "structures": [],
+   "participants": 200,
+   "remplissage": "fin",
+   "graine": 1,
+   "sommeControle": "cases 789502:46af8e20e17f476a / nonEvaluations 4538:375a4c689327b1da / jokers 183:9f23105a9642c5c2",
+   "grilles": [
+    {
+     "g": 0,
+     "nom": "G3 V2 étendue ×6 #1",
+     "structure": null,
+     "empreinte": "97b65e84",
+     "donnees": 1465,
+     "calculs": 473,
+     "regroupements": 81,
+     "noeuds": 2110,
+     "axes": 4,
+     "casesPossibles": 293000,
+     "casesStockees": 263148,
+     "nonEvaluations": 1519,
+     "dispenses": 7,
+     "jokers": 63,
+     "remplissageObserve": 0.8981160409556314
+    },
+    {
+     "g": 1,
+     "nom": "G3 V2 étendue ×6 #2",
+     "structure": null,
+     "empreinte": "1f3d456b",
+     "donnees": 1465,
+     "calculs": 473,
+     "regroupements": 81,
+     "noeuds": 2110,
+     "axes": 4,
+     "casesPossibles": 293000,
+     "casesStockees": 262979,
+     "nonEvaluations": 1489,
+     "dispenses": 5,
+     "jokers": 64,
+     "remplissageObserve": 0.8975392491467576
+    },
+    {
+     "g": 2,
+     "nom": "G3 V2 étendue ×6 #3",
+     "structure": null,
+     "empreinte": "ed9ff426",
+     "donnees": 1465,
+     "calculs": 473,
+     "regroupements": 81,
+     "noeuds": 2110,
+     "axes": 4,
+     "casesPossibles": 293000,
+     "casesStockees": 263375,
+     "nonEvaluations": 1514,
+     "dispenses": 4,
+     "jokers": 56,
+     "remplissageObserve": 0.8988907849829352
+    }
+   ]
+  },
+  "dimensions": {
+   "grille": 0,
+   "lignes": 200,
+   "colonnes": 2064,
+   "lignesRendues": 46,
+   "colonnesRendues": 24,
+   "largeur": 1259,
+   "hauteur": 960,
+   "debordementVertical": 3973,
+   "debordementHorizontal": 130988
+  }
+ },
+ "options": {
+  "bridage": 4,
+  "runs": 1,
+  "chauffe": 0,
+  "configs": [
+   "base",
+   "principal"
+  ],
+  "scenarios": [
+   "saisie-rapide",
+   "saisies-distantes",
+   "changement-participant",
+   "changement-axe-vue",
+   "defilement",
+   "ouverture-graphe",
+   "mesures"
+  ],
+  "court": true,
+  "viewport": {
+   "width": 1600,
+   "height": 1000
+  },
+  "lru": 50,
+  "lruBalayage": null,
+  "jeu": "charge",
+  "structures": [],
+  "participants": 200,
+  "remplissage": "fin",
+  "graine": 1,
+  "grille": 0
+ },
+ "machine": {
+  "cpu": "AMD RYZEN AI MAX+ 395 w/ Radeon 8060S",
+  "coeurs": 32,
+  "ramGo": 60,
+  "os": "Linux 7.3.4-1-cachyos",
+  "chrome": "157.0.8103.78",
+  "executable": "/usr/bin/chromium",
+  "mode": "nouveau headless",
+  "secteur": null,
+  "node": "bun 1.4.5, Playwright 1.63.0",
+  "versions": {
+   "react": "19.3.0",
+   "@tanstack/db": "0.11.3",
+   "alien-signals": "3.2.1",
+   "vite": "8.3.2"
+  },
+  "commit": "29876a7 (modifications locales)"
+ },
+ "calibration": {
+  "taux": 4,
+  "ratioPage": 4.0528634329308,
+  "ratioWorkerNatif": 1.002197801411807,
+  "bridageWorker": "logiciel",
+  "ratioWorkerLogiciel": 4.035164835688832,
+  "eventTiming": true,
+  "inpRapporte": true,
+  "reussite": true,
+  "motifs": [
+   "worker non bridé par la page (ratio 1.00), bridage logiciel appliqué"
+  ],
+  "comparaisonModes": null,
+  "dureesMs": {
+   "page ×1": 45.40000003576279,
+   "worker ×1": 45.5,
+   "page ×4": 184,
+   "worker ×4 (page bridée)": 45.59999996423721,
+   "worker ×4 (bridage logiciel)": 183.60000002384186
+  }
+ },
+ "runs": [
+  {
+   "index": 1,
+   "fichier": "001-base-lru50-saisie-rapide.json",
+   "config": "base",
+   "scenario": "saisie-rapide",
+   "lru": 50,
+   "chauffe": false,
+   "balayage": false,
+   "url": "http://localhost:4173/?jeu=charge&remplissage=fin&graine=1&participants=200&verif=0&simu=0&calcul=signaux&lieu=worker&cohorte=paresseux&distante=perimee&lru=50&bridageWorker=4",
+   "tauxBridageLogiciel": 4,
+   "valide": true,
+   "invalidite": [],
+   "erreursPage": [],
+   "delaisDepasses": 0,
+   "somme": "cases 789502:46af8e20e17f476a / nonEvaluations 4538:375a4c689327b1da / jokers 183:9f23105a9642c5c2",
+   "statutWorker": "pret",
+   "dimensions": {
+    "grille": 0,
+    "lignes": 200,
+    "colonnes": 2064,
+    "lignesRendues": 46,
+    "colonnesRendues": 24,
+    "largeur": 1259,
+    "hauteur": 960,
+    "debordementVertical": 3973,
+    "debordementHorizontal": 130988
+   },
+   "operations": {
+    "prevues": 20,
+    "executees": 20,
+    "dureeMs": 5773,
+    "cadence": {
+     "intervalleViseMs": 200,
+     "intervalleMoyenMs": 288.65,
+     "enRetard": 20,
+     "retardMaxMs": 1776
+    },
+    "details": {
+     "validations": 20
+    }
+   },
+   "nonApplicable": [],
+   "resume": {
+    "longtasks": 10,
+    "longtaskMaxMs": 124,
+    "loaf": 22,
+    "inpMs": 104,
+    "p95Ms": 723,
+    "saisies": 20,
+    "saisiesIncompletes": 0,
+    "reussite": false,
+    "motifs": [
+     "10 longtask(s)",
+     "INP 104 ms",
+     "p95 723 ms"
+    ]
+   },
+   "saisies": [
+    {
+     "etapes": {
+      "evenement": 6896.100000023842,
+      "validation": 6925.100000023842,
+      "ecriture": 6925.199999988079,
+      "subscribeChanges": 6930,
+      "envoi": 6930,
+      "workerReception": 6930.199804663658,
+      "workerEnvoi": 6933.399804711342,
+      "retour": 6971.400000035763,
+      "commit": 7129.900000035763,
+      "peinture": 7173.100000023842
+     },
+     "calcul": [
+      6930.19970703125,
+      6930.89990234375
+     ],
+     "version": 1,
+     "taille": 1,
+     "latence": 277
+    },
+    {
+     "etapes": {
+      "evenement": 7208.100000023842,
+      "validation": 7209.300000011921,
+      "ecriture": 7209.800000011921,
+      "subscribeChanges": 7210.5,
+      "envoi": 7210.5,
+      "workerReception": 7210.599804699421,
+      "workerEnvoi": 7212.199804663658,
+      "retour": 7293.300000011921,
+      "commit": 7304,
+      "peinture": 7339.100000023842
+     },
+     "calcul": [
+      7210.599853515625,
+      7210.89990234375
+     ],
+     "version": 2,
+     "taille": 1,
+     "latence": 131
+    },
+    {
+     "etapes": {
+      "evenement": 7406.5,
+      "validation": 7407.199999988079,
+      "ecriture": 7407.300000011921,
+      "subscribeChanges": 7408.699999988079,
+      "envoi": 7408.699999988079,
+      "workerReception": 7408.7998046875,
+      "workerEnvoi": 7410.399804711342,
+      "retour": 7486.900000035763,
+      "commit": 7526.300000011921,
+      "peinture": 7533.5
+     },
+     "calcul": [
+      7408.7998046875,
+      7409.099853515625
+     ],
+     "version": 3,
+     "taille": 1,
+     "latence": 127
+    },
+    {
+     "etapes": {
+      "evenement": 7622.699999988079,
+      "validation": 7623.199999988079,
+      "ecriture": 7623.199999988079,
+      "subscribeChanges": 7624.400000035763,
+      "envoi": 7624.400000035763,
+      "workerReception": null,
+      "workerEnvoi": 7625.199804663658,
+      "retour": 7689.300000011921,
+      "commit": 7699.300000011921,
+      "peinture": 7731.400000035763
+     },
+     "calcul": [
+      7624.39990234375,
+      7624.599853515625
+     ],
+     "version": 4,
+     "taille": 1,
+     "latence": 108.70000004768372
+    },
+    {
+     "etapes": {
+      "evenement": 7777.5,
+      "validation": 7803.600000023842,
+      "ecriture": 7804,
+      "subscribeChanges": 7805,
+      "envoi": 7805.199999988079,
+      "workerReception": 7805.399804711342,
+      "workerEnvoi": 7806.199804663658,
+      "retour": 7877,
+      "commit": 7888.199999988079,
+      "peinture": 7927.5
+     },
+     "calcul": [
+      7805.39990234375,
+      7805.599853515625
+     ],
+     "version": 5,
+     "taille": 1,
+     "latence": 150
+    },
+    {
+     "etapes": {
+      "evenement": 8005.400000035763,
+      "validation": 8006.300000011921,
+      "ecriture": 8006.5,
+      "subscribeChanges": 8009.300000011921,
+      "envoi": 8009.300000011921,
+      "workerReception": 8009.399804711342,
+      "workerEnvoi": 8010.199804663658,
+      "retour": 8081.400000035763,
+      "commit": 8091.600000023842,
+      "peinture": 8130
+     },
+     "calcul": [
+      8009.39990234375,
+      8009.599853515625
+     ],
+     "version": 6,
+     "taille": 1,
+     "latence": 124.59999996423721
+    },
+    {
+     "etapes": {
+      "evenement": 8202.600000023842,
+      "validation": 8203.300000011921,
+      "ecriture": 8203.5,
+      "subscribeChanges": 8204.400000035763,
+      "envoi": 8204.600000023842,
+      "workerReception": 8204.599804699421,
+      "workerEnvoi": 8205.399804711342,
+      "retour": 8276,
+      "commit": 8285.699999988079,
+      "peinture": 8319.800000011921
+     },
+     "calcul": [
+      8204.599853515625,
+      8204.69970703125
+     ],
+     "version": 7,
+     "taille": 1,
+     "latence": 117.19999998807907
+    },
+    {
+     "etapes": {
+      "evenement": 8369.699999988079,
+      "validation": 8370.300000011921,
+      "ecriture": 8370.5,
+      "subscribeChanges": 8371.5,
+      "envoi": 8371.600000023842,
+      "workerReception": 8371.699804663658,
+      "workerEnvoi": 8372.899804711342,
+      "retour": 8446.900000035763,
+      "commit": 8457.400000035763,
+      "peinture": 8494.100000023842
+     },
+     "calcul": [
+      8371.69970703125,
+      8371.89990234375
+     ],
+     "version": 8,
+     "taille": 1,
+     "latence": 124.40000003576279
+    },
+    {
+     "etapes": {
+      "evenement": 8545.400000035763,
+      "validation": 8571.800000011921,
+      "ecriture": 8572.5,
+      "subscribeChanges": 8573.400000035763,
+      "envoi": 8573.400000035763,
+      "workerReception": 8573.599804699421,
+      "workerEnvoi": 8574.599804699421,
+      "retour": 8645.699999988079,
+      "commit": 8656.199999988079,
+      "peinture": 8688
+     },
+     "calcul": [
+      8573.499755859375,
+      8573.69970703125
+     ],
+     "version": 9,
+     "taille": 1,
+     "latence": 142.5999999642372
+    },
+    {
+     "etapes": {
+      "evenement": 8774,
+      "validation": 8774.699999988079,
+      "ecriture": 8774.699999988079,
+      "subscribeChanges": 8776.199999988079,
+      "envoi": 8776.199999988079,
+      "workerReception": 8776.2998046875,
+      "workerEnvoi": 8777.099804699421,
+      "retour": 8855.800000011921,
+      "commit": 8926,
+      "peinture": 8939
+     },
+     "calcul": [
+      8776.2998046875,
+      8776.499755859375
+     ],
+     "version": 10,
+     "taille": 1,
+     "latence": 165
+    },
+    {
+     "etapes": {
+      "evenement": 9062.699999988079,
+      "validation": 9063.699999988079,
+      "ecriture": 9063.699999988079,
+      "subscribeChanges": 9064.800000011921,
+      "envoi": 9064.800000011921,
+      "workerReception": 9064.899804711342,
+      "workerEnvoi": 9065.2998046875,
+      "retour": 9152,
+      "commit": 9775.5,
+      "peinture": 9946.5
+     },
+     "calcul": [
+      9064.89990234375,
+      9064.999755859375
+     ],
+     "version": 11,
+     "taille": 1,
+     "latence": 883.8000000119209
+    },
+    {
+     "etapes": {
+      "evenement": 9857.699999988079,
+      "validation": 9858.699999988079,
+      "ecriture": 9858.699999988079,
+      "subscribeChanges": 9859.5,
+      "envoi": 9860.100000023842,
+      "workerReception": 9860.099804699421,
+      "workerEnvoi": 9861.399804711342,
+      "retour": 9947,
+      "commit": 10459.300000011921,
+      "peinture": 10580.699999988079
+     },
+     "calcul": [
+      9860.099853515625,
+      9860.39990234375
+     ],
+     "version": 12,
+     "taille": 1,
+     "latence": 723
+    },
+    {
+     "etapes": {
+      "evenement": 10495.5,
+      "validation": 10496.400000035763,
+      "ecriture": 10496.400000035763,
+      "subscribeChanges": 10497.400000035763,
+      "envoi": 10497.400000035763,
+      "workerReception": 10497.499804675579,
+      "workerEnvoi": 10497.999804675579,
+      "retour": 10679.699999988079,
+      "commit": 11032.800000011921,
+      "peinture": 11064
+     },
+     "calcul": [
+      10497.499755859375,
+      10497.599853515625
+     ],
+     "version": 13,
+     "taille": 1,
+     "latence": 568.5
+    },
+    {
+     "etapes": {
+      "evenement": 11075.800000011921,
+      "validation": 11106.300000011921,
+      "ecriture": 11106.300000011921,
+      "subscribeChanges": 11107.400000035763,
+      "envoi": 11107.5,
+      "workerReception": 11107.499804675579,
+      "workerEnvoi": 11108.2998046875,
+      "retour": 11149.100000023842,
+      "commit": 11317.5,
+      "peinture": 11433
+     },
+     "calcul": [
+      11107.499755859375,
+      11107.599853515625
+     ],
+     "version": 14,
+     "taille": 1,
+     "latence": 357.19999998807907
+    },
+    {
+     "etapes": {
+      "evenement": 11360.100000023842,
+      "validation": 11361.199999988079,
+      "ecriture": 11361.300000011921,
+      "subscribeChanges": 11361.800000011921,
+      "envoi": 11361.800000011921,
+      "workerReception": null,
+      "workerEnvoi": 11362.599804699421,
+      "retour": 11434,
+      "commit": 11473.800000011921,
+      "peinture": 11479.800000011921
+     },
+     "calcul": [
+      11361.7998046875,
+      11361.89990234375
+     ],
+     "version": 15,
+     "taille": 1,
+     "latence": 119.69999998807907
+    },
+    {
+     "etapes": {
+      "evenement": 11573,
+      "validation": 11573.699999988079,
+      "ecriture": 11573.699999988079,
+      "subscribeChanges": 11574.900000035763,
+      "envoi": 11574.900000035763,
+      "workerReception": 11575.099804699421,
+      "workerEnvoi": 11575.899804711342,
+      "retour": 11647.699999988079,
+      "commit": 11690.699999988079,
+      "peinture": 11696
+     },
+     "calcul": [
+      11575.099853515625,
+      11575.2998046875
+     ],
+     "version": 16,
+     "taille": 1,
+     "latence": 123
+    },
+    {
+     "etapes": {
+      "evenement": 11786.800000011921,
+      "validation": 11787.800000011921,
+      "ecriture": 11787.800000011921,
+      "subscribeChanges": 11788,
+      "envoi": 11788.699999988079,
+      "workerReception": 11788.7998046875,
+      "workerEnvoi": 11790.099804699421,
+      "retour": 11861.300000011921,
+      "commit": 11872.400000035763,
+      "peinture": 11914.699999988079
+     },
+     "calcul": [
+      11788.7998046875,
+      11788.999755859375
+     ],
+     "version": 17,
+     "taille": 1,
+     "latence": 127.89999997615814
+    },
+    {
+     "etapes": {
+      "evenement": 11988.300000011921,
+      "validation": 11988.900000035763,
+      "ecriture": 11989,
+      "subscribeChanges": 11990,
+      "envoi": 11990,
+      "workerReception": null,
+      "workerEnvoi": 11990.7998046875,
+      "retour": 12061.600000023842,
+      "commit": 12073.300000011921,
+      "peinture": 12108.100000023842
+     },
+     "calcul": [
+      11989.999755859375,
+      11990.099853515625
+     ],
+     "version": 18,
+     "taille": 1,
+     "latence": 119.80000001192093
+    },
+    {
+     "etapes": {
+      "evenement": 12176.699999988079,
+      "validation": 12177.699999988079,
+      "ecriture": 12178,
+      "subscribeChanges": 12178.800000011921,
+      "envoi": 12179,
+      "workerReception": 12179.099804699421,
+      "workerEnvoi": 12180.2998046875,
+      "retour": 12253.400000035763,
+      "commit": 12294.600000023842,
+      "peinture": 12299.699999988079
+     },
+     "calcul": [
+      12179.099853515625,
+      12179.19970703125
+     ],
+     "version": 19,
+     "taille": 1,
+     "latence": 123
+    },
+    {
+     "etapes": {
+      "evenement": 12386.400000035763,
+      "validation": 12386.699999988079,
+      "ecriture": 12386.800000011921,
+      "subscribeChanges": 12387.699999988079,
+      "envoi": 12387.699999988079,
+      "workerReception": 12387.7998046875,
+      "workerEnvoi": 12388.599804699421,
+      "retour": 12459.400000035763,
+      "commit": 12462.699999988079,
+      "peinture": 12829.100000023842
+     },
+     "calcul": [
+      12387.7998046875,
+      12387.999755859375
+     ],
+     "version": 20,
+     "taille": 1,
+     "latence": 442.69999998807907
+    }
+   ],
+   "actions": [],
+   "mesures": [],
+   "memoire": {
+    "chargement": {
+     "page": {
+      "usedSize": 163978204,
+      "totalSize": 168255488,
+      "backingStorageSize": 1451706
+     },
+     "worker": {
+      "usedSize": 8212280,
+      "totalSize": 9961472,
+      "backingStorageSize": 9401052
+     }
+    },
+    "fin": {
+     "page": {
+      "usedSize": 166446184,
+      "totalSize": 170151936,
+      "backingStorageSize": 1452394
+     },
+     "worker": {
+      "usedSize": 9788784,
+      "totalSize": 10485760,
+      "backingStorageSize": 9401075
+     }
+    }
+   },
+   "demarrage": {
+    "extension": 10.599999964237213,
+    "structures": 10.699999988079071,
+    "compile": 93.59999996423721,
+    "generation": 475.7000000476837,
+    "insertion": 3765,
+    "somme": 548.5999999642372,
+    "worker-pret": 6180.800000011921,
+    "table-peinte": 6332.699999988079
+   },
+   "constats": []
+  },
+  {
+   "index": 2,
+   "fichier": "002-principal-lru50-saisie-rapide.json",
+   "config": "principal",
+   "scenario": "saisie-rapide",
+   "lru": 50,
+   "chauffe": false,
+   "balayage": false,
+   "url": "http://localhost:4173/?jeu=charge&remplissage=fin&graine=1&participants=200&verif=0&simu=0&calcul=signaux&lieu=principal&cohorte=paresseux&distante=perimee&lru=50",
+   "tauxBridageLogiciel": 1,
+   "valide": true,
+   "invalidite": [],
+   "erreursPage": [],
+   "delaisDepasses": 0,
+   "somme": "cases 789502:46af8e20e17f476a / nonEvaluations 4538:375a4c689327b1da / jokers 183:9f23105a9642c5c2",
+   "statutWorker": "aucun",
+   "dimensions": {
+    "grille": 0,
+    "lignes": 200,
+    "colonnes": 2064,
+    "lignesRendues": 46,
+    "colonnesRendues": 24,
+    "largeur": 1259,
+    "hauteur": 960,
+    "debordementVertical": 3973,
+    "debordementHorizontal": 130988
+   },
+   "operations": {
+    "prevues": 20,
+    "executees": 20,
+    "dureeMs": 4736,
+    "cadence": {
+     "intervalleViseMs": 200,
+     "intervalleMoyenMs": 236.8,
+     "enRetard": 15,
+     "retardMaxMs": 983
+    },
+    "details": {
+     "validations": 20
+    }
+   },
+   "nonApplicable": [],
+   "resume": {
+    "longtasks": 24,
+    "longtaskMaxMs": 115,
+    "loaf": 24,
+    "inpMs": 136,
+    "p95Ms": 549,
+    "saisies": 20,
+    "saisiesIncompletes": 0,
+    "reussite": false,
+    "motifs": [
+     "24 longtask(s)",
+     "INP 136 ms",
+     "p95 549 ms"
+    ]
+   },
+   "saisies": [
+    {
+     "etapes": {
+      "evenement": 5406.199999988079,
+      "validation": 5434.399999976158,
+      "ecriture": 5434.5,
+      "subscribeChanges": 5439.399999976158,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 5550.800000011921,
+      "peinture": 5587.199999988079
+     },
+     "calcul": [
+      5439.800000011921,
+      5446.599999964237
+     ],
+     "version": 1,
+     "taille": null,
+     "latence": 181
+    },
+    {
+     "etapes": {
+      "evenement": 5601.5,
+      "validation": 5627.699999988079,
+      "ecriture": 5628.199999988079,
+      "subscribeChanges": 5629.399999976158,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 5682.300000011921,
+      "peinture": 5714.300000011921
+     },
+     "calcul": [
+      5629.399999976158,
+      5633.899999976158
+     ],
+     "version": 2,
+     "taille": null,
+     "latence": 112.80000001192093
+    },
+    {
+     "etapes": {
+      "evenement": 5778.5,
+      "validation": 5779.599999964237,
+      "ecriture": 5779.599999964237,
+      "subscribeChanges": 5780.599999964237,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 5832.099999964237,
+      "peinture": 5861.899999976158
+     },
+     "calcul": [
+      5780.699999988079,
+      5784.399999976158
+     ],
+     "version": 3,
+     "taille": null,
+     "latence": 83.39999997615814
+    },
+    {
+     "etapes": {
+      "evenement": 5983.800000011921,
+      "validation": 5985,
+      "ecriture": 5985.199999988079,
+      "subscribeChanges": 5986.5,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 6035.399999976158,
+      "peinture": 6062.899999976158
+     },
+     "calcul": [
+      5986.800000011921,
+      5990.599999964237
+     ],
+     "version": 4,
+     "taille": null,
+     "latence": 79.09999996423721
+    },
+    {
+     "etapes": {
+      "evenement": 6129,
+      "validation": 6129.899999976158,
+      "ecriture": 6129.899999976158,
+      "subscribeChanges": 6130.899999976158,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 6181.099999964237,
+      "peinture": 6215.599999964237
+     },
+     "calcul": [
+      6130.899999976158,
+      6135.300000011921
+     ],
+     "version": 5,
+     "taille": null,
+     "latence": 86.59999996423721
+    },
+    {
+     "etapes": {
+      "evenement": 6278.199999988079,
+      "validation": 6278.699999988079,
+      "ecriture": 6279.5,
+      "subscribeChanges": 6282.399999976158,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 6331.099999964237,
+      "peinture": 6361
+     },
+     "calcul": [
+      6282.399999976158,
+      6286.399999976158
+     ],
+     "version": 6,
+     "taille": null,
+     "latence": 82.80000001192093
+    },
+    {
+     "etapes": {
+      "evenement": 6478.399999976158,
+      "validation": 6478.699999988079,
+      "ecriture": 6479.399999976158,
+      "subscribeChanges": 6480.5,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 6534.199999988079,
+      "peinture": 6563.899999976158
+     },
+     "calcul": [
+      6480.599999964237,
+      6484.5
+     ],
+     "version": 7,
+     "taille": null,
+     "latence": 85.5
+    },
+    {
+     "etapes": {
+      "evenement": 6678.099999964237,
+      "validation": 6679.099999964237,
+      "ecriture": 6679.300000011921,
+      "subscribeChanges": 6680.199999988079,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 6730.699999988079,
+      "peinture": 6761.099999964237
+     },
+     "calcul": [
+      6680.5,
+      6685.099999964237
+     ],
+     "version": 8,
+     "taille": null,
+     "latence": 83
+    },
+    {
+     "etapes": {
+      "evenement": 6860,
+      "validation": 6860.899999976158,
+      "ecriture": 6860.899999976158,
+      "subscribeChanges": 6861.899999976158,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 6914.099999964237,
+      "peinture": 6944.5
+     },
+     "calcul": [
+      6861.899999976158,
+      6865.699999988079
+     ],
+     "version": 9,
+     "taille": null,
+     "latence": 84.5
+    },
+    {
+     "etapes": {
+      "evenement": 7037.300000011921,
+      "validation": 7081.099999964237,
+      "ecriture": 7081.099999964237,
+      "subscribeChanges": 7082.699999988079,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 7226.399999976158,
+      "peinture": 7226.899999976158
+     },
+     "calcul": [
+      7082.800000011921,
+      7086.099999964237
+     ],
+     "version": 10,
+     "taille": null,
+     "latence": 189.5999999642372
+    },
+    {
+     "etapes": {
+      "evenement": 7403.399999976158,
+      "validation": 7404.099999964237,
+      "ecriture": 7404.199999988079,
+      "subscribeChanges": 7405.300000011921,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 7975.099999964237,
+      "peinture": 7975.899999976158
+     },
+     "calcul": [
+      7405.399999976158,
+      7409.099999964237
+     ],
+     "version": 11,
+     "taille": null,
+     "latence": 572.5
+    },
+    {
+     "etapes": {
+      "evenement": 8029.399999976158,
+      "validation": 8031.099999964237,
+      "ecriture": 8031.099999964237,
+      "subscribeChanges": 8032.199999988079,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 8390.899999976158,
+      "peinture": 8578.399999976158
+     },
+     "calcul": [
+      8032.199999988079,
+      8036.899999976158
+     ],
+     "version": 12,
+     "taille": null,
+     "latence": 549
+    },
+    {
+     "etapes": {
+      "evenement": 8358.300000011921,
+      "validation": 8455.5,
+      "ecriture": 8455.599999964237,
+      "subscribeChanges": 8456.300000011921,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 8846.099999964237,
+      "peinture": 8887.099999964237
+     },
+     "calcul": [
+      8456.399999976158,
+      8460.300000011921
+     ],
+     "version": 13,
+     "taille": null,
+     "latence": 528.7999999523163
+    },
+    {
+     "etapes": {
+      "evenement": 8904.599999964237,
+      "validation": 8935.399999976158,
+      "ecriture": 8935.399999976158,
+      "subscribeChanges": 8935.899999976158,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 9043.099999964237,
+      "peinture": 9075.599999964237
+     },
+     "calcul": [
+      8935.899999976158,
+      8940.099999964237
+     ],
+     "version": 14,
+     "taille": null,
+     "latence": 171
+    },
+    {
+     "etapes": {
+      "evenement": 9117,
+      "validation": 9118,
+      "ecriture": 9118,
+      "subscribeChanges": 9118.899999976158,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 9162.5,
+      "peinture": 9191.800000011921
+     },
+     "calcul": [
+      9118.899999976158,
+      9122.5
+     ],
+     "version": 15,
+     "taille": null,
+     "latence": 74.80000001192093
+    },
+    {
+     "etapes": {
+      "evenement": 9265.5,
+      "validation": 9266.099999964237,
+      "ecriture": 9266.199999988079,
+      "subscribeChanges": 9266.599999964237,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 9316.599999964237,
+      "peinture": 9348
+     },
+     "calcul": [
+      9266.699999988079,
+      9270.699999988079
+     ],
+     "version": 16,
+     "taille": null,
+     "latence": 82.5
+    },
+    {
+     "etapes": {
+      "evenement": 9415.199999988079,
+      "validation": 9415.599999964237,
+      "ecriture": 9415.699999988079,
+      "subscribeChanges": 9416.399999976158,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 9464.5,
+      "peinture": 9494
+     },
+     "calcul": [
+      9416.399999976158,
+      9420.399999976158
+     ],
+     "version": 17,
+     "taille": null,
+     "latence": 78.80000001192093
+    },
+    {
+     "etapes": {
+      "evenement": 9564.800000011921,
+      "validation": 9565.199999988079,
+      "ecriture": 9565.800000011921,
+      "subscribeChanges": 9565.899999976158,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 9614.599999964237,
+      "peinture": 9646
+     },
+     "calcul": [
+      9566.599999964237,
+      9570.800000011921
+     ],
+     "version": 18,
+     "taille": null,
+     "latence": 81.19999998807907
+    },
+    {
+     "etapes": {
+      "evenement": 9714.399999976158,
+      "validation": 9715.300000011921,
+      "ecriture": 9715.300000011921,
+      "subscribeChanges": 9715.399999976158,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 9762.599999964237,
+      "peinture": 9792.699999988079
+     },
+     "calcul": [
+      9716.099999964237,
+      9719.699999988079
+     ],
+     "version": 19,
+     "taille": null,
+     "latence": 78.30000001192093
+    },
+    {
+     "etapes": {
+      "evenement": 9864.199999988079,
+      "validation": 9864.800000011921,
+      "ecriture": 9864.800000011921,
+      "subscribeChanges": 9865.599999964237,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 9913.099999964237,
+      "peinture": 9946.300000011921
+     },
+     "calcul": [
+      9865.599999964237,
+      9869.399999976158
+     ],
+     "version": 20,
+     "taille": null,
+     "latence": 82.10000002384186
+    }
+   ],
+   "actions": [],
+   "mesures": [],
+   "memoire": {
+    "chargement": {
+     "page": {
+      "usedSize": 167941800,
+      "totalSize": 172449792,
+      "backingStorageSize": 1518994
+     },
+     "worker": null
+    },
+    "fin": {
+     "page": {
+      "usedSize": 171884216,
+      "totalSize": 174084096,
+      "backingStorageSize": 1520045
+     },
+     "worker": null
+    }
+   },
+   "demarrage": {
+    "structures": 12.599999964237213,
+    "extension": 12.100000023841858,
+    "compile": 96.80000001192093,
+    "generation": 481.10000002384186,
+    "insertion": 3321.899999976158,
+    "somme": 476.69999998807907,
+    "table-peinte": 4972.599999964237
+   },
+   "constats": []
+  },
+  {
+   "index": 3,
+   "fichier": "003-base-lru50-saisies-distantes.json",
+   "config": "base",
+   "scenario": "saisies-distantes",
+   "lru": 50,
+   "chauffe": false,
+   "balayage": false,
+   "url": "http://localhost:4173/?jeu=charge&remplissage=fin&graine=1&participants=200&verif=0&simu=0&calcul=signaux&lieu=worker&cohorte=paresseux&distante=perimee&lru=50&bridageWorker=4",
+   "tauxBridageLogiciel": 4,
+   "valide": true,
+   "invalidite": [],
+   "erreursPage": [],
+   "delaisDepasses": 0,
+   "somme": "cases 789502:46af8e20e17f476a / nonEvaluations 4538:375a4c689327b1da / jokers 183:9f23105a9642c5c2",
+   "statutWorker": "pret",
+   "dimensions": {
+    "grille": 0,
+    "lignes": 200,
+    "colonnes": 2064,
+    "lignesRendues": 46,
+    "colonnesRendues": 24,
+    "largeur": 1259,
+    "hauteur": 960,
+    "debordementVertical": 3973,
+    "debordementHorizontal": 130988
+   },
+   "operations": {
+    "prevues": 20,
+    "executees": 20,
+    "dureeMs": 5959,
+    "cadence": {
+     "intervalleViseMs": 200,
+     "intervalleMoyenMs": 297.95,
+     "enRetard": 20,
+     "retardMaxMs": 1959
+    },
+    "details": {
+     "validations": 20,
+     "saisiesDistantes": 24
+    }
+   },
+   "nonApplicable": [],
+   "resume": {
+    "longtasks": 8,
+    "longtaskMaxMs": 122,
+    "loaf": 25,
+    "inpMs": 112,
+    "p95Ms": 305.30000001192093,
+    "saisies": 20,
+    "saisiesIncompletes": 0,
+    "reussite": false,
+    "motifs": [
+     "8 longtask(s)",
+     "INP 112 ms",
+     "p95 305 ms"
+    ]
+   },
+   "saisies": [
+    {
+     "etapes": {
+      "evenement": 6325.400000035763,
+      "validation": 6326.800000011921,
+      "ecriture": 6326.800000011921,
+      "subscribeChanges": 6332.400000035763,
+      "envoi": 6332.5,
+      "workerReception": 6332.800048828125,
+      "workerEnvoi": 6336.200048863888,
+      "retour": 6375.600000023842,
+      "commit": 6378.200000047684,
+      "peinture": 6378.300000011921
+     },
+     "calcul": [
+      6332.699951171875,
+      6333.400146484375
+     ],
+     "version": 1,
+     "taille": 1,
+     "latence": 52.89999997615814
+    },
+    {
+     "etapes": {
+      "evenement": 6632.5,
+      "validation": 6633.600000023842,
+      "ecriture": 6633.600000023842,
+      "subscribeChanges": 6634.900000035763,
+      "envoi": 6635,
+      "workerReception": 6635.100048840046,
+      "workerEnvoi": 6636.700048863888,
+      "retour": 6710.700000047684,
+      "commit": 6750.900000035763,
+      "peinture": 6751
+     },
+     "calcul": [
+      6635.10009765625,
+      6635.400146484375
+     ],
+     "version": 3,
+     "taille": 1,
+     "latence": 118.5
+    },
+    {
+     "etapes": {
+      "evenement": 6910.300000011921,
+      "validation": 6911.300000011921,
+      "ecriture": 6911.300000011921,
+      "subscribeChanges": 6912.600000023842,
+      "envoi": 6912.600000023842,
+      "workerReception": 6912.700048863888,
+      "workerEnvoi": 6913.900048851967,
+      "retour": 6977.700000047684,
+      "commit": 7013.300000011921,
+      "peinture": 7013.300000011921
+     },
+     "calcul": [
+      6912.699951171875,
+      6912.900146484375
+     ],
+     "version": 5,
+     "taille": 1,
+     "latence": 103
+    },
+    {
+     "etapes": {
+      "evenement": 7106.5,
+      "validation": 7107.400000035763,
+      "ecriture": 7107.5,
+      "subscribeChanges": 7108.300000011921,
+      "envoi": 7109,
+      "workerReception": 7109.100048840046,
+      "workerEnvoi": 7110.700048863888,
+      "retour": 7183.900000035763,
+      "commit": 7187,
+      "peinture": 7187.5
+     },
+     "calcul": [
+      7109,
+      7109.300048828125
+     ],
+     "version": 6,
+     "taille": 1,
+     "latence": 81
+    },
+    {
+     "etapes": {
+      "evenement": 7327.600000023842,
+      "validation": 7328.100000023842,
+      "ecriture": 7328.600000023842,
+      "subscribeChanges": 7329.400000035763,
+      "envoi": 7329.5,
+      "workerReception": 7329.500048816204,
+      "workerEnvoi": 7331.200048863888,
+      "retour": 7401.5,
+      "commit": 7413,
+      "peinture": 7448.400000035763
+     },
+     "calcul": [
+      7329.5,
+      7329.800048828125
+     ],
+     "version": 8,
+     "taille": 1,
+     "latence": 120.80000001192093
+    },
+    {
+     "etapes": {
+      "evenement": 7480.5,
+      "validation": 7506.900000035763,
+      "ecriture": 7507.400000035763,
+      "subscribeChanges": 7509.200000047684,
+      "envoi": 7509.200000047684,
+      "workerReception": 7509.300048828125,
+      "workerEnvoi": 7510.100048840046,
+      "retour": 7578.200000047684,
+      "commit": 7580.5,
+      "peinture": 7587.800000011921
+     },
+     "calcul": [
+      7509.300048828125,
+      7509.5
+     ],
+     "version": 9,
+     "taille": 1,
+     "latence": 107.30000001192093
+    },
+    {
+     "etapes": {
+      "evenement": 7726.200000047684,
+      "validation": 7727.100000023842,
+      "ecriture": 7727.600000023842,
+      "subscribeChanges": 7728.5,
+      "envoi": 7728.5,
+      "workerReception": 7728.700048863888,
+      "workerEnvoi": 7729.100048840046,
+      "retour": 7800.700000047684,
+      "commit": 7811.700000047684,
+      "peinture": 7843.800000011921
+     },
+     "calcul": [
+      7728.699951171875,
+      7728.800048828125
+     ],
+     "version": 11,
+     "taille": 1,
+     "latence": 117.59999996423721
+    },
+    {
+     "etapes": {
+      "evenement": 7908.600000023842,
+      "validation": 7909.400000035763,
+      "ecriture": 7909.5,
+      "subscribeChanges": 7910.5,
+      "envoi": 7910.5,
+      "workerReception": 7910.600048840046,
+      "workerEnvoi": 7911.400048851967,
+      "retour": 7982.200000047684,
+      "commit": 7985.300000011921,
+      "peinture": 7993.200000047684
+     },
+     "calcul": [
+      7910.60009765625,
+      7910.800048828125
+     ],
+     "version": 12,
+     "taille": 1,
+     "latence": 84.60000002384186
+    },
+    {
+     "etapes": {
+      "evenement": 8114.5,
+      "validation": 8142.200000047684,
+      "ecriture": 8142.300000011921,
+      "subscribeChanges": 8143.100000023842,
+      "envoi": 8143.100000023842,
+      "workerReception": 8143.100048840046,
+      "workerEnvoi": 8144.000048816204,
+      "retour": 8216.200000047684,
+      "commit": 8226.600000023842,
+      "peinture": 8260.200000047684
+     },
+     "calcul": [
+      8143.10009765625,
+      8143.300048828125
+     ],
+     "version": 14,
+     "taille": 1,
+     "latence": 145.70000004768372
+    },
+    {
+     "etapes": {
+      "evenement": 8345.300000011921,
+      "validation": 8347.300000011921,
+      "ecriture": 8348.100000023842,
+      "subscribeChanges": 8348.900000035763,
+      "envoi": 8348.900000035763,
+      "workerReception": 8349.000048816204,
+      "workerEnvoi": 8349.500048816204,
+      "retour": 8427.400000035763,
+      "commit": 8437.100000023842,
+      "peinture": 8438.200000047684
+     },
+     "calcul": [
+      8349,
+      8349.10009765625
+     ],
+     "version": 15,
+     "taille": 1,
+     "latence": 92.90000003576279
+    },
+    {
+     "etapes": {
+      "evenement": 8667.100000023842,
+      "validation": 8668,
+      "ecriture": 8668,
+      "subscribeChanges": 8668.800000011921,
+      "envoi": 8668.800000011921,
+      "workerReception": 8668.800048828125,
+      "workerEnvoi": 8669.600048840046,
+      "retour": 8756.100000023842,
+      "commit": 8918.300000011921,
+      "peinture": 8992.300000011921
+     },
+     "calcul": [
+      8668.800048828125,
+      8669
+     ],
+     "version": 17,
+     "taille": 1,
+     "latence": 325.19999998807907
+    },
+    {
+     "etapes": {
+      "evenement": 9470.600000023842,
+      "validation": 9470.800000011921,
+      "ecriture": 9470.800000011921,
+      "subscribeChanges": 9471.800000011921,
+      "envoi": 9471.800000011921,
+      "workerReception": 9471.900048851967,
+      "workerEnvoi": 9473.900048851967,
+      "retour": 9600.100000023842,
+      "commit": 9602.600000023842,
+      "peinture": 9608.5
+     },
+     "calcul": [
+      9471.900146484375,
+      9472.400146484375
+     ],
+     "version": 20,
+     "taille": 1,
+     "latence": 137.89999997615814
+    },
+    {
+     "etapes": {
+      "evenement": 9936.300000011921,
+      "validation": 9937.300000011921,
+      "ecriture": 9937.300000011921,
+      "subscribeChanges": 9937.800000011921,
+      "envoi": 9937.800000011921,
+      "workerReception": 9937.900048851967,
+      "workerEnvoi": 9938.700048863888,
+      "retour": 10097.100000023842,
+      "commit": 10123.700000047684,
+      "peinture": 10241.600000023842
+     },
+     "calcul": [
+      9937.900146484375,
+      9938.10009765625
+     ],
+     "version": 22,
+     "taille": 1,
+     "latence": 305.30000001192093
+    },
+    {
+     "etapes": {
+      "evenement": 10658.900000035763,
+      "validation": 10660.600000023842,
+      "ecriture": 10660.600000023842,
+      "subscribeChanges": 10661.200000047684,
+      "envoi": 10661.300000011921,
+      "workerReception": 10661.400048851967,
+      "workerEnvoi": 10661.800048828125,
+      "retour": 10696.300000011921,
+      "commit": 10823.700000047684,
+      "peinture": 10937.300000011921
+     },
+     "calcul": [
+      10661.400146484375,
+      10661.5
+     ],
+     "version": 25,
+     "taille": 1,
+     "latence": 278.39999997615814
+    },
+    {
+     "etapes": {
+      "evenement": 10835.800000011921,
+      "validation": 10864.600000023842,
+      "ecriture": 10864.600000023842,
+      "subscribeChanges": 10865.5,
+      "envoi": 10865.5,
+      "workerReception": 10865.600048840046,
+      "workerEnvoi": 10866.100048840046,
+      "retour": 10937.300000011921,
+      "commit": 10940,
+      "peinture": 10948.800000011921
+     },
+     "calcul": [
+      10865.60009765625,
+      10865.699951171875
+     ],
+     "version": 26,
+     "taille": 1,
+     "latence": 113
+    },
+    {
+     "etapes": {
+      "evenement": 11093.800000011921,
+      "validation": 11094.300000011921,
+      "ecriture": 11094.300000011921,
+      "subscribeChanges": 11095.5,
+      "envoi": 11095.5,
+      "workerReception": 11095.700048863888,
+      "workerEnvoi": 11096.200048863888,
+      "retour": 11168.100000023842,
+      "commit": 11182,
+      "peinture": 11216.700000047684
+     },
+     "calcul": [
+      11095.699951171875,
+      11095.699951171875
+     ],
+     "version": 28,
+     "taille": 1,
+     "latence": 122.90000003576279
+    },
+    {
+     "etapes": {
+      "evenement": 11294,
+      "validation": 11294.700000047684,
+      "ecriture": 11294.800000011921,
+      "subscribeChanges": 11295.800000011921,
+      "envoi": 11295.800000011921,
+      "workerReception": 11295.800048828125,
+      "workerEnvoi": 11297.100048840046,
+      "retour": 11367.400000035763,
+      "commit": 11369.900000035763,
+      "peinture": 11370
+     },
+     "calcul": [
+      11295.800048828125,
+      11296.10009765625
+     ],
+     "version": 29,
+     "taille": 1,
+     "latence": 76
+    },
+    {
+     "etapes": {
+      "evenement": 11510.800000011921,
+      "validation": 11511.300000011921,
+      "ecriture": 11511.700000047684,
+      "subscribeChanges": 11512.5,
+      "envoi": 11512.5,
+      "workerReception": 11512.600048840046,
+      "workerEnvoi": 11513.100048840046,
+      "retour": 11584.5,
+      "commit": 11597,
+      "peinture": 11633
+     },
+     "calcul": [
+      11512.60009765625,
+      11512.699951171875
+     ],
+     "version": 31,
+     "taille": 1,
+     "latence": 122.19999998807907
+    },
+    {
+     "etapes": {
+      "evenement": 11732.400000035763,
+      "validation": 11760.5,
+      "ecriture": 11760.5,
+      "subscribeChanges": 11761.800000011921,
+      "envoi": 11761.800000011921,
+      "workerReception": 11761.900048851967,
+      "workerEnvoi": 11762.300048828125,
+      "retour": 11834.900000035763,
+      "commit": 11880.800000011921,
+      "peinture": 11886.600000023842
+     },
+     "calcul": [
+      11761.900146484375,
+      11762
+     ],
+     "version": 33,
+     "taille": 1,
+     "latence": 154.19999998807907
+    },
+    {
+     "etapes": {
+      "evenement": 11993.600000023842,
+      "validation": 11994.600000023842,
+      "ecriture": 11994.700000047684,
+      "subscribeChanges": 11994.800000011921,
+      "envoi": 11995.700000047684,
+      "workerReception": 11995.700048863888,
+      "workerEnvoi": 11996.500048816204,
+      "retour": 12065.5,
+      "commit": 12068.100000023842,
+      "peinture": 12114.300000011921
+     },
+     "calcul": [
+      11995.699951171875,
+      11995.900146484375
+     ],
+     "version": 34,
+     "taille": 1,
+     "latence": 120.69999998807907
+    }
+   ],
+   "actions": [],
+   "mesures": [],
+   "memoire": {
+    "chargement": {
+     "page": {
+      "usedSize": 163977388,
+      "totalSize": 167993344,
+      "backingStorageSize": 1451705
+     },
+     "worker": {
+      "usedSize": 8144540,
+      "totalSize": 10223616,
+      "backingStorageSize": 9401052
+     }
+    },
+    "fin": {
+     "page": {
+      "usedSize": 166506728,
+      "totalSize": 168841216,
+      "backingStorageSize": 1452469
+     },
+     "worker": {
+      "usedSize": 9721708,
+      "totalSize": 10223616,
+      "backingStorageSize": 9401075
+     }
+    }
+   },
+   "demarrage": {
+    "structures": 10.299999952316284,
+    "extension": 10.199999988079071,
+    "compile": 108.5,
+    "generation": 476.4000000357628,
+    "insertion": 3160.800000011921,
+    "somme": 485.19999998807907,
+    "worker-pret": 5595.200000047684,
+    "table-peinte": 5748.5
+   },
+   "constats": []
+  },
+  {
+   "index": 4,
+   "fichier": "004-principal-lru50-saisies-distantes.json",
+   "config": "principal",
+   "scenario": "saisies-distantes",
+   "lru": 50,
+   "chauffe": false,
+   "balayage": false,
+   "url": "http://localhost:4173/?jeu=charge&remplissage=fin&graine=1&participants=200&verif=0&simu=0&calcul=signaux&lieu=principal&cohorte=paresseux&distante=perimee&lru=50",
+   "tauxBridageLogiciel": 1,
+   "valide": true,
+   "invalidite": [],
+   "erreursPage": [],
+   "delaisDepasses": 0,
+   "somme": "cases 789502:46af8e20e17f476a / nonEvaluations 4538:375a4c689327b1da / jokers 183:9f23105a9642c5c2",
+   "statutWorker": "aucun",
+   "dimensions": {
+    "grille": 0,
+    "lignes": 200,
+    "colonnes": 2064,
+    "lignesRendues": 46,
+    "colonnesRendues": 24,
+    "largeur": 1259,
+    "hauteur": 960,
+    "debordementVertical": 3973,
+    "debordementHorizontal": 130988
+   },
+   "operations": {
+    "prevues": 20,
+    "executees": 20,
+    "dureeMs": 4910,
+    "cadence": {
+     "intervalleViseMs": 200,
+     "intervalleMoyenMs": 245.5,
+     "enRetard": 17,
+     "retardMaxMs": 1031
+    },
+    "details": {
+     "validations": 20,
+     "saisiesDistantes": 21
+    }
+   },
+   "nonApplicable": [],
+   "resume": {
+    "longtasks": 18,
+    "longtaskMaxMs": 115,
+    "loaf": 29,
+    "inpMs": 104,
+    "p95Ms": 169,
+    "saisies": 20,
+    "saisiesIncompletes": 0,
+    "reussite": false,
+    "motifs": [
+     "18 longtask(s)",
+     "INP 104 ms",
+     "p95 169 ms"
+    ]
+   },
+   "saisies": [
+    {
+     "etapes": {
+      "evenement": 5713.199999988079,
+      "validation": 5714.5,
+      "ecriture": 5714.599999964237,
+      "subscribeChanges": 5719.299999952316,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 5732.699999988079,
+      "peinture": 5762.599999964237
+     },
+     "calcul": [
+      5720.099999964237,
+      5726.799999952316
+     ],
+     "version": 1,
+     "taille": null,
+     "latence": 49.39999997615814
+    },
+    {
+     "etapes": {
+      "evenement": 5976.699999988079,
+      "validation": 5977.699999988079,
+      "ecriture": 5977.799999952316,
+      "subscribeChanges": 5979.099999964237,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 6029.799999952316,
+      "peinture": 6059.899999976158
+     },
+     "calcul": [
+      5979.099999964237,
+      5982.799999952316
+     ],
+     "version": 3,
+     "taille": null,
+     "latence": 83.19999998807907
+    },
+    {
+     "etapes": {
+      "evenement": 6156.599999964237,
+      "validation": 6157.5,
+      "ecriture": 6157.599999964237,
+      "subscribeChanges": 6158.599999964237,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 6210.299999952316,
+      "peinture": 6241.899999976158
+     },
+     "calcul": [
+      6158.599999964237,
+      6162.099999964237
+     ],
+     "version": 4,
+     "taille": null,
+     "latence": 85.30000001192093
+    },
+    {
+     "etapes": {
+      "evenement": 6371.5,
+      "validation": 6372,
+      "ecriture": 6372,
+      "subscribeChanges": 6373,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 6423.099999964237,
+      "peinture": 6451.799999952316
+     },
+     "calcul": [
+      6373,
+      6377
+     ],
+     "version": 6,
+     "taille": null,
+     "latence": 80.29999995231628
+    },
+    {
+     "etapes": {
+      "evenement": 6525.899999976158,
+      "validation": 6526.899999976158,
+      "ecriture": 6527.099999964237,
+      "subscribeChanges": 6527.799999952316,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 6576.099999964237,
+      "peinture": 6608.5
+     },
+     "calcul": [
+      6527.799999952316,
+      6532.099999964237
+     ],
+     "version": 7,
+     "taille": null,
+     "latence": 82.60000002384186
+    },
+    {
+     "etapes": {
+      "evenement": 6711,
+      "validation": 6711.299999952316,
+      "ecriture": 6711.299999952316,
+      "subscribeChanges": 6713,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 6754.5,
+      "peinture": 6780.5
+     },
+     "calcul": [
+      6713,
+      6717
+     ],
+     "version": 9,
+     "taille": null,
+     "latence": 69.5
+    },
+    {
+     "etapes": {
+      "evenement": 6856.599999964237,
+      "validation": 6857.599999964237,
+      "ecriture": 6857.599999964237,
+      "subscribeChanges": 6859.099999964237,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 6907.599999964237,
+      "peinture": 6939.5
+     },
+     "calcul": [
+      6859.099999964237,
+      6863.199999988079
+     ],
+     "version": 10,
+     "taille": null,
+     "latence": 82.90000003576279
+    },
+    {
+     "etapes": {
+      "evenement": 6981.199999988079,
+      "validation": 7007.599999964237,
+      "ecriture": 7008,
+      "subscribeChanges": 7008.599999964237,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 7055.5,
+      "peinture": 7119
+     },
+     "calcul": [
+      7008.599999964237,
+      7012.399999976158
+     ],
+     "version": 11,
+     "taille": null,
+     "latence": 137.80000001192093
+    },
+    {
+     "etapes": {
+      "evenement": 7191.5,
+      "validation": 7192.199999988079,
+      "ecriture": 7192.199999988079,
+      "subscribeChanges": 7193.199999988079,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 7238.5,
+      "peinture": 7265.899999976158
+     },
+     "calcul": [
+      7193.199999988079,
+      7197.199999988079
+     ],
+     "version": 13,
+     "taille": null,
+     "latence": 74.39999997615814
+    },
+    {
+     "etapes": {
+      "evenement": 7393.099999964237,
+      "validation": 7393.5,
+      "ecriture": 7394,
+      "subscribeChanges": 7394.699999988079,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 7487.299999952316,
+      "peinture": 7488.299999952316
+     },
+     "calcul": [
+      7394.799999952316,
+      7398
+     ],
+     "version": 14,
+     "taille": null,
+     "latence": 95.19999998807907
+    },
+    {
+     "etapes": {
+      "evenement": 7731,
+      "validation": 7731.5,
+      "ecriture": 7731.5,
+      "subscribeChanges": 7732.699999988079,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 7825.199999988079,
+      "peinture": 7895.799999952316
+     },
+     "calcul": [
+      7732.699999988079,
+      7736.599999964237
+     ],
+     "version": 16,
+     "taille": null,
+     "latence": 164.79999995231628
+    },
+    {
+     "etapes": {
+      "evenement": 8520.899999976158,
+      "validation": 8522.099999964237,
+      "ecriture": 8522.199999988079,
+      "subscribeChanges": 8522.899999976158,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 8574.599999964237,
+      "peinture": 8614
+     },
+     "calcul": [
+      8523.399999976158,
+      8527.799999952316
+     ],
+     "version": 19,
+     "taille": null,
+     "latence": 93.10000002384186
+    },
+    {
+     "etapes": {
+      "evenement": 8887.199999988079,
+      "validation": 8887.799999952316,
+      "ecriture": 8887.899999976158,
+      "subscribeChanges": 8889.199999988079,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 9121.299999952316,
+      "peinture": 9158.399999976158
+     },
+     "calcul": [
+      8889.299999952316,
+      8894.899999976158
+     ],
+     "version": 21,
+     "taille": null,
+     "latence": 271.19999998807907
+    },
+    {
+     "etapes": {
+      "evenement": 9235,
+      "validation": 9265.299999952316,
+      "ecriture": 9265.399999976158,
+      "subscribeChanges": 9266.099999964237,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 9370.099999964237,
+      "peinture": 9404
+     },
+     "calcul": [
+      9266.099999964237,
+      9269.899999976158
+     ],
+     "version": 23,
+     "taille": null,
+     "latence": 169
+    },
+    {
+     "etapes": {
+      "evenement": 9450.199999988079,
+      "validation": 9451.099999964237,
+      "ecriture": 9451.5,
+      "subscribeChanges": 9452,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 9496,
+      "peinture": 9527.5
+     },
+     "calcul": [
+      9452,
+      9456
+     ],
+     "version": 24,
+     "taille": null,
+     "latence": 77.30000001192093
+    },
+    {
+     "etapes": {
+      "evenement": 9655.799999952316,
+      "validation": 9656.699999988079,
+      "ecriture": 9656.699999988079,
+      "subscribeChanges": 9657.399999976158,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 9704.299999952316,
+      "peinture": 9733.899999976158
+     },
+     "calcul": [
+      9657.399999976158,
+      9661.5
+     ],
+     "version": 26,
+     "taille": null,
+     "latence": 78.10000002384186
+    },
+    {
+     "etapes": {
+      "evenement": 9810.899999976158,
+      "validation": 9812.599999964237,
+      "ecriture": 9812.599999964237,
+      "subscribeChanges": 9813.299999952316,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 9861.199999988079,
+      "peinture": 9893.899999976158
+     },
+     "calcul": [
+      9813.299999952316,
+      9817.299999952316
+     ],
+     "version": 27,
+     "taille": null,
+     "latence": 83
+    },
+    {
+     "etapes": {
+      "evenement": 9959.399999976158,
+      "validation": 9959.799999952316,
+      "ecriture": 9959.799999952316,
+      "subscribeChanges": 9960.5,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 10007.799999952316,
+      "peinture": 10069.599999964237
+     },
+     "calcul": [
+      9960.599999964237,
+      9965.099999964237
+     ],
+     "version": 28,
+     "taille": null,
+     "latence": 110.19999998807907
+    },
+    {
+     "etapes": {
+      "evenement": 10173.599999964237,
+      "validation": 10173.899999976158,
+      "ecriture": 10174.5,
+      "subscribeChanges": 10175.199999988079,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 10222.799999952316,
+      "peinture": 10255.199999988079
+     },
+     "calcul": [
+      10175.199999988079,
+      10179.599999964237
+     ],
+     "version": 30,
+     "taille": null,
+     "latence": 81.60000002384186
+    },
+    {
+     "etapes": {
+      "evenement": 10335.399999976158,
+      "validation": 10336.399999976158,
+      "ecriture": 10336.5,
+      "subscribeChanges": 10337.299999952316,
+      "envoi": null,
+      "workerReception": null,
+      "workerEnvoi": null,
+      "retour": null,
+      "commit": 10382,
+      "peinture": 10412
+     },
+     "calcul": [
+      10337.299999952316,
+      10341.299999952316
+     ],
+     "version": 31,
+     "taille": null,
+     "latence": 76.60000002384186
+    }
+   ],
+   "actions": [],
+   "mesures": [],
+   "memoire": {
+    "chargement": {
+     "page": {
+      "usedSize": 167933032,
+      "totalSize": 168779776,
+      "backingStorageSize": 1518994
+     },
+     "worker": null
+    },
+    "fin": {
+     "page": {
+      "usedSize": 170700928,
+      "totalSize": 172249088,
+      "backingStorageSize": 1520103
+     },
+     "worker": null
+    }
+   },
+   "demarrage": {
+    "structures": 10.900000035762787,
+    "extension": 10.300000011920929,
+    "compile": 97.59999996423721,
+    "generation": 483.19999998807907,
+    "insertion": 3472,
+    "somme": 543.1000000238419,
+    "table-peinte": 5202
+   },
+   "constats": []
+  },
+  {
+   "index": 5,
+   "fichier": "005-base-lru50-changement-participant.json",
+   "config": "base",
+   "scenario": "changement-participant",
+   "lru": 50,
+   "chauffe": false,
+   "balayage": false,
+   "url": "http://localhost:4173/?jeu=charge&remplissage=fin&graine=1&participants=200&verif=0&simu=0&calcul=signaux&lieu=worker&cohorte=paresseux&distante=perimee&lru=50&bridageWorker=4",
+   "tauxBridageLogiciel": 4,
+   "valide": true,
+   "invalidite": [],
+   "erreursPage": [],
+   "delaisDepasses": 0,
+   "somme": "cases 789502:46af8e20e17f476a / nonEvaluations 4538:375a4c689327b1da / jokers 183:9f23105a9642c5c2",
+   "statutWorker": "pret",
+   "dimensions": {
+    "grille": 0,
+    "lignes": 200,
+    "colonnes": 2064,
+    "lignesRendues": 46,
+    "colonnesRendues": 24,
+    "largeur": 1259,
+    "hauteur": 960,
+    "debordementVertical": 3973,
+    "debordementHorizontal": 130988
+   },
+   "operations": {
+    "prevues": 6,
+    "executees": 6,
+    "dureeMs": 3904
+   },
+   "nonApplicable": [],
+   "resume": {
+    "longtasks": 11,
+    "longtaskMaxMs": 138,
+    "loaf": 9,
+    "inpMs": 216,
+    "p95Ms": null,
+    "saisies": 0,
+    "saisiesIncompletes": 0,
+    "reussite": false,
+    "motifs": [
+     "11 longtask(s)",
+     "INP 216 ms"
+    ]
+   },
+   "saisies": [],
+   "actions": [
+    {
+     "type": "participant",
+     "debut": 6521.200000047684,
+     "fin": 7078.900000035763,
+     "latence": 557.6999999880791,
+     "dansLru": false,
+     "instanciations": 50
+    },
+    {
+     "type": "participant",
+     "debut": 7414.800000011921,
+     "fin": 7538.700000047684,
+     "latence": 123.90000003576279,
+     "dansLru": true,
+     "instanciations": 0
+    },
+    {
+     "type": "participant",
+     "debut": 7846.600000023842,
+     "fin": 8378.700000047684,
+     "latence": 532.1000000238419,
+     "dansLru": false,
+     "instanciations": 50
+    },
+    {
+     "type": "participant",
+     "debut": 8714.800000011921,
+     "fin": 8828.900000035763,
+     "latence": 114.10000002384186,
+     "dansLru": true,
+     "instanciations": 0
+    },
+    {
+     "type": "participant",
+     "debut": 9137.300000011921,
+     "fin": 9629,
+     "latence": 491.69999998807907,
+     "dansLru": false,
+     "instanciations": 50
+    },
+    {
+     "type": "participant",
+     "debut": 9964,
+     "fin": 10089.400000035763,
+     "latence": 125.40000003576279,
+     "dansLru": true,
+     "instanciations": 0
+    }
+   ],
+   "mesures": [],
+   "memoire": {
+    "chargement": {
+     "page": {
+      "usedSize": 163979736,
+      "totalSize": 168255488,
+      "backingStorageSize": 1451706
+     },
+     "worker": {
+      "usedSize": 8126580,
+      "totalSize": 9961472,
+      "backingStorageSize": 9401052
+     }
+    },
+    "fin": {
+     "page": {
+      "usedSize": 167331452,
+      "totalSize": 170414080,
+      "backingStorageSize": 1454552
+     },
+     "worker": {
+      "usedSize": 8526448,
+      "totalSize": 9961472,
+      "backingStorageSize": 9406912
+     }
+    }
+   },
+   "demarrage": {
+    "structures": 11.800000011920929,
+    "extension": 11,
+    "compile": 93.89999997615814,
+    "generation": 474.39999997615814,
+    "insertion": 3705.5,
+    "somme": 530.6000000238419,
+    "worker-pret": 6122.400000035763,
+    "table-peinte": 6276
+   },
+   "constats": []
+  },
+  {
+   "index": 6,
+   "fichier": "006-principal-lru50-changement-participant.json",
+   "config": "principal",
+   "scenario": "changement-participant",
+   "lru": 50,
+   "chauffe": false,
+   "balayage": false,
+   "url": "http://localhost:4173/?jeu=charge&remplissage=fin&graine=1&participants=200&verif=0&simu=0&calcul=signaux&lieu=principal&cohorte=paresseux&distante=perimee&lru=50",
+   "tauxBridageLogiciel": 1,
+   "valide": true,
+   "invalidite": [],
+   "erreursPage": [],
+   "delaisDepasses": 0,
+   "somme": "cases 789502:46af8e20e17f476a / nonEvaluations 4538:375a4c689327b1da / jokers 183:9f23105a9642c5c2",
+   "statutWorker": "aucun",
+   "dimensions": {
+    "grille": 0,
+    "lignes": 200,
+    "colonnes": 2064,
+    "lignesRendues": 46,
+    "colonnesRendues": 24,
+    "largeur": 1259,
+    "hauteur": 960,
+    "debordementVertical": 3973,
+    "debordementHorizontal": 130988
+   },
+   "operations": {
+    "prevues": 6,
+    "executees": 6,
+    "dureeMs": 3512
+   },
+   "nonApplicable": [],
+   "resume": {
+    "longtasks": 10,
+    "longtaskMaxMs": 142,
+    "loaf": 7,
+    "inpMs": 96,
+    "p95Ms": null,
+    "saisies": 0,
+    "saisiesIncompletes": 0,
+    "reussite": false,
+    "motifs": [
+     "10 longtask(s)"
+    ]
+   },
+   "saisies": [],
+   "actions": [
+    {
+     "type": "participant",
+     "debut": 5189.100000023842,
+     "fin": 5663.5,
+     "latence": 474.39999997615814,
+     "dansLru": false,
+     "instanciations": 50
+    },
+    {
+     "type": "participant",
+     "debut": 5999.900000035763,
+     "fin": 6096.800000011921,
+     "latence": 96.89999997615814,
+     "dansLru": true,
+     "instanciations": 0
+    },
+    {
+     "type": "participant",
+     "debut": 6406.900000035763,
+     "fin": 6838.5,
+     "latence": 431.5999999642372,
+     "dansLru": false,
+     "instanciations": 50
+    },
+    {
+     "type": "participant",
+     "debut": 7166.300000011921,
+     "fin": 7248.300000011921,
+     "latence": 82,
+     "dansLru": true,
+     "instanciations": 0
+    },
+    {
+     "type": "participant",
+     "debut": 7558.600000023842,
+     "fin": 7946.300000011921,
+     "latence": 387.69999998807907,
+     "dansLru": false,
+     "instanciations": 50
+    },
+    {
+     "type": "participant",
+     "debut": 8283.100000023842,
+     "fin": 8363.300000011921,
+     "latence": 80.19999998807907,
+     "dansLru": true,
+     "instanciations": 0
+    }
+   ],
+   "mesures": [],
+   "memoire": {
+    "chargement": {
+     "page": {
+      "usedSize": 167924180,
+      "totalSize": 169041920,
+      "backingStorageSize": 1518994
+     },
+     "worker": null
+    },
+    "fin": {
+     "page": {
+      "usedSize": 173351540,
+      "totalSize": 175132672,
+      "backingStorageSize": 1527718
+     },
+     "worker": null
+    }
+   },
+   "demarrage": {
+    "structures": 14.100000023841858,
+    "extension": 13.099999964237213,
+    "compile": 102.39999997615814,
+    "generation": 480.69999998807907,
+    "insertion": 3298.400000035763,
+    "somme": 483.19999998807907,
+    "table-peinte": 4967.600000023842
+   },
+   "constats": []
+  },
+  {
+   "index": 7,
+   "fichier": "007-base-lru50-changement-axe-vue.json",
+   "config": "base",
+   "scenario": "changement-axe-vue",
+   "lru": 50,
+   "chauffe": false,
+   "balayage": false,
+   "url": "http://localhost:4173/?jeu=charge&remplissage=fin&graine=1&participants=200&verif=0&simu=0&calcul=signaux&lieu=worker&cohorte=paresseux&distante=perimee&lru=50&bridageWorker=4",
+   "tauxBridageLogiciel": 4,
+   "valide": true,
+   "invalidite": [],
+   "erreursPage": [],
+   "delaisDepasses": 0,
+   "somme": "cases 789502:46af8e20e17f476a / nonEvaluations 4538:375a4c689327b1da / jokers 183:9f23105a9642c5c2",
+   "statutWorker": "pret",
+   "dimensions": {
+    "grille": 0,
+    "lignes": 200,
+    "colonnes": 2064,
+    "lignesRendues": 46,
+    "colonnesRendues": 24,
+    "largeur": 1259,
+    "hauteur": 960,
+    "debordementVertical": 3973,
+    "debordementHorizontal": 130988
+   },
+   "operations": {
+    "prevues": 7,
+    "executees": 7,
+    "dureeMs": 3792,
+    "details": {
+     "axes": 4
+    }
+   },
+   "nonApplicable": [],
+   "resume": {
+    "longtasks": 14,
+    "longtaskMaxMs": 169,
+    "loaf": 12,
+    "inpMs": 184,
+    "p95Ms": null,
+    "saisies": 0,
+    "saisiesIncompletes": 0,
+    "reussite": false,
+    "motifs": [
+     "14 longtask(s)",
+     "INP 184 ms"
+    ]
+   },
+   "saisies": [],
+   "actions": [
+    {
+     "type": "axe",
+     "debut": 6217.199999988079,
+     "fin": 6606.599999964237,
+     "latence": 389.39999997615814
+    },
+    {
+     "type": "axe",
+     "debut": 6822.699999988079,
+     "fin": 7071.099999964237,
+     "latence": 248.39999997615814
+    },
+    {
+     "type": "axe",
+     "debut": 7287.399999976158,
+     "fin": 7610.899999976158,
+     "latence": 323.5
+    },
+    {
+     "type": "vue",
+     "debut": 7838.099999964237,
+     "fin": 8186.199999988079,
+     "latence": 348.10000002384186
+    },
+    {
+     "type": "vue",
+     "debut": 8419.300000011921,
+     "fin": 8734.699999988079,
+     "latence": 315.39999997615814
+    },
+    {
+     "type": "vue",
+     "debut": 8952.300000011921,
+     "fin": 9267,
+     "latence": 314.69999998807907
+    },
+    {
+     "type": "vue",
+     "debut": 9485.599999964237,
+     "fin": 9767.899999976158,
+     "latence": 282.30000001192093
+    }
+   ],
+   "mesures": [],
+   "memoire": {
+    "chargement": {
+     "page": {
+      "usedSize": 163979900,
+      "totalSize": 168255488,
+      "backingStorageSize": 1451706
+     },
+     "worker": {
+      "usedSize": 8225544,
+      "totalSize": 9699328,
+      "backingStorageSize": 9401052
+     }
+    },
+    "fin": {
+     "page": {
+      "usedSize": 169791664,
+      "totalSize": 173297664,
+      "backingStorageSize": 1453159
+     },
+     "worker": {
+      "usedSize": 15075920,
+      "totalSize": 15466496,
+      "backingStorageSize": 9401052
+     }
+    }
+   },
+   "demarrage": {
+    "structures": 12.900000035762787,
+    "extension": 11.5,
+    "compile": 103.29999995231628,
+    "generation": 475.2999999523163,
+    "insertion": 3440.2000000476837,
+    "somme": 463.89999997615814,
+    "worker-pret": 5792.5,
+    "table-peinte": 5950.5
+   },
+   "constats": []
+  },
+  {
+   "index": 8,
+   "fichier": "008-principal-lru50-changement-axe-vue.json",
+   "config": "principal",
+   "scenario": "changement-axe-vue",
+   "lru": 50,
+   "chauffe": false,
+   "balayage": false,
+   "url": "http://localhost:4173/?jeu=charge&remplissage=fin&graine=1&participants=200&verif=0&simu=0&calcul=signaux&lieu=principal&cohorte=paresseux&distante=perimee&lru=50",
+   "tauxBridageLogiciel": 1,
+   "valide": true,
+   "invalidite": [],
+   "erreursPage": [],
+   "delaisDepasses": 0,
+   "somme": "cases 789502:46af8e20e17f476a / nonEvaluations 4538:375a4c689327b1da / jokers 183:9f23105a9642c5c2",
+   "statutWorker": "aucun",
+   "dimensions": {
+    "grille": 0,
+    "lignes": 200,
+    "colonnes": 2064,
+    "lignesRendues": 46,
+    "colonnesRendues": 24,
+    "largeur": 1259,
+    "hauteur": 960,
+    "debordementVertical": 3973,
+    "debordementHorizontal": 130988
+   },
+   "operations": {
+    "prevues": 7,
+    "executees": 7,
+    "dureeMs": 3293,
+    "details": {
+     "axes": 4
+    }
+   },
+   "nonApplicable": [],
+   "resume": {
+    "longtasks": 8,
+    "longtaskMaxMs": 276,
+    "loaf": 7,
+    "inpMs": 328,
+    "p95Ms": null,
+    "saisies": 0,
+    "saisiesIncompletes": 0,
+    "reussite": false,
+    "motifs": [
+     "8 longtask(s)",
+     "INP 328 ms"
+    ]
+   },
+   "saisies": [],
+   "actions": [
+    {
+     "type": "axe",
+     "debut": 5361.799999952316,
+     "fin": 5626.599999964237,
+     "latence": 264.80000001192093
+    },
+    {
+     "type": "axe",
+     "debut": 5837.199999988079,
+     "fin": 6023.199999988079,
+     "latence": 186
+    },
+    {
+     "type": "axe",
+     "debut": 6235.5,
+     "fin": 6422.199999988079,
+     "latence": 186.69999998807907
+    },
+    {
+     "type": "vue",
+     "debut": 6682.699999988079,
+     "fin": 7040.899999976158,
+     "latence": 358.19999998807907
+    },
+    {
+     "type": "vue",
+     "debut": 7260.099999964237,
+     "fin": 7449.899999976158,
+     "latence": 189.80000001192093
+    },
+    {
+     "type": "vue",
+     "debut": 7677.399999976158,
+     "fin": 7988.099999964237,
+     "latence": 310.69999998807907
+    },
+    {
+     "type": "vue",
+     "debut": 8210,
+     "fin": 8415.599999964237,
+     "latence": 205.5999999642372
+    }
+   ],
+   "mesures": [],
+   "memoire": {
+    "chargement": {
+     "page": {
+      "usedSize": 167940084,
+      "totalSize": 173498368,
+      "backingStorageSize": 1518993
+     },
+     "worker": null
+    },
+    "fin": {
+     "page": {
+      "usedSize": 185415300,
+      "totalSize": 188764160,
+      "backingStorageSize": 1536976
+     },
+     "worker": null
+    }
+   },
+   "demarrage": {
+    "structures": 10.600000023841858,
+    "extension": 9.5,
+    "compile": 100.60000002384186,
+    "generation": 480,
+    "insertion": 3446.899999976158,
+    "somme": 497.89999997615814,
+    "table-peinte": 5127
+   },
+   "constats": []
+  },
+  {
+   "index": 9,
+   "fichier": "009-base-lru50-defilement.json",
+   "config": "base",
+   "scenario": "defilement",
+   "lru": 50,
+   "chauffe": false,
+   "balayage": false,
+   "url": "http://localhost:4173/?jeu=charge&remplissage=fin&graine=1&participants=200&verif=0&simu=0&calcul=signaux&lieu=worker&cohorte=paresseux&distante=perimee&lru=50&bridageWorker=4",
+   "tauxBridageLogiciel": 4,
+   "valide": true,
+   "invalidite": [],
+   "erreursPage": [],
+   "delaisDepasses": 0,
+   "somme": "cases 789502:46af8e20e17f476a / nonEvaluations 4538:375a4c689327b1da / jokers 183:9f23105a9642c5c2",
+   "statutWorker": "pret",
+   "dimensions": {
+    "grille": 0,
+    "lignes": 200,
+    "colonnes": 2064,
+    "lignesRendues": 46,
+    "colonnesRendues": 24,
+    "largeur": 1259,
+    "hauteur": 960,
+    "debordementVertical": 3973,
+    "debordementHorizontal": 130988
+   },
+   "operations": {
+    "prevues": 2,
+    "executees": 2,
+    "dureeMs": 3541
+   },
+   "nonApplicable": [],
+   "resume": {
+    "longtasks": 28,
+    "longtaskMaxMs": 192,
+    "loaf": 8,
+    "inpMs": null,
+    "p95Ms": null,
+    "saisies": 0,
+    "saisiesIncompletes": 0,
+    "reussite": false,
+    "motifs": [
+     "28 longtask(s)",
+     "8 LoAF"
+    ]
+   },
+   "saisies": [],
+   "actions": [],
+   "mesures": [],
+   "memoire": {
+    "chargement": {
+     "page": {
+      "usedSize": 163975068,
+      "totalSize": 168517632,
+      "backingStorageSize": 1451705
+     },
+     "worker": {
+      "usedSize": 8096720,
+      "totalSize": 9961472,
+      "backingStorageSize": 9401052
+     }
+    },
+    "fin": {
+     "page": {
+      "usedSize": 168228596,
+      "totalSize": 169889792,
+      "backingStorageSize": 1452738
+     },
+     "worker": {
+      "usedSize": 8029284,
+      "totalSize": 9699328,
+      "backingStorageSize": 9406912
+     }
+    }
+   },
+   "demarrage": {
+    "structures": 17.80000001192093,
+    "extension": 17.400000035762787,
+    "compile": 142.79999995231628,
+    "generation": 529.3000000119209,
+    "insertion": 7221.900000035763,
+    "somme": 663.7999999523163,
+    "worker-pret": 10059.099999964237,
+    "table-peinte": 10239.099999964237
+   },
+   "constats": [],
+   "defilement": [
+    {
+     "axe": "vertical",
+     "debordement": 3973,
+     "debut": 0,
+     "fin": 1300,
+     "deplacement": 1300,
+     "evenements": 13
+    },
+    {
+     "axe": "horizontal",
+     "debordement": 130988,
+     "debut": 0,
+     "fin": 700,
+     "deplacement": 700,
+     "evenements": 8
+    }
+   ]
+  },
+  {
+   "index": 10,
+   "fichier": "010-principal-lru50-defilement.json",
+   "config": "principal",
+   "scenario": "defilement",
+   "lru": 50,
+   "chauffe": false,
+   "balayage": false,
+   "url": "http://localhost:4173/?jeu=charge&remplissage=fin&graine=1&participants=200&verif=0&simu=0&calcul=signaux&lieu=principal&cohorte=paresseux&distante=perimee&lru=50",
+   "tauxBridageLogiciel": 1,
+   "valide": true,
+   "invalidite": [],
+   "erreursPage": [],
+   "delaisDepasses": 0,
+   "somme": "cases 789502:46af8e20e17f476a / nonEvaluations 4538:375a4c689327b1da / jokers 183:9f23105a9642c5c2",
+   "statutWorker": "aucun",
+   "dimensions": {
+    "grille": 0,
+    "lignes": 200,
+    "colonnes": 2064,
+    "lignesRendues": 46,
+    "colonnesRendues": 24,
+    "largeur": 1259,
+    "hauteur": 960,
+    "debordementVertical": 3973,
+    "debordementHorizontal": 130988
+   },
+   "operations": {
+    "prevues": 2,
+    "executees": 2,
+    "dureeMs": 4295
+   },
+   "nonApplicable": [],
+   "resume": {
+    "longtasks": 35,
+    "longtaskMaxMs": 181,
+    "loaf": 21,
+    "inpMs": null,
+    "p95Ms": null,
+    "saisies": 0,
+    "saisiesIncompletes": 0,
+    "reussite": false,
+    "motifs": [
+     "35 longtask(s)",
+     "21 LoAF"
+    ]
+   },
+   "saisies": [],
+   "actions": [],
+   "mesures": [],
+   "memoire": {
+    "chargement": {
+     "page": {
+      "usedSize": 167954876,
+      "totalSize": 169828352,
+      "backingStorageSize": 1518994
+     },
+     "worker": null
+    },
+    "fin": {
+     "page": {
+      "usedSize": 173205084,
+      "totalSize": 179064832,
+      "backingStorageSize": 1526067
+     },
+     "worker": null
+    }
+   },
+   "demarrage": {
+    "structures": 13.699999988079071,
+    "extension": 12.899999976158142,
+    "compile": 106.80000001192093,
+    "generation": 519.6000000238419,
+    "insertion": 4767.699999988079,
+    "somme": 699.1000000238419,
+    "table-peinte": 6781.400000035763
+   },
+   "constats": [],
+   "defilement": [
+    {
+     "axe": "vertical",
+     "debordement": 3973,
+     "debut": 0,
+     "fin": 1600,
+     "deplacement": 1600,
+     "evenements": 16
+    },
+    {
+     "axe": "horizontal",
+     "debordement": 130988,
+     "debut": 0,
+     "fin": 700,
+     "deplacement": 700,
+     "evenements": 8
+    }
+   ]
+  },
+  {
+   "index": 11,
+   "fichier": "011-base-lru50-ouverture-graphe.json",
+   "config": "base",
+   "scenario": "ouverture-graphe",
+   "lru": 50,
+   "chauffe": false,
+   "balayage": false,
+   "url": "http://localhost:4173/?jeu=charge&remplissage=fin&graine=1&participants=200&verif=0&simu=0&calcul=signaux&lieu=worker&cohorte=paresseux&distante=perimee&lru=50&bridageWorker=4",
+   "tauxBridageLogiciel": 4,
+   "valide": true,
+   "invalidite": [],
+   "erreursPage": [],
+   "delaisDepasses": 0,
+   "somme": "cases 789502:46af8e20e17f476a / nonEvaluations 4538:375a4c689327b1da / jokers 183:9f23105a9642c5c2",
+   "statutWorker": "pret",
+   "dimensions": {
+    "grille": 0,
+    "lignes": 200,
+    "colonnes": 2064,
+    "lignesRendues": 46,
+    "colonnesRendues": 24,
+    "largeur": 1259,
+    "hauteur": 960,
+    "debordementVertical": 3973,
+    "debordementHorizontal": 130988
+   },
+   "operations": {
+    "prevues": 2,
+    "executees": 2,
+    "dureeMs": 3756
+   },
+   "nonApplicable": [],
+   "resume": {
+    "longtasks": 15,
+    "longtaskMaxMs": 215,
+    "loaf": 14,
+    "inpMs": 272,
+    "p95Ms": null,
+    "saisies": 0,
+    "saisiesIncompletes": 0,
+    "reussite": false,
+    "motifs": [
+     "15 longtask(s)",
+     "INP 272 ms"
+    ]
+   },
+   "saisies": [],
+   "actions": [
+    {
+     "type": "graphe",
+     "debut": 8793.5,
+     "fin": 9211.799999952316,
+     "latence": 418.2999999523163,
+     "dansLru": false,
+     "instanciations": 50
+    },
+    {
+     "type": "graphe",
+     "debut": 10643.699999988079,
+     "fin": 11039.099999964237,
+     "latence": 395.39999997615814,
+     "dansLru": true,
+     "instanciations": 0
+    }
+   ],
+   "mesures": [],
+   "memoire": {
+    "chargement": {
+     "page": {
+      "usedSize": 163975456,
+      "totalSize": 166158336,
+      "backingStorageSize": 1451706
+     },
+     "worker": {
+      "usedSize": 8145620,
+      "totalSize": 10485760,
+      "backingStorageSize": 9401052
+     }
+    },
+    "fin": {
+     "page": {
+      "usedSize": 170361492,
+      "totalSize": 172773376,
+      "backingStorageSize": 1453473
+     },
+     "worker": {
+      "usedSize": 8592752,
+      "totalSize": 10485760,
+      "backingStorageSize": 9406912
+     }
+    }
+   },
+   "demarrage": {
+    "structures": 13.5,
+    "extension": 13.300000011920929,
+    "compile": 98.39999997615814,
+    "generation": 533,
+    "insertion": 4688.899999976158,
+    "somme": 755.3000000119209,
+    "worker-pret": 7599,
+    "table-peinte": 7783.399999976158
+   },
+   "constats": []
+  },
+  {
+   "index": 12,
+   "fichier": "012-principal-lru50-ouverture-graphe.json",
+   "config": "principal",
+   "scenario": "ouverture-graphe",
+   "lru": 50,
+   "chauffe": false,
+   "balayage": false,
+   "url": "http://localhost:4173/?jeu=charge&remplissage=fin&graine=1&participants=200&verif=0&simu=0&calcul=signaux&lieu=principal&cohorte=paresseux&distante=perimee&lru=50",
+   "tauxBridageLogiciel": 1,
+   "valide": true,
+   "invalidite": [],
+   "erreursPage": [],
+   "delaisDepasses": 0,
+   "somme": "cases 789502:46af8e20e17f476a / nonEvaluations 4538:375a4c689327b1da / jokers 183:9f23105a9642c5c2",
+   "statutWorker": "aucun",
+   "dimensions": {
+    "grille": 0,
+    "lignes": 200,
+    "colonnes": 2064,
+    "lignesRendues": 46,
+    "colonnesRendues": 24,
+    "largeur": 1259,
+    "hauteur": 960,
+    "debordementVertical": 3973,
+    "debordementHorizontal": 130988
+   },
+   "operations": {
+    "prevues": 2,
+    "executees": 2,
+    "dureeMs": 2881
+   },
+   "nonApplicable": [],
+   "resume": {
+    "longtasks": 9,
+    "longtaskMaxMs": 323,
+    "loaf": 8,
+    "inpMs": 376,
+    "p95Ms": null,
+    "saisies": 0,
+    "saisiesIncompletes": 0,
+    "reussite": false,
+    "motifs": [
+     "9 longtask(s)",
+     "INP 376 ms"
+    ]
+   },
+   "saisies": [],
+   "actions": [
+    {
+     "type": "graphe",
+     "debut": 5767.5,
+     "fin": 6152,
+     "latence": 384.5,
+     "dansLru": false,
+     "instanciations": 50
+    },
+    {
+     "type": "graphe",
+     "debut": 7196,
+     "fin": 7523.899999976158,
+     "latence": 327.89999997615814,
+     "dansLru": false,
+     "instanciations": 1
+    }
+   ],
+   "mesures": [],
+   "memoire": {
+    "chargement": {
+     "page": {
+      "usedSize": 167947564,
+      "totalSize": 172449792,
+      "backingStorageSize": 1518992
+     },
+     "worker": null
+    },
+    "fin": {
+     "page": {
+      "usedSize": 174624984,
+      "totalSize": 179326976,
+      "backingStorageSize": 1543530
+     },
+     "worker": null
+    }
+   },
+   "demarrage": {
+    "structures": 11.5,
+    "extension": 10.5,
+    "compile": 95,
+    "generation": 506.80000001192093,
+    "insertion": 3340.399999976158,
+    "somme": 464.60000002384186,
+    "table-peinte": 5009.800000011921
+   },
+   "constats": []
+  },
+  {
+   "index": 13,
+   "fichier": "013-base-lru50-mesures.json",
+   "config": "base",
+   "scenario": "mesures",
+   "lru": 50,
+   "chauffe": false,
+   "balayage": false,
+   "url": "http://localhost:4173/?jeu=charge&remplissage=fin&graine=1&participants=200&verif=0&simu=0&calcul=signaux&lieu=worker&cohorte=paresseux&distante=perimee&lru=50&bridageWorker=4",
+   "tauxBridageLogiciel": 4,
+   "valide": true,
+   "invalidite": [],
+   "erreursPage": [],
+   "delaisDepasses": 0,
+   "somme": "cases 789502:46af8e20e17f476a / nonEvaluations 4538:375a4c689327b1da / jokers 183:9f23105a9642c5c2",
+   "statutWorker": "pret",
+   "dimensions": {
+    "grille": 0,
+    "lignes": 200,
+    "colonnes": 2064,
+    "lignesRendues": 46,
+    "colonnesRendues": 24,
+    "largeur": 1259,
+    "hauteur": 960,
+    "debordementVertical": 3973,
+    "debordementHorizontal": 130988
+   },
+   "operations": {
+    "prevues": 4,
+    "executees": 4,
+    "dureeMs": 13079
+   },
+   "nonApplicable": [],
+   "resume": null,
+   "saisies": [],
+   "actions": [],
+   "mesures": [
+    {
+     "nom": "remplissage-lru",
+     "fenetre": {
+      "debut": 6088.699999988079,
+      "fin": 7553.899999976158
+     },
+     "valeurs": {
+      "lignes": 200,
+      "lruDebut": 46,
+      "lruFin": 50,
+      "instanciations": 154,
+      "instanciationMs": 7.800000071525574,
+      "instanciationMsParParticipant": 0.05064935111380243
+     }
+    },
+    {
+     "nom": "ecritures-en-serie",
+     "fenetre": {
+      "debut": 7790.5,
+      "fin": 8456.899999976158
+     },
+     "valeurs": {
+      "grille": 0,
+      "nombre": 100,
+      "totalMs": 663.2000000476837,
+      "medianeMs": 0.09999996423721313,
+      "p95Ms": 1.2999999523162842,
+      "maxMs": 3.100000023841858
+     },
+     "exceptionGardeFou": false
+    },
+    {
+     "nom": "copie-grille",
+     "fenetre": {
+      "debut": 8457.600000023842,
+      "fin": 18714.30000001192
+     },
+     "valeurs": {
+      "grille": 3,
+      "cible": "copie à l'identique",
+      "cases": 263158,
+      "principalMs": 7677,
+      "totalMs": 10225
+     },
+     "exceptionGardeFou": false
+    },
+    {
+     "nom": "bascule-modele",
+     "fenetre": {
+      "debut": 18715.5,
+      "fin": 19099.69999998808
+     },
+     "valeurs": {
+      "principalMs": 97.59999996423721,
+      "totalMs": 380.5
+     },
+     "exceptionGardeFou": true
+    }
+   ],
+   "memoire": {
+    "chargement": {
+     "page": {
+      "usedSize": 163963020,
+      "totalSize": 167469056,
+      "backingStorageSize": 1451706
+     },
+     "worker": {
+      "usedSize": 8070184,
+      "totalSize": 10223616,
+      "backingStorageSize": 9401052
+     }
+    },
+    "lru-plein": {
+     "page": {
+      "usedSize": 165198768,
+      "totalSize": 168316928,
+      "backingStorageSize": 1454162
+     },
+     "worker": {
+      "usedSize": 8459416,
+      "totalSize": 9961472,
+      "backingStorageSize": 9406912
+     }
+    },
+    "fin": {
+     "page": {
+      "usedSize": 268369868,
+      "totalSize": 271773696,
+      "backingStorageSize": 1848699
+     },
+     "worker": {
+      "usedSize": 9391960,
+      "totalSize": 9961472,
+      "backingStorageSize": 12365754
+     }
+    }
+   },
+   "demarrage": {
+    "structures": 10.900000035762787,
+    "extension": 10.199999988079071,
+    "compile": 94.79999995231628,
+    "generation": 482.19999998807907,
+    "insertion": 3196.900000035763,
+    "somme": 514.3999999761581,
+    "worker-pret": 5633.899999976158,
+    "table-peinte": 5797.100000023842
+   },
+   "constats": [
+    "remplissage-lru : 7 tâche(s) > 50 ms, max 162 ms — constat bloquant",
+    "copie-grille : 1 tâche(s) > 50 ms, max 7712 ms — constat bloquant",
+    "bascule-modele : 3 tâche(s) > 50 ms, max 179 ms — constat non bloquant"
+   ]
+  },
+  {
+   "index": 14,
+   "fichier": "014-principal-lru50-mesures.json",
+   "config": "principal",
+   "scenario": "mesures",
+   "lru": 50,
+   "chauffe": false,
+   "balayage": false,
+   "url": "http://localhost:4173/?jeu=charge&remplissage=fin&graine=1&participants=200&verif=0&simu=0&calcul=signaux&lieu=principal&cohorte=paresseux&distante=perimee&lru=50",
+   "tauxBridageLogiciel": 1,
+   "valide": true,
+   "invalidite": [],
+   "erreursPage": [],
+   "delaisDepasses": 0,
+   "somme": "cases 789502:46af8e20e17f476a / nonEvaluations 4538:375a4c689327b1da / jokers 183:9f23105a9642c5c2",
+   "statutWorker": "aucun",
+   "dimensions": {
+    "grille": 0,
+    "lignes": 200,
+    "colonnes": 2064,
+    "lignesRendues": 46,
+    "colonnesRendues": 24,
+    "largeur": 1259,
+    "hauteur": 960,
+    "debordementVertical": 3973,
+    "debordementHorizontal": 130988
+   },
+   "operations": {
+    "prevues": 4,
+    "executees": 4,
+    "dureeMs": 9278
+   },
+   "nonApplicable": [],
+   "resume": null,
+   "saisies": [],
+   "actions": [],
+   "mesures": [
+    {
+     "nom": "remplissage-lru",
+     "fenetre": {
+      "debut": 5014.300000011921,
+      "fin": 6181.600000023842
+     },
+     "valeurs": {
+      "lignes": 200,
+      "lruDebut": 46,
+      "lruFin": 50,
+      "instanciations": 154,
+      "instanciationMs": 54.60000020265579,
+      "instanciationMsParParticipant": 0.35454545586140124
+     }
+    },
+    {
+     "nom": "ecritures-en-serie",
+     "fenetre": {
+      "debut": 6426.900000035763,
+      "fin": 6885.700000047684
+     },
+     "valeurs": {
+      "grille": 0,
+      "nombre": 100,
+      "totalMs": 453.60000002384186,
+      "medianeMs": 0,
+      "p95Ms": 2.099999964237213,
+      "maxMs": 3.800000011920929
+     },
+     "exceptionGardeFou": false
+    },
+    {
+     "nom": "copie-grille",
+     "fenetre": {
+      "debut": 6887.600000023842,
+      "fin": 13913.300000011921
+     },
+     "valeurs": {
+      "grille": 3,
+      "cible": "copie à l'identique",
+      "cases": 263158,
+      "principalMs": 6980.899999976158,
+      "totalMs": 6993.099999964237
+     },
+     "exceptionGardeFou": false
+    },
+    {
+     "nom": "bascule-modele",
+     "fenetre": {
+      "debut": 13913.900000035763,
+      "fin": 14223.300000011921
+     },
+     "valeurs": {
+      "principalMs": 217.89999997615814,
+      "totalMs": 306.5
+     },
+     "exceptionGardeFou": true
+    }
+   ],
+   "memoire": {
+    "chargement": {
+     "page": {
+      "usedSize": 167845288,
+      "totalSize": 171663360,
+      "backingStorageSize": 1518995
+     },
+     "worker": null
+    },
+    "lru-plein": {
+     "page": {
+      "usedSize": 170514980,
+      "totalSize": 175132672,
+      "backingStorageSize": 1527311
+     },
+     "worker": null
+    },
+    "fin": {
+     "page": {
+      "usedSize": 274506236,
+      "totalSize": 278851584,
+      "backingStorageSize": 1917477
+     },
+     "worker": null
+    }
+   },
+   "demarrage": {
+    "structures": 12,
+    "extension": 11.300000011920929,
+    "compile": 96.39999997615814,
+    "generation": 479.69999998807907,
+    "insertion": 3074.699999988079,
+    "somme": 484.60000002384186,
+    "table-peinte": 4731
+   },
+   "constats": [
+    "remplissage-lru : 8 tâche(s) > 50 ms, max 90 ms — constat bloquant",
+    "copie-grille : 1 tâche(s) > 50 ms, max 7014 ms — constat bloquant",
+    "bascule-modele : 1 tâche(s) > 50 ms, max 275 ms — constat non bloquant"
+   ]
+  }
+ ],
+ "cellules": [
+  {
+   "config": "base",
+   "scenario": "saisie-rapide",
+   "runs": 1,
+   "invalides": 0,
+   "statut": "échec",
+   "reussite": false,
+   "p95": {
+    "mediane": 723,
+    "pire": 723
+   },
+   "inp": {
+    "mediane": 104,
+    "pire": 104
+   },
+   "longtasks": {
+    "mediane": 10,
+    "pire": 10
+   },
+   "loaf": {
+    "mediane": 22,
+    "pire": 22
+   },
+   "saisiesIncompletes": {
+    "mediane": 0,
+    "pire": 0
+   },
+   "motifs": [
+    "10 longtask(s)",
+    "INP 104 ms",
+    "p95 723 ms"
+   ]
+  },
+  {
+   "config": "principal",
+   "scenario": "saisie-rapide",
+   "runs": 1,
+   "invalides": 0,
+   "statut": "échec",
+   "reussite": false,
+   "p95": {
+    "mediane": 549,
+    "pire": 549
+   },
+   "inp": {
+    "mediane": 136,
+    "pire": 136
+   },
+   "longtasks": {
+    "mediane": 24,
+    "pire": 24
+   },
+   "loaf": {
+    "mediane": 24,
+    "pire": 24
+   },
+   "saisiesIncompletes": {
+    "mediane": 0,
+    "pire": 0
+   },
+   "motifs": [
+    "24 longtask(s)",
+    "INP 136 ms",
+    "p95 549 ms"
+   ]
+  },
+  {
+   "config": "base",
+   "scenario": "saisies-distantes",
+   "runs": 1,
+   "invalides": 0,
+   "statut": "échec",
+   "reussite": false,
+   "p95": {
+    "mediane": 305.30000001192093,
+    "pire": 305.30000001192093
+   },
+   "inp": {
+    "mediane": 112,
+    "pire": 112
+   },
+   "longtasks": {
+    "mediane": 8,
+    "pire": 8
+   },
+   "loaf": {
+    "mediane": 25,
+    "pire": 25
+   },
+   "saisiesIncompletes": {
+    "mediane": 0,
+    "pire": 0
+   },
+   "motifs": [
+    "8 longtask(s)",
+    "INP 112 ms",
+    "p95 305 ms"
+   ]
+  },
+  {
+   "config": "principal",
+   "scenario": "saisies-distantes",
+   "runs": 1,
+   "invalides": 0,
+   "statut": "échec",
+   "reussite": false,
+   "p95": {
+    "mediane": 169,
+    "pire": 169
+   },
+   "inp": {
+    "mediane": 104,
+    "pire": 104
+   },
+   "longtasks": {
+    "mediane": 18,
+    "pire": 18
+   },
+   "loaf": {
+    "mediane": 29,
+    "pire": 29
+   },
+   "saisiesIncompletes": {
+    "mediane": 0,
+    "pire": 0
+   },
+   "motifs": [
+    "18 longtask(s)",
+    "INP 104 ms",
+    "p95 169 ms"
+   ]
+  },
+  {
+   "config": "base",
+   "scenario": "changement-participant",
+   "runs": 1,
+   "invalides": 0,
+   "statut": "échec",
+   "reussite": false,
+   "p95": {
+    "mediane": null,
+    "pire": null
+   },
+   "inp": {
+    "mediane": 216,
+    "pire": 216
+   },
+   "longtasks": {
+    "mediane": 11,
+    "pire": 11
+   },
+   "loaf": {
+    "mediane": 9,
+    "pire": 9
+   },
+   "saisiesIncompletes": {
+    "mediane": 0,
+    "pire": 0
+   },
+   "motifs": [
+    "11 longtask(s)",
+    "INP 216 ms"
+   ]
+  },
+  {
+   "config": "principal",
+   "scenario": "changement-participant",
+   "runs": 1,
+   "invalides": 0,
+   "statut": "échec",
+   "reussite": false,
+   "p95": {
+    "mediane": null,
+    "pire": null
+   },
+   "inp": {
+    "mediane": 96,
+    "pire": 96
+   },
+   "longtasks": {
+    "mediane": 10,
+    "pire": 10
+   },
+   "loaf": {
+    "mediane": 7,
+    "pire": 7
+   },
+   "saisiesIncompletes": {
+    "mediane": 0,
+    "pire": 0
+   },
+   "motifs": [
+    "10 longtask(s)"
+   ]
+  },
+  {
+   "config": "base",
+   "scenario": "changement-axe-vue",
+   "runs": 1,
+   "invalides": 0,
+   "statut": "échec",
+   "reussite": false,
+   "p95": {
+    "mediane": null,
+    "pire": null
+   },
+   "inp": {
+    "mediane": 184,
+    "pire": 184
+   },
+   "longtasks": {
+    "mediane": 14,
+    "pire": 14
+   },
+   "loaf": {
+    "mediane": 12,
+    "pire": 12
+   },
+   "saisiesIncompletes": {
+    "mediane": 0,
+    "pire": 0
+   },
+   "motifs": [
+    "14 longtask(s)",
+    "INP 184 ms"
+   ]
+  },
+  {
+   "config": "principal",
+   "scenario": "changement-axe-vue",
+   "runs": 1,
+   "invalides": 0,
+   "statut": "échec",
+   "reussite": false,
+   "p95": {
+    "mediane": null,
+    "pire": null
+   },
+   "inp": {
+    "mediane": 328,
+    "pire": 328
+   },
+   "longtasks": {
+    "mediane": 8,
+    "pire": 8
+   },
+   "loaf": {
+    "mediane": 7,
+    "pire": 7
+   },
+   "saisiesIncompletes": {
+    "mediane": 0,
+    "pire": 0
+   },
+   "motifs": [
+    "8 longtask(s)",
+    "INP 328 ms"
+   ]
+  },
+  {
+   "config": "base",
+   "scenario": "defilement",
+   "runs": 1,
+   "invalides": 0,
+   "statut": "échec",
+   "reussite": false,
+   "p95": {
+    "mediane": null,
+    "pire": null
+   },
+   "inp": {
+    "mediane": null,
+    "pire": null
+   },
+   "longtasks": {
+    "mediane": 28,
+    "pire": 28
+   },
+   "loaf": {
+    "mediane": 8,
+    "pire": 8
+   },
+   "saisiesIncompletes": {
+    "mediane": 0,
+    "pire": 0
+   },
+   "motifs": [
+    "28 longtask(s)",
+    "8 LoAF"
+   ]
+  },
+  {
+   "config": "principal",
+   "scenario": "defilement",
+   "runs": 1,
+   "invalides": 0,
+   "statut": "échec",
+   "reussite": false,
+   "p95": {
+    "mediane": null,
+    "pire": null
+   },
+   "inp": {
+    "mediane": null,
+    "pire": null
+   },
+   "longtasks": {
+    "mediane": 35,
+    "pire": 35
+   },
+   "loaf": {
+    "mediane": 21,
+    "pire": 21
+   },
+   "saisiesIncompletes": {
+    "mediane": 0,
+    "pire": 0
+   },
+   "motifs": [
+    "35 longtask(s)",
+    "21 LoAF"
+   ]
+  },
+  {
+   "config": "base",
+   "scenario": "ouverture-graphe",
+   "runs": 1,
+   "invalides": 0,
+   "statut": "échec",
+   "reussite": false,
+   "p95": {
+    "mediane": null,
+    "pire": null
+   },
+   "inp": {
+    "mediane": 272,
+    "pire": 272
+   },
+   "longtasks": {
+    "mediane": 15,
+    "pire": 15
+   },
+   "loaf": {
+    "mediane": 14,
+    "pire": 14
+   },
+   "saisiesIncompletes": {
+    "mediane": 0,
+    "pire": 0
+   },
+   "motifs": [
+    "15 longtask(s)",
+    "INP 272 ms"
+   ]
+  },
+  {
+   "config": "principal",
+   "scenario": "ouverture-graphe",
+   "runs": 1,
+   "invalides": 0,
+   "statut": "échec",
+   "reussite": false,
+   "p95": {
+    "mediane": null,
+    "pire": null
+   },
+   "inp": {
+    "mediane": 376,
+    "pire": 376
+   },
+   "longtasks": {
+    "mediane": 9,
+    "pire": 9
+   },
+   "loaf": {
+    "mediane": 8,
+    "pire": 8
+   },
+   "saisiesIncompletes": {
+    "mediane": 0,
+    "pire": 0
+   },
+   "motifs": [
+    "9 longtask(s)",
+    "INP 376 ms"
+   ]
+  }
+ ],
+ "balayageLru": []
+}
