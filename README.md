@@ -30,7 +30,7 @@ Pour le versant technique :
 - [`docs/GOALS.md`](docs/GOALS.md) : objectifs, stack visée, règles de dev.
 - [`docs/TODO.md`](docs/TODO.md) : décisions prises et points à explorer.
 - [`docs/PRACTICES.md`](docs/PRACTICES.md) : faits techniques vérifiés.
-- [`docs/research/`](docs/research/) : recherches qui fondent les choix du prototype (signaux, stockage local).
+- [`docs/research/`](docs/research/) : recherches techniques : choix du prototype (signaux, stockage local) et état de MCP et WebMCP.
 
 ## Lancer le prototype
 
