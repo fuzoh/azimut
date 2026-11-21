@@ -1,0 +1,14 @@
+top1 : union trigrammes+BM25 = 20/30
+  minilm    seul 9/30 ; union avec le lexical 23/30
+  e5-small  seul 11/30 ; union avec le lexical 22/30
+  e5-base   seul 17/30 ; union avec le lexical 27/30
+  bge-m3    seul 16/30 ; union avec le lexical 22/30
+  qwen3     seul 17/30 ; union avec le lexical 24/30
+  jamais trouvées par aucune approche : [9, 10]
+top3 : union trigrammes+BM25 = 26/30
+  minilm    seul 15/30 ; union avec le lexical 29/30
+  e5-small  seul 21/30 ; union avec le lexical 26/30
+  e5-base   seul 20/30 ; union avec le lexical 29/30
+  bge-m3    seul 22/30 ; union avec le lexical 29/30
+  qwen3     seul 22/30 ; union avec le lexical 27/30
+  jamais trouvées par aucune approche : []
