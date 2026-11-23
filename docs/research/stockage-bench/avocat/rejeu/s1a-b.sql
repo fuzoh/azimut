@@ -1,0 +1,1 @@
+select s.doc, g.libelles, d.doc from b.grille g join b.structure s on s.id = g.structure_id join b.dossier d on d.grille_id = g.id where g.id = '019e807a-ec1f-791c-96fa-7ee2192c21ca' and d.participant_id = '019e807a-ec7e-721d-bcc5-2915a69eac80';

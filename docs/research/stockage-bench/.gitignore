@@ -1,0 +1,7 @@
+# Données régénérées par jeu/generer.ts (déterministe, contrôlé par jeu/SHA256SUMS)
+jeu/cours.json
+jeu/*.ndjson
+jeu/grilles/
+jeu/attendu/
+# Journaux des exécutions
+option-*/sorties/

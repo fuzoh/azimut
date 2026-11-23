@@ -1,0 +1,1 @@
+select g.nom as grille, c.participant_id, n.code as noeud, c.valeur from azimut.cases c join azimut.noeuds n on n.id = c.noeud_id join azimut.baremes b on b.id = n.bareme_id join azimut.versions_grille vg on vg.id = c.version_id join azimut.grilles g on g.id = vg.grille_id where b.prereglage = 'binaire' and c.valeur is not null;

@@ -13,7 +13,7 @@
 - `docs/analyse/22-spec-observations.md` : spec des observations et du suivi en cours de formation (issue #29).
 - `docs/analyse/25-perimetre-v1.md` : périmètre et ordre de construction de la première version de démonstration (proposition, à valider).
 - `docs/analyse/29-resilience.md` : stratégie de résilience pendant un cours, classeur de secours et relance manuelle (proposition, à valider).
-- `docs/research/` : recherches techniques (signaux, stockage local, MCP et WebMCP, rattachement suggéré). Faits, pas décisions.
+- `docs/research/` : recherches techniques (signaux, stockage local, MCP et WebMCP, rattachement suggéré, modèle de stockage). Faits, pas décisions.
 - `docs/analyse/` : analyses antérieures conservées pour les sujets hors modèle (zones d'ombre, acteurs et droits, Qualix, corpus de qualifications). Commencer par `README.md`. Propositions, pas décisions.
 
 ## Agent skills
